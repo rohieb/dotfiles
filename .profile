@@ -19,6 +19,7 @@ fi
 # set PATH so it includes user's private bin if it exists
 PATH="$HOME/bin:/sbin:/usr/sbin:$PATH"
 
+
 ### start gpg agent
 export GPG_TTY=$(tty)
 GPG_AGENT_ENV_FILE=$HOME/.gnupg/gpg-agent-info
@@ -32,18 +33,20 @@ if [ "$?" != "0" ]; then
   eval $(gpg-agent --daemon --sh --write-env-file=$GPG_AGENT_ENV_FILE)
 fi
 
+
 ### start ssh agent and add keys
 SSH_AGENT_ENV_FILE=$HOME/.ssh/ssh-agent-info
 if [ -f "$SSH_AGENT_ENV_FILE" ]; then
-  . "$SSH_AGENT_ENV_FILE"
+  . "$SSH_AGENT_ENV_FILE" > /dev/null
   # file may be old, try connecting
   if [ -z "$(ps aux|grep $SSH_AGENT_PID|grep ssh-agent)" ]; then
     # daemon does not exist with this pid, start new one
     ssh-agent -s > $SSH_AGENT_ENV_FILE
-    .  $SSH_AGENT_ENV_FILE
+    . "$SSH_AGENT_ENV_FILE" > /dev/null
   fi
 fi
 
+### exports
 export DEBEMAIL="rohieb@rohieb.name"
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
