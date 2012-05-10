@@ -10,6 +10,8 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+    awful.key({ modkey,           }, "Up",     function () awful.tag.viewidx(-3) end),
+    awful.key({ modkey,           }, "Down",   function () awful.tag.viewidx( 3) end),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
     awful.key({ modkey,           }, "j",
@@ -29,8 +31,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
-    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
-    awful.key({ modkey,           }, "Tab",
+    awful.key({ modkey,           }, "Tab", awful.client.urgent.jumpto),
+    awful.key({ modkey, "Control" }, "Tab",
         function ()
             awful.client.focus.history.previous()
             if client.focus then
@@ -54,8 +56,11 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
-    -- lock screen
+    -- utilities
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xlock -mode blank") end),
+    awful.key({ modkey, "Control" }, "r", function () awful.util.spawn("setscreens.sh --reset") end),
+    awful.key({ modkey, "Control" }, "d", function () awful.util.spawn("setscreens.sh --home") end),
+    awful.key({ modkey, "Control" }, "c", function () awful.util.spawn("gnome-calculator") end),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
