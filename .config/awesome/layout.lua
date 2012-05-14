@@ -27,7 +27,7 @@ tags = {
   layout = {
     layouts[1], layouts[1], layouts[1],
     layouts[6], layouts[6], layouts[6],
-    layouts[3], layouts[1], layouts[3]
+    layouts[4], layouts[1], layouts[3]
   }
 }
 for s = 1, screen.count() do
