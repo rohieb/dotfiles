@@ -1,14 +1,13 @@
 include "/usr/share/themes/Clearlooks/gtk-2.0/gtkrc"
+gtk-theme-name = "Clearlooks"
+gtk-font-name="Sans 9"
+gtk-icon-theme-name = "Tangerine"
+gtk-toolbar-style   = GTK_TOOLBAR_BOTH_HORIZ
+gtk-toolbar-icon-size = small
 
 style "user-font" {
 	font_name = "Sans 9"
 }
 
 widget_class "*" style "user-font"
-
-gtk-font-name="Sans 9"
-
-gtk-icon-theme-name = "Ubuntu-Mono-Dark"
-gtk-toolbar-style   = GTK_TOOLBAR_BOTH_HORIZ
-gtk-toolbar-icon-size = small
 
