@@ -57,7 +57,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- utilities
-    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xlock -mode blank") end),
+    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xflock4") end),
     awful.key({ modkey, "Control" }, "r", function () awful.util.spawn("setscreens.sh --reset") end),
     awful.key({ modkey, "Control" }, "d", function () awful.util.spawn("setscreens.sh --home") end),
     awful.key({ modkey, "Control" }, "c", function () awful.util.spawn("gnome-calculator") end),

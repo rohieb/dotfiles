@@ -15,22 +15,24 @@ awful.rules.rules = {
     { rule = { class = "Gucharmap" }, properties = { floating = true } },
     { rule = { class = "Kaffeine" }, properties = { floating = true } },
     { rule = { class = "Evince" }, properties = { floating = true } },
+    { rule = { class = "Knetwalk" }, properties = { floating = true } },
+    { rule = { name = "Terminator Preferences" }, properties = { floating = true } },
 
     -- map specific windows to specific tags
-    { rule = { class = "Wikidpad" },
+    { rule = { class = "WikidPad" },
       properties = { tag = tags[1][3] } },
 
     { rule = { class = "Terminator" },
       properties = { tag = tags[1][4] } },
 
-    { rule_any = { class = { "Firefox", "Chromium-browser", "Epiphany" } },
+    { rule_any = { class = { "Iceweasel", "Chromium", "Epiphany" } },
       properties = { tag = tags[1][5] } },
 
-    { rule_any = { class = { "Thunderbird", "Evolution" } },
+    { rule_any = { class = { "Icedove", "Evolution" } },
       properties = { tag = tags[1][6] } },
 
     { rule_any = { class = { "Guayadeque", "Gpodder", "Vagalume",
-      "Rhythmbox", "Kaffeine" } },
+      "Rhythmbox", "Kaffeine", "Pavucontrol" } },
       properties = { tag = tags[1][7] } },
 
     { rule = { class = "Xchat" },
