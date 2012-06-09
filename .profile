@@ -61,3 +61,6 @@ export LC_PAPER="de_DE.UTF-8"
 export LC_COLLATE="de_DE.UTF-8"
 export LC_MONETARY="de_DE.UTF-8"
 
+# set up local perl lib in ~/.perl5
+eval $(perl -Mlocal::lib=$HOME/.perl5)
+
