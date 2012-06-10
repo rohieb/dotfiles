@@ -11,7 +11,7 @@ awful.rules.rules = {
     -- floating windows
     { rule = { class = "MPlayer" }, properties = { floating = true } },
     { rule = { class = "pinentry" }, properties = { floating = true } },
-    { rule = { class = "gimp" }, properties = { floating = true } },
+    { rule = { class = "Gimp-2.8" }, properties = { floating = true } },
     { rule = { class = "Gucharmap" }, properties = { floating = true } },
     { rule = { class = "Kaffeine" }, properties = { floating = true } },
     { rule = { class = "Evince" }, properties = { floating = true } },
