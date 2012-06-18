@@ -7,7 +7,7 @@ procs = {
   "nm-applet",
   "xfce4-power-manager",
   "s0trayicon",
-  "blueman",
+  "blueman-applet",
   "gkrellm",
 }
 

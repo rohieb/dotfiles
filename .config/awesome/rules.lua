@@ -17,6 +17,7 @@ awful.rules.rules = {
     { rule = { class = "Evince" }, properties = { floating = true } },
     { rule = { class = "Knetwalk" }, properties = { floating = true } },
     { rule = { name = "Terminator Preferences" }, properties = { floating = true } },
+    { rule = { class = "Epiphany-browser" }, properties = { floating = false } },
 
     -- map specific windows to specific tags
     { rule = { class = "WikidPad" },
