@@ -1,0 +1,13 @@
+! left Ctrl --> Compose key
+keycode 105 = Multi_key Multi_key Multi_key Multi_key
+
+! Advanced multimedia keys for wireless desktop keyboard
+! XF86Mail --> XF86AudioStop
+keycode 163 = XF86AudioStop XF86Eject XF86AudioStop XF86Eject
+! XF86HomePage --> XF86AudioNext
+keycode 180 = XF86AudioNext NoSymbol XF86AudioNext
+
+! Note: this does not work, the key is still processed somewhere other.
+! accidentally pressing XF86PowerOff is bad, may be mapped otherwise.
+! keycode 124 = NoSymbol
+
