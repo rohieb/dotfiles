@@ -12,6 +12,7 @@ awful.rules.rules = {
     { rule = { class = "MPlayer" }, properties = { floating = true } },
     { rule = { class = "pinentry" }, properties = { floating = true } },
     { rule = { class = "Gimp-2.8" }, properties = { floating = true } },
+    { rule = { class = "Gimp" }, properties = { floating = true } },
     { rule = { class = "Gucharmap" }, properties = { floating = true } },
     { rule = { class = "Kaffeine" }, properties = { floating = true } },
     { rule = { class = "Evince" }, properties = { floating = true } },
@@ -20,13 +21,17 @@ awful.rules.rules = {
     { rule = { class = "Epiphany-browser" }, properties = { floating = false } },
 
     -- map specific windows to specific tags
+    { rule = { class = "Gkrellm" },
+      properties = { tag = tags[1][1] } },
+
     { rule = { class = "WikidPad" },
       properties = { tag = tags[1][3] } },
 
     { rule = { class = "Terminator" },
       properties = { tag = tags[1][4] } },
 
-    { rule_any = { class = { "Iceweasel", "Chromium", "Epiphany" } },
+    { rule_any = { class = { "Iceweasel", "Firefox-bin", "Chromium",
+			"Epiphany" } },
       properties = { tag = tags[1][5] } },
 
     { rule_any = { class = { "Icedove", "Evolution" } },
@@ -35,6 +40,9 @@ awful.rules.rules = {
     { rule_any = { class = { "Guayadeque", "Gpodder", "Vagalume",
       "Rhythmbox", "Kaffeine", "Pavucontrol" } },
       properties = { tag = tags[1][7] } },
+
+    { rule = { class = "Polly" },
+      properties = { tag = tags[1][8] } },
 
     { rule = { class = "Xchat" },
       properties = { tag = tags[1][9] } },

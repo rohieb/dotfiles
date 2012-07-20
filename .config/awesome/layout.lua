@@ -22,12 +22,12 @@ tags = {
   names = {
     1, 2, 3,
     "4:work", "5:www", "6:mail",
-    "7:media", 8, "9:im"
+    "7:snd", "9:twtr", "9:im"
   },
   layout = {
     layouts[1], layouts[1], layouts[1],
     layouts[6], layouts[6], layouts[6],
-    layouts[4], layouts[1], layouts[3]
+    layouts[4], layouts[6], layouts[3]
   }
 }
 for s = 1, screen.count() do
