@@ -53,7 +53,6 @@ modkey = "Mod4"
 
 -- Pull in all the other modular config
 local cfgpath = awful.util.getdir("config")
-dofile(cfgpath .. "/theme.lua")
 dofile(cfgpath .. "/layout.lua")
 dofile(cfgpath .. "/menu.lua")
 dofile(cfgpath .. "/wibox.lua")
