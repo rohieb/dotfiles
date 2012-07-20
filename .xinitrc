@@ -7,4 +7,7 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 xmodmap .xmodmaprc
 
 # wrap awesome into a ConsoleKit session and also start a DBus session bus
-exec ck-launch-session dbus-launch --sh-syntax --exit-with-session awesome
+# see bug #677456
+#exec ck-launch-session dbus-launch --sh-syntax --exit-with-session awesome
+exec ck-launch-session dbus-launch --sh-syntax awesome
+
