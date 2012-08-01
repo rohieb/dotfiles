@@ -61,6 +61,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "r", function () awful.util.spawn("setscreens.sh --reset") end),
     awful.key({ modkey, "Control" }, "d", function () awful.util.spawn("setscreens.sh --home") end),
     awful.key({ modkey, "Control" }, "c", function () awful.util.spawn("gnome-calculator") end),
+    awful.key({ }, "XF86Calculator",      function () awful.util.spawn("gnome-calculator") end),
 
 		-- Volume
 		awful.key({}, "XF86AudioRaiseVolume", function () awful.util.spawn("volume.rb up") end),
