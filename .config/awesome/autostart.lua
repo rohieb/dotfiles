@@ -2,13 +2,13 @@
 -- Autostart applications, taken from
 -- https://wiki.archlinux.org/index.php/Awesome#Transitioning_away_from_Gnome3
 --
-
 procs = {
   "nm-applet",
   "xfce4-power-manager",
   "s0trayicon",
   "blueman-applet",
   "gkrellm",
+  "ibus-daemon --xim",
 }
 
 -- start apps only when it is not running
