@@ -25,7 +25,7 @@ tags = {
     "7:snd", "9:twtr", "9:im"
   },
   layout = {
-    layouts[1], layouts[1], layouts[1],
+    layouts[2], layouts[6], layouts[2],
     layouts[6], layouts[6], layouts[6],
     layouts[4], layouts[6], layouts[3]
   }
