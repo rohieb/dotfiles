@@ -19,13 +19,16 @@ awful.rules.rules = {
     { rule = { class = "Knetwalk" }, properties = { floating = true } },
     { rule = { name = "Terminator Preferences" }, properties = { floating = true } },
     { rule = { class = "Epiphany-browser" }, properties = { floating = false } },
-    { rule = { class = "org-openstreetmap-josm-Main" }, properties = { floating = false } },
+    { rule = { instance = "sun-awt-X11-XFramePeer",
+      class = "org-openstreetmap-josm-Main" },
+      properties = { floating = false } },
 
     -- map specific windows to specific tags
     { rule = { class = "Gkrellm" },
       properties = { tag = tags[1][1] } },
 
-    { rule = { class = "org-openstreetmap-josm-Main" },
+    { rule = { instance = "sun-awt-X11-XFramePeer",
+      class = "org-openstreetmap-josm-Main" },
       properties = { tag = tags[1][2] } },
 
     { rule = { class = "WikidPad" },
