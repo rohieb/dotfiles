@@ -28,6 +28,8 @@ esac
 
 xrandr $SCREEN --output LVDS1 $LVDS --output VGA1 $VGA
 
+xmodmap $HOME/.xmodmaprc
+
 xset dpms force on
 
 # vim: set ts=2 sw=2 expandtab smartindent autoindent:
