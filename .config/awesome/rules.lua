@@ -18,8 +18,11 @@ awful.rules.rules = {
       "Evince",
       "Knetwalk"
     } }, properties = { floating = true } },
-    { rule = { name = "Terminator Preferences" },
-      properties = { floating = true } },
+    { rule_any = { name = {
+			"Terminator Preferences",
+			"qtcreator_process_stub", -- xterm started by QtCreator for program output
+			"Event Tester" -- xev
+		} }, properties = { floating = true } },
 
     -- non-floating windows
     { rule = { class = "Epiphany-browser" },
