@@ -42,7 +42,7 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+    awful.key({ modkey, "Shift"   }, "q", awesome.restart),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
@@ -52,6 +52,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "k",     function () awful.tag.incncol(-1)         end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    awful.key({ modkey, "Mod1"    }, "m",  function () awful.layout.set(layouts[1]) end), -- floating
+    awful.key({ modkey, "Mod1"    }, "o",  function () awful.layout.set(layouts[2]) end), -- tile right
+    awful.key({ modkey, "Mod1"    }, "u",  function () awful.layout.set(layouts[3]) end), -- tile left
+    awful.key({ modkey, "Mod1"    }, "k",  function () awful.layout.set(layouts[4]) end), -- tile bottom
+    awful.key({ modkey, "Mod1"    }, "8",  function () awful.layout.set(layouts[5]) end), -- tile top
+    awful.key({ modkey, "Mod1"    }, "9",  function () awful.layout.set(layouts[8]) end), -- spiral
+    awful.key({ modkey, "Mod1"    }, "i",  function () awful.layout.set(layouts[10]) end), -- max
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 

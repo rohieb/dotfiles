@@ -1,18 +1,17 @@
 -- Table of layouts to cover with awful.layout.inc, order matters.
-layouts =
-{
-    awful.layout.suit.floating,         -- 1
-    awful.layout.suit.tile,             -- 2
-    awful.layout.suit.tile.left,        -- 3
-    awful.layout.suit.tile.bottom,      -- 4
-    awful.layout.suit.tile.top,         -- 5
---    awful.layout.suit.fair,             -- 6
---    awful.layout.suit.fair.horizontal,  -- 7
---    awful.layout.suit.spiral,
---    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,              -- 8
---    awful.layout.suit.max.fullscreen,
---    awful.layout.suit.magnifier         -- 9
+layouts = {
+  awful.layout.suit.floating,         -- 1
+  awful.layout.suit.tile,             -- 2
+  awful.layout.suit.tile.left,        -- 3
+  awful.layout.suit.tile.bottom,      -- 4
+  awful.layout.suit.tile.top,         -- 5
+  awful.layout.suit.fair,             -- 6
+  awful.layout.suit.fair.horizontal,  -- 7
+  awful.layout.suit.spiral,           -- 8
+  awful.layout.suit.spiral.dwindle,   -- 9
+  awful.layout.suit.max,              -- 10
+  awful.layout.suit.max.fullscreen,   -- 11
+  awful.layout.suit.magnifier         -- 12
 }
 -- }}}
 
@@ -25,9 +24,9 @@ tags = {
     "7:snd", "9:twtr", "9:im"
   },
   layout = {
-    layouts[2], layouts[6], layouts[2],
-    layouts[6], layouts[6], layouts[6],
-    layouts[4], layouts[6], layouts[3]
+    layouts[10], layouts[10], layouts[10],
+    layouts[10], layouts[10], layouts[10],
+    layouts[4], layouts[10], layouts[3]
   }
 }
 for s = 1, screen.count() do
