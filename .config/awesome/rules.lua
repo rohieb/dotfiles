@@ -16,6 +16,7 @@ awful.rules.rules = {
       "Gucharmap",
       "Kaffeine",
       "Evince",
+      "Display.im6",
       "Knetwalk"
     } }, properties = { floating = true } },
     { rule_any = { name = {
