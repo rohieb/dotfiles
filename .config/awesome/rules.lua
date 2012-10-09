@@ -41,6 +41,8 @@ awful.rules.rules = {
     { rule = { instance = "sun-awt-X11-XFramePeer",
       class = "org-openstreetmap-josm-Main" },
       properties = { tag = tags[1][2] } },
+    { rule = { class = "Qtcreator" },
+      properties = { tag = tags[1][2] } },
 
     { rule = { class = "WikidPad" },
       properties = { tag = tags[1][3] } },
