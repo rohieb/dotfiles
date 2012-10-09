@@ -7,6 +7,8 @@ set guifont=Monospace\ 9
 set textwidth=80
 set colorcolumn=80
 
+set autochdir
+
 " Tabs
 map <M-PageUp> :tabprev<CR>
 map <M-PageDown> :tabnext<CR>
