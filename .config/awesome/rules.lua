@@ -20,14 +20,16 @@ awful.rules.rules = {
       "Knetwalk"
     } }, properties = { floating = true } },
     { rule_any = { name = {
-			"Terminator Preferences",
-			"qtcreator_process_stub", -- xterm started by QtCreator for program output
-			"Event Tester" -- xev
-		} }, properties = { floating = true } },
+      "Terminator Preferences",
+      "qtcreator_process_stub", -- xterm started by QtCreator for program output
+      "Event Tester" -- xev
+    } }, properties = { floating = true } },
 
     -- non-floating windows
-    { rule = { class = "Epiphany-browser" },
-      properties = { floating = false } },
+    { rule_any = { class = {
+      "Epiphany-browser",
+      "Clementine"
+    } }, properties = { floating = false } },
     { rule = { instance = "sun-awt-X11-XFramePeer",
       class = "org-openstreetmap-josm-Main" },
       properties = { floating = false } },
@@ -79,3 +81,4 @@ awful.rules.rules = {
 }
 -- }}}
 
+-- vim: set sw=2 ts=2 ai smartindent expandtab:
