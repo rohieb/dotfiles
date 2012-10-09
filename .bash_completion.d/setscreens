@@ -1,0 +1,6 @@
+_setscreens () {
+  PROFILES="reset home home-dual siemens-dual stratum-beamer \
+            stratum-beamer-mirror"
+  COMPREPLY=( $(compgen -W "$PROFILES" -- ${COMP_WORDS[COMP_CWORD]}) )
+}
+complete -F _setscreens setscreens

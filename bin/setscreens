@@ -36,7 +36,11 @@ case $1 in
     HDMI="--off"
     ;;
   *)
-    echo Usage: $0 '{reset|home|home-dual|stratum-beamer}';;
+    echo Usage: setscreens { PROFILE }
+    echo where PROFILE is one of: '   reset | home | home-dual | siemens-dual |'
+    echo '                            stratum-beamer | stratum-beamer-mirror'
+    exit 1
+    ;;
 esac
 
 LVDS_SETTING=""
