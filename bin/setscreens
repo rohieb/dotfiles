@@ -22,6 +22,11 @@ case $1 in
     LVDS="--off"
     HDMI="--off"
     ;;
+  siemens-dual)
+    VGA="--primary --auto --mode 1280x1024 --pos 0x0"
+    LVDS="--auto --right-of VGA1"
+    HDMI="--off"
+    ;;
   stratum-beamer)
     LVDS="--mode 640x480 $DEFAULT"
     VGA="--mode 640x480 --same-as LVDS1 $DEFAULT"
