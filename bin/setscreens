@@ -1,5 +1,6 @@
 #!/bin/sh
 DEFAULT="--scale 1x1 --panning 0x0 --pos 0x0"
+HDMI=""
 LVDS=""
 VGA=""
 SCREEN=""
@@ -9,18 +10,22 @@ case $1 in
     SCREEN="--fb 1366x768"
     LVDS="--auto --primary --mode 1366x768 $DEFAULT"
     VGA="--off"
- ;;
+    HDMI="--off"
+    ;;
   home-dual)
     VGA="--primary --auto --pos 0x0"
     LVDS="--auto --left-of VGA1"
+    HDMI="--off"
     ;;
   home)
     VGA="--primary --mode 1280x1024 --auto --right-of LVDS1"
     LVDS="--off"
+    HDMI="--off"
     ;;
   stratum-beamer)
     LVDS="--mode 640x480 $DEFAULT"
     VGA="--mode 640x480 --same-as LVDS1 $DEFAULT"
+    HDMI="--off"
     ;;
   *)
     echo Usage: $0 '{reset|home|home-dual|stratum-beamer}';;
@@ -34,8 +39,12 @@ VGA_SETTING=""
 if [ -n "$VGA" ]; then
   VGA_SETTING="--output VGA1 $VGA"
 fi;
+HDMI_SETTING=""
+if [ -n "$HDMI" ]; then
+  HDMI_SETTING="--output HDMI1 $HDMI"
+fi;
 
-xrandr $SCREEN $LVDS_SETTING $VGA_SETTING
+xrandr $SCREEN $LVDS_SETTING $VGA_SETTING $HDMI_SETTING
 
 xmodmap $HOME/.xmodmaprc
 
