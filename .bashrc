@@ -93,4 +93,7 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 		. /etc/bash_completion
 fi
+if [ -f $HOME/.bash_completion.d/* ] && ! shopt -oq posix; then
+		. $HOME/.bash_completion.d/*
+fi
 
