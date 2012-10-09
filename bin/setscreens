@@ -26,7 +26,16 @@ case $1 in
     echo Usage: $0 '{reset|home|home-dual|stratum-beamer}';;
 esac
 
-xrandr $SCREEN --output LVDS1 $LVDS --output VGA1 $VGA
+LVDS_SETTING=""
+if [ -n "$LVDS" ]; then
+  LVDS_SETTING="--output LVDS1 $LVDS"
+fi;
+VGA_SETTING=""
+if [ -n "$VGA" ]; then
+  VGA_SETTING="--output VGA1 $VGA"
+fi;
+
+xrandr $SCREEN $LVDS_SETTING $VGA_SETTING
 
 xmodmap $HOME/.xmodmaprc
 
