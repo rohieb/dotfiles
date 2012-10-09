@@ -68,6 +68,7 @@ awful.rules.rules = {
       "Vagalume",
       "Rhythmbox",
       "Kaffeine",
+      "Clementine",
       "Pavucontrol"
     } }, properties = { tag = tags[1][7] } },
 
