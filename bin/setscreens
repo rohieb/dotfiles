@@ -28,6 +28,9 @@ case $1 in
     HDMI="--off"
     ;;
   stratum-beamer)
+    VGA="--auto --mode 640x480 --right-of LVDS1 $DEFAULT"
+    ;;
+  stratum-beamer-mirror)
     LVDS="--mode 640x480 $DEFAULT"
     VGA="--mode 640x480 --same-as LVDS1 $DEFAULT"
     HDMI="--off"
