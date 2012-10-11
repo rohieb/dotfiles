@@ -32,6 +32,9 @@ tags = {
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = awful.tag(tags.names, s, tags.layout)
+
+    -- set default column widths
+    awful.tag.setmwfact(0.2, tags[s][9])
 end
 
 -- vim: set ts=2 sw=2 et:
