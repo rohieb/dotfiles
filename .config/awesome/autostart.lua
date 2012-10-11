@@ -23,3 +23,4 @@ for k = 1, #procs do
   start_daemon(procs[k])
 end
 
+-- vim: set ts=2 sw=2 et:

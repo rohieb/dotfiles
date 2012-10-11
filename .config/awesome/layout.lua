@@ -34,3 +34,4 @@ for s = 1, screen.count() do
     tags[s] = awful.tag(tags.names, s, tags.layout)
 end
 
+-- vim: set ts=2 sw=2 et:

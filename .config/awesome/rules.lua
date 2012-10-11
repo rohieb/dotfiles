@@ -84,4 +84,4 @@ awful.rules.rules = {
 }
 -- }}}
 
--- vim: set sw=2 ts=2 ai smartindent expandtab:
+-- vim: set tw=80 sw=2 ts=2 ai smartindent expandtab:

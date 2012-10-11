@@ -5,3 +5,4 @@ dofile("/usr/share/awesome/themes/default/theme.lua")
 theme.wallpaper_cmd = { "awsetbg -a /home/rohieb/Pictures/Wallpaper/Space_Invaders_by_molotov_arts.jpg" }
 
 return theme
+-- vim: set ts=2 sw=2 et:

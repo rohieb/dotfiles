@@ -92,3 +92,5 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 -- }}}
 
 dofile(cfgpath .. "/autostart.lua")
+
+-- vim: set ts=2 sw=2 et:
