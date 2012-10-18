@@ -11,3 +11,7 @@ keycode 180 = XF86AudioNext NoSymbol XF86AudioNext
 ! accidentally pressing XF86PowerOff is bad, may be mapped otherwise.
 ! keycode 124 = NoSymbol
 
+! Make Caps Lock an additional Control_L key
+remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L
