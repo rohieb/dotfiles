@@ -27,6 +27,7 @@ awful.rules.rules = {
 
     -- non-floating windows
     { rule_any = { class = {
+      "Chromium",
       "Epiphany-browser",
       "Clementine"
     } }, properties = { floating = false } },
