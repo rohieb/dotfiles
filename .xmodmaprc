@@ -1,6 +1,3 @@
-! left Ctrl --> Compose key
-keycode 105 = Multi_key Multi_key Multi_key Multi_key
-
 ! Advanced multimedia keys for wireless desktop keyboard
 ! XF86Mail --> XF86AudioStop
 keycode 163 = XF86AudioStop XF86Eject XF86AudioStop XF86Eject
@@ -11,7 +8,6 @@ keycode 180 = XF86AudioNext NoSymbol XF86AudioNext
 ! accidentally pressing XF86PowerOff is bad, may be mapped otherwise.
 ! keycode 124 = NoSymbol
 
-! Make Caps Lock an additional Control_L key
+! Make Caps Lock the Compose key
 remove Lock = Caps_Lock
-keysym Caps_Lock = Control_L
-add Control = Control_L
+keysym Caps_Lock = Multi_key
