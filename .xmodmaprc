@@ -11,3 +11,4 @@ keycode 180 = XF86AudioNext NoSymbol XF86AudioNext
 ! Make Caps Lock the Compose key
 remove Lock = Caps_Lock
 keysym Caps_Lock = Multi_key
+remove Lock = Caps_Lock
