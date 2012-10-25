@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Streams a video with mplayer.
-# Tested with: Vimeo, YouTube.
+# Tested with: Vimeo, YouTube, TED.
 # Needs:
 # * mplayer, http://www.mplayerhq.hu/
 # * quvi, http://quvi.sourceforge.net/
@@ -21,5 +21,5 @@ for f in fmt35_480p fmt44_480p fmt34_360p fmt18_360p fmt43_360p fmt05_240p; do
 done;
 
 echo Choosing quality $format
-quvi $quvi_opts -f $format --exec 'printf URL: %u; mplayer %u' "$1" #> /dev/null
+quvi $quvi_opts -f $format --exec 'printf URL: %u; mplayer -cache 8192 %u' "$1" #> /dev/null
 
