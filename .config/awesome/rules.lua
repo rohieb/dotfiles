@@ -31,6 +31,8 @@ awful.rules.rules = {
       "Epiphany-browser",
       "Clementine"
     } }, properties = { floating = false } },
+    { rule = { class = "Kmymoney", role = "MainWindow#1" },
+      properties = { floating = false } },
     { rule = { instance = "sun-awt-X11-XFramePeer",
       class = "org-openstreetmap-josm-Main" },
       properties = { floating = false } },
