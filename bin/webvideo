@@ -1,14 +1,18 @@
 #!/bin/sh
 
-# Streams a video with mplayer.
+# Stream a video with mplayer
+# Takes Video URL as first argument and passes all other arguments to mplayer
 # Tested with: Vimeo, YouTube, TED.
 # Needs:
 # * mplayer, http://www.mplayerhq.hu/
 # * quvi, http://quvi.sourceforge.net/
+video_url=$1
+shift
+mplayer_opts="-cache 8192 -msglevel all=1 $*"
 quvi_opts="-v quiet"
 set -e
 format="default"  # for Vimeo, this simply defaults to "sd"
-formats=`quvi $quvi_opts -F "$1"|cut -d ':' -f 1`
+formats=`quvi $quvi_opts -F "$video_url"|cut -d ':' -f 1`
 set +e
 echo Available formats: $formats
 
@@ -21,5 +25,6 @@ for f in fmt35_480p fmt44_480p fmt34_360p fmt18_360p fmt43_360p fmt05_240p; do
 done;
 
 echo Choosing quality $format
-quvi $quvi_opts -f $format --exec 'printf URL: %u; mplayer -cache 8192 %u' "$1" #> /dev/null
+echo mplayer options: $mplayer_opts
+quvi $quvi_opts -f $format --exec "mplayer $mplayer_opts %u" "$video_url"
 
