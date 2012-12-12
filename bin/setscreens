@@ -59,6 +59,7 @@ fi;
 xrandr $SCREEN $LVDS_SETTING $VGA_SETTING $HDMI_SETTING
 
 xmodmap $HOME/.xmodmaprc
+$HOME/bin/capslock-composekey
 
 xset dpms force on
 

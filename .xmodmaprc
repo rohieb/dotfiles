@@ -7,8 +7,3 @@ keycode 180 = XF86AudioNext NoSymbol XF86AudioNext
 ! Note: this does not work, the key is still processed somewhere other.
 ! accidentally pressing XF86PowerOff is bad, may be mapped otherwise.
 ! keycode 124 = NoSymbol
-
-! Make Caps Lock the Compose key
-remove Lock = Caps_Lock
-keysym Caps_Lock = Multi_key
-remove Lock = Caps_Lock

@@ -5,6 +5,8 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 [ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
 
 xmodmap .xmodmaprc
+$HOME/bin/capslock-composekey
+
 xset b off # turn off stupid bell sound
 
 # wrap awesome into a ConsoleKit session and also start a DBus session bus
