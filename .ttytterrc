@@ -1,0 +1,30 @@
+# shiny colors \o/
+ansi=1
+
+# use SSL (needed for streaming API)
+ssl=1
+
+# use Streaming API
+dostream=1
+
+# Also include mentions in timeline
+mentions=1
+
+# use readline frontend
+# for best experience, install Term::Readline::TTYtter
+readline=1
+
+# DeShortify: show shortened links, see
+# http://ivan.sanchezortega.es/ttytter/#deshortify
+exts=/home/rohieb/.ttytter/deshortify.pl
+
+# display a timestamp, not only for DMs
+timestamp=%Y-%m-%d %H:%M:%S
+
+# try to connect again in case of fail whale
+hold=1
+
+# notify for DMs, replies and mentions
+# (currently unused)
+notifies=dm,me,reply
+
