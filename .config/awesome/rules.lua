@@ -21,6 +21,7 @@ awful.rules.rules = {
     } }, properties = { floating = true } },
     { rule_any = { name = {
       "Terminator Preferences",
+      "Tegaki",
       "qtcreator_process_stub", -- xterm started by QtCreator for program output
       "Event Tester" -- xev
     } }, properties = { floating = true } },
