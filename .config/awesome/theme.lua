@@ -2,7 +2,7 @@
 dofile("/usr/share/awesome/themes/default/theme.lua")
 
 -- set the wallpaper
-theme.wallpaper_cmd = { "awsetbg -a /home/rohieb/Pictures/Wallpaper/Space_Invaders_by_molotov_arts.jpg" }
+theme.wallpaper_cmd = { "rotate-wallpaper" }
 
 return theme
 -- vim: set ts=2 sw=2 et:
