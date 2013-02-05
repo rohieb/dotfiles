@@ -21,6 +21,9 @@ map üü <ESC>:wa<CR>
 im ää <ESC>:wa<CR>:!make<CR>
 map ää <ESC>:wa<CR>:!make<CR>
 
+" make gf always open a new tab
+map gf :tabnew <cfile><CR>
+
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
