@@ -17,6 +17,7 @@
   stpop = stash pop
   stsa = stash save
 	graph = log --graph --pretty=oneline --abbrev-commit --all --decorate
+	cached = diff --cached
 
 [core]
 	excludesfile = /home/rohieb/.gitignore
