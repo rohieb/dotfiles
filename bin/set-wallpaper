@@ -1,0 +1,27 @@
+#!/bin/bash
+FOLDER=/home/rohieb/Pictures/Wallpaper/Rotation
+
+if [ "$1" == "-h" -o "$1" == "--help" ]; then
+	echo Usage: `basename $0` '[--new|-n|--help|-h]'
+	echo Wrapper for awsetbg to set the Awesome wallpaper
+	echo Without arguments, sets the wallpaper which was last used.
+	echo
+	echo "  --help|-h  Show this help message"
+	echo "  --new|-n   Set a new random wallpaper from the rotation folder and"
+	echo "             remember it"
+	echo
+	echo Your rotation folder is currently:
+	echo "  $FOLDER"
+	echo "(to change this folder, edit this script.)"
+	exit 0
+fi;
+
+if [ "$1" == "--new" -o "$1" == "-n" ] || \
+	 [    ! -f $XDG_CACHE_HOME/awesome/lastwallpaper \
+	   -a ! -f $HOME/.cache/awesome/lastwallpaper \
+	 ]; then
+	rand_picture=`ls -1 $FOLDER/*.{svg,png,gif,jpg} 2>/dev/null|shuf|head -n 1`
+	awsetbg -a $rand_picture
+else
+	awsetbg -l
+fi;
