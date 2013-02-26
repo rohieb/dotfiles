@@ -75,3 +75,7 @@
 !! white dark/light
 *color7:                S_base2
 *color15:               S_base3
+
+!! see https://github.com/blinry/dotfiles/commit/de408862
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
