@@ -28,3 +28,6 @@ hold=1
 # (currently unused)
 notifies=dm,me,reply
 
+# verify tweets before posting
+# TODO: implememt something like https://xkcd.com/481/
+verify=1
