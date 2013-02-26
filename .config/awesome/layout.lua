@@ -19,9 +19,9 @@ layouts = {
 -- Define a tag table which hold all screen tags.
 tags = {
   names = {
-    1, 2, 3,
-    "4:work", "5:www", "6:mail",
-    "7:snd", "9:twtr", "9:im"
+    1,2,3,4,5,6,7,8,9
+    -- or, a wider version:
+    -- "１","２","３","４","５","６","７","８","９"
   },
   layout = {
     layouts[10], layouts[10], layouts[10],
