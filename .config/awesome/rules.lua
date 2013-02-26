@@ -67,6 +67,7 @@ awful.rules.rules = {
     } }, properties = { tag = tags[1][6] } },
 
     { rule_any = { class = {
+      "Last.fm",
       "Guayadeque",
       "Gpodder",
       "Vagalume",
