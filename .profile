@@ -64,3 +64,7 @@ export LC_MONETARY="de_DE.UTF-8"
 # set up local perl lib in ~/.perl5
 eval $(perl -Mlocal::lib=$HOME/.perl5)
 
+# tell Java applications to use anti-aliasing
+export _JAVA_OPTIONS="$_JAVA_OPTIONS -Dawt.useSystemAAFontSettings=on"
+# tell Java Swing to use our GTK+ theme by default
+export _JAVA_OPTIONS="$_JAVA_OPTIONS -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
