@@ -1,7 +1,15 @@
-#!/bin/bash
-FOLDER=/home/rohieb/Pictures/Wallpaper/Rotation
+#!/bin/sh
+# wallpapers are selected randomly from this folder:
+FOLDER=$HOME/.wallpapers
 
-if [ "$1" == "-h" -o "$1" == "--help" ]; then
+# Nothing below this line needs to be changed.
+LASTWALLPAPER=$HOME/.cache/last_wallpaper
+LOGFILE="$HOME/.set-wallpaper.log"
+log() {
+	echo `date -R` $@ |tee -a $LOGFILE
+}
+
+if [ "$1" = "-h" -o "$1" = "--help" ]; then
 	echo Usage: `basename $0` '[--new|-n|--help|-h]'
 	echo Wrapper for awsetbg to set the Awesome wallpaper
 	echo Without arguments, sets the wallpaper which was last used.
@@ -12,16 +20,19 @@ if [ "$1" == "-h" -o "$1" == "--help" ]; then
 	echo
 	echo Your rotation folder is currently:
 	echo "  $FOLDER"
-	echo "(to change this folder, edit this script.)"
+	echo "(to change this folder, edit $0.)"
 	exit 0
+fi
+
+if [ "$1" = "--new" -o "$1" = "-n" ]; then
+	rand_picture=`find "$FOLDER/"*.svg "$FOLDER/"*.png "$FOLDER/"*.gif "$FOLDER/"*.jpg 2>/dev/null|shuf|head -n 1`
+	log Setting new wallpaper "$rand_picture"
+	if [ -f "$LASTWALLPAPER" ]; then
+		rm "$LASTWALLPAPER";
+	fi
+	ln -s "$rand_picture" "$LASTWALLPAPER"
+else
+	log Setting old wallpaper: `ls -l "$LASTWALLPAPER"`
 fi;
 
-if [ "$1" == "--new" -o "$1" == "-n" ] || \
-	 [    ! -f $XDG_CACHE_HOME/awesome/lastwallpaper \
-	   -a ! -f $HOME/.cache/awesome/lastwallpaper \
-	 ]; then
-	rand_picture=`ls -1 $FOLDER/*.{svg,png,gif,jpg} 2>/dev/null|shuf|head -n 1`
-	awsetbg -a $rand_picture
-else
-	awsetbg -l
-fi;
+awsetbg -a "$LASTWALLPAPER"
