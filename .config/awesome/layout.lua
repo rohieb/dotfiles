@@ -25,7 +25,7 @@ tags = {
   },
   layout = {
     layouts[10], layouts[10], layouts[10],
-    layouts[10], layouts[10], layouts[10],
+    layouts[2], layouts[10], layouts[10],
     layouts[4], layouts[10], layouts[3]
   }
 }
