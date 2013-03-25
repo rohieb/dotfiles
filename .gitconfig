@@ -18,6 +18,7 @@
   stsa = stash save
 	graph = log --graph --pretty=oneline --abbrev-commit --all --decorate
 	cached = diff --cached
+	amend = commit --amend
 
 [core]
 	excludesfile = /home/rohieb/.gitignore
