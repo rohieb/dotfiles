@@ -35,6 +35,8 @@ nnoremap <F3> :set invhlsearch hlsearch?<CR>
 inoremap <F3> <Esc>:set invhlsearch hlsearch?<CR>a
 nnoremap <F4> :set invlist list?<CR>
 inoremap <F4> <Esc>:set invlist list?<CR>a
+nnoremap <F5> :NERDTreeTabsToggle<CR>
+inoremap <F5> <Esc>:NERDTreeTabsToggle<CR>a
 
 " we always want to know which mode we're in
 set showmode
