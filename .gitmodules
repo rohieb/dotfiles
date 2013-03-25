@@ -1,0 +1,12 @@
+[submodule ".vim/bundle/vim-gnupg"]
+	path = .vim/bundle/vim-gnupg
+	url = git://github.com/jamessan/vim-gnupg.git
+[submodule ".vim/bundle/nerdcommenter"]
+	path = .vim/bundle/nerdcommenter
+	url = git://github.com/scrooloose/nerdcommenter.git
+[submodule ".vim/bundle/vim-colors-solarized"]
+	path = .vim/bundle/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule ".vim/bundle/SudoEdit"]
+	path = .vim/bundle/SudoEdit
+	url = git://github.com/vim-scripts/SudoEdit.vim
