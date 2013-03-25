@@ -28,6 +28,7 @@ map ää <ESC>:wa<CR>:!make<CR>
 " make gf always open a new tab
 map gf :tabnew <cfile><CR>
 
+" toggle shortcuts for paste, hlsearch, invlist
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 nnoremap <F3> :set invhlsearch hlsearch?<CR>
@@ -35,10 +36,14 @@ inoremap <F3> <Esc>:set invhlsearch hlsearch?<CR>a
 nnoremap <F4> :set invlist list?<CR>
 inoremap <F4> <Esc>:set invlist list?<CR>a
 
+" we always want to know which mode we're in
 set showmode
 
+" filetype detection via plugins
 set nocompatible               " be iMproved
 filetype plugin on
+
+" syntax highlighting is cool. we want syntax highlighting by default.
 syntax on
 
 " solarized config
@@ -50,6 +55,5 @@ endif
 let g:solarized_termtrans=1   " avoid problems with terminal transparency
 colorscheme solarized
 
+" we don't want our last search matches highlighted on reopening
 call clearmatches()
-
-syntax on
