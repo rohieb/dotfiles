@@ -1,0 +1,13 @@
+This is my personal dotfiles repo. Feel free to poke around and borrow from it.
+
+Sadly, this repo currently does not contain all my dotfiles yet. I'm trying to
+add the missing ones from time to time.
+
+For a reproduction of my personal configuration files, clone this repo, then
+update the submodules:
+
+	$ git clone https://github.com/rohieb/dotfiles.git && cd dotfiles
+	$ git submodule init && git submodule update
+
+After that, you can set up symlinks in your home to point to the files in the
+repo.
