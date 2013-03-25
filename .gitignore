@@ -1,3 +1,4 @@
 .xchat2/xchatlogs
 .vim/.netrwhist
 .*.sw*
+.xchat2/ignore.conf
