@@ -48,6 +48,9 @@ filetype plugin on
 " syntax highlighting is cool. we want syntax highlighting by default.
 syntax on
 
+" gitgutter config
+let g:gitgutter_escape_grep = 1
+
 " solarized config
 if has('gui_running')
     set background=light
