@@ -7,7 +7,6 @@ alias l='ls -lah'
 
 alias iotop='sudo iotop'
 alias iptraf='sudo iptraf'
-alias wireshark='sudo wireshark'
 
 alias psgrep='ps -Af|grep '
 
