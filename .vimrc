@@ -50,6 +50,12 @@ syntax on
 
 " gitgutter config
 let g:gitgutter_escape_grep = 1
+let g:gitgutter_all_on_focusgained = 0
+let g:gitgutter_on_bufenter = 0
+nnoremap <F6> :GitGutterToggle<CR>
+inoremap <F6> <Esc>:GitGutterToggle<CR>a
+nnoremap <S-F6> :GitGutterLineHighlightsToggle<CR>
+inoremap <S-F6> <Esc>:GitGutterLineHighlightsToggle<CR>a
 
 " solarized config
 if has('gui_running')
