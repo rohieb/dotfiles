@@ -60,5 +60,8 @@ endif
 let g:solarized_termtrans=1   " avoid problems with terminal transparency
 colorscheme solarized
 
+" prevent nerdtree vom opening at startup
+let g:nerdtree_tabs_open_on_gui_startup = 0
+
 " we don't want our last search matches highlighted on reopening
 call clearmatches()
