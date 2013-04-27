@@ -16,6 +16,7 @@ awful.rules.rules = {
       "Gucharmap",
       "Kaffeine",
       "Evince",
+      "Xsane",
       "Display.im6",
       "Knetwalk"
     } }, properties = { floating = true } },
