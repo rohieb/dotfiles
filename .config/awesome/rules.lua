@@ -16,6 +16,7 @@ awful.rules.rules = {
       "Gucharmap",
       "Kaffeine",
       "Evince",
+      "Kmines",
       "Xsane",
       "Display.im6",
       "Knetwalk"
