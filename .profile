@@ -68,3 +68,5 @@ eval $(perl -Mlocal::lib=$HOME/.perl5)
 export _JAVA_OPTIONS="$_JAVA_OPTIONS -Dawt.useSystemAAFontSettings=on"
 # tell Java Swing to use our GTK+ theme by default
 export _JAVA_OPTIONS="$_JAVA_OPTIONS -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+# tell Java apps to prefer IPv4 addresses
+export _JAVA_OPTIONS="$_JAVA_OPTIONS -Djava.net.preferIPv4Addresses=true"
