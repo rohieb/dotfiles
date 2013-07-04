@@ -13,6 +13,9 @@ set colorcolumn=80
 
 set autochdir
 
+" Map leader character to ,
+let mapleader = ","
+
 " Tabs
 map <M-PageUp> :tabprev<CR>
 map <M-PageDown> :tabnext<CR>
