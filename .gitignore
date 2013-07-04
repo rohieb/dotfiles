@@ -2,3 +2,4 @@
 .vim/.netrwhist
 .*.sw*
 .xchat2/ignore.conf
+.wireshark/recent*
