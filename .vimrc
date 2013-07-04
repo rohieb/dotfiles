@@ -74,3 +74,6 @@ let g:nerdtree_tabs_open_on_gui_startup = 0
 
 " we don't want our last search matches highlighted on reopening
 call clearmatches()
+
+" auto-filetype for vimboy
+au bufread,bufnewfile ~/Documents/vimboy/* set ft=vimboy
