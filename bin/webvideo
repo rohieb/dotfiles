@@ -15,11 +15,14 @@ fi;
 
 video_url=$1
 shift
-mplayer_opts="-cache 8192 -msglevel all=1 $*"
+
+mplayer_opts="-cache 2048 -msglevel all=1 $*"
 quvi_opts="-v quiet"
+
 set -e
 formats=`quvi $quvi_opts -F "$video_url"|cut -d ':' -f 1`
 set +e
+
 echo Available formats: $formats
 
 # choose YouTube quality
