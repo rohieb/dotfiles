@@ -79,3 +79,5 @@
 !! see https://github.com/blinry/dotfiles/commit/de408862
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
+
+#include ".URxvt.resources"

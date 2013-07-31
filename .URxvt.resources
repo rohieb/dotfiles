@@ -1,0 +1,42 @@
+!! URxvt config
+!! (this file is included from .Xresources)
+
+URxvt.font: -*-fixed-medium-r-semicondensed-*-13-*-*-*-*-*-iso10646-1
+URxvt.boldFont: -*-fixed-bold-r-semicondensed-*-13-*-*-*-*-*-iso10646-1
+
+URxvt.urgentOnBell: true
+URxvt.visualBell: true
+
+URxvt.jumpScroll: true
+URxvt.skipScroll: false
+URxvt.scrollTtyOutput: false
+URxvt.scrollWithBuffer: false
+URxvt.scrollTtyKeypress: true
+URxvt.saveLines: 10000
+
+URxvt.scrollBar: true
+URxvt.scrollstyle: plain
+URxvt.thickness: 3
+
+URxvt.fade: 30
+!URxvt.depth: 32
+URxvt.transparent: false
+!URxvt.transparent: true
+!URxvt.tintColor: S_base03
+!URxvt.shading: 20
+!URxvt.background: [50]S_base03
+
+!URxvt.cutchars: BACKSLASH `"'&()*,;<=>?@[]^{|}"
+
+!! Command that is executed on Print button press
+URxvt.print-pipe: cat > $(TMPDIR=$HOME/tmp mktemp urxvt.XXXXXX)
+
+!! shortcuts for simpler font change
+! TODO: terminal size change
+URxvt.keysym.C-1: command:\033]710;-*-fixed-medium-r-semicondensed-*-13-*-*-*-*-*-iso10646-1\007\033]711;-*-fixed-bold-r-semicondensed-*-13-*-*-*-*-*-iso10646-1\007
+URxvt.keysym.C-2: command:\033]710;-*-fixed-medium-r-normal-*-13-*-*-*-*-70-iso10646-1\007\033]711;-*-fixed-bold-r-normal-*-13-*-*-*-*-70-iso10646-1\007
+URxvt.keysym.C-3: command:\033]710;terminus-18\007\033]711;terminus-bold-18\007
+URxvt.keysym.C-4: command:\033]710;terminus-24\007\033]711;terminus-bold-24\007
+URxvt.keysym.C-5: command:\033]710;terminus-32\007\033]711;terminus-bold-32\007
+
+!! vim: set ft=xdefaults:
