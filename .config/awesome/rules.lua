@@ -30,6 +30,7 @@ awful.rules.rules = {
 
     -- non-floating windows
     { rule_any = { class = {
+      "Gkrellm",
       "Wireshark",
       "Chromium",
       "Epiphany-browser",
@@ -43,6 +44,8 @@ awful.rules.rules = {
 
     -- map specific windows to specific tags
     { rule = { class = "Gkrellm" },
+      properties = { tag = tags[1][1] } },
+    { rule = { role = "vimboy" },
       properties = { tag = tags[1][1] } },
 
     { rule = { instance = "sun-awt-X11-XFramePeer",

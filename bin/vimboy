@@ -1,0 +1,9 @@
+#!/bin/sh
+VIM="gvim --role=vimboy"
+if [ -z "$DISPLAY" ]; then
+	VIM=vim
+fi;
+
+$VIM -p $HOME/Documents/vimboy/inbox \
+	$HOME/Documents/vimboy/nextactions \
+	$HOME/Documents/vimboy/waiting
