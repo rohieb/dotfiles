@@ -30,6 +30,7 @@ awful.rules.rules = {
 
     -- non-floating windows
     { rule_any = { class = {
+      "Wireshark",
       "Chromium",
       "Epiphany-browser",
       "Clementine"
