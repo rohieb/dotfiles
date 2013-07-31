@@ -17,10 +17,13 @@ set autochdir
 let mapleader = ","
 
 " Tabs
+" (for urxvt, <M-...> syntax somehow does not work...)
 map <M-PageUp> :tabprev<CR>
+map [5~ :tabprev<CR>
 map <M-PageDown> :tabnext<CR>
-" FIXME somehow this won't work :(
+map [6~ :tabnext<CR>
 map <M-t> :tabnew<CR>
+map t :tabnew<CR>
 
 " shortcuts
 im üü <ESC>:wa<CR>
@@ -57,8 +60,8 @@ let g:gitgutter_all_on_focusgained = 0
 let g:gitgutter_on_bufenter = 0
 nnoremap <F6> :GitGutterToggle<CR>
 inoremap <F6> <Esc>:GitGutterToggle<CR>a
-nnoremap <S-F6> :GitGutterLineHighlightsToggle<CR>
-inoremap <S-F6> <Esc>:GitGutterLineHighlightsToggle<CR>a
+nnoremap [29~ :GitGutterLineHighlightsToggle<CR>    " <Shift-F6> for urxvt
+inoremap [29~ <Esc>:GitGutterLineHighlightsToggle<CR>a
 
 " solarized config
 if has('gui_running')
