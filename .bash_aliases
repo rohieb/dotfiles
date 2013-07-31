@@ -13,3 +13,5 @@ alias psgrep='ps -Af|grep '
 alias add-ssh-keys="ssh-add $HOME/.ssh/id*priv"
 
 alias refox='killall -9 iceweasel && iceweasel > /dev/null &'
+
+alias git='$HOME/opt/git-achievements/git-achievements'
