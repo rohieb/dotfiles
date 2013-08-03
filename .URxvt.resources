@@ -1,30 +1,46 @@
 !! URxvt config
 !! (this file is included from .Xresources)
 
+!! font
 URxvt.font: -*-fixed-medium-r-semicondensed-*-13-*-*-*-*-*-iso10646-1
 URxvt.boldFont: -*-fixed-bold-r-semicondensed-*-13-*-*-*-*-*-iso10646-1
 
+!! bell
 URxvt.urgentOnBell: true
 URxvt.visualBell: true
 
+! scroll behaviour
 URxvt.jumpScroll: true
 URxvt.skipScroll: false
 URxvt.scrollTtyOutput: false
 URxvt.scrollWithBuffer: false
 URxvt.scrollTtyKeypress: true
+
+!! save 10000 lines of scrollbak
 URxvt.saveLines: 10000
 
+!! scrollbar
 URxvt.scrollBar: true
 URxvt.scrollstyle: plain
 URxvt.thickness: 3
 
 URxvt.fade: 30
-!URxvt.depth: 32
 URxvt.transparent: false
-!URxvt.transparent: true
-!URxvt.tintColor: S_base03
-!URxvt.shading: 20
-!URxvt.background: [50]S_base03
+
+!! send modifier keys as 8th bit
+URxvt.meta8: true
+
+!! only use plain ISO 14755 input mode
+URxvt.iso14755: true
+URxvt.iso14755_52: false
+
+!! be more like xterm
+!! (stolen from http://untroubled.be/docs/urxvt/urxvt_keys_vim.html)
+URxvt.keysym.M-BackSpace: \033\010
+URxvt.keysym.C-Right:   \033[1;5C
+URxvt.keysym.C-Left:    \033[1;5D
+URxvt.keysym.C-Home:    \033[1;5H
+URxvt.keysym.C-End:     \033[1;5F
 
 !URxvt.cutchars: BACKSLASH `"'&()*,;<=>?@[]^{|}"
 
@@ -32,9 +48,9 @@ URxvt.transparent: false
 URxvt.print-pipe: cat > $(TMPDIR=$HOME/tmp mktemp urxvt.XXXXXX)
 
 !! shortcuts for simpler font change
-! TODO: terminal size change
 URxvt.keysym.C-1: command:\033]710;-*-fixed-medium-r-semicondensed-*-13-*-*-*-*-*-iso10646-1\007\033]711;-*-fixed-bold-r-semicondensed-*-13-*-*-*-*-*-iso10646-1\007
 URxvt.keysym.C-2: command:\033]710;-*-fixed-medium-r-normal-*-13-*-*-*-*-70-iso10646-1\007\033]711;-*-fixed-bold-r-normal-*-13-*-*-*-*-70-iso10646-1\007
+!! misc-fixed looks weird or does not exist for bigger sizes
 URxvt.keysym.C-3: command:\033]710;terminus-18\007\033]711;terminus-bold-18\007
 URxvt.keysym.C-4: command:\033]710;terminus-24\007\033]711;terminus-bold-24\007
 URxvt.keysym.C-5: command:\033]710;terminus-32\007\033]711;terminus-bold-32\007
