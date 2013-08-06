@@ -16,6 +16,7 @@ sudo truecrypt $VOLUME $MOUNTPOINT
 
 RSYNC_OPTS=""
 lastbackup=`find $MOUNTPOINT -maxdepth 1 -type d -name "$BACKUPPREFIX"'*' 2>/dev/null | sort | tail -n 1`
+echo ">>> BACKUP $BACKUPPREFIX to $BACKUPDIR"
 if [ -n "$lastbackup" ]; then
 	echo hardlinking to last backup in $lastbackup
 	RSYNC_OPTS="--link-dest=$lastbackup"
@@ -30,9 +31,28 @@ mv $BACKUPDIR $MOUNTPOINT/$BACKUPNAME
 #### OTHER BACKUP LOCATIONS
 
 # FIXME modularize this
+# mysql backup
 mkdir -p $MOUNTPOINT/calrissian
 rsync -v 'root@rohieb.name:/var/state/mysql-backup/*.sql.bz2' \
 	$MOUNTPOINT/calrissian/
+
+# mail backup
+BACKUPPREFIX=calrissian-mail
+DIR=root@rohieb.name:/var/spool/cyrus/mail
+BACKUPNAME=$BACKUPPREFIX-$DATE
+BACKUPDIR=$MOUNTPOINT/_unfinished.$BACKUPNAME
+RSYNC_OPTS=
+RSYNC_OPTS=""
+lastbackup=`find $MOUNTPOINT -maxdepth 1 -type d -name "$BACKUPPREFIX"'*' 2>/dev/null | sort | tail -n 1`
+echo ">>> BACKUP $BACKUPPREFIX to $BACKUPDIR"
+if [ -n "$lastbackup" ]; then
+	echo hardlinking to last backup in $lastbackup
+	RSYNC_OPTS="--link-dest=$lastbackup"
+fi;
+mkdir -p $BACKUPDIR
+rsync --exclude-from=$EXCLUDEFILE $RSYNC_OPTS -av $DIR $BACKUPDIR | tee $MOUNTPOINT/$BACKUPNAME.log
+mv $BACKUPDIR $MOUNTPOINT/$BACKUPNAME
+
 
 # FIXME detect if disk is full and rotate backups
 echo
