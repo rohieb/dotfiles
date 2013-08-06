@@ -27,8 +27,8 @@ URxvt.thickness: 3
 URxvt.fade: 30
 URxvt.transparent: false
 
-!! send modifier keys as 8th bit
-URxvt.meta8: true
+!! do not send modifier keys as 8th bit (breaks vim)
+URxvt.meta8: false
 
 !! only use plain ISO 14755 input mode
 URxvt.iso14755: true
