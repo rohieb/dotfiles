@@ -2,6 +2,10 @@
 
 set -ex
 
+if [ -z "$(ssh-add -l | grep id_dsa_root)" ]; then
+	add-ssh-keys
+fi;
+
 BACKUPPREFIX=home
 DIR=/home/rohieb/
 MOUNTPOINT=/media/truecrypt8
