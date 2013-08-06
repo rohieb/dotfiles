@@ -76,4 +76,7 @@ if [ "$DPMS" = "off" ]; then
   xset -dpms
 fi
 
+killall xfce4-power-manager
+xfce4-power-manager
+
 # vim: set ts=2 sw=2 expandtab smartindent autoindent:
