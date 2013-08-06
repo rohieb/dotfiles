@@ -67,14 +67,16 @@ fi;
 
 xrandr $SCREEN $LVDS_SETTING $VGA_SETTING $HDMI_SETTING
 
-xmodmap $HOME/.xmodmaprc
-$HOME/bin/capslock-composekey
-
 if [ "$DPMS" = "off" ]; then
   echo Disabling DPMS and screen blanking
   xset s off
   xset -dpms
 fi
+
+sleep 5
+
+xmodmap $HOME/.xmodmaprc
+$HOME/bin/capslock-composekey
 
 killall xfce4-power-manager
 xfce4-power-manager
