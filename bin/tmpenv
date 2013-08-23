@@ -1,0 +1,9 @@
+#!/bin/sh
+tmpdir=$(mktemp -d)
+cd $tmpdir
+$SHELL
+echo -n "Delete old environment in $tmpdir? (y/N) "
+read yesno
+if [ "$yesno" = "y" ]; then
+	rm -rf $tmpdir
+fi
