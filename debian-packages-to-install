@@ -193,6 +193,7 @@ ktron
 lastfm
 latex-beamer
 libqt4-dev-bin
+libqt5sql5-sqlite   # auto
 libreoffice-calc
 libreoffice-draw
 libreoffice-impress
@@ -281,9 +282,12 @@ qpdf
 qrencode
 qt4-default
 qt4-doc
+qt5-sdk
 qtcreator
 quilt
 quvi                   # for ~/bin/webvideo
+qtbase5-dbg   # auto
+qtxmlpatterns5-dbg    # auto
 #rawtherapee
 reportbug
 #rsnapshot
