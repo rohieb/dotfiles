@@ -219,6 +219,7 @@ mesa-utils
 #mono-runtime
 mplayer
 mumble
+murrine-themes     # for greybird theme
 #mysql-workbench
 mysql-client
 nasm
