@@ -50,7 +50,7 @@ dia
 diffstat
 #digikam
 djmount
-dnsutils
+dnsutils     # dig, nslookup
 dolphin
 dos2unix
 doxygen
@@ -220,6 +220,7 @@ mesa-utils
 mplayer
 mumble
 #mysql-workbench
+mysql-client
 nasm
 netcat-openbsd
 netcat-traditional
