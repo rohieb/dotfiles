@@ -284,7 +284,9 @@ qpdf
 qrencode
 qt4-default
 qt4-doc
+qt4-doc-html
 qt5-sdk
+qt5-doc-html
 qtcreator
 quilt
 quvi                   # for ~/bin/webvideo
