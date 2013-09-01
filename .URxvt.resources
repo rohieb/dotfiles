@@ -13,7 +13,7 @@ URxvt.visualBell: true
 URxvt.jumpScroll: true
 URxvt.skipScroll: false
 URxvt.scrollTtyOutput: false
-URxvt.scrollWithBuffer: false
+URxvt.scrollWithBuffer: true
 URxvt.scrollTtyKeypress: true
 
 !! save 10000 lines of scrollbak
