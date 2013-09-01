@@ -54,6 +54,7 @@ dnsutils     # dig, nslookup
 dolphin
 dos2unix
 doxygen
+doxygen-doc
 doxypy
 dpatch
 dput
