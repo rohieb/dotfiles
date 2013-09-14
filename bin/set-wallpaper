@@ -27,7 +27,7 @@ fi
 if [ "$1" = "--new" -o "$1" = "-n" ]; then
 	rand_picture=`find "$FOLDER/"*.svg "$FOLDER/"*.png "$FOLDER/"*.gif "$FOLDER/"*.jpg 2>/dev/null|shuf|head -n 1`
 	log Setting new wallpaper "$rand_picture"
-	if [ -f "$LASTWALLPAPER" ]; then
+	if [ -f "$LASTWALLPAPER" -o -L "$LASTWALLPAPER" ]; then
 		rm "$LASTWALLPAPER";
 	fi
 	ln -s "$rand_picture" "$LASTWALLPAPER"
