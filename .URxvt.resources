@@ -55,4 +55,9 @@ URxvt.keysym.C-3: command:\033]710;terminus-18\007\033]711;terminus-bold-18\007
 URxvt.keysym.C-4: command:\033]710;terminus-24\007\033]711;terminus-bold-24\007
 URxvt.keysym.C-5: command:\033]710;terminus-32\007\033]711;terminus-bold-32\007
 
+!! plugins
+URxvt.perl-ext-common: default,searchable-scrollback,matcher
+URxvt.url-launcher: sensible-browser
+URxvt.matcher.button: 2
+
 !! vim: set ft=xdefaults:
