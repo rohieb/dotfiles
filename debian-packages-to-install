@@ -219,7 +219,8 @@ meld
 mercurial
 mesa-utils
 #mono-runtime
-mplayer
+#mplayer
+mpv
 mumble
 murrine-themes     # for greybird theme
 #mysql-workbench

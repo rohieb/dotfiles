@@ -11,6 +11,7 @@ awful.rules.rules = {
     -- floating windows
     { rule_any = { class = {
       "MPlayer",
+      "mpv",
       "pinentry",
       "Gimp-2.8", "Gimp",
       "Gucharmap",
