@@ -2,7 +2,8 @@
 execute pathogen#infect()
 
 " set various preferred options...
-set shiftwidth=2 tabstop=2 autoindent smartindent
+set shiftwidth=2 tabstop=2 softtabstop=2
+set autoindent smartindent
 set hlsearch modeline modelines=5
 
 set listchars=tab:»·,eol:¶
