@@ -83,3 +83,8 @@ call clearmatches()
 
 " auto-filetype for vimboy
 au bufread,bufnewfile ~/Documents/vimboy/* set ft=vimboy
+
+" load local vimrc if exists
+if filereadable(".vimrc.local")
+	source .vimrc.local
+endif
