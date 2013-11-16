@@ -19,7 +19,27 @@
 	graph = log --graph --pretty=oneline --abbrev-commit --all --decorate
 	cached = diff --cached
 	amend = commit --amend
+	fetchlog = log ..FETCH_HEAD
+	chp = cherry-pick
+	rc = rebase --continue
+	pr = pull --rebase
+	add = assume-unchanged
+	assume-unchanged = update-index --assume-unchanged
 
 [core]
 	excludesfile = /home/rohieb/.gitignore
 
+[cola]
+	fontdiff = Monospace,8,-1,5,50,0,0,0,0,0
+	tabwidth = 4
+[gui]
+	editor = vi
+	historybrowser = gitk
+[diff]
+	tool = meld
+[merge]
+	tool = meld
+[push]
+	default = current
+[achievement]
+	upload = false
