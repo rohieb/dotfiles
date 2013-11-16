@@ -9,14 +9,25 @@ log() {
 	echo `date -R` $@ |tee -a $LOGFILE
 }
 
+rememberwallpaper() {
+	if [ "$1" != "" -a "(" -f "$1" -o -L "$1" ")" -a -r "$1" ]; then
+		if [ -f "$LASTWALLPAPER" -o -L "$LASTWALLPAPER" ]; then
+			rm "$LASTWALLPAPER"
+		fi
+		ln -s "$1" "$LASTWALLPAPER"
+		log Remembering wallpaper: "$1"
+	fi
+}
+
 if [ "$1" = "-h" -o "$1" = "--help" ]; then
-	echo Usage: `basename $0` '[--new|-n|--help|-h]'
-	echo Wrapper for awsetbg to set the Awesome wallpaper
+	echo Usage: `basename $0` '<FILE>'
+	echo        `basename $0` '[--new|-n|--help|-h]'
+	echo Wrapper for awsetbg to set and remember the Awesome wallpaper.
+	echo With a file name as a single argument, sets and remembers the wallpaper.
 	echo Without arguments, sets the wallpaper which was last used.
 	echo
 	echo "  --help|-h  Show this help message"
-	echo "  --new|-n   Set a new random wallpaper from the rotation folder and"
-	echo "             remember it"
+	echo "  --new|-n   Set and remember a random wallpaper from the rotation folder"
 	echo
 	echo Your rotation folder is currently:
 	echo "  $FOLDER"
@@ -25,12 +36,11 @@ if [ "$1" = "-h" -o "$1" = "--help" ]; then
 fi
 
 if [ "$1" = "--new" -o "$1" = "-n" ]; then
-	rand_picture=`find "$FOLDER/"*.svg "$FOLDER/"*.png "$FOLDER/"*.gif "$FOLDER/"*.jpg 2>/dev/null|shuf|head -n 1`
-	log Setting new wallpaper "$rand_picture"
-	if [ -f "$LASTWALLPAPER" -o -L "$LASTWALLPAPER" ]; then
-		rm "$LASTWALLPAPER";
-	fi
-	ln -s "$rand_picture" "$LASTWALLPAPER"
+	rand_picture=`find "$FOLDER/" -iname "*.svg" -o -iname "*.png" -o -iname "*.gif" -o -iname "*.jpg" 2>/dev/null | shuf | head -n 1`
+	rememberwallpaper "$rand_picture"
+elif [ -n "$1" -a -f "$1" -a -r "$1" ]; then
+	log Requested wallpaper: "$1"
+	rememberwallpaper "$1"
 else
 	log Setting old wallpaper: `ls -l "$LASTWALLPAPER"`
 fi;
