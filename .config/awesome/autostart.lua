@@ -8,7 +8,7 @@ procs = {
   "s0trayicon",
   "blueman-applet",
   "gkrellm",
-  "ibus-daemon --xim",
+--  "ibus-daemon --xim",
 }
 
 -- start apps only when it is not running
