@@ -27,6 +27,7 @@ build-essential   # make, gcc, g++, libc-dev, dpkg-dev
 bzr
 calibre
 cheese
+chromium
 cifs-utils        # mount.cifs
 clang
 clementine
@@ -37,6 +38,7 @@ colormake
 colortest-python
 command-not-found
 conkeror
+cowdancer         # auto, for pubuilder
 cpanminus
 cron
 cups-bsd
@@ -44,6 +46,8 @@ cups-pdf
 cvs
 # cyrus-admin
 d-feet
+debootstrap
+debian-policy
 debtags
 devscripts
 dia
@@ -122,6 +126,7 @@ gpodder
 gpsbabel
 gpsprune
 graphviz
+grep
 gscanbus
 gsmartcontrol
 gtk-redshift
@@ -202,6 +207,7 @@ libreoffice-impress
 libreoffice-presentation-minimi
 libreoffice-style-galaxy
 libreoffice-writer
+libtext-multimarkdown-perl
 libtravel-routing-de-vrr-perl  # for efa(1)
 libwww-dict-leo-org-perl   # for leo(1)
 lintian
@@ -211,7 +217,6 @@ linux-source
 lolcat      # important!
 lsdvd
 lsof
-markdown
 mdbtools
 mdbtools-gmdb
 mediathekview
@@ -236,6 +241,7 @@ network-manager-pptp-gnome
 network-manager-vpnc-gnome
 nginx-light
 nmap
+nodejs
 #npm
 ntp
 numlockx
@@ -257,6 +263,7 @@ openssh-server
 openstreetmap-client
 #pandoc
 patchutils
+pbuilder
 pdftk
 perl-doc
 php5-cli
@@ -365,7 +372,6 @@ wireshark
 wodim
 wpagui
 xchat
-xchat-otr
 xcursor-themes
 xfce4-power-manager
 xinit
@@ -375,6 +381,14 @@ xsane
 xscreensaver
 xscreensaver-data-extra
 xscreensaver-gl-extra
+xul-ext-status4evar
+xul-ext-useragentswitcher
+xul-ext-webdeveloper
+xul-ext-cookie-monster
+xul-ext-dispmua
+xul-ext-https-everywhere
+xul-ext-imap-acl
+xul-ext-livehttpheaders
 yasm
 zbar-tools
 zenity
