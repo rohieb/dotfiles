@@ -43,3 +43,9 @@
 [submodule "opt/git-achievements"]
 	path = opt/git-achievements
 	url = git@github.com:rohieb/git-achievements.git
+[submodule ".vim/bundle/vim-surround"]
+	path = .vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule ".vim/bundle/vim-fugitive"]
+	path = .vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
