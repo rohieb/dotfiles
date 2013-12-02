@@ -262,7 +262,9 @@ openssh-blacklist-extra
 openssh-server
 openstreetmap-client
 #pandoc
+pasystray
 patchutils
+pavucontrol
 pbuilder
 pdftk
 perl-doc

@@ -8,6 +8,7 @@ procs = {
   "s0trayicon",
   "blueman-applet",
   "gkrellm",
+  "pasystray",
 --  "ibus-daemon --xim",
 }
 
