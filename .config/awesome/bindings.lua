@@ -69,7 +69,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- utilities
-    awful.key({ modkey, "Control" }, "x", function () awful.util.spawn("xfce4-power-manager") end),
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xflock4") end),
     awful.key({ modkey, "Control" }, "r", function () awful.util.spawn("setscreens reset") end),
     awful.key({ modkey, "Control" }, "d", function () awful.util.spawn("setscreens home-dual") end),

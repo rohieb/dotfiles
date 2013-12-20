@@ -1,0 +1,5 @@
+#!/bin/sh
+while true; do
+  xfce4-power-manager
+done
+

@@ -4,7 +4,7 @@
 --
 procs = {
   "nm-applet",
-  "xfce4-power-manager",
+  "start-power-manager",
   "s0trayicon",
   "blueman-applet",
   "gkrellm",
