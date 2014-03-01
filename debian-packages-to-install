@@ -49,6 +49,7 @@ d-feet
 debootstrap
 debian-policy
 debtags
+developers-reference
 devscripts
 dia
 diffstat
@@ -219,6 +220,7 @@ lolcat      # important!
 lsdvd
 lsof
 mailutils
+maint-guide
 mdbtools
 mdbtools-gmdb
 mediathekview
@@ -265,6 +267,7 @@ openssh-blacklist-extra
 openssh-server
 openstreetmap-client
 #pandoc
+packaging-tutorial
 pasystray
 patchutils
 pavucontrol
