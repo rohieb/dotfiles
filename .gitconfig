@@ -22,7 +22,6 @@
 	chp = cherry-pick
 	rc = rebase --continue
 	pr = pull --rebase
-	add = assume-unchanged
 	assume-unchanged = update-index --assume-unchanged
 	lastlog = log --oneline HEAD@{1}..HEAD --format='%C(auto)%h %Cgreen%an: %Creset%s'
 
