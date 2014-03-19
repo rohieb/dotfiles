@@ -24,6 +24,9 @@
 	pr = pull --rebase
 	assume-unchanged = update-index --assume-unchanged
 	lastlog = log --oneline HEAD@{1}..HEAD --format='%C(auto)%h %Cgreen%an: %Creset%s'
+	gr = log --graph --pretty=oneline --abbrev-commit --all --decorate
+	rbi = rebase -i
+	rbc = rebase --continue
 
 [core]
 	excludesfile = /home/rohieb/.gitignore
