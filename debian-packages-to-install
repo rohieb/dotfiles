@@ -107,8 +107,10 @@ git
 git-annex
 git-buildpackage
 git-cola
+git-doc
 git-extras
 git-gui
+git-remote-hg
 git-sh
 gkrellm
 gkrellm-volume
@@ -138,6 +140,7 @@ gucharmap
 guilt
 gv
 hedgewars
+help2man
 hexedit
 htop
 httperf
@@ -274,6 +277,7 @@ pavucontrol
 pbuilder
 pdftk
 perl-doc
+pgpdump
 php5-cli
 php5-fpm
 pidgin
@@ -287,6 +291,7 @@ pidgin-themes
 polipo
 polly
 printer-driver-hpijs
+pristine-tar    # auto, for git-buildpackage
 proxychains
 pulseaudio
 pv
