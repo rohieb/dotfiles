@@ -13,7 +13,7 @@ xset b off # turn off stupid bell sound
 # (cherry-pick https://github.com/scy/dotscy/commit/080eb46fa1)
 which numlockx >/dev/null 2>&1 && numlockx on
 
-setxkbdmap de nodeadkeys
+setxkbmap de nodeadkeys
 
 # wrap awesome into a ConsoleKit session and also start a DBus session bus
 # see bug #677456
