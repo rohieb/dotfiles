@@ -382,7 +382,9 @@ wdiff
 wesnoth
 wesnoth-1.10-aoi
 wikidpad
-wine:i386
+wine32    # auto
+wine
+winetricks
 wireshark
 wodim
 wpagui
