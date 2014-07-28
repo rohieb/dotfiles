@@ -7,7 +7,7 @@ set autoindent smartindent
 set hlsearch modeline modelines=5
 
 set listchars=tab:»·,eol:¶
-set guifont=Monospace\ 9
+set guifont=Monospace\ 8
 
 set textwidth=80
 set colorcolumn=80
