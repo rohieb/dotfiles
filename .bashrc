@@ -97,3 +97,11 @@ if [ -f $HOME/.bash_completion.d/* ] && ! shopt -oq posix; then
 		. $HOME/.bash_completion.d/*
 fi
 
+# add dquilt to work with debian 3.0 (quilt) packages
+# see https://www.debian.org/doc/manuals/maint-guide/modify.en.html#quiltrc
+alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+complete -F _quilt_completion $_quilt_complete_opt dquilt
+
+# cdp/cdg magic, thx to @Drahflow
+cdp() { pwd > ~/tmp/.magic-cdg-path; }
+cdg() { cd "`cat ~/tmp/.magic-cdg-path`"; }
