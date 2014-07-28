@@ -16,9 +16,6 @@
 [submodule ".vim/bundle/vim-gitgutter"]
 	path = .vim/bundle/vim-gitgutter
 	url = git://github.com/airblade/vim-gitgutter.git
-[submodule ".vim/bundle/vim-nerdtree-tabs"]
-	path = .vim/bundle/vim-nerdtree-tabs
-	url = git://github.com/jistr/vim-nerdtree-tabs.git
 [submodule ".vim/bundle/openscad"]
 	path = .vim/bundle/openscad
 	url = git://github.com/choffee/openscad.vim.git
