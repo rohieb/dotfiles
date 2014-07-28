@@ -2,3 +2,4 @@
 .vim/.netrwhist
 .*.sw*
 .wireshark/recent*
+.wireshark/cfilters
