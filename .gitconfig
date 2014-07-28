@@ -1,7 +1,7 @@
 [user]
 	name = Roland Hieber
 	email = rohieb@rohieb.name
-  signingkey = rohieb@rohieb.name
+	signingkey = rohieb@rohieb.name
 
 [color]
 	ui = auto
@@ -10,21 +10,28 @@
 	st = status
 	co = checkout
 	br = branch
-  ci = commit
-  ol = log --oneline
-  di = diff
-  dif = diff
-  stpop = stash pop
-  stsa = stash save
-	graph = log --graph --pretty=oneline --abbrev-commit --all --decorate
-	cached = diff --cached
-	amend = commit --amend
 	chp = cherry-pick
-	rc = rebase --continue
 	pr = pull --rebase
+
+	ci = commit
+	amend = commit --amend
+  
+	di = diff
+	dif = diff
+	ca = diff --cached
+	cached = diff --cached
+
+	stp = stash pop
+	sts = stash save
+
+	ol = log --oneline
+	lastlog = log --graph HEAD@{1}..HEAD --format='%C(auto)%h %Cgreen(%an) %Creset%s'
+	fetchlog = log --graph HEAD..FETCH_HEAD --format='%C(auto)%h %Cgreen(%an) %Creset%s'
+	graph = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit --all
+	gr    = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit --all
+
 	assume-unchanged = update-index --assume-unchanged
-	lastlog = log --oneline HEAD@{1}..HEAD --format='%C(auto)%h %Cgreen%an: %Creset%s'
-	gr = log --graph --pretty=oneline --abbrev-commit --all --decorate
+
 	rbi = rebase -i
 	rbc = rebase --continue
 
@@ -34,14 +41,26 @@
 [cola]
 	fontdiff = Monospace,8,-1,5,50,0,0,0,0,0
 	tabwidth = 4
+
 [gui]
 	editor = vi
 	historybrowser = gitk
+
 [diff]
 	tool = meld
+
 [merge]
 	tool = meld
+	defaultToUpstream = true
+
 [push]
 	default = current
+
 [achievement]
 	upload = false
+
+[bash]
+	showDirtyState = true
+
+[remote-hg]
+	hg-git-compat = true
