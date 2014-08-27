@@ -40,6 +40,7 @@ command-not-found
 conkeror
 cowdancer         # auto, for pubuilder
 cpanminus
+cppreference-doc-en-html
 cron
 cups-bsd
 cups-pdf
@@ -204,6 +205,8 @@ ktron
 lastfm
 latexmk
 latex-beamer
+libcppunit-dev
+libcppunit-doc
 libqt4-dev-bin
 libqt5sql5-sqlite   # auto
 libreoffice-calc
@@ -330,6 +333,7 @@ sed
 shutter
 signing-party
 sl         # for teh lulz
+slic3r
 smartmontools
 sox
 sqlite3
