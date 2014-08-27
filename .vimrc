@@ -86,8 +86,8 @@ call clearmatches()
 " auto-filetype for vimboy
 au bufread,bufnewfile ~/Documents/vimboy/* set ft=vimboy
 
-" use :W as SudoWrite
-com W SudoWrite
+" use :WW as SudoWrite
+com WW SudoWrite
 
 " load local vimrc if exists
 if filereadable(".vimrc.local")
