@@ -70,9 +70,9 @@ globalkeys = awful.util.table.join(
 
     -- utilities
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xflock4") end),
+    awful.key({ }, "XF86ScreenSaver",     function () awful.util.spawn("xflock4") end),
     awful.key({ modkey, "Control" }, "r", function () awful.util.spawn("setscreens reset") end),
     awful.key({ modkey, "Control" }, "d", function () awful.util.spawn("setscreens home-dual") end),
-    awful.key({ modkey, "Control" }, "s", function () awful.util.spawn("setscreens siemens-dual") end),
     awful.key({ modkey, "Control" }, "c", function () awful.util.spawn("gnome-calculator") end),
     awful.key({ }, "XF86Calculator",      function () awful.util.spawn("gnome-calculator") end),
     awful.key({ modkey            }, "numbersign", function () awful.util.spawn("set-wallpaper --new") end),
