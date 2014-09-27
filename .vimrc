@@ -91,7 +91,7 @@ call clearmatches()
 au bufread,bufnewfile ~/Documents/vimboy/* set ft=vimboy
 
 " use :WW as SudoWrite
-com WW SudoWrite
+com! WW SudoWrite
 
 " load local vimrc if exists
 if filereadable(".vimrc.local")
