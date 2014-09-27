@@ -20,13 +20,17 @@ set number
 let mapleader = ","
 
 " Tabs
-" (for urxvt, <M-...> syntax somehow does not work...)
-map <M-PageUp> :tabprev<CR>
-map [5~ :tabprev<CR>
-map <M-PageDown> :tabnext<CR>
-map [6~ :tabnext<CR>
-map <M-t> :tabnew<CR>
-map t :tabnew<CR>
+" (for urxvt, <C-...> syntax somehow does not work...)
+map <C-PageDown> gt
+map [6^ gt
+map <C-PageUp> gT
+map [5^ gT
+
+" window management
+map <C-Up> <C-W><Up>
+map Oa <C-W><Up>
+map <C-Up> <C-W><Down>
+map Ob <C-W><Down>
 
 " shortcuts
 im üü <ESC>:wa<CR>
