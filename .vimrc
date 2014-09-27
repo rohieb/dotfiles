@@ -14,7 +14,7 @@ set colorcolumn=80
 
 set autochdir
 
-set number relativenumber
+set number
 
 " Map leader character to ,
 let mapleader = ","
