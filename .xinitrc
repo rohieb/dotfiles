@@ -13,7 +13,8 @@ xset b off # turn off stupid bell sound
 # (cherry-pick https://github.com/scy/dotscy/commit/080eb46fa1)
 which numlockx >/dev/null 2>&1 && numlockx on
 
-setxkbmap de nodeadkeys
+# set keymap de:nodeadkeys, map ctrl => compose, capslock => ctrl
+setxkbmap de nodeadkeys -option -option ctrl:swapcaps -option compose:lctrl
 
 # wrap awesome into a ConsoleKit session and also start a DBus session bus
 # see bug #677456
