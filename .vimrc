@@ -71,13 +71,15 @@ nnoremap [29~ :GitGutterLineHighlightsToggle<CR>    " <Shift-F6> for urxvt
 inoremap [29~ <Esc>:GitGutterLineHighlightsToggle<CR>a
 
 " solarized config
-if has('gui_running')
-    set background=light
-else
-    set background=dark
+if &term != "linux"
+	if has('gui_running')
+			set background=light
+	else
+			set background=dark
+	endif
+	let g:solarized_termtrans=1   " avoid problems with terminal transparency
+	colorscheme solarized
 endif
-let g:solarized_termtrans=1   " avoid problems with terminal transparency
-colorscheme solarized
 
 " prevent nerdtree vom opening at startup
 let g:nerdtree_tabs_open_on_gui_startup = 0
