@@ -1,0 +1,26 @@
+#!/bin/sh
+status=$(cat /sys/class/power_supply/BAT1/status)
+energy_mWh=$(cat /sys/class/power_supply/BAT1/energy_now)
+energy_Wh=$(echo "scale=2; $energy_mWh / 1000000" | bc)
+capacity_percent=$(cat /sys/class/power_supply/BAT1/capacity)"%"
+power_mW=$(cat /sys/class/power_supply/BAT1/power_now)
+power_W=$(echo "scale=2; $power_mW / 1000000" | bc)
+
+echo -n "$status, $capacity_percent ($energy_Wh Wh)"
+
+if [ "Discharging" = "$status" -a "$power_mW" -gt 0 ]; then
+	hours=$(($energy_mWh / $power_mW)) || '0'
+	minutes=$(echo "($energy_mWh / $power_mW - $hours) * 60" | bc -l)
+	minutes=$(echo $minutes | cut -f 1 -d .)
+	minutes=$(printf '%.2d' $minutes)
+	echo -n ", about ${hours}h${minutes}m left (at $power_W W)"
+
+elif [ "Charging" = "$status" -a "$power_mW" -gt 0 ]; then
+	hours=$(($energy_mWh / $power_mW)) || '0'
+	minutes=$(echo "($energy_mWh / $power_mW - $hours) * 60" | bc -l)
+	minutes=$(echo $minutes | cut -f 1 -d .)
+	minutes=$(printf '%.2d' $minutes)
+	echo -n ", about ${hours}h${minutes}m left (at $power_W W)"
+
+fi
+echo
