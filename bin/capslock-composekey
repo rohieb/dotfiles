@@ -1,3 +1,0 @@
-#!/bin/sh
-xmodmap -e 'keycode  66 = Multi_key NoSymbol Multi_key'
-xmodmap -e 'clear Lock'

@@ -1,0 +1,13 @@
+#!/bin/sh
+# set keymap de:nodeadkeys, and do the following:
+# - map an additional ctrl key on capslock,
+# - map the compose key to the menu key,
+# - add a decimal point . to the keypad (instead of ,)
+# - make the shift keys end capslock state
+setxkbmap \
+	de nodeadkeys -option \
+	-option caps:ctrl_modifier \
+	-option compose:menu \
+	-option kpdl:dot \
+	-option shift:breaks_caps
+
