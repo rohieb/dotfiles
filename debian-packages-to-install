@@ -6,16 +6,13 @@ apt-doc
 apt-file
 aptitude-dbg
 aptitude-doc-en
-apvlv
 arduino
 audacity
 avahi-utils
-avidemux
-avidemux-cli
 avrdude
 awesome
 awesome-extra
-#baobab
+baobab
 binutils-mingw-w64
 blender
 blueman
@@ -41,6 +38,7 @@ conkeror
 cowdancer         # auto, for pubuilder
 cpanminus
 cppreference-doc-en-html
+cppman
 cron
 cups-bsd
 cups-pdf
@@ -55,7 +53,7 @@ devscripts
 dia
 diffstat
 #digikam
-djmount
+djmount      # for upnp
 dnsutils     # dig, nslookup
 dolphin
 dos2unix
@@ -81,7 +79,7 @@ ffmpeg
 figlet
 file-roller
 finger
-flashplugin-nonfree
+flashplugin-nonfree     # TODO: -> pepperflashplugin, is this still needed?
 # fontforge
 fonts-freefont-otf
 fonts-inconsolata
@@ -132,7 +130,6 @@ gpsbabel
 gpsprune
 graphviz
 grep
-gscanbus
 gsmartcontrol
 gtk-redshift
 guayadeque
@@ -159,7 +156,7 @@ icedove
 icedtea-7-plugin
 iceowl-extension
 iceweasel
-id-utils
+id-utils     # auto, for seahorse
 id3
 #iftop
 ikiwiki
@@ -175,7 +172,6 @@ iptraf
 iputils-arping
 iputils-ping
 ipython
-jitsi
 josm
 #joystick
 #jstest-gtk
@@ -202,7 +198,6 @@ ksirk
 kspaceduel
 ksudoku
 ktron
-lastfm
 latexmk
 latex-beamer
 libcppunit-dev
@@ -212,7 +207,6 @@ libqt5sql5-sqlite   # auto
 libreoffice-calc
 libreoffice-draw
 libreoffice-impress
-libreoffice-presentation-minimi
 libreoffice-style-galaxy
 libreoffice-writer
 libtext-multimarkdown-perl
@@ -252,7 +246,7 @@ network-manager-pptp-gnome
 network-manager-vpnc-gnome
 nginx-light
 nmap
-nodejs
+#nodejs
 #npm
 ntp
 numlockx
@@ -279,6 +273,7 @@ patchutils
 pavucontrol
 pbuilder
 pdftk
+pepperflashplugin-nonfree
 perl-doc
 pgpdump
 php5-cli
@@ -315,12 +310,12 @@ qt5-sdk
 qt5-doc-html
 qtcreator
 quilt
-quvi                   # for ~/bin/webvideo
 qtbase5-dbg   # auto
 qtxmlpatterns5-dbg    # auto
-#rawtherapee
+rawtherapee
+r-base
+r-doc-info
 reportbug
-#rsnapshot
 rtmpdump
 rxvt-unicode
 samba
@@ -340,8 +335,6 @@ sqlite3
 sqlitebrowser
 sshfs
 subversion
-synce-hal
-synce-trayicon
 #systemsettings
 sysvbanner
 tango-icon-theme
@@ -351,12 +344,18 @@ telnet
 texlive
 texlive-extra-utils
 texlive-fonts-extra
+#texlive-fonts-extra-doc  # 60 MB
 texlive-lang-english
 texlive-lang-german
+texlive-latex-base-doc    # 38 MB
 texlive-latex-extra
+#texlive-latex-extra-doc  # 320 MB
+texlive-latex-recommended
+texlive-latex-recommended-doc   # 37 MB
 texlive-math-extra
 texlive-pstricks
 texlive-science
+texlive-science-doc       # 23 MB
 tftpd
 time
 toilet
@@ -364,11 +363,11 @@ tor
 traceroute
 transmission
 ttf-anonymous-pro
-turses
 udisks-glue
 unetbootin
 #unixodbc
 unrar
+usbutils
 uuid
 vagalume
 valgrind
