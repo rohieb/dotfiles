@@ -70,3 +70,6 @@
 
 [remote-hg]
 	hg-git-compat = true
+
+[http "https://hannover.ccc.de"]
+	sslCAInfo = /home/rohieb/.git/sslcerts/cacert.pem
