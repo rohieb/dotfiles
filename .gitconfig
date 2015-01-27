@@ -16,10 +16,15 @@
 	ci = commit
 	amend = commit --amend
   
+	d = diff
 	di = diff
 	dif = diff
 	ca = diff --cached
 	cached = diff --cached
+	stat = show --stat
+	fulldiff = diff -p --no-prefix -U20000
+
+	a = add -p
 
 	stp = stash pop
 	sts = stash save
@@ -27,8 +32,8 @@
 	ol = log --oneline
 	lastlog = log --graph HEAD@{1}..HEAD --format='%C(auto)%h %Cgreen(%an) %Creset%s'
 	fetchlog = log --graph HEAD..FETCH_HEAD --format='%C(auto)%h %Cgreen(%an) %Creset%s'
-	graph = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit --all
-	gr    = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit --all
+	graph = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit
+	gr    = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit
 
 	assume-unchanged = update-index --assume-unchanged
 
