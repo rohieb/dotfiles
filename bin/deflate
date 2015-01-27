@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ -n "$1" ]; then
+	echo "Usage: `basename $0` < STDIN"
+	exit
+fi
+zlib-flate -compress

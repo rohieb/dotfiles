@@ -1,0 +1,13 @@
+#!/usr/bin/perl -w
+use MIME::Decoder;
+$decoder = new MIME::Decoder "quoted-printable" or die "unsupported";
+
+if($#ARGV ge 0) {
+	if($ARGV[0] eq "-d" or $ARGV[0] eq "--decode") {
+		$decoder->decode(\*STDIN, \*STDOUT);
+	} elsif ($ARGV[0] eq "-h" or $ARGV[0] eq "--help") {
+		print "Usage: $0 [-h|--help|-d|--decode] < STDIN\n";
+	}
+} else {
+	$decoder->encode(\*STDIN, \*STDOUT);
+}

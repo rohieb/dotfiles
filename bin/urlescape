@@ -1,0 +1,17 @@
+#!/usr/bin/perl -w
+use URI::Escape;
+
+if($#ARGV ge 0) {
+	if($ARGV[0] eq "-d" or $ARGV[0] eq "--decode") {
+		my $out = uri_unescape(<STDIN>);
+		print $out;
+		if(substr($out, -1) ne "\n") {
+			print "\n";
+		}
+	} elsif ($ARGV[0] eq "-h" or $ARGV[0] eq "--help") {
+		print "Usage: $0 [-h|--help|-d|--decode] < STDIN\n";
+	}
+} else {
+	print uri_escape(<STDIN>);
+	print "\n";
+}
