@@ -93,11 +93,16 @@ fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-	. /etc/bash_completion
-fi
-if [ -f $HOME/.bash_completion.d/* ] && ! shopt -oq posix; then
-	. $HOME/.bash_completion.d/*
+if ! shopt -oq posix; then
+	if [ -f /etc/bash_completion ]; then
+		. /etc/bash_completion
+	fi
+	if [ -r $HOME/.bash_completion.d/ -a -n "`ls -1 $HOME/.bash_completion.d/`" ];
+	then
+		for completion in $HOME/.bash_completion.d/*; do
+			source $completion
+		done;
+	fi
 fi
 
 # add dquilt to work with debian 3.0 (quilt) packages
