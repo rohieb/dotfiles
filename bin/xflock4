@@ -1,0 +1,3 @@
+#!/bin/sh
+# wrapper to allow xfce4-power-manager to lock the screen
+i3lock -c 000000
