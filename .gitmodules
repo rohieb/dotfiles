@@ -37,9 +37,6 @@
 [submodule ".wireshark/eventdistr"]
 	path = .wireshark/eventdistr
 	url = git://github.com/5924296.git
-[submodule "opt/git-achievements"]
-	path = opt/git-achievements
-	url = git@github.com:rohieb/git-achievements.git
 [submodule ".vim/bundle/vim-surround"]
 	path = .vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround
