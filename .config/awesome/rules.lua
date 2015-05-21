@@ -10,6 +10,7 @@ awful.rules.rules = {
 
     -- floating windows
     { rule_any = { class = {
+      "d-feet",
       "MPlayer",
       "mpv",
       "pinentry",
@@ -35,6 +36,8 @@ awful.rules.rules = {
       "Wireshark",
       "Chromium",
       "Epiphany-browser",
+      "Dolphin",
+      "Iceweasel",
       "Clementine"
     } }, properties = { floating = false } },
     { rule = { class = "Kmymoney", role = "MainWindow#1" },
