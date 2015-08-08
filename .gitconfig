@@ -40,6 +40,9 @@
 	rbi = rebase -i
 	rbc = rebase --continue
 	f = fetch
+	cop = checkout -p
+	pu = push
+	hard = reset --hard
 
 [core]
 	excludesfile = /home/rohieb/.gitignore
@@ -60,7 +63,7 @@
 	defaultToUpstream = true
 
 [push]
-	default = current
+	default = simple
 
 [achievement]
 	upload = false
