@@ -1,0 +1,13 @@
+# ~/.login_autostart: start programs on every login
+
+### start ssh agent
+SSH_AGENT_ENV_FILE=$HOME/.ssh/ssh-agent-info
+if [ -f "$SSH_AGENT_ENV_FILE" ]; then
+	. "$SSH_AGENT_ENV_FILE" > /dev/null
+	# file may be old, try connecting
+	if [ -z "$(ps aux|grep $SSH_AGENT_PID|grep ssh-agent)" ]; then
+		# daemon does not exist with this pid, start new one
+		ssh-agent -s > $SSH_AGENT_ENV_FILE
+		. "$SSH_AGENT_ENV_FILE" > /dev/null
+	fi
+fi

@@ -19,19 +19,6 @@ fi
 # set PATH so it includes user's private bin if it exists
 PATH="$HOME/bin:/sbin:/usr/sbin:$PATH"
 
-
-### start ssh agent and add keys
-SSH_AGENT_ENV_FILE=$HOME/.ssh/ssh-agent-info
-if [ -f "$SSH_AGENT_ENV_FILE" ]; then
-  . "$SSH_AGENT_ENV_FILE" > /dev/null
-  # file may be old, try connecting
-  if [ -z "$(ps aux|grep $SSH_AGENT_PID|grep ssh-agent)" ]; then
-    # daemon does not exist with this pid, start new one
-    ssh-agent -s > $SSH_AGENT_ENV_FILE
-    . "$SSH_AGENT_ENV_FILE" > /dev/null
-  fi
-fi
-
 ### exports
 export DEBEMAIL="rohieb@rohieb.name"
 export GTK_IM_MODULE=ibus
@@ -59,3 +46,6 @@ export _JAVA_OPTIONS="$_JAVA_OPTIONS -Djava.net.preferIPv4Addresses=true"
 # fix some gray windows in OpenJDK 7
 # see https://awesome.naquadah.org/wiki/Problems_with_Java
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+### autostarts
+source .login_autostart
