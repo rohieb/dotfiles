@@ -9,6 +9,7 @@ procs = {
   "blueman-applet",
   "gkrellm",
   "pasystray",
+  "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1",
 --  "ibus-daemon --xim",
 }
 
