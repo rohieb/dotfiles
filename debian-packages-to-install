@@ -229,6 +229,7 @@ meld
 mercurial
 mesa-utils
 #mono-runtime
+moreutils        # for ts(1)
 mosh
 #mplayer
 mpv
