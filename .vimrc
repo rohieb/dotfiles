@@ -29,7 +29,7 @@ map [5^ gT
 " window management
 map <C-Up> <C-W><Up>
 map Oa <C-W><Up>
-map <C-Up> <C-W><Down>
+map <C-Down> <C-W><Down>
 map Ob <C-W><Down>
 
 " shortcuts
@@ -71,7 +71,7 @@ nnoremap [29~ :GitGutterLineHighlightsToggle<CR>    " <Shift-F6> for urxvt
 inoremap [29~ <Esc>:GitGutterLineHighlightsToggle<CR>a
 
 " solarized config
-if &term != "linux"
+if &term != "linux" || has('gui_running')
 	if has('gui_running')
 			set background=light
 	else
