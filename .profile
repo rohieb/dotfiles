@@ -47,5 +47,8 @@ export _JAVA_OPTIONS="$_JAVA_OPTIONS -Djava.net.preferIPv4Addresses=true"
 # see https://awesome.naquadah.org/wiki/Problems_with_Java
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# locally installed Node packages
+export PATH="$PATH:$HOME/lib/node_modules/.bin"
+
 ### autostarts
 source .login_autostart
