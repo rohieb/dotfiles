@@ -232,6 +232,10 @@ mesa-utils
 moreutils        # for ts(1)
 mosh
 #mplayer
+mpc
+mpd
+mpdscribble
+gmpc
 mpv
 mumble
 murrine-themes     # for greybird theme
