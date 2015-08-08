@@ -95,6 +95,9 @@ au bufread,bufnewfile ~/Documents/vimboy/* set ft=vimboy
 " use :WW as SudoWrite
 com! WW SudoWrite
 
+" additional ftplugins
+runtime ftplugin/man.vim
+
 " load local vimrc if exists
 if filereadable(".vimrc.local")
 	source .vimrc.local
