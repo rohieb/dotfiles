@@ -14,8 +14,4 @@ which numlockx >/dev/null 2>&1 && numlockx on
 
 $HOME/bin/setkeymap
 
-# wrap awesome into a ConsoleKit session and also start a DBus session bus
-# see bug #677456
-#exec ck-launch-session dbus-launch --sh-syntax --exit-with-session awesome
-exec ck-launch-session dbus-launch --sh-syntax awesome
-killall dbus-daemon
+exec awesome
