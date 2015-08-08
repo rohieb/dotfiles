@@ -15,3 +15,5 @@ alias add-ssh-keys="ssh-add $HOME/.ssh/id*priv"
 alias refox='killall -9 iceweasel && iceweasel > /dev/null &'
 
 alias colorcat='pygmentize -g'
+
+alias gpg=gpg2

@@ -105,6 +105,9 @@ if ! shopt -oq posix; then
 	fi
 fi
 
+# always set GPG_TTY, not only for login shells (like in .profile)
+export GPG_TTY=$(tty)
+
 # add dquilt to work with debian 3.0 (quilt) packages
 # see https://www.debian.org/doc/manuals/maint-guide/modify.en.html#quiltrc
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"

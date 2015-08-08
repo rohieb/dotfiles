@@ -20,20 +20,6 @@ fi
 PATH="$HOME/bin:/sbin:/usr/sbin:$PATH"
 
 
-### start gpg agent
-export GPG_TTY=$(tty)
-GPG_AGENT_ENV_FILE=$HOME/.gnupg/gpg-agent-info
-if [ -f "$GPG_AGENT_ENV_FILE" ]; then
-  . "$GPG_AGENT_ENV_FILE"
-  export GPG_AGENT_INFO
-fi
-# file may be old, try connecting
-gpg-agent > /dev/null 2>&1
-if [ "$?" != "0" ]; then
-  eval $(gpg-agent --daemon --sh --write-env-file=$GPG_AGENT_ENV_FILE)
-fi
-
-
 ### start ssh agent and add keys
 SSH_AGENT_ENV_FILE=$HOME/.ssh/ssh-agent-info
 if [ -f "$SSH_AGENT_ENV_FILE" ]; then
