@@ -6,7 +6,7 @@ set shiftwidth=2 tabstop=2 softtabstop=2
 set autoindent smartindent
 set hlsearch modeline modelines=5
 
-set listchars=tab:»·,eol:¶
+set listchars=tab:│\ ,eol:¶,trail:·
 set guifont=Monospace\ 8
 
 set textwidth=80
