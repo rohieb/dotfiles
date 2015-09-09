@@ -1,3 +1,5 @@
+local naughty = require("naughty")
+
 --
 -- Functions for debugging
 --

@@ -1,9 +1,12 @@
 -- Standard awesome library
-require("awful")
+local awful = require("awful")
 require("awful.autofocus")
-require("awful.rules")
+-- Widget and layout library
+local wibox = require("wibox")
+-- Theme handling library
+local beautiful = require("beautiful")
 -- Notification library
-require("naughty")
+local naughty = require("naughty")
 
 -- Load Debian menu entries
 require("debian.menu")
@@ -20,7 +23,7 @@ end
 -- Handle runtime errors after startup
 do
     local in_error = false
-    awesome.add_signal("debug::error", function (err)
+    awesome.connect_signal("debug::error", function (err)
         -- Make sure we don't go into an endless error loop
         if in_error then return end
         in_error = true
@@ -33,17 +36,20 @@ do
 end
 -- }}}
 
+-- {{{ Variable definitions
+
+-- Path to local config (should be something like ~/.config/awesome)
+local cfgpath = awful.util.getdir("config")
+
+-- Themes define colours, icons, font and wallpapers.
+-- We fork the default theme to set a custom background
+beautiful.init(cfgpath .. "/theme.lua")
+
 -- This is used later as the default terminal and editor to run.
 -- terminal = "xterm"
---terminal = "terminator"
 terminal = "urxvtcd"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
-
--- Theme handling library
-require("beautiful")
--- Themes define colours, icons, and wallpapers
-beautiful.init(awful.util.getdir("config") .. "/theme.lua")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -53,45 +59,13 @@ beautiful.init(awful.util.getdir("config") .. "/theme.lua")
 modkey = "Mod4"
 
 -- Pull in all the other modular config
-local cfgpath = awful.util.getdir("config")
 dofile(cfgpath .. "/debug.lua")
 dofile(cfgpath .. "/layout.lua")
 dofile(cfgpath .. "/menu.lua")
-dofile(cfgpath .. "/wibox.lua")
+dofile(cfgpath .. "/wiboxes.lua")
 dofile(cfgpath .. "/bindings.lua")
 dofile(cfgpath .. "/rules.lua")
-
--- {{{ Signals
--- Signal function to execute when a new client appears.
-client.add_signal("manage", function (c, startup)
-    -- Add a titlebar
-    -- awful.titlebar.add(c, { modkey = modkey })
-
-    -- Enable sloppy focus
-    c:add_signal("mouse::enter", function(c)
-        if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-            and awful.client.focus.filter(c) then
-            client.focus = c
-        end
-    end)
-
-    if not startup then
-        -- Set the windows at the slave,
-        -- i.e. put it at the end of others instead of setting it master.
-        -- awful.client.setslave(c)
-
-        -- Put windows in a smart way, only if they does not set an initial position.
-        if not c.size_hints.user_position and not c.size_hints.program_position then
-            awful.placement.no_overlap(c)
-            awful.placement.no_offscreen(c)
-        end
-    end
-end)
-
-client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
--- }}}
-
+dofile(cfgpath .. "/signals.lua")
 dofile(cfgpath .. "/autostart.lua")
 
 -- vim: set ts=2 sw=2 et:
