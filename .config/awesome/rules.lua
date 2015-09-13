@@ -90,6 +90,7 @@ awful.rules.rules = {
       "Last.fm",
       "Guayadeque",
       "Gpodder",
+      "Gmpc",
       "Vagalume",
       "Rhythmbox",
       "Kaffeine",
