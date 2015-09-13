@@ -98,6 +98,12 @@ com! WW SudoWrite
 " additional ftplugins
 runtime ftplugin/man.vim
 
+" vim-gnupg config
+let g:GPGExecutable = "gpg2"     " default is gpg, but then the new agent fails
+let g:GPGUseAgent = 1
+let g:GPGPreferArmor = 1
+let g:GPGPreferSign = 1
+
 " load local vimrc if exists
 if filereadable(".vimrc.local")
 	source .vimrc.local
