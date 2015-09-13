@@ -10,11 +10,8 @@ set listchars=tab:│\ ,eol:¶,trail:·
 set guifont=Monospace\ 8
 
 set textwidth=80
-set colorcolumn=80
 
 set autochdir
-
-set number
 
 " Map leader character to ,
 let mapleader = ","
@@ -103,6 +100,24 @@ let g:GPGExecutable = "gpg2"     " default is gpg, but then the new agent fails
 let g:GPGUseAgent = 1
 let g:GPGPreferArmor = 1
 let g:GPGPreferSign = 1
+
+" make text terminal-selectable as-is without any additional features
+let g:ownShowPlainTextEnabled = 0
+function! OwnToggleShowPlainText()
+	if g:ownShowPlainTextEnabled
+		set colorcolumn=0
+		set nonumber
+		let g:ownShowPlainTextEnabled = 0
+	else
+		set colorcolumn=80
+		set number
+		let g:ownShowPlainTextEnabled = 1
+	endif
+endfunction
+call OwnToggleShowPlainText()
+command! ToggleShowPlainText call OwnToggleShowPlainText()
+nnoremap <F7> :ToggleShowPlainText<CR>
+inoremap <F7> <Esc>:ToggleShowPlainText<CR>a
 
 " load local vimrc if exists
 if filereadable(".vimrc.local")
