@@ -79,10 +79,13 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86Calculator",      function () awful.util.spawn("gnome-calculator") end),
     awful.key({ modkey            }, "numbersign", function () awful.util.spawn("set-wallpaper --new") end),
 
-		-- Volume
+		-- Multimedia keys
 		awful.key({}, "XF86AudioRaiseVolume", function () awful.util.spawn("volume.rb up") end),
 		awful.key({}, "XF86AudioLowerVolume", function () awful.util.spawn("volume.rb down") end),
 		awful.key({}, "XF86AudioMute", function () awful.util.spawn("volume.rb toggle") end),
+		awful.key({}, "XF86AudioPlay", function () awful.util.spawn("mpc toggle") end),
+		awful.key({}, "XF86AudioNext", function () awful.util.spawn("mpc next") end),
+		awful.key({}, "XF86AudioPrev", function () awful.util.spawn("mpc prev") end),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
