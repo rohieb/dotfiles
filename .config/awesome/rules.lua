@@ -77,9 +77,10 @@ awful.rules.rules = {
     { rule_any = { class = {
       "Iceweasel",
       "Firefox-bin",
-      "Chromium",
       "Epiphany"
     } }, properties = { tag = tags[1][5] } },
+    { rule = { class = "Chromium", role = "browser" },
+      properties = { tag = tags[1][5] } },
 
     { rule_any = { class = {
       "Icedove",
@@ -99,6 +100,8 @@ awful.rules.rules = {
     } }, properties = { tag = tags[1][7] } },
 
     { rule = { class = "Polly" },
+      properties = { tag = tags[1][8] } },
+    { rule = { class = "Chromium", role = "pop-up" },  -- TweetDeck app window
       properties = { tag = tags[1][8] } },
 
     { rule = { class = "Xchat" },
