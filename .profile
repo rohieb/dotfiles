@@ -57,6 +57,8 @@ export _JAVA_OPTIONS="$_JAVA_OPTIONS -Djava.net.preferIPv4Addresses=true"
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=718803#63
 export _JAVA_AWT_WM_NONREPARENTING=1
 export AWT_TOOLKIT=MToolkit
+# GTK3 themes with SWT look ugly sometimes
+export SWT_GTK3=0
 
 # locally installed Node packages
 export PATH="$PATH:$HOME/lib/node_modules/.bin"
