@@ -22,6 +22,7 @@ awful.rules.rules = {
       "Kmines",
       "Xsane",
       "Display.im6",
+      "Hamster-time-tracker",
       "Knetwalk"
     } }, properties = { floating = true } },
     { rule_any = { name = {
@@ -55,6 +56,8 @@ awful.rules.rules = {
       properties = { tag = tags[1][1] } },
     { rule = { role = "vimboy" },
       properties = { tag = tags[1][1] } },
+    { rule = { role = "Hamster-time-tracker" },
+      properties = { tag = tags[1][1] } },
 
     { rule = { instance = "sun-awt-X11-XFramePeer",
       class = "org-openstreetmap-josm-Main" },
@@ -62,7 +65,7 @@ awful.rules.rules = {
     { rule = { class = "Qtcreator" },
       properties = { tag = tags[1][2] } },
 
-    { rule = { class = "WikidPad" },
+    { rule = { class = "Eclipse" },
       properties = { tag = tags[1][3] } },
 
     { rule = { class = "Terminator" },
