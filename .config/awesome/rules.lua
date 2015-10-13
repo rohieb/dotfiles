@@ -97,7 +97,7 @@ awful.rules.rules = {
     { rule = { class = "Polly" },
       properties = { tag = tags[1][8] } },
 
-    { rule = { class = "Xchat" },
+    { rule_any = { class = { "Hexchat", "Xchat" } },
       properties = { tag = tags[1][9] } },
     { rule = { class = "Pidgin", role = "conversation" },
       properties = { tag = tags[1][9] } },
