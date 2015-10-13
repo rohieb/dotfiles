@@ -11,6 +11,7 @@ procs = {
   "pasystray",
   "setkeymap",
   "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1",
+  "hamster-time-tracker",
 --  "ibus-daemon --xim",
 }
 
