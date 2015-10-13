@@ -34,6 +34,7 @@
 	fetchlog = log --graph HEAD..FETCH_HEAD --format='%C(auto)%h %Cgreen(%an) %Creset%s'
 	graph = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit
 	gr    = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit
+	gra   = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit --all
 
 	assume-unchanged = update-index --assume-unchanged
 
