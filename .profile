@@ -46,6 +46,8 @@ export _JAVA_OPTIONS="$_JAVA_OPTIONS -Djava.net.preferIPv4Addresses=true"
 # fix some gray windows in OpenJDK 7
 # see https://awesome.naquadah.org/wiki/Problems_with_Java
 export _JAVA_AWT_WM_NONREPARENTING=1
+# GTK3 themes with SWT look ugly sometimes
+export SWT_GTK3=0
 
 # locally installed Node packages
 export PATH="$PATH:$HOME/lib/node_modules/.bin"
