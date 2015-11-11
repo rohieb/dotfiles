@@ -203,6 +203,7 @@ latexmk
 latex-beamer
 libcppunit-dev
 libcppunit-doc
+libnotify-bin
 libqt4-dev-bin
 libqt5sql5-sqlite   # auto
 libreoffice-calc
