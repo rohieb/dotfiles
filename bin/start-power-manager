@@ -1,5 +1,7 @@
 #!/bin/sh
 while true; do
-  xfce4-power-manager
+	if [ -z "`ps -Af|grep rohieb|grep xfce4-power-manager|grep -v grep`" ]; then
+	  xfce4-power-manager
+	fi
   sleep 60
 done
