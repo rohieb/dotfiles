@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ -z "$1" -o "$1" = "--help" -o "$1" = "-h" ]; then
+	if [ -z "$DISPLAY" ]; then
+		xmessage "Usage: tea <amount of minutes>"
+	else
+		echo "Usage: tea <amount of minutes>"
+	fi
+	exit 0
+fi
+minutes=$1     # if we do 1 * 60, things will be off by a factor
+sleep $((minutes*60))
+notify-send -u critical "YOUR TEA IS FINISHED"
