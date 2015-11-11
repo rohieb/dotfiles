@@ -378,6 +378,7 @@ usbutils
 uuid
 vagalume
 valgrind
+variety           # not in Debian, see ppa:peterlevi/ppa
 vim
 vim-fugitive
 vim-pathogen

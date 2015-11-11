@@ -31,6 +31,8 @@ awful.rules.rules = {
       "Knetwalk"
     } }, properties = { floating = true } },
     { rule_any = { name = {
+      "Variety Images",
+      "Variety Recent Downloads",
       "Terminator Preferences",
       "Tegaki",
       "qtcreator_process_stub", -- xterm started by QtCreator for program output

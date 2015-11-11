@@ -4,3 +4,14 @@
 .wireshark/recent*
 .wireshark/cfilters
 .config/gtk-3.0/bookmarks
+.config/variety/.firstrun
+.config/variety/.last_change_time
+.config/variety/.version
+.config/variety/Downloaded/
+.config/variety/Favorites/
+.config/variety/history.txt
+.config/variety/pencil_tile.png
+.config/variety/smart_user.json
+.config/variety/variety.log
+.config/variety/wallpaper/
+.config/variety/variety_latest_default.conf

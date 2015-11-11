@@ -77,7 +77,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "d", function () awful.util.spawn("setscreens home-dual") end),
     awful.key({ modkey, "Control" }, "c", function () awful.util.spawn("gnome-calculator") end),
     awful.key({ }, "XF86Calculator",      function () awful.util.spawn("gnome-calculator") end),
-    awful.key({ modkey            }, "numbersign", function () awful.util.spawn("set-wallpaper --new") end),
+    awful.key({ modkey            }, "numbersign", function () awful.util.spawn("variety --next") end),
 
 		-- Multimedia keys
 		awful.key({}, "XF86AudioRaiseVolume", function () awful.util.spawn("volume.rb up") end),
