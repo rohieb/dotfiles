@@ -8,6 +8,21 @@ beautiful = require("beautiful")
 -- Notification library
 naughty = require("naughty")
 
+-- {{{ naughty configuration
+-- List of file extensions that will be searched for icons
+--   Default: { "png", "gif" }
+naughty.config.icon_formats = { "png", "gif", "xpm" }
+-- List of directories that will be serached for icons
+--   Default: { "/usr/share/pixmaps/", }
+naughty.config.icon_dirs = {
+    "/usr/share/pixmaps/",
+    "/usr/share/icons/Human/",
+}
+-- Prefer 32x32 icons before searching for other sizes
+naughty.config.icon_size = 32
+
+-- }}}
+
 -- Load Debian menu entries
 require("debian.menu")
 
