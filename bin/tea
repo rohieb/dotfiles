@@ -10,4 +10,4 @@ if [ -z "$1" -o "$1" = "--help" -o "$1" = "-h" ]; then
 fi
 minutes=$1     # if we do 1 * 60, things will be off by a factor
 sleep $((minutes*60))
-notify-send -u critical "YOUR TEA IS FINISHED"
+notify-send -u critical "<big><b>YOUR TEA HAS FINISHED</b></big>"
