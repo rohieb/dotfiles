@@ -106,7 +106,7 @@ awful.rules.rules = {
     { rule = { class = "Chromium", role = "pop-up" },  -- TweetDeck app window
       properties = { tag = tags[1][8] } },
 
-    { rule = { class = "Xchat" },
+    { rule_any = { class = { "Xchat", "Hexchat" } },
       properties = { tag = tags[1][9] } },
     { rule = { class = "Pidgin", role = "conversation" },
       properties = { tag = tags[1][9] } },
