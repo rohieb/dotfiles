@@ -1,2 +1,3 @@
 include "%S/en_US.UTF-8/Compose"
+<Multi_key> <r> <e>               : "♻"
 <Multi_key> <c> <c> <c> <p>       : "☭"
