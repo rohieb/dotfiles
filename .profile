@@ -25,14 +25,21 @@ export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
-#export LANGUAGE="en_US:en"
+export LANGUAGE="en_US:en"
 export LANG="en_US.UTF-8"
-export LC_TIME="de_DE.UTF-8"
-#export LC_NUMERIC="de_DE.UTF-8"   # googleearth is fine
+export LC_ALL=
 export LC_CTYPE="de_DE.UTF-8"
-export LC_PAPER="de_DE.UTF-8"
+export LC_NUMERIC="en_US.UTF-8"
+export LC_TIME="de_DE.UTF-8"
 export LC_COLLATE="de_DE.UTF-8"
 export LC_MONETARY="de_DE.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_PAPER="de_DE.UTF-8"
+export LC_NAME="de_DE.UTF-8"
+export LC_ADDRESS="de_DE.UTF-8"
+export LC_TELEPHONE="de_DE.UTF-8"
+export LC_MEASUREMENT="de_DE.UTF-8"
+export LC_IDENTIFICATION="de_DE.UTF-8"
 
 # set up local perl lib in ~/.perl5
 eval $(perl -Mlocal::lib=$HOME/.perl5)
