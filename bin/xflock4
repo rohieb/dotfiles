@@ -1,3 +1,3 @@
 #!/bin/sh
 # wrapper to allow xfce4-power-manager to lock the screen
-i3lock -c 000000
+i3lock -c 000000 -i ~/.wallpapers/Andromeda_Galaxy_\(with_h-alpha\).png
