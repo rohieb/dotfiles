@@ -76,6 +76,10 @@ awful.rules.rules = {
 
     { rule = { class = "WikidPad" },
       properties = { tag = tags[1][3] } },
+    { rule = { class = "Meld" },
+      properties = { tag = tags[1][3] } },
+    { rule = { class = "Git-cola" },
+      properties = { tag = tags[1][3] } },
 
     { rule = { class = "Terminator" },
       properties = { tag = tags[1][4] } },
