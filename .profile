@@ -20,7 +20,8 @@ fi
 PATH="$HOME/bin:/sbin:/usr/sbin:$PATH"
 
 ### exports
-export DEBEMAIL="rohieb@rohieb.name"
+export NAME="Roland Hieber"
+export EMAIL="rohieb@rohieb.name"
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
