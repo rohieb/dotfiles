@@ -81,5 +81,5 @@ with open(sigfile, 'wb') as sig:
 os.spawnvp(os.P_WAIT, "gpg", ["gpg", "--verify", sigfile, msgfile])
 
 # clean up, securely
-os.spawnvp(os.P_WAIT, "shred", ["-u", msgfile])
-os.spawnvp(os.P_WAIT, "shred", ["-u", sigfile])
+os.spawnvp(os.P_WAIT, "shred", ["shred", "-u", msgfile])
+os.spawnvp(os.P_WAIT, "shred", ["shred", "-u", sigfile])
