@@ -1,5 +1,6 @@
 #!/bin/sh
-DEFAULT="--scale 1x1 --panning 0x0 --pos 0x0"
+DEFAULT="--rotate normal --scale 1x1 --panning 0x0 --pos 0x0"
+
 HDMI=""
 LVDS=""
 VGA=""
