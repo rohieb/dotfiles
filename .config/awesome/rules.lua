@@ -28,6 +28,8 @@ awful.rules.rules = {
       "Kmines",
       "Xsane",
       "Display.im6",
+      "kpat",
+      "kmines",
       "Knetwalk"
     } }, properties = { floating = true } },
     { rule_any = { name = {
