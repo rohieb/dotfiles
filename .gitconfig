@@ -46,6 +46,7 @@
 	hard = reset --hard
 
 	redo = !sh -c 'git reset --soft $(git merge-base master HEAD)'
+	bi = bisect
 
 [core]
 	excludesfile = /home/rohieb/.gitignore
