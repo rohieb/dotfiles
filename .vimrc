@@ -101,6 +101,9 @@ let g:GPGUseAgent = 1
 let g:GPGPreferArmor = 1
 let g:GPGPreferSign = 1
 
+" rust.vim config
+let g:rustfmt_autosave = 1
+
 " make text terminal-selectable as-is without any additional features
 let g:ownShowPlainTextEnabled = 0
 function! OwnToggleShowPlainText()
