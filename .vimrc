@@ -104,6 +104,9 @@ let g:GPGPreferSign = 1
 " rust.vim config
 let g:rustfmt_autosave = 1
 
+" pandoc config
+let g:pandoc#modules#disabled = ["folding"]
+
 " make text terminal-selectable as-is without any additional features
 let g:ownShowPlainTextEnabled = 0
 function! OwnToggleShowPlainText()
