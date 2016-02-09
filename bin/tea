@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ -z "$1" -o "$1" = "--help" -o "$1" = "-h" ]; then
-	if [ -z "$DISPLAY" ]; then
+	if [ -n "$DISPLAY" ]; then
 		xmessage "Usage: tea <amount of minutes>"
 	else
 		echo "Usage: tea <amount of minutes>"
