@@ -11,7 +11,7 @@
 	co = checkout
 	br = branch
 	chp = cherry-pick
-	pr = pull --rebase
+	pur = pull --rebase
 
 	ci = commit
 	amend = commit --amend
