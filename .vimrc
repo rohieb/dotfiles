@@ -116,7 +116,7 @@ function! OwnToggleShowPlainText()
 		set nonumber
 		let g:ownShowPlainTextEnabled = 0
 	else
-		set colorcolumn=80
+		set colorcolumn=+1
 		set number
 		let g:ownShowPlainTextEnabled = 1
 	endif
