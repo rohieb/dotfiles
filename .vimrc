@@ -106,6 +106,7 @@ let g:rustfmt_autosave = 1
 
 " pandoc config
 let g:pandoc#modules#disabled = ["folding"]
+let g:pandoc#spell#enabled = 0
 
 " make text terminal-selectable as-is without any additional features
 let g:ownShowPlainTextEnabled = 0
