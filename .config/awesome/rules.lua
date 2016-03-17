@@ -30,6 +30,7 @@ awful.rules.rules = {
       "Display.im6",
       "kpat",
       "kmines",
+      "Xmessage",
       "Knetwalk"
     } }, properties = { floating = true } },
     { rule_any = { name = {
