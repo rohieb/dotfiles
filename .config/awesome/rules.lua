@@ -49,6 +49,7 @@ awful.rules.rules = {
       "Epiphany-browser",
       "Dolphin",
       "Iceweasel",
+      "Firefox",
       "Rawtherapee",
       "Clementine"
     } }, properties = { floating = false } },
@@ -81,6 +82,7 @@ awful.rules.rules = {
     { rule_any = { class = {
       "Iceweasel",
       "Firefox-bin",
+      "Firefox",
       "Epiphany"
     } }, properties = { tag = tags[1][5] } },
     { rule = { class = "Chromium", role = "browser" },
@@ -88,6 +90,7 @@ awful.rules.rules = {
 
     { rule_any = { class = {
       "Icedove",
+      "Thunderbird",
       "Evolution"
     } }, properties = { tag = tags[1][6] } },
 
