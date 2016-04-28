@@ -48,6 +48,7 @@
 
 	redo = !sh -c 'git reset --soft $(git merge-base master HEAD)'
 	bi = bisect
+	pop = stash pop
 
 [core]
 	excludesfile = /home/rohieb/.gitignore
@@ -69,6 +70,7 @@
 
 [push]
 	default = simple
+	followTags = true
 
 [achievement]
 	upload = false
