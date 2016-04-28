@@ -62,4 +62,4 @@ export AWT_TOOLKIT=MToolkit
 export PATH="$PATH:$HOME/lib/node_modules/.bin"
 
 ### autostarts
-source .login_autostart
+source $HOME/.login_autostart
