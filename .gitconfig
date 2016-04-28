@@ -81,3 +81,5 @@
 
 [http "https://hannover.ccc.de"]
 	sslCAInfo = /home/rohieb/.git/sslcerts/cacert.pem
+[init]
+	templatedir = ~/.gitrc/init-template/
