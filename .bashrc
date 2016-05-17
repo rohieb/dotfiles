@@ -29,33 +29,27 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 	debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-	xterm-color) color_prompt=yes;;
-esac
+# set prompt color according to last return value
+__GREEN='\033[32m'
+__RED='\033[31m'
+__YELLOW='\033[33m'
+__BLUE='\033[34m'
+__RESET='\033[0m'
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-		# We have color support; assume it's compliant with Ecma-48
-		# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-		# a case would tend to support setf rather than setaf.)
-		color_prompt=yes
-	else
-		color_prompt=
+__ps1_status() {
+	ret=$?
+	if [ "$ret" != "0" ]; then
+		echo -en " =$ret"
 	fi
-fi
+}
 
-if [ "$color_prompt" = yes ]; then
-	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'"\$(__git_ps1)"'\$ '
-else
-	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\'"$(__git_ps1)"'\$ '
-fi
-unset color_prompt force_color_prompt
+PS1="\[${__YELLOW}\]\t\[${__RESET}\]"
+PS1="${PS1}${debian_chroot:+($debian_chroot)}"
+#PS1="${PS1}\$(__ps1_status)"
+PS1="${PS1}\[${__RED}\]\$(__ps1_status)\[${__RESET}\]"
+PS1="${PS1} \[${__GREEN}\]\w\[${__RESET}\]"
+PS1="${PS1}\$(__git_ps1)"    # git_ps1 already has space at the beginning
+PS1="${PS1} \$ "
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
