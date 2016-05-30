@@ -10,7 +10,7 @@
 	st = status
 	co = checkout
 	br = branch
-	chp = cherry-pick
+	chp = cherry-pick -x
 	pur = pull --rebase
 
 	commit = commit --verbose
