@@ -9,6 +9,7 @@ import email
 import os
 import sys
 import tempfile
+import argparse
 
 ##############################################################################
 # first some helpers.
@@ -43,20 +44,22 @@ def get_signed_payload(msg, level=0):
     return None
 
 ##############################################################################
+## argument parsing
+
+parser = argparse.ArgumentParser(description="Verify a PGP signature inside a "+
+	"MIME container (RFCs 3156 and 4880)")
+parser.add_argument("filename", metavar="FILE",
+        help="Input file. With no FILE or when FILE is -, read from stdin.")
+parser.add_argument("-n", "--no-delete", help="Don't delete temporary files",
+        action="store_true")
+args = parser.parse_args()
+
+##############################################################################
 # okay, off we go.
 
-if len(sys.argv) < 2 or "-h" in sys.argv or "--help" in sys.argv:
-    print("Usage: %s [FILE] | -h | --help" % sys.argv[0])
-    print("Verify a PGP signature inside a MIME container (RFCs 3156 and 4880)")
-    print("")
-    print("       -h, --help    Show this (mostly) helpful text")
-    print("")
-    print("With no FILE or when FILE is -, read from stdin")
-    sys.exit(0)
-
 # parse message from stdin or file
-if len(sys.argv) > 1 and sys.argv[1] != "-":
-    with open(sys.argv[1]) as mfile:
+if len(args.filename) > 1 and args.filename != "-":
+    with open(args.filename) as mfile:
         message = email.message_from_file(mfile)
 else:
     contents = ""
@@ -81,5 +84,11 @@ with open(sigfile, 'wb') as sig:
 os.spawnvp(os.P_WAIT, "gpg", ["gpg", "--verify", sigfile, msgfile])
 
 # clean up, securely
-os.spawnvp(os.P_WAIT, "shred", ["shred", "-u", msgfile])
-os.spawnvp(os.P_WAIT, "shred", ["shred", "-u", sigfile])
+if args.no_delete:
+    print("")
+    print("Please delete the following temporary files by yourself:")
+    print("\t" + msgfile)
+    print("\t" + sigfile)
+else:
+    os.spawnvp(os.P_WAIT, "shred", ["shred", "-u", msgfile])
+    os.spawnvp(os.P_WAIT, "shred", ["shred", "-u", sigfile])
