@@ -37,6 +37,9 @@ map üü <ESC>:wa<CR>
 im ää <ESC>:wa<CR>:!make<CR>
 map ää <ESC>:wa<CR>:!make<CR>
 
+map <F9> "=strftime("%c")<CR>P
+im  <F9> <C-R>=strftime("%c")<CR>
+
 " make gf always open a new tab
 map gf :tabnew <cfile><CR>
 
