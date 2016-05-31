@@ -71,7 +71,7 @@ theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
 theme.icon_theme = "ubuntu-mono-dark"
 
 -- set the wallpaper
-theme.wallpaper_cmd = { "set-wallpaper" }
+theme.wallpaper_cmd = { "variety --resume" }
 
 return theme
 -- vim: set ts=2 sw=2 et:
