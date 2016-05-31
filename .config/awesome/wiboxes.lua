@@ -6,7 +6,8 @@ local wibox = require("wibox")
 mytextclock = awful.widget.textclock(" %a %b %d, %H:%M:%S ", 1)
 
 -- Create a wibox for each screen and add it
-mywibox = {}
+mytopwibox = {}
+mybottomwibox = {}
 mypromptbox = {}
 mylayoutbox = {}
 mytaglist = {}
@@ -72,28 +73,37 @@ for s = 1, screen.count() do
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
-    -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s })
+    -- Create a top wibox with tags and widgets
+    mytopwibox[s] = awful.wibox({ position = "top", screen = s })
 
     -- Widgets that are aligned to the left
-    local left_layout = wibox.layout.fixed.horizontal()
-    left_layout:add(mylauncher)
-    left_layout:add(mytaglist[s])
-    left_layout:add(mypromptbox[s])
+    local top_left_layout = wibox.layout.fixed.horizontal()
+    top_left_layout:add(mylauncher)
+    top_left_layout:add(mytaglist[s])
+    top_left_layout:add(mypromptbox[s])
 
     -- Widgets that are aligned to the right
-    local right_layout = wibox.layout.fixed.horizontal()
-    if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(mytextclock)
-    right_layout:add(mylayoutbox[s])
+    local top_right_layout = wibox.layout.fixed.horizontal()
+    if s == 1 then top_right_layout:add(wibox.widget.systray()) end
+    top_right_layout:add(mytextclock)
 
     -- Now bring it all together (with the tasklist in the middle)
-    local layout = wibox.layout.align.horizontal()
-    layout:set_left(left_layout)
-    layout:set_middle(mytasklist[s])
-    layout:set_right(right_layout)
+    local top_layout = wibox.layout.align.horizontal()
+    top_layout:set_left(top_left_layout)
+    --top_layout:set_middle(mytasklist[s])
+    top_layout:set_right(top_right_layout)
 
-    mywibox[s]:set_widget(layout)
+    mytopwibox[s]:set_widget(top_layout)
+
+    -- Create a bottom wibox with the task list
+    mybottomwibox[s] = awful.wibox({ position = "bottom", screen = s })
+
+    local bottom_layout = wibox.layout.align.horizontal()
+    bottom_layout:set_right(mylayoutbox[s])
+    bottom_layout:set_middle(mytasklist[s])
+    bottom_layout:set_left(nil)
+
+    mybottomwibox[s]:set_widget(bottom_layout)
 end
 -- }}}
 -- vim: set ts=2 sw=2 et:
