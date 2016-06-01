@@ -64,6 +64,13 @@ theme.arrl                          = themes_dir .. "/icons/arrl.png"
 theme.arrl_dl                       = themes_dir .. "/icons/arrl_dl.png"
 theme.arrl_ld                       = themes_dir .. "/icons/arrl_ld.png"
 
+theme.widget_mem                    = themes_dir .. "/icons/mem.png"
+theme.widget_cpu                    = themes_dir .. "/icons/cpu.png"
+theme.widget_load                   = themes_dir .. "/icons/load.png"
+theme.widget_net                    = themes_dir .. "/icons/net_wired.png"
+theme.widget_music                  = themes_dir .. "/icons/note.png"
+theme.widget_music_on               = themes_dir .. "/icons/note_on.png"
+
 theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
 
 -- Define the icon theme for application icons. If not set then the icons

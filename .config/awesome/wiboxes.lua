@@ -1,9 +1,145 @@
 local awful = require("awful")
 local wibox = require("wibox")
+local lain = require("lain")
+local markup = lain.util.markup
 
 -- {{{ Wibox
+-- space between items
+local separator       = " │ "
+local spacerwidget    = wibox.widget.textbox(" ")
+local separatorwidget = wibox.widget.textbox(separator)
+
 -- Create a textclock widget
-mytextclock = awful.widget.textclock(" %a %b %d, %H:%M:%S ", 1)
+mytextclock = awful.widget.textclock("%a %b %d, %H:%M:%S ", 1)
+
+-- mpd widget
+local function timestring(seconds)
+  seconds = tonumber(seconds)
+  local s = seconds % 60
+  local m = math.floor(seconds / 60)
+  local h = math.floor(seconds / (60*60))
+  if h > 0 then
+    return ("%d:%.2d:%.2d"):format(h, m, s)
+  else
+    return ("%d:%.2d"):format(m, s)
+  end
+  return str
+end
+
+local mpdicon = wibox.widget.imagebox()
+local mpdwidget = lain.widgets.mpd({
+  timeout = 1,
+  notify = "off",
+  settings = function()
+    local function get_text(artistmarkupfn)
+      artistmarkupfn = artistmarkupfn or function(s) return s end
+      local text = artistmarkupfn(mpd_now.artist .. " > " .. mpd_now.title)
+      local function text_append(s)
+        if s and s ~= "" and s ~= "N/A" then
+          text = text .. separator .. s
+        end
+      end
+      text_append(mpd_now.album)
+      text_append(mpd_now.date)
+      text = text .. separator .. timestring(mpd_now.elapsed) .. " / " ..
+        timestring(mpd_now.time)
+      return text
+    end
+
+    if mpd_now.state == "play" then
+      widget:set_markup(get_text(function(s)
+        return markup(theme.fg_focus, s)
+      end))
+      mpdicon:set_image(beautiful.widget_music_on)
+
+    elseif mpd_now.state == "pause" then
+      widget:set_markup(get_text() .. " [paused]")
+      mpdicon:set_image(beautiful.widget_music)
+
+    else  -- stopped
+      widget:set_markup("")
+      mpdicon:set_image(nil)
+    end
+  end
+})
+
+-- cpu widget
+local cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
+local cpuwidget = lain.widgets.cpu({
+  timeout = 1,
+  settings = function()
+    function color(percentage)
+      local padded = ("%3d%%"):format(percentage)
+      if     percentage > 90 then return markup(theme.magenta, padded)
+      elseif percentage > 60 then return markup(theme.orange,  padded)
+      elseif percentage > 30 then return markup(theme.yellow,  padded)
+      else                        return padded
+      end
+    end
+    widget:set_markup(color(cpu_now[1].usage) .. color(cpu_now[2].usage))
+  end
+})
+
+-- loadavg widget
+local loadicon = wibox.widget.imagebox(beautiful.widget_load)
+local loadwidget = lain.widgets.sysload({
+  timeout = 5,
+  settings = function()
+    function color(loadavg)
+      local n = tonumber(loadavg)
+      if     n > 5   then return markup(theme.magenta, loadavg)
+      elseif n > 2.5 then return markup(theme.orange,  loadavg)
+      elseif n > 1.5 then return markup(theme.yellow,  loadavg)
+      else                return loadavg
+      end
+    end
+    widget:set_markup(color(load_1) .. ", " .. color(load_5))
+  end
+})
+
+-- memory widget
+local memicon = wibox.widget.imagebox(beautiful.widget_mem)
+local memwidget = lain.widgets.mem({
+  timeout = 2,
+  settings = function()
+    function format_size(mb)
+      if     mb > 1000*10   then return ("%3dG")  :format(mb / 1024)
+      elseif mb > 1000      then return ("%1.1fG"):format(mb / 1024)
+      elseif mb > 10        then return ("%3dM")  :format(mb)
+      else                       return ("%1.1fM"):format(mb)
+      end
+    end
+    -- FIXME: memory formatting with color
+    widget:set_markup(format_size(mem_now.used) .. " " ..
+      format_size(mem_now.free) .. " " ..
+      format_size(mem_now.swapused)
+    )
+  end
+})
+
+-- net widget
+local neticon = wibox.widget.imagebox(beautiful.widget_net)
+local netwidget = lain.widgets.net({
+  timeout = 2,
+  notify = "off",
+  settings = function()
+    function format_size(kb)
+      kb = tonumber(kb)
+      if     kb > 1000*1024 then return ("%1.1fG"):format(kb / (1024 * 1024))
+      elseif kb > 1000*10   then return ("%3dM")  :format(kb / (1024))
+      elseif kb > 1000      then return ("%1.1fM"):format(kb / (1024))
+      elseif kb > 10        then return ("%3dk")  :format(kb)
+      else                       return ("%1.1fk"):format(kb)
+      end
+    end
+    local up_color, down_color = theme.fg_normal, theme.fg_normal
+    if tonumber(net_now.sent)     > 0.2 then up_color = theme.green end
+    if tonumber(net_now.received) > 0.2 then down_color = theme.red end
+    widget:set_markup(markup(up_color  , format_size(net_now.sent) .. "↑")
+            .. " " .. markup(down_color, format_size(net_now.received) .. "↓"))
+  end
+})
+
 
 -- Create a wibox for each screen and add it
 mytopwibox = {}
@@ -81,10 +217,32 @@ for s = 1, screen.count() do
     top_left_layout:add(mylauncher)
     top_left_layout:add(mytaglist[s])
     top_left_layout:add(mypromptbox[s])
+    top_left_layout:add(spacerwidget)
+    top_left_layout:add(mpdicon)
+    top_left_layout:add(mpdwidget)
 
     -- Widgets that are aligned to the right
     local top_right_layout = wibox.layout.fixed.horizontal()
-    if s == 1 then top_right_layout:add(wibox.widget.systray()) end
+    if s == 1 then
+      top_right_layout:add(cpuicon)
+      top_right_layout:add(cpuwidget)
+      top_right_layout:add(spacerwidget)
+
+      top_right_layout:add(loadicon)
+      top_right_layout:add(loadwidget)
+      top_right_layout:add(spacerwidget)
+
+      top_right_layout:add(memicon)
+      top_right_layout:add(memwidget)
+      top_right_layout:add(spacerwidget)
+
+      top_right_layout:add(neticon)
+      top_right_layout:add(netwidget)
+      top_right_layout:add(spacerwidget)
+
+      top_right_layout:add(wibox.widget.systray())
+      top_right_layout:add(spacerwidget)
+    end
     top_right_layout:add(mytextclock)
 
     -- Now bring it all together (with the tasklist in the middle)
