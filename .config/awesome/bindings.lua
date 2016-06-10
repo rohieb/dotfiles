@@ -77,6 +77,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "d", function () awful.util.spawn("setscreens home-dual") end),
     awful.key({ modkey, "Control" }, "c", function () awful.util.spawn("gnome-calculator") end),
     awful.key({ }, "XF86Calculator",      function () awful.util.spawn("gnome-calculator") end),
+    awful.key({ modkey,           }, "c", function () awful.util.spawn_with_shell("xclip -o -selection primary | xclip -i -selection clipboard") end),
     awful.key({ modkey            }, "numbersign", function () awful.util.spawn("variety --next") end),
 
 		-- Multimedia keys
@@ -86,6 +87,7 @@ globalkeys = awful.util.table.join(
 		awful.key({}, "XF86AudioPlay", function () awful.util.spawn("mpc toggle") end),
 		awful.key({}, "XF86AudioNext", function () awful.util.spawn("mpc next") end),
 		awful.key({}, "XF86AudioPrev", function () awful.util.spawn("mpc prev") end),
+		awful.key({}, "XF86AudioStop", function () awful.util.spawn("mpc stop") end),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
