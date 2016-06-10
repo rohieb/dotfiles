@@ -12,6 +12,8 @@ if($#ARGV ge 0) {
 		print "Usage: $0 [-h|--help|-d|--decode] < STDIN\n";
 	}
 } else {
-	print uri_escape(<STDIN>);
+	while(<STDIN>) {
+		print uri_escape($_);
+	}
 	print "\n";
 }
