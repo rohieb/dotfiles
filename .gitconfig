@@ -54,7 +54,7 @@
 	excludesfile = /home/rohieb/.gitignore
 
 [cola]
-	fontdiff = Monospace,8,-1,5,50,0,0,0,0,0
+	fontdiff = Terminus,8,-1,5,50,0,0,0,0,0
 	tabwidth = 4
 
 [gui]
