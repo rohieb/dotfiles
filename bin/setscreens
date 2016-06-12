@@ -10,39 +10,21 @@ DPMS=""
 case $1 in
   reset)
     DPMS=on
-    SCREEN="--fb 1366x768"
-    LVDS="--auto --primary --mode 1366x768 $DEFAULT"
+    #SCREEN="--fb 1366x768"
+    LVDS="--primary --mode 1366x768 $DEFAULT"
     VGA="--off"
     HDMI="--off"
     ;;
   home-dual)
     DPMS=off
-    VGA="--primary --auto --mode 1280x1024 --pos 0x0"
+    VGA="--primary --auto --pos 0x0"
     LVDS="--auto --left-of VGA1"
     HDMI="--off"
     ;;
   home)
     DPMS=off
-    VGA="--primary --mode 1280x1024 --auto --right-of LVDS1"
+    VGA="--primary --auto --right-of LVDS1"
     LVDS="--off"
-    HDMI="--off"
-    ;;
-  siemens-dual)
-
-    DPMS=off
-    VGA="--primary --auto --mode 1280x1024 --pos 0x0"
-    LVDS="--auto --right-of VGA1"
-    HDMI="--off"
-    ;;
-  stratum-beamer)
-    DPMS=off
-    screen_on
-    VGA="--auto --mode 640x480 --right-of LVDS1 $DEFAULT"
-    ;;
-  stratum-beamer-mirror)
-    DPMS=off
-    LVDS="--mode 640x480 $DEFAULT"
-    VGA="--mode 640x480 --same-as LVDS1 $DEFAULT"
     HDMI="--off"
     ;;
   *)
@@ -77,7 +59,6 @@ fi
 sleep 5
 
 xmodmap $HOME/.xmodmaprc
-$HOME/bin/capslock-composekey
 
 killall xfce4-power-manager
 xfce4-power-manager
