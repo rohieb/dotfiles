@@ -61,3 +61,6 @@
 [submodule ".config/awesome/lain"]
 	path = .config/awesome/lain
 	url = https://github.com/copycat-killer/lain.git
+[submodule ".wireshark/ipnd"]
+	path = .wireshark/ipnd
+	url = https://github.com/rohieb/wireshark-ipnd-dissector
