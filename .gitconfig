@@ -72,6 +72,11 @@
 	default = simple
 	followTags = true
 
+[rebase]
+	autoSquash = true
+	autoStash = true
+	missingCommitsCheck = warn
+
 [achievement]
 	upload = false
 
