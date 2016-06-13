@@ -34,13 +34,6 @@ local mpdwidget = lain.widgets.mpd({
     local function get_text(artistmarkupfn)
       artistmarkupfn = artistmarkupfn or function(s) return s end
       local text = artistmarkupfn(mpd_now.artist .. " > " .. mpd_now.title)
-      local function text_append(s)
-        if s and s ~= "" and s ~= "N/A" then
-          text = text .. separator .. s
-        end
-      end
-      text_append(mpd_now.album)
-      text_append(mpd_now.date)
       text = text .. separator .. timestring(mpd_now.elapsed) .. " / " ..
         timestring(mpd_now.time)
       return text
