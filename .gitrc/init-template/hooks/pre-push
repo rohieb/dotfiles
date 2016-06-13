@@ -46,6 +46,8 @@ do
 		if [ -n "$commit" ]
 		then
 			echo "Found WIP commit in $local_ref, not pushing"
+			echo "Offending commit:"
+			git show --oneline $commit | head -n 1
 			exit 1
 		fi
 	fi
