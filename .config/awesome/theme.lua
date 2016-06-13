@@ -53,25 +53,19 @@ theme.layout_tilebottom             = themes_dir .. "/icons/tilebottom.png"
 theme.layout_tiletop                = themes_dir .. "/icons/tiletop.png"
 theme.layout_fairv                  = themes_dir .. "/icons/fairv.png"
 theme.layout_fairh                  = themes_dir .. "/icons/fairh.png"
-theme.layout_spiral                 = themes_dir .. "/icons/spiral.png"
-theme.layout_dwindle                = themes_dir .. "/icons/dwindle.png"
 theme.layout_max                    = themes_dir .. "/icons/max.png"
 theme.layout_fullscreen             = themes_dir .. "/icons/fullscreen.png"
 theme.layout_magnifier              = themes_dir .. "/icons/magnifier.png"
 theme.layout_floating               = themes_dir .. "/icons/floating.png"
 
-theme.arrl                          = themes_dir .. "/icons/arrl.png"
-theme.arrl_dl                       = themes_dir .. "/icons/arrl_dl.png"
-theme.arrl_ld                       = themes_dir .. "/icons/arrl_ld.png"
-
 theme.widget_mem                    = themes_dir .. "/icons/mem.png"
 theme.widget_cpu                    = themes_dir .. "/icons/cpu.png"
 theme.widget_load                   = themes_dir .. "/icons/load.png"
 theme.widget_net                    = themes_dir .. "/icons/net_wired.png"
-theme.widget_music                  = themes_dir .. "/icons/note.png"
-theme.widget_music_on               = themes_dir .. "/icons/note_on.png"
+theme.widget_play                   = themes_dir .. "/icons/play.png"
+theme.widget_pause                  = themes_dir .. "/icons/pause.png"
 
-theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
+theme.awesome_icon                  = themes_dir .. "/icons/awesome16.png"
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.

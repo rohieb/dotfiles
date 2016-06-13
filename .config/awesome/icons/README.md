@@ -1,4 +1,4 @@
-Icons from Powerarrow Darker theme by copycat-killer
+Icons partly based on Powerarrow Darker theme by copycat-killer
 
 Author:   Luke Bonham <dada [at] archlinux [dot] info>
 License:  CC BY-NC-SA <http://creativecommons.org/licenses/by-nc-sa/4.0/>

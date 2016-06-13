@@ -43,11 +43,11 @@ local mpdwidget = lain.widgets.mpd({
       widget:set_markup(get_text(function(s)
         return markup(theme.fg_focus, s)
       end))
-      mpdicon:set_image(beautiful.widget_music_on)
+      mpdicon:set_image(beautiful.widget_play)
 
     elseif mpd_now.state == "pause" then
       widget:set_markup(get_text() .. " [paused]")
-      mpdicon:set_image(beautiful.widget_music)
+      mpdicon:set_image(beautiful.widget_pause)
 
     else  -- stopped
       widget:set_markup("")
