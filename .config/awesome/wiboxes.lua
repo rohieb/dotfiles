@@ -4,15 +4,7 @@ local lain = require("lain")
 local markup = lain.util.markup
 
 -- {{{ Wibox
--- space between items
-local separator       = " │ "
-local spacerwidget    = wibox.widget.textbox(" ")
-local separatorwidget = wibox.widget.textbox(separator)
-
--- Create a textclock widget
-mytextclock = awful.widget.textclock("%a %b %d, %H:%M:%S ", 1)
-
--- mpd widget
+-- helpers
 local function timestring(seconds)
   seconds = tonumber(seconds)
   local s = seconds % 60
@@ -26,6 +18,21 @@ local function timestring(seconds)
   return str
 end
 
+local function shorten(str, maxlen)
+  if str:len() > maxlen then
+    return str:sub(0, maxlen-1) .. "…"
+  else
+    return str
+  end
+end
+
+-- space between items
+local spacerwidget    = wibox.widget.textbox(" ")
+
+-- Create a textclock widget
+mytextclock = awful.widget.textclock("%a %b %d, %H:%M:%S ", 1)
+
+-- mpd widget
 local mpdicon = wibox.widget.imagebox()
 local mpdwidget = lain.widgets.mpd({
   timeout = 1,
@@ -33,10 +40,10 @@ local mpdwidget = lain.widgets.mpd({
   settings = function()
     local function get_text(artistmarkupfn)
       artistmarkupfn = artistmarkupfn or function(s) return s end
-      local text = artistmarkupfn(mpd_now.artist .. " > " .. mpd_now.title)
-      text = text .. separator .. timestring(mpd_now.elapsed) .. " / " ..
-        timestring(mpd_now.time)
-      return text
+      return artistmarkupfn(shorten(mpd_now.artist, 30) .. " > " ..
+        shorten(mpd_now.title, 30)) .. " (" ..
+        timestring(mpd_now.elapsed) .. "/" ..
+        timestring(mpd_now.time) .. ")"
     end
 
     if mpd_now.state == "play" then
