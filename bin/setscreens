@@ -58,7 +58,7 @@ fi
 
 sleep 5
 
-xmodmap $HOME/.xmodmaprc
+setkeymap
 
 killall xfce4-power-manager
 xfce4-power-manager
