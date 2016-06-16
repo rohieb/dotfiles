@@ -73,12 +73,16 @@ awful.rules.rules = {
       properties = { tag = tags[1][2] } },
     { rule = { class = "Qtcreator" },
       properties = { tag = tags[1][2] } },
+    { rule = { class = "Gitk" },
+      properties = { tag = tags[1][2] } },
 
     { rule = { class = "WikidPad" },
       properties = { tag = tags[1][3] } },
     { rule = { class = "Meld" },
       properties = { tag = tags[1][3] } },
     { rule = { class = "Git-cola" },
+      properties = { tag = tags[1][3] } },
+    { rule = { class = "com-st-microxplorer-maingui-IOConfigurator" },
       properties = { tag = tags[1][3] } },
 
     { rule = { class = "Terminator" },
