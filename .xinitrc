@@ -13,7 +13,9 @@ xset b off # turn off stupid bell sound
 which numlockx >/dev/null 2>&1 && numlockx on
 
 # synaptics settings
-synclient HorizTwoFingerScroll=1
+if [ -x /usr/bin/synclient ]; then
+	synclient HorizTwoFingerScroll=1
+fi
 
 $HOME/bin/setkeymap
 $HOME/bin/setscreens-daystar
