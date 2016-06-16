@@ -1,0 +1,8 @@
+xrandr --output DVI-I-1 --mode 1920x1080 --pos 0x0 \
+	--output HDMI-1 --mode 1920x1080 --right-of DVI-I-1 --primary
+xset s off
+xset -dpms
+
+sleep 5
+
+xmodmap $HOME/.xmodmaprc
