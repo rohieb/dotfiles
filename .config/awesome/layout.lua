@@ -24,7 +24,7 @@ tags = {
     -- "１","２","３","４","５","６","７","８","９"
   },
   layout = {
-    awful.layout.suit.tile, awful.layout.suit.max, awful.layout.suit.max,
+    awful.layout.suit.floating, awful.layout.suit.max, awful.layout.suit.max,
     awful.layout.suit.tile, awful.layout.suit.max, awful.layout.suit.max,
     awful.layout.suit.tile.bottom, awful.layout.suit.max, awful.layout.suit.tile.left,
   }
