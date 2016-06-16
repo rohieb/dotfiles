@@ -76,7 +76,11 @@ local cpuwidget = lain.widgets.cpu({
       else                        return padded
       end
     end
-    widget:set_markup(color(cpu_now[1].usage) .. color(cpu_now[2].usage))
+    widget:set_markup(color(cpu_now[1].usage) .. color(cpu_now[2].usage) ..
+      color(cpu_now[3].usage) .. color(cpu_now[4].usage) ..
+      color(cpu_now[5].usage) .. color(cpu_now[6].usage) ..
+      color(cpu_now[7].usage) .. color(cpu_now[8].usage)
+    )
   end
 })
 
