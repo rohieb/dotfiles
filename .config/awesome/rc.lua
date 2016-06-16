@@ -7,6 +7,7 @@ wibox = require("wibox")
 beautiful = require("beautiful")
 -- Notification library
 naughty = require("naughty")
+gears = require("gears")
 
 -- {{{ naughty configuration
 -- List of file extensions that will be searched for icons
@@ -59,6 +60,14 @@ local cfgpath = awful.util.getdir("config")
 -- Themes define colours, icons, font and wallpapers.
 -- We fork the default theme to set a custom background
 beautiful.init(cfgpath .. "/theme.lua")
+
+-- {{{ Wallpaper
+if beautiful.wallpaper then
+    for s = 1, screen.count() do
+        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+    end
+end
+-- }}}
 
 -- This is used later as the default terminal and editor to run.
 -- terminal = "xterm"

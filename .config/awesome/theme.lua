@@ -71,5 +71,7 @@ theme.awesome_icon                  = themes_dir .. "/awesome16.png"
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = "ubuntu-mono-dark"
 
+theme.wallpaper = os.getenv("HOME") .. "/.wallpapers/Andromeda_Galaxy_(with_h-alpha).jpg"
+
 return theme
 -- vim: set ts=2 sw=2 et:
