@@ -4,7 +4,6 @@
 --
 procs = {
   { "nm-applet", },
-  { "start-power-manager", },
   { "s0trayicon", },
   { "blueman-applet", },
   { "gkrellm", },
