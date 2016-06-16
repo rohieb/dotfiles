@@ -12,6 +12,9 @@ xset b off # turn off stupid bell sound
 # (cherry-pick https://github.com/scy/dotscy/commit/080eb46fa1)
 which numlockx >/dev/null 2>&1 && numlockx on
 
+# synaptics settings
+synclient HorizTwoFingerScroll=1
+
 $HOME/bin/setkeymap
 
 exec awesome

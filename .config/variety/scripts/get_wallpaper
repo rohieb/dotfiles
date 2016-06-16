@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# This script is run when the application starts
+# Its purpose is to obtain the current wallpaper as an absolute path, or file URI (e.g. file://a/b.jpg)
+# This is needed by Variety at start to ensure History->Back works OK to revert back to the pre-Variety wallpaper.
+# You need to edit this if you use something other than Gnome 3 or Unity for a desktop environment
+
+# Feh
+sed "s/\ /\n/g" ~/.fehbg | grep \'

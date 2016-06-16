@@ -28,7 +28,7 @@ fi
 ### start mpd and mpdscribble
 [ -x /usr/bin/mpd ] && \
 	start-stop-daemon --quiet --start --user $USER --pidfile ~/.mpd/pid \
-	--startas /usr/bin/mpd
+	--oknodo --startas /usr/bin/mpd
 [ -x /usr/bin/mpdscribble ] && \
 	start-stop-daemon --quiet --start --user $USER --pidfile ~/.mpdscribble/pid \
-	--startas /usr/bin/mpdscribble -- --conf ~/.mpdscribble/mpdscribble.conf
+	--oknodo --startas /usr/bin/mpdscribble -- --conf ~/.mpdscribble/mpdscribble.conf

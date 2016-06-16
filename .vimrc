@@ -10,11 +10,8 @@ set listchars=tab:│\ ,eol:¶,trail:·
 set guifont=Monospace\ 8
 
 set textwidth=80
-set colorcolumn=80
 
 set autochdir
-
-set number
 
 " Map leader character to ,
 let mapleader = ","
@@ -31,12 +28,17 @@ map <C-Up> <C-W><Up>
 map Oa <C-W><Up>
 map <C-Down> <C-W><Down>
 map Ob <C-W><Down>
+map <C-k> <C-W>-
+map <C-j> <C-W>+
 
 " shortcuts
 im üü <ESC>:wa<CR>
 map üü <ESC>:wa<CR>
 im ää <ESC>:wa<CR>:!make<CR>
 map ää <ESC>:wa<CR>:!make<CR>
+
+map <F9> "=strftime("%c")<CR>P
+im  <F9> <C-R>=strftime("%c")<CR>
 
 " make gf always open a new tab
 map gf :tabnew <cfile><CR>
@@ -97,6 +99,38 @@ com! WW SudoWrite
 
 " additional ftplugins
 runtime ftplugin/man.vim
+
+" vim-gnupg config
+let g:GPGExecutable = "gpg2"     " default is gpg, but then the new agent fails
+let g:GPGUseAgent = 1
+let g:GPGPreferArmor = 1
+let g:GPGPreferSign = 1
+
+" rust.vim config
+let g:rustfmt_autosave = 1
+
+" pandoc config
+let g:pandoc#modules#disabled = ["folding"]
+let g:pandoc#spell#enabled = 0
+
+" make text terminal-selectable as-is without any additional features
+let g:ownShowPlainTextEnabled = 1
+function! OwnToggleShowPlainText()
+	if g:ownShowPlainTextEnabled
+		set colorcolumn=+1
+		set number
+		let g:ownShowPlainTextEnabled = 0
+	else
+		call g:gitgutter#disable()
+		set colorcolumn=0
+		set nonumber
+		let g:ownShowPlainTextEnabled = 1
+	endif
+endfunction
+call OwnToggleShowPlainText()
+command! ToggleShowPlainText call OwnToggleShowPlainText()
+nnoremap <F7> :ToggleShowPlainText<CR>
+inoremap <F7> <Esc>:ToggleShowPlainText<CR>a
 
 " load local vimrc if exists
 if filereadable(".vimrc.local")

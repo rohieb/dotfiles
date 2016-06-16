@@ -10,12 +10,13 @@
 	st = status
 	co = checkout
 	br = branch
-	chp = cherry-pick
-	pr = pull --rebase
+	chp = cherry-pick -x
+	pur = pull --rebase
 
-	ci = commit
-	amend = commit --amend
-  
+	commit = commit --verbose
+	ci = commit --verbose
+	amend = commit --verbose --amend
+
 	d = diff
 	di = diff
 	dif = diff
@@ -37,6 +38,8 @@
 	gra   = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit --all
 
 	assume-unchanged = update-index --assume-unchanged
+	no-assume-unchanged = update-index --no-assume-unchanged
+	really-status = update-index --really-refresh
 
 	rbi = rebase -i
 	rbc = rebase --continue
@@ -45,11 +48,15 @@
 	pu = push
 	hard = reset --hard
 
+	redo = !sh -c 'git reset --soft $(git merge-base master HEAD)'
+	bi = bisect
+	pop = stash pop
+
 [core]
 	excludesfile = /home/rohieb/.gitignore
 
 [cola]
-	fontdiff = Monospace,8,-1,5,50,0,0,0,0,0
+	fontdiff = Terminus,8,-1,5,50,0,0,0,0,0
 	tabwidth = 4
 
 [gui]
@@ -65,6 +72,12 @@
 
 [push]
 	default = simple
+	followTags = true
+
+[rebase]
+	autoSquash = true
+	autoStash = true
+	missingCommitsCheck = warn
 
 [achievement]
 	upload = false
@@ -77,3 +90,5 @@
 
 [http "https://hannover.ccc.de"]
 	sslCAInfo = /home/rohieb/.git/sslcerts/cacert.pem
+[init]
+	templatedir = ~/.gitrc/init-template/

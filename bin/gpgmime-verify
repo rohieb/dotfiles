@@ -1,0 +1,94 @@
+#!/usr/bin/python2
+# Helper to verify PGP-MIME-signed messages.
+# Needs: 
+# - python2 >= 2.7
+# - gpg
+# - shred
+
+import email
+import os
+import sys
+import tempfile
+import argparse
+
+##############################################################################
+# first some helpers.
+
+def is_signed_payload(payload):
+    # PGP-MIME as specified in RFC 3156
+    try:
+        if payload.is_multipart() and \
+            payload.get_content_type() == "multipart/signed" and \
+            payload.get_payload(1).get_content_type() == "application/pgp-signature":
+                return True
+    except:
+        # 
+        return False
+    return False
+
+# walk through nested MIME containers and find the first signature
+# (mailing lists do this)
+def get_signed_payload(msg, level=0):
+    if level > 10 or not msg.is_multipart():
+        return None
+    if is_signed_payload(msg):
+        return msg
+    n = 0
+    while n < 10:
+        try:
+            new_msg = msg.get_payload(n)
+            return get_signed_payload(new_msg, level+1)
+        except IndexError:   # no further childs in message
+            break
+        n += 1
+    return None
+
+##############################################################################
+## argument parsing
+
+parser = argparse.ArgumentParser(description="Verify a PGP signature inside a "+
+	"MIME container (RFCs 3156 and 4880)")
+parser.add_argument("filename", metavar="FILE",
+        help="Input file. With no FILE or when FILE is -, read from stdin.")
+parser.add_argument("-n", "--no-delete", help="Don't delete temporary files",
+        action="store_true")
+args = parser.parse_args()
+
+##############################################################################
+# okay, off we go.
+
+# parse message from stdin or file
+if len(args.filename) > 1 and args.filename != "-":
+    with open(args.filename) as mfile:
+        message = email.message_from_file(mfile)
+else:
+    contents = ""
+    for line in sys.stdin:
+        contents += line
+    message = email.message_from_string(contents)
+
+# find relevant PGP signature
+signed_payload = get_signed_payload(message)
+if signed_payload == None:
+    sys.exit("No PGP-MIME signature found in message.")
+
+# write message and signature into secure filenames for gpg -v to check
+(msghandle, msgfile) = tempfile.mkstemp(suffix="-msg", prefix="gpgmv-")
+(sighandle, sigfile) = tempfile.mkstemp(suffix="-sig", prefix="gpgmv-")
+with open(msgfile, 'wb') as msg:
+    msg.write(signed_payload.get_payload(0).as_string())
+with open(sigfile, 'wb') as sig:
+    sig.write(signed_payload.get_payload(1).get_payload())
+
+# delegate the real business to gpg
+os.spawnvp(os.P_WAIT, "gpg", ["gpg", "--verify", sigfile, msgfile])
+
+# clean up, securely
+if args.no_delete:
+    print("")
+    print("Please delete the following temporary files by yourself:")
+    print("\t" + msgfile)
+    print("\t" + sigfile)
+else:
+    os.spawnvp(os.P_WAIT, "shred", ["shred", "-u", msgfile])
+    os.spawnvp(os.P_WAIT, "shred", ["shred", "-u", sigfile])

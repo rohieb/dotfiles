@@ -11,3 +11,5 @@ setxkbmap \
 	-option kpdl:dot \
 	-option shift:breaks_caps
 
+# custom key mappings
+xmodmap $HOME/.xmodmaprc

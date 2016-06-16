@@ -1,10 +1,16 @@
+local awful = require("awful")
+awful.rules = require("awful.rules")
+local beautiful = require("beautiful")
+
 -- {{{ Rules
+-- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
-                     focus = true,
+                     focus = awful.client.focus.filter,
+                     --raise = true,
                      keys = clientkeys,
                      buttons = clientbuttons } },
 
@@ -23,9 +29,14 @@ awful.rules.rules = {
       "Xsane",
       "Display.im6",
       "Hamster-time-tracker",
+      "kpat",
+      "kmines",
+      "Xmessage",
       "Knetwalk"
     } }, properties = { floating = true } },
     { rule_any = { name = {
+      "Variety Images",
+      "Variety Recent Downloads",
       "Terminator Preferences",
       "Tegaki",
       "qtcreator_process_stub", -- xterm started by QtCreator for program output
@@ -40,6 +51,7 @@ awful.rules.rules = {
       "Epiphany-browser",
       "Dolphin",
       "Iceweasel",
+      "Firefox",
       "Rawtherapee",
       "Clementine"
     } }, properties = { floating = false } },
@@ -64,12 +76,20 @@ awful.rules.rules = {
       properties = { tag = tags[1][2] } },
     { rule = { class = "Qtcreator" },
       properties = { tag = tags[1][2] } },
+    { rule = { class = "Gitk" },
+      properties = { tag = tags[1][2] } },
 
     { rule = { class = "Eclipse" },
       properties = { tag = tags[1][3] } },
     { rule = { class = "Meld" },
       properties = { tag = tags[1][3] } },
     { rule = { class = "Git-cola" },
+      properties = { tag = tags[1][3] } },
+    { rule = { class = "Meld" },
+      properties = { tag = tags[1][3] } },
+    { rule = { class = "Git-cola" },
+      properties = { tag = tags[1][3] } },
+    { rule = { class = "com-st-microxplorer-maingui-IOConfigurator" },
       properties = { tag = tags[1][3] } },
 
     { rule = { class = "Terminator" },
@@ -78,12 +98,15 @@ awful.rules.rules = {
     { rule_any = { class = {
       "Iceweasel",
       "Firefox-bin",
-      "Chromium",
+      "Firefox",
       "Epiphany"
     } }, properties = { tag = tags[1][5] } },
+    { rule = { class = "Chromium", role = "browser" },
+      properties = { tag = tags[1][5] } },
 
     { rule_any = { class = {
       "Icedove",
+      "Thunderbird",
       "Evolution"
     } }, properties = { tag = tags[1][6] } },
 
@@ -91,6 +114,7 @@ awful.rules.rules = {
       "Last.fm",
       "Guayadeque",
       "Gpodder",
+      "Gmpc",
       "Vagalume",
       "Rhythmbox",
       "Kaffeine",
@@ -100,8 +124,10 @@ awful.rules.rules = {
 
     { rule = { class = "Polly" },
       properties = { tag = tags[1][8] } },
+    { rule = { class = "Chromium", role = "pop-up" },  -- TweetDeck app window
+      properties = { tag = tags[1][8] } },
 
-    { rule_any = { class = { "Hexchat", "Xchat" } },
+    { rule_any = { class = { "Xchat", "Hexchat" } },
       properties = { tag = tags[1][9] } },
     { rule = { class = "Pidgin", role = "conversation" },
       properties = { tag = tags[1][9] } },

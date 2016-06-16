@@ -7,6 +7,18 @@
 URxvt.font: terminus-14
 URxvt.boldFont: terminus-bold-14
 
+!! shortcuts for simpler font change
+!! fixed looks weird or does not exist for bigger sizes, but terminus does not
+!! have a bold face for 13 pixels
+URxvt.keysym.C-1: command:\033]710;-*-fixed-medium-r-semicondensed-*-13-*-*-*-*-*-iso10646-1\007\033]711;-*-fixed-bold-r-semicondensed-*-13-*-*-*-*-*-iso10646-1\007
+URxvt.keysym.C-2: command:\033]710;-*-fixed-medium-r-normal-*-13-*-*-*-*-70-iso10646-1\007\033]711;-*-fixed-bold-r-normal-*-13-*-*-*-*-70-iso10646-1\007
+!! misc-fixed looks weird or does not exist for bigger sizes
+URxvt.keysym.C-3: command:\033]710;terminus-12\007\033]711;terminus-bold-12\007
+URxvt.keysym.C-4: command:\033]710;terminus-14\007\033]711;terminus-bold-14\007
+URxvt.keysym.C-5: command:\033]710;terminus-18\007\033]711;terminus-bold-18\007
+URxvt.keysym.C-6: command:\033]710;terminus-24\007\033]711;terminus-bold-24\007
+URxvt.keysym.C-7: command:\033]710;terminus-32\007\033]711;terminus-bold-32\007
+
 !! bell
 URxvt.urgentOnBell: true
 URxvt.visualBell: true
@@ -48,16 +60,6 @@ URxvt.keysym.C-End:     \033[1;5F
 
 !! Command that is executed on Print button press
 URxvt.print-pipe: cat > $(TMPDIR=$HOME/tmp mktemp urxvt.XXXXXX)
-
-!! shortcuts for simpler font change
-URxvt.keysym.C-1: command:\033]710;-*-fixed-medium-r-semicondensed-*-13-*-*-*-*-*-iso10646-1\007\033]711;-*-fixed-bold-r-semicondensed-*-13-*-*-*-*-*-iso10646-1\007
-URxvt.keysym.C-2: command:\033]710;-*-fixed-medium-r-normal-*-13-*-*-*-*-70-iso10646-1\007\033]711;-*-fixed-bold-r-normal-*-13-*-*-*-*-70-iso10646-1\007
-!! misc-fixed looks weird or does not exist for bigger sizes
-URxvt.keysym.C-3: command:\033]710;terminus-12\007\033]711;terminus-bold-12\007
-URxvt.keysym.C-4: command:\033]710;terminus-14\007\033]711;terminus-bold-14\007
-URxvt.keysym.C-5: command:\033]710;terminus-18\007\033]711;terminus-bold-18\007
-URxvt.keysym.C-6: command:\033]710;terminus-24\007\033]711;terminus-bold-24\007
-URxvt.keysym.C-7: command:\033]710;terminus-32\007\033]711;terminus-bold-32\007
 
 !! plugins
 URxvt.perl-ext-common: default,searchable-scrollback,matcher

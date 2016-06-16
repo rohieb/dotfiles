@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/bin/chromium --disk-cache-size=100 "$@"

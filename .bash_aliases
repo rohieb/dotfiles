@@ -8,7 +8,9 @@ alias l='ls -lah'
 alias iotop='sudo iotop'
 alias iptraf='sudo iptraf'
 
-alias psgrep='ps -Af|grep '
+psgrep() {
+	ps -Af | grep "$*"
+}
 
 alias add-ssh-keys="ssh-add $HOME/.ssh/id*priv"
 
