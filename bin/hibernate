@@ -1,0 +1,4 @@
+#!/bin/sh
+sync
+xflock4 &
+sudo pm-hibernate
