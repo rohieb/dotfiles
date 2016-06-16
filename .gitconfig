@@ -38,6 +38,8 @@
 	gra   = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit --all
 
 	assume-unchanged = update-index --assume-unchanged
+	no-assume-unchanged = update-index --no-assume-unchanged
+	really-status = update-index --really-refresh
 
 	rbi = rebase -i
 	rbc = rebase --continue
