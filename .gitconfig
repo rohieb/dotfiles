@@ -52,6 +52,8 @@
 	bi = bisect
 	pop = stash pop
 
+	icon = imerge continue
+
 [core]
 	excludesfile = /home/rohieb/.gitignore
 

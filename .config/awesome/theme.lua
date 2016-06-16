@@ -41,38 +41,35 @@ theme.menu_width  = 150
 
 -- Icons from Powerarrow Darker
 -- see https://github.com/copycat-killer/awesome-copycats
-local themes_dir = os.getenv("HOME") .. "/.config/awesome"
+local themes_dir = os.getenv("HOME") .. "/.config/awesome/icons-18px"
 
-theme.submenu_icon                  = themes_dir .. "/icons/submenu.png"
-theme.taglist_squares_sel           = themes_dir .. "/icons/square_sel.png"
-theme.taglist_squares_unsel         = themes_dir .. "/icons/square_unsel.png"
+theme.submenu_icon                  = themes_dir .. "/submenu.png"
+theme.taglist_squares_sel           = themes_dir .. "/square_sel.png"
+theme.taglist_squares_unsel         = themes_dir .. "/square_unsel.png"
 
-theme.layout_tile                   = themes_dir .. "/icons/tile.png"
-theme.layout_tileleft               = themes_dir .. "/icons/tileleft.png"
-theme.layout_tilebottom             = themes_dir .. "/icons/tilebottom.png"
-theme.layout_tiletop                = themes_dir .. "/icons/tiletop.png"
-theme.layout_fairv                  = themes_dir .. "/icons/fairv.png"
-theme.layout_fairh                  = themes_dir .. "/icons/fairh.png"
-theme.layout_max                    = themes_dir .. "/icons/max.png"
-theme.layout_fullscreen             = themes_dir .. "/icons/fullscreen.png"
-theme.layout_magnifier              = themes_dir .. "/icons/magnifier.png"
-theme.layout_floating               = themes_dir .. "/icons/floating.png"
+theme.layout_tile                   = themes_dir .. "/tile.png"
+theme.layout_tileleft               = themes_dir .. "/tileleft.png"
+theme.layout_tilebottom             = themes_dir .. "/tilebottom.png"
+theme.layout_tiletop                = themes_dir .. "/tiletop.png"
+theme.layout_fairv                  = themes_dir .. "/fairv.png"
+theme.layout_fairh                  = themes_dir .. "/fairh.png"
+theme.layout_max                    = themes_dir .. "/max.png"
+theme.layout_fullscreen             = themes_dir .. "/fullscreen.png"
+theme.layout_magnifier              = themes_dir .. "/magnifier.png"
+theme.layout_floating               = themes_dir .. "/floating.png"
 
-theme.widget_mem                    = themes_dir .. "/icons/mem.png"
-theme.widget_cpu                    = themes_dir .. "/icons/cpu.png"
-theme.widget_load                   = themes_dir .. "/icons/load.png"
-theme.widget_net                    = themes_dir .. "/icons/net_wired.png"
-theme.widget_play                   = themes_dir .. "/icons/play.png"
-theme.widget_pause                  = themes_dir .. "/icons/pause.png"
+theme.widget_mem                    = themes_dir .. "/mem.png"
+theme.widget_cpu                    = themes_dir .. "/cpu.png"
+theme.widget_load                   = themes_dir .. "/load.png"
+theme.widget_net                    = themes_dir .. "/net_wired.png"
+theme.widget_play                   = themes_dir .. "/play.png"
+theme.widget_pause                  = themes_dir .. "/pause.png"
 
-theme.awesome_icon                  = themes_dir .. "/icons/awesome16.png"
+theme.awesome_icon                  = themes_dir .. "/awesome16.png"
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = "ubuntu-mono-dark"
-
--- set the wallpaper
-theme.wallpaper_cmd = { "feh --bg-fill ~/.wallpapers/Andromeda_Galaxy_(with_h-alpha).jpg" }
 
 return theme
 -- vim: set ts=2 sw=2 et:
