@@ -65,11 +65,11 @@ awful.rules.rules = {
 
     -- map specific windows to specific tags
     { rule = { class = "Gkrellm" },
-      properties = { tag = tags[1][1] } },
+      properties = { tag = tags[2][1] } },
     { rule = { role = "vimboy" },
       properties = { tag = tags[1][1] } },
     { rule = { role = "Hamster-time-tracker" },
-      properties = { tag = tags[1][1] } },
+      properties = { tag = tags[2][1] } },
 
     { rule = { instance = "sun-awt-X11-XFramePeer",
       class = "org-openstreetmap-josm-Main" },
