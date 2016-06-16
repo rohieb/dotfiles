@@ -1,6 +1,6 @@
 theme = {}
 
-theme.font = "Terminus 8"
+theme.font = "Terminus 10"
 
 -- Solarized color scheme
 theme.base03    = "#002b36"
