@@ -16,5 +16,6 @@ which numlockx >/dev/null 2>&1 && numlockx on
 synclient HorizTwoFingerScroll=1
 
 $HOME/bin/setkeymap
+$HOME/bin/setscreens-daystar
 
 exec awesome

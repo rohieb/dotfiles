@@ -3,7 +3,6 @@
 -- https://wiki.archlinux.org/index.php/Awesome#Transitioning_away_from_Gnome3
 --
 procs = {
-  { "setscreens-daystar", },
   { "nm-applet", },
   { "start-power-manager", },
   { "s0trayicon", },
