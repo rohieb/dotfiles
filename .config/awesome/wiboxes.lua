@@ -7,6 +7,11 @@ local markup = lain.util.markup
 -- helpers
 local function timestring(seconds)
   seconds = tonumber(seconds)
+
+  if not seconds then
+    return ""    -- some chiptunes don't have a duration.
+  end
+
   local s = seconds % 60
   local m = math.floor(seconds / 60)
   local h = math.floor(seconds / (60*60))
