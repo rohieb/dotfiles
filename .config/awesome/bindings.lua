@@ -1,4 +1,4 @@
-local awful = require("awful")
+awful = require("awful")
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(

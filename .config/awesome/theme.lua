@@ -41,7 +41,7 @@ theme.menu_width  = 150
 
 -- Icons from Powerarrow Darker
 -- see https://github.com/copycat-killer/awesome-copycats
-local themes_dir = os.getenv("HOME") .. "/.config/awesome/icons-18px"
+themes_dir = os.getenv("HOME") .. "/.config/awesome/icons-18px"
 
 theme.submenu_icon                  = themes_dir .. "/submenu.png"
 theme.taglist_squares_sel           = themes_dir .. "/square_sel.png"

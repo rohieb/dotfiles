@@ -1,14 +1,14 @@
-local awful = require("awful")
-local wibox = require("wibox")
-local lain = require("lain")
-local markup = lain.util.markup
+awful = require("awful")
+wibox = require("wibox")
+lain = require("lain")
+markup = lain.util.markup
 awful.util = require("awful.util")
-local   escape_f = awful.util.  escape
-local unescape_f = awful.util.unescape
+  escape_f = awful.util.  escape
+unescape_f = awful.util.unescape
 
 -- {{{ Wibox
 -- helpers
-local function timestring(seconds)
+function timestring(seconds)
   seconds = tonumber(seconds)
 
   if not seconds then
@@ -26,7 +26,7 @@ local function timestring(seconds)
   return str
 end
 
-local function shorten(str, maxlen)
+function shorten(str, maxlen)
   if str:len() > maxlen then
     return str:sub(0, maxlen-1) .. "…"
   else
@@ -35,18 +35,18 @@ local function shorten(str, maxlen)
 end
 
 -- space between items
-local spacerwidget    = wibox.widget.textbox(" ")
+spacerwidget    = wibox.widget.textbox(" ")
 
 -- Create a textclock widget
 mytextclock = awful.widget.textclock("%a %b %d, %H:%M:%S ", 1)
 
 -- mpd widget
-local mpdicon = wibox.widget.imagebox()
-local mpdicon_random  = wibox.widget.imagebox()
-local mpdicon_single  = wibox.widget.imagebox()
-local mpdicon_repeat  = wibox.widget.imagebox()
-local mpdicon_consume = wibox.widget.imagebox()
-local mpdwidget = lain.widgets.mpd({
+mpdicon = wibox.widget.imagebox()
+mpdicon_random  = wibox.widget.imagebox()
+mpdicon_single  = wibox.widget.imagebox()
+mpdicon_repeat  = wibox.widget.imagebox()
+mpdicon_consume = wibox.widget.imagebox()
+mpdwidget = lain.widgets.mpd({
   timeout = 1,
   notify = "off",
   settings = function()
@@ -92,8 +92,8 @@ local mpdwidget = lain.widgets.mpd({
 })
 
 -- cpu widget
-local cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
-local cpuwidget = lain.widgets.cpu({
+cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
+cpuwidget = lain.widgets.cpu({
   timeout = 1,
   settings = function()
     function color(percentage)
@@ -109,8 +109,8 @@ local cpuwidget = lain.widgets.cpu({
 })
 
 -- loadavg widget
-local loadicon = wibox.widget.imagebox(beautiful.widget_load)
-local loadwidget = lain.widgets.sysload({
+loadicon = wibox.widget.imagebox(beautiful.widget_load)
+loadwidget = lain.widgets.sysload({
   timeout = 5,
   settings = function()
     function color(loadavg)
@@ -126,8 +126,8 @@ local loadwidget = lain.widgets.sysload({
 })
 
 -- memory widget
-local memicon = wibox.widget.imagebox(beautiful.widget_mem)
-local memwidget = lain.widgets.mem({
+memicon = wibox.widget.imagebox(beautiful.widget_mem)
+memwidget = lain.widgets.mem({
   timeout = 2,
   settings = function()
     function format_size(mb)
@@ -146,8 +146,8 @@ local memwidget = lain.widgets.mem({
 })
 
 -- net widget
-local neticon = wibox.widget.imagebox(beautiful.widget_net)
-local netwidget = lain.widgets.net({
+neticon = wibox.widget.imagebox(beautiful.widget_net)
+netwidget = lain.widgets.net({
   timeout = 2,
   notify = "off",
   settings = function()
@@ -241,7 +241,7 @@ for s = 1, screen.count() do
     mytopwibox[s] = awful.wibox({ position = "top", screen = s })
 
     -- Widgets that are aligned to the left
-    local top_left_layout = wibox.layout.fixed.horizontal()
+    top_left_layout = wibox.layout.fixed.horizontal()
     top_left_layout:add(mylauncher)
     top_left_layout:add(mytaglist[s])
     top_left_layout:add(mypromptbox[s])
@@ -253,7 +253,7 @@ for s = 1, screen.count() do
     top_left_layout:add(mpdwidget)
 
     -- Widgets that are aligned to the right
-    local top_right_layout = wibox.layout.fixed.horizontal()
+    top_right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then
       top_right_layout:add(cpuicon)
       top_right_layout:add(cpuwidget)
@@ -277,7 +277,7 @@ for s = 1, screen.count() do
     top_right_layout:add(mytextclock)
 
     -- Now bring it all together (with the tasklist in the middle)
-    local top_layout = wibox.layout.align.horizontal()
+    top_layout = wibox.layout.align.horizontal()
     top_layout:set_left(top_left_layout)
     --top_layout:set_middle(mytasklist[s])
     top_layout:set_right(top_right_layout)
@@ -287,7 +287,7 @@ for s = 1, screen.count() do
     -- Create a bottom wibox with the task list
     mybottomwibox[s] = awful.wibox({ position = "bottom", screen = s })
 
-    local bottom_layout = wibox.layout.align.horizontal()
+    bottom_layout = wibox.layout.align.horizontal()
     bottom_layout:set_right(mylayoutbox[s])
     bottom_layout:set_middle(mytasklist[s])
     bottom_layout:set_left(nil)
