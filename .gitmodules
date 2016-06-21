@@ -60,7 +60,7 @@
 	url = https://github.com/vim-pandoc/vim-pandoc
 [submodule ".config/awesome/lain"]
 	path = .config/awesome/lain
-	url = https://github.com/copycat-killer/lain.git
+	url = https://github.com/rohieb/lain.git
 [submodule ".wireshark/ipnd"]
 	path = .wireshark/ipnd
 	url = https://github.com/rohieb/wireshark-ipnd-dissector

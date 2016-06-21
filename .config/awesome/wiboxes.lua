@@ -39,6 +39,10 @@ mytextclock = awful.widget.textclock("%a %b %d, %H:%M:%S ", 1)
 
 -- mpd widget
 local mpdicon = wibox.widget.imagebox()
+local mpdicon_random  = wibox.widget.imagebox()
+local mpdicon_single  = wibox.widget.imagebox()
+local mpdicon_repeat  = wibox.widget.imagebox()
+local mpdicon_consume = wibox.widget.imagebox()
 local mpdwidget = lain.widgets.mpd({
   timeout = 1,
   notify = "off",
@@ -49,7 +53,23 @@ local mpdwidget = lain.widgets.mpd({
         shorten(mpd_now.title, 30)) .. " (" ..
         timestring(mpd_now.elapsed) .. "/" ..
         timestring(mpd_now.time) .. ")"
+    -- mode icons
+    img_repeat, img_single, img_random, img_consume = nil, nil, nil, nil
+    if mpd_now.repeat_mode and mpd_now.single_mode then
+      img_repeat = beautiful.widget_repeat_single
+    else
+      if mpd_now.repeat_mode then img_repeat = beautiful.widget_repeat end
+      if mpd_now.single_mode then img_single = beautiful.widget_single end
     end
+    if mpd_now.random_mode  then img_random  = beautiful.widget_random  end
+    if mpd_now.consume_mode then img_consume = beautiful.widget_consume end
+
+    mpdicon_repeat :set_image(img_repeat)
+    mpdicon_single :set_image(img_single)
+    mpdicon_random :set_image(img_random)
+    mpdicon_consume:set_image(img_consume)
+
+    -- play/pause/stop
 
     if mpd_now.state == "play" then
       widget:set_markup(get_text(function(s)
@@ -222,6 +242,10 @@ for s = 1, screen.count() do
     top_left_layout:add(mylauncher)
     top_left_layout:add(mytaglist[s])
     top_left_layout:add(mypromptbox[s])
+    top_left_layout:add(mpdicon_consume)
+    top_left_layout:add(mpdicon_repeat)
+    top_left_layout:add(mpdicon_single)
+    top_left_layout:add(mpdicon_random)
     top_left_layout:add(mpdicon)
     top_left_layout:add(mpdwidget)
 

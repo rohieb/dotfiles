@@ -64,6 +64,11 @@ theme.widget_load                   = themes_dir .. "/load.png"
 theme.widget_net                    = themes_dir .. "/net_wired.png"
 theme.widget_play                   = themes_dir .. "/play.png"
 theme.widget_pause                  = themes_dir .. "/pause.png"
+theme.widget_consume                = themes_dir .. "/consume.png"
+theme.widget_random                 = themes_dir .. "/random.png"
+theme.widget_repeat                 = themes_dir .. "/repeat.png"
+theme.widget_repeat_single          = themes_dir .. "/repeat_single.png"
+theme.widget_single                 = themes_dir .. "/single.png"
 
 theme.awesome_icon                  = themes_dir .. "/awesome16.png"
 

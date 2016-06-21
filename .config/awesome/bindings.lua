@@ -90,6 +90,9 @@ globalkeys = awful.util.table.join(
 		awful.key({}, "XF86AudioPrev", function () awful.util.spawn("mpc prev") end),
 		awful.key({ modkey }, "Prior", function () awful.util.spawn("mpc prev") end),
 		awful.key({}, "XF86AudioStop", function () awful.util.spawn("mpc stop") end),
+		awful.key({ modkey, "Shift" }, "period", function () awful.util.spawn("mpc single") end),
+		awful.key({ modkey, "Shift" }, "comma", function () awful.util.spawn("mpc repeat") end),
+		awful.key({ modkey, "Shift" }, "minus", function () awful.util.spawn("mpc random") end),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
