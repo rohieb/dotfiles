@@ -53,6 +53,7 @@
 	pop = stash pop
 
 	icon = imerge continue
+	rb = rebase
 
 [core]
 	excludesfile = /home/rohieb/.gitignore
