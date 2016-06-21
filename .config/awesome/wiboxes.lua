@@ -2,6 +2,9 @@ local awful = require("awful")
 local wibox = require("wibox")
 local lain = require("lain")
 local markup = lain.util.markup
+awful.util = require("awful.util")
+local   escape_f = awful.util.  escape
+local unescape_f = awful.util.unescape
 
 -- {{{ Wibox
 -- helpers
@@ -65,7 +68,8 @@ local mpdwidget = lain.widgets.mpd({
 
     -- play/pause/stop
     playlistinfo = tonumber(mpd_now.pls_pos) + 1 .. "/" .. mpd_now.pls_len
-    artisttitle = shorten(mpd_now.artist, 30) .. " – " .. shorten(mpd_now.title, 30)
+    artisttitle = escape_f(shorten(unescape_f(mpd_now.artist), 30)) .. " – "
+      .. escape_f(shorten(unescape_f(mpd_now.title), 30))
     timeinfo = timestring(mpd_now.elapsed) .. "/" .. timestring(mpd_now.time)
 
     if mpd_now.state == "play" then
