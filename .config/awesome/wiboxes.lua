@@ -47,12 +47,6 @@ local mpdwidget = lain.widgets.mpd({
   timeout = 1,
   notify = "off",
   settings = function()
-    local function get_text(artistmarkupfn)
-      artistmarkupfn = artistmarkupfn or function(s) return s end
-      return artistmarkupfn(shorten(mpd_now.artist, 30) .. " > " ..
-        shorten(mpd_now.title, 30)) .. " (" ..
-        timestring(mpd_now.elapsed) .. "/" ..
-        timestring(mpd_now.time) .. ")"
     -- mode icons
     img_repeat, img_single, img_random, img_consume = nil, nil, nil, nil
     if mpd_now.repeat_mode and mpd_now.single_mode then
@@ -70,21 +64,26 @@ local mpdwidget = lain.widgets.mpd({
     mpdicon_consume:set_image(img_consume)
 
     -- play/pause/stop
+    playlistinfo = tonumber(mpd_now.pls_pos) + 1 .. "/" .. mpd_now.pls_len
+    artisttitle = shorten(mpd_now.artist, 30) .. " – " .. shorten(mpd_now.title, 30)
+    timeinfo = timestring(mpd_now.elapsed) .. "/" .. timestring(mpd_now.time)
 
     if mpd_now.state == "play" then
-      widget:set_markup(get_text(function(s)
-        return markup(theme.fg_focus, s)
-      end))
-      mpdicon:set_image(beautiful.widget_play)
+      icon = beautiful.widget_play
+      text = ("(%s) %s (%s)"):format(playlistinfo,
+        markup(theme.fg_focus, artisttitle), timeinfo)
 
     elseif mpd_now.state == "pause" then
-      widget:set_markup(get_text() .. " [paused]")
-      mpdicon:set_image(beautiful.widget_pause)
+      icon = beautiful.widget_pause
+      text = ("(%s) %s (%s)"):format(playlistinfo, artisttitle, timeinfo)
 
     else  -- stopped
-      widget:set_markup("")
-      mpdicon:set_image(nil)
+      icon = beautiful.widget_stop
+      text = ("(%s) %s"):format(playlistinfo, artisttitle)
     end
+
+    widget:set_markup(text)
+    mpdicon:set_image(icon)
   end
 })
 
