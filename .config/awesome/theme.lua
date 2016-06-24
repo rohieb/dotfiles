@@ -71,7 +71,7 @@ theme.widget_repeat                 = themes_dir .. "/repeat.png"
 theme.widget_repeat_single          = themes_dir .. "/repeat_single.png"
 theme.widget_single                 = themes_dir .. "/single.png"
 
-theme.awesome_icon                  = themes_dir .. "/awesome16.png"
+theme.awesome_icon                  = themes_dir .. "/awesome.png"
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
