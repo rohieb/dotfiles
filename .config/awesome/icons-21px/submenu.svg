@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg8312"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   width="21"
+   height="21"
+   viewBox="0 0 21 21"
+   sodipodi:docname="submenu.svg"
+   inkscape:export-filename="/home/rhieber/.config/awesome/icons-18px/submenu.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <metadata
+     id="metadata8318">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8316" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1918"
+     inkscape:window-height="1036"
+     id="namedview8314"
+     showgrid="true"
+     inkscape:object-nodes="true"
+     inkscape:current-layer="svg8312"
+     inkscape:zoom="29.5"
+     inkscape:cx="6.51657"
+     inkscape:cy="7.8893951"
+     inkscape:window-x="1920"
+     inkscape:window-y="21"
+     inkscape:window-maximized="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid12794"
+       units="px"
+       spacingx="1"
+       spacingy="1"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
+  <path
+     style="color:#000000;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.354;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+     d="m 10,8 0,1 1,0 0,-1 -1,0 z"
+     id="path3511"
+     inkscape:connector-curvature="0" />
+  <path
+     style="color:#000000;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.354;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+     d="m 11,9 0,1 1,0 0,-1 -1,0 z"
+     id="path3509"
+     inkscape:connector-curvature="0" />
+  <path
+     style="color:#000000;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.354;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+     d="m 12,10 0,1 1,0 0,-1 -1,0 z"
+     id="path3507"
+     inkscape:connector-curvature="0" />
+  <path
+     style="color:#000000;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.354;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+     d="m 10,13 -1,0 0,1 1,0 0,-1 z"
+     id="path3505" />
+  <path
+     style="color:#000000;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.354;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+     d="m 9,14 -1,0 0,1 1,0 0,-1 z"
+     id="rect12798" />
+  <path
+     id="path3513"
+     d="m 11,12 -1,0 0,1 1,0 0,-1 z"
+     style="color:#000000;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.354;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+     inkscape:connector-curvature="0" />
+  <path
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.354;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+     d="m 12,11 -1,0 0,1 1,0 0,-1 z"
+     id="path3515" />
+  <path
+     id="path3517"
+     d="M 10,7 9,7 9,8 10,8 10,7 z"
+     style="color:#000000;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.354;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+     inkscape:connector-curvature="0" />
+  <path
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.354;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+     d="M 9,6 8,6 8,7 9,7 9,6 z"
+     id="path3519" />
+</svg>

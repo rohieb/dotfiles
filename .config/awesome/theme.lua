@@ -38,6 +38,7 @@ theme.border_focus  = theme.yellow
 theme.border_marked = theme.green
 
 theme.menu_width  = 150
+theme.menu_height = 21
 
 -- Icons from Powerarrow Darker
 -- see https://github.com/copycat-killer/awesome-copycats
