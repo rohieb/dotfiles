@@ -1,6 +1,12 @@
-theme = {}
+theme = theme or {}
 
-theme.font = "Terminus 8"
+if theme.fontsize == "bigger" then
+  theme.font        = "Terminus 10"
+  theme.icon_size   = 21
+else
+  theme.font        = "Terminus 8"
+  theme.icon_size   = 18
+end
 
 -- Solarized color scheme
 theme.base03    = "#002b36"
@@ -38,10 +44,11 @@ theme.border_focus  = theme.yellow
 theme.border_marked = theme.green
 
 theme.menu_width  = 150
+theme.menu_height = theme.icon_size
 
 -- Icons from Powerarrow Darker
 -- see https://github.com/copycat-killer/awesome-copycats
-themes_dir = os.getenv("HOME") .. "/.config/awesome/icons-18px"
+themes_dir = ("~/.config/awesome/icons-%dpx"):format(theme.icon_size)
 
 theme.awesome_icon                  = themes_dir .. "/awesome.png"
 theme.submenu_icon                  = themes_dir .. "/submenu.png"
