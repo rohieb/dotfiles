@@ -66,24 +66,36 @@ mpdwidget = lain.widgets.mpd({
     mpdicon_random :set_image(img_random)
     mpdicon_consume:set_image(img_consume)
 
-    -- play/pause/stop
-    playlistinfo = tonumber(mpd_now.pls_pos) + 1 .. "/" .. mpd_now.pls_len
-    artisttitle = escape_f(shorten(unescape_f(mpd_now.artist), 30)) .. " – "
-      .. escape_f(shorten(unescape_f(mpd_now.title), 30))
-    timeinfo = timestring(mpd_now.elapsed) .. "/" .. timestring(mpd_now.time)
+    -- some info may be missing
+    local function isset(s) return (s and s ~= "N/A") end
+    local playlistinfo, artisttitle, timeinfo = "", "", ""
 
+    if mpd_now.pls_pos and tonumber(mpd_now.pls_pos) ~= nil then
+      playlistinfo = "(" .. tonumber(mpd_now.pls_pos) + 1 .. "/"
+        .. mpd_now.pls_len .. ")"
+    end
+    if isset(mpd_now.artist) and isset(mpd_now.title) then
+      artisttitle = escape_f(shorten(unescape_f(mpd_now.artist), 30)) .. " – "
+        .. escape_f(shorten(unescape_f(mpd_now.title), 30))
+    end
+    if isset(mpd_now.elapsed) and isset(mpd_now.time) then
+      timeinfo = "(" .. timestring(mpd_now.elapsed) .. "/"
+        .. timestring(mpd_now.time) .. ")"
+    end
+
+    -- play/pause/stop
     if mpd_now.state == "play" then
       icon = beautiful.widget_play
-      text = ("(%s) %s (%s)"):format(playlistinfo,
-        markup(theme.fg_focus, artisttitle), timeinfo)
+      text = playlistinfo .. " " .. markup(theme.fg_focus, artisttitle) .. " "
+        .. timeinfo
 
     elseif mpd_now.state == "pause" then
       icon = beautiful.widget_pause
-      text = ("(%s) %s (%s)"):format(playlistinfo, artisttitle, timeinfo)
+      text = playlistinfo .. " " .. artisttitle .. " " .. timeinfo
 
     else  -- stopped
       icon = beautiful.widget_stop
-      text = ("(%s) %s"):format(playlistinfo, artisttitle)
+      text = playlistinfo .. " " .. artisttitle
     end
 
     widget:set_markup(text)
