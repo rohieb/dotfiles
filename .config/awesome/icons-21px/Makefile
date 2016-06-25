@@ -6,32 +6,32 @@ ICONNAMES = \
 	square_unsel \
 	submenu \
 	\
-	fairh \
-	fairv \
-	floating \
-	fullscreen \
-	magnifier \
-	max \
-	tile \
-	tilebottom \
-	tileleft \
-	tiletop \
+	layout/fairh \
+	layout/fairv \
+	layout/floating \
+	layout/fullscreen \
+	layout/magnifier \
+	layout/max \
+	layout/tile \
+	layout/tilebottom \
+	layout/tileleft \
+	layout/tiletop \
 	\
-	pause \
-	play \
-	stop \
-	consume \
-	random \
-	repeat \
-	single \
-	repeat_single \
+	widget/pause \
+	widget/play \
+	widget/stop \
+	widget/consume \
+	widget/random \
+	widget/repeat \
+	widget/single \
+	widget/repeat_single \
 	\
-	cpu \
-	load \
-	mem \
-	net \
-	net_wired \
-	task \
+	widget/cpu \
+	widget/load \
+	widget/mem \
+	widget/net \
+	widget/net_wired \
+	widget/task \
 
 
 all: $(addsuffix .png,$(ICONNAMES))
