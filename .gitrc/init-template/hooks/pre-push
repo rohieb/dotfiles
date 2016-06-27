@@ -32,10 +32,18 @@ do
 		# Handle delete
 		:
 	else
+		range=""
 		if [ "$remote_sha" = $z40 ]
 		then
-			# New branch, examine all commits
-			range="$local_sha"
+			# New branch, find the first commit that is not pushed yet
+			# Note: not using merge-base since it only finds the newest fork points
+			range=$(git rev-list $local_sha | while read rev; do
+				if [ -n "$(git branch -r --contains $rev)" ]; then
+					echo $range
+					break
+				fi
+				range="$rev..$local_sha"
+			done)  # note pipe subshell magic...
 		else
 			# Update to existing branch, examine new commits
 			range="$remote_sha..$local_sha"
