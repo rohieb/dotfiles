@@ -43,10 +43,12 @@ __ps1_status() {
 	fi
 }
 
+PS1_WITH_HOSTNAME=
+
 PS1="\[${__YELLOW}\]\t\[${__RESET}\]"
 PS1="${PS1}${debian_chroot:+($debian_chroot)}"
-#PS1="${PS1}\$(__ps1_status)"
 PS1="${PS1}\[${__RED}\]\$(__ps1_status)\[${__RESET}\]"
+if [ -n "$PS1_WITH_HOSTNAME" ]; then PS1="${PS1}\[${__RED}\] \h\[${__RESET}\]"; fi
 PS1="${PS1} \[${__GREEN}\]\w\[${__RESET}\]"
 PS1="${PS1}\$(__git_ps1)"    # git_ps1 already has space at the beginning
 PS1="${PS1} \$ "
