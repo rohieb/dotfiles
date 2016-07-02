@@ -34,6 +34,7 @@
 	lastlog = log --graph HEAD@{1}..HEAD --format='%C(auto)%h %Cgreen(%an) %Creset%s'
 	fetchlog = log --graph HEAD..FETCH_HEAD --format='%C(auto)%h %Cgreen(%an) %Creset%s'
 	graph = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit
+	g     = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit '@{u}^..@'
 	gr    = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit
 	gra   = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit --all
 
@@ -54,6 +55,8 @@
 
 	icon = imerge continue
 	rb = rebase
+	sub = submodule
+	fixup = commit --fixup
 
 [core]
 	excludesfile = /home/rohieb/.gitignore
