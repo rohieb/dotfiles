@@ -95,8 +95,9 @@ globalkeys = awful.util.table.join(
 		awful.key({ modkey, "Shift" }, "minus", function () awful.util.spawn("mpc random") end),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
-
+    awful.key({ modkey, "Control" }, "t",                 lain.widgets.contrib.task.prompt_add),
+    awful.key({ modkey, "Shift"   }, "t",                 lain.widgets.contrib.task.prompt_search),
+    awful.key({ modkey,           }, "r",     function () mypromptbox[mouse.screen]:run() end),
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: " },

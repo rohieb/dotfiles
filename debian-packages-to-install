@@ -346,6 +346,8 @@ sshfs
 subversion
 #systemsettings
 sysvbanner
+taskwarrior
+bugwarrior
 tango-icon-theme
 tegaki-recognize
 tegaki-train
