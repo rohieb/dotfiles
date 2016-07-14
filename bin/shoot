@@ -1,0 +1,50 @@
+#!/bin/sh
+# needs: uuid, imagemagick 
+
+set -e
+
+UUID=$(uuid)
+FILENAME=/tmp/$UUID.png
+PASTE=$FILENAME
+WAIT=
+UPLOAD=
+ROOT=
+IMOPTS=
+
+usage() {
+	echo "shoot [options...]"
+	echo
+	echo "  -h             show this help"
+	echo "  -r             use root window (whole screen)"
+	echo "  -u             upload file to server"
+  echo "  -w <seconds>   wait seconds before shooting"
+}
+
+while getopts "hruw:" Option
+do
+  case $Option in
+    w ) WAIT=$OPTARG;;
+    r ) ROOT=1; IMOPTS="-window root";;
+		u ) UPLOAD=1;;
+		h ) usage; notify-send "$(usage)" ; exit;;
+  esac
+done
+
+if [ -n "$WAIT" ]; then
+	sleep $WAIT
+fi
+
+# use png32 to add alpha channel, otherwise Twitter converts it to JPG...
+import $IMOPTS png32:$FILENAME
+
+if [ -n "$UPLOAD" ]; then
+	PASTE=$(upload screenshots $FILENAME)
+fi
+
+echo "$PASTE" | xclip -selection primary
+echo "$PASTE" | xclip -selection clipboard
+echo "$PASTE"
+
+if [ -n "$ROOT" ]; then
+	notify-send "Done. You can now move again."
+fi
