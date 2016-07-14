@@ -1,12 +1,18 @@
 theme = theme or {}
 
+theme.settings = {
+  font_family   = "Terminus",
+  font_size     = 8,
+  icon_size     = 18
+}
+
 if theme.fontsize == "bigger" then
-  theme.font        = "Terminus 10"
-  theme.icon_size   = 21
-else
-  theme.font        = "Terminus 8"
-  theme.icon_size   = 18
+  theme.settings.size      = 10
+  theme.settings.icon_size = 21
 end
+
+theme.font      = theme.settings.font_family .. " " .. theme.settings.font_size
+theme.icon_size = theme.settings.icon_size
 
 -- Solarized color scheme
 theme.base03    = "#002b36"
