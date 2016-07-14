@@ -17,3 +17,4 @@
 .config/variety/variety_latest_default.conf
 .config/variety/banned.txt
 .config/variety/syncdb.json
+log/

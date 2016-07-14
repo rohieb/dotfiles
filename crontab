@@ -1,0 +1,5 @@
+# vim:set tw=0:o
+LC_ALL=C
+# m h  dom mon dow   command
+0    0 * * * logrotate -s ~/.logrotate.state ~/.logrotate.conf
+0   18 * * * if [ -d $HOME/Projects/stratum0-wiki/.git ]; then (echo; date; cd $HOME/Projects/stratum0-wiki; git pull origin master) >> $HOME/log/git-stratum0-wiki.log 2>&1; fi

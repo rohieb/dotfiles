@@ -219,6 +219,7 @@ linux-doc
 linux-headers-amd64
 linux-source
 lolcat      # important!
+logrotate
 lsdvd
 lsof
 mailutils
