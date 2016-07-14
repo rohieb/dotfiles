@@ -65,3 +65,4 @@ export PATH="$PATH:$HOME/lib/node_modules/.bin"
 
 ### autostarts
 source $HOME/.login_autostart
+if [ -n "$DISPLAY" ]; then $HOME/bin/solarized-dark; fi
