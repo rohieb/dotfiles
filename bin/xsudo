@@ -1,0 +1,2 @@
+#!/bin/sh
+sudo DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY "$@"
