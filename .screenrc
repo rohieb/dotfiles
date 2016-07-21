@@ -1,0 +1,2 @@
+# always print list of screen windows in last line
+hardstatus alwayslastline "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"

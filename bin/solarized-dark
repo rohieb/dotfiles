@@ -1,0 +1,11 @@
+#!/bin/sh
+if [ -z "$DISPLAY" ]; then
+	echo "No DISPLAY set. Exiting."
+	exit
+fi
+
+cat > ~/.vimrc.solarized <<EOF
+" This file will be overwritten by ~/bin/solarized-*
+set bg=dark
+EOF
+xrdb -merge ~/.solarized.resources.dark

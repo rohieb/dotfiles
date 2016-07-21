@@ -43,7 +43,9 @@ export LC_MEASUREMENT="de_DE.UTF-8"
 export LC_IDENTIFICATION="de_DE.UTF-8"
 
 # set up local perl lib in ~/.perl5
-eval $(perl -Mlocal::lib=$HOME/.perl5)
+if perl -Mlocal::lib > /dev/null 2>&1; then
+	eval $(perl -Mlocal::lib=$HOME/.perl5)
+fi
 
 # tell Java applications to use anti-aliasing
 export _JAVA_OPTIONS="$_JAVA_OPTIONS -Dawt.useSystemAAFontSettings=on"
@@ -65,3 +67,4 @@ export PATH="$PATH:$HOME/lib/node_modules/.bin"
 
 ### autostarts
 source $HOME/.login_autostart
+if [ -n "$DISPLAY" ]; then $HOME/bin/solarized-dark; fi

@@ -10,9 +10,6 @@
 [submodule ".vim/bundle/SudoEdit"]
 	path = .vim/bundle/SudoEdit
 	url = git://github.com/vim-scripts/SudoEdit.vim
-[submodule ".vim/bundle/vimboy"]
-	path = .vim/bundle/vimboy
-	url = git://github.com/blinry/vimboy.git
 [submodule ".vim/bundle/vim-gitgutter"]
 	path = .vim/bundle/vim-gitgutter
 	url = git://github.com/airblade/vim-gitgutter.git
