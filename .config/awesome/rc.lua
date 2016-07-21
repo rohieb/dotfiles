@@ -26,6 +26,9 @@ naughty.config.icon_size = 32
 -- Load Debian menu entries
 require("debian.menu")
 
+-- more helpers
+posix = require("posix")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -55,6 +58,7 @@ end
 
 -- Path to local config (should be something like ~/.config/awesome)
 cfgpath = awful.util.getdir("config")
+homepath = os.getenv("HOME")
 
 -- Themes define colours, icons, font and wallpapers.
 -- We fork the default theme to set a custom background
