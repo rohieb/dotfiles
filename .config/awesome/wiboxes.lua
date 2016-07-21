@@ -180,12 +180,17 @@ netwidget = lain.widgets.net({
   end
 })
 
-taskicon = wibox.widget.imagebox(beautiful.widget_task)
-lain.widgets.contrib.task:attach(taskicon, {
-  followmouse = true,
-  font_size   = beautiful.settings.font_size,
-  timeout     = 20,
-})
+if  posix.stat(homepath .. "/.taskrc") and
+    string.len(awful.util.pread("task --version")) > 0 then
+  HAVE_TASK = true
+
+  taskicon = wibox.widget.imagebox(beautiful.widget_task)
+  lain.widgets.contrib.task:attach(taskicon, {
+    followmouse = true,
+    font_size   = beautiful.settings.font_size,
+    timeout     = 20,
+  })
+end
 
 -- Create a wibox for each screen and add it
 mytopwibox = {}
@@ -293,7 +298,9 @@ for s = 1, screen.count() do
       top_right_layout:add(spacerwidget)
     end
     top_right_layout:add(mytextclock)
-    top_right_layout:add(taskicon)
+    if HAVE_TASK then
+      top_right_layout:add(taskicon)
+    end
 
     -- Now bring it all together (with the tasklist in the middle)
     top_layout = wibox.layout.align.horizontal()
