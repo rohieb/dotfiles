@@ -32,23 +32,33 @@ do
 		# Handle delete
 		:
 	else
+		range=""
 		if [ "$remote_sha" = $z40 ]
 		then
-			# New branch, examine all commits
-			range="$local_sha"
+			# New branch, find the first commit that is not pushed yet
+			# Note: not using merge-base since it only finds the newest fork points
+			range=$(git rev-list $local_sha | while read rev; do
+				if [ -n "$(git branch -r --contains $rev)" ]; then
+					echo $range
+					break
+				fi
+				range="$rev..$local_sha"
+			done)  # note pipe subshell magic...
 		else
 			# Update to existing branch, examine new commits
 			range="$remote_sha..$local_sha"
 		fi
 
-		# Check for WIP commit
-		commit=`git rev-list -n 1 --grep '^\(WIP\|fixup!\|squash!\|FIXME\|XXX\)' "$range"`
-		if [ -n "$commit" ]
-		then
-			echo "Found WIP commit in $local_ref, not pushing"
-			echo "Offending commit:"
-			git show --oneline $commit | head -n 1
-			exit 1
+		# Check for WIP commit, unless env variable $GIT_PUSH_FORCE_WIP is set
+		if [ -z "$GIT_PUSH_FORCE_WIP" ]; then
+			commit=`git rev-list -n 1 --grep '^\(WIP\|fixup!\|squash!\|FIXME\|XXX\)' "$range"`
+			if [ -n "$commit" ]
+			then
+				echo "Found WIP commit in $local_ref, not pushing"
+				echo "Offending commit:"
+				git show --oneline $commit | head -n 1
+				exit 1
+			fi
 		fi
 	fi
 done

@@ -1,6 +1,18 @@
-theme = {}
+theme = theme or {}
 
-theme.font = "Terminus 10"
+theme.settings = {
+  font_family   = "Terminus",
+  font_size     = 8,
+  icon_size     = 18
+}
+
+if theme.fontsize == "bigger" then
+  theme.settings.font_size = 10
+  theme.settings.icon_size = 21
+end
+
+theme.font      = theme.settings.font_family .. " " .. theme.settings.font_size
+theme.icon_size = theme.settings.icon_size
 
 -- Solarized color scheme
 theme.base03    = "#002b36"
@@ -38,35 +50,40 @@ theme.border_focus  = theme.yellow
 theme.border_marked = theme.green
 
 theme.menu_width  = 150
-theme.menu_height = 21
+theme.menu_height = theme.icon_size
 
 -- Icons from Powerarrow Darker
 -- see https://github.com/copycat-killer/awesome-copycats
-local themes_dir = os.getenv("HOME") .. "/.config/awesome/icons-18px"
+themes_dir = ("~/.config/awesome/icons-%dpx"):format(theme.icon_size)
 
+theme.awesome_icon                  = themes_dir .. "/awesome.png"
 theme.submenu_icon                  = themes_dir .. "/submenu.png"
 theme.taglist_squares_sel           = themes_dir .. "/square_sel.png"
 theme.taglist_squares_unsel         = themes_dir .. "/square_unsel.png"
 
-theme.layout_tile                   = themes_dir .. "/tile.png"
-theme.layout_tileleft               = themes_dir .. "/tileleft.png"
-theme.layout_tilebottom             = themes_dir .. "/tilebottom.png"
-theme.layout_tiletop                = themes_dir .. "/tiletop.png"
-theme.layout_fairv                  = themes_dir .. "/fairv.png"
-theme.layout_fairh                  = themes_dir .. "/fairh.png"
-theme.layout_max                    = themes_dir .. "/max.png"
-theme.layout_fullscreen             = themes_dir .. "/fullscreen.png"
-theme.layout_magnifier              = themes_dir .. "/magnifier.png"
-theme.layout_floating               = themes_dir .. "/floating.png"
+theme.layout_tile                   = themes_dir .. "/layout/tile.png"
+theme.layout_tileleft               = themes_dir .. "/layout/tileleft.png"
+theme.layout_tilebottom             = themes_dir .. "/layout/tilebottom.png"
+theme.layout_tiletop                = themes_dir .. "/layout/tiletop.png"
+theme.layout_fairv                  = themes_dir .. "/layout/fairv.png"
+theme.layout_fairh                  = themes_dir .. "/layout/fairh.png"
+theme.layout_max                    = themes_dir .. "/layout/max.png"
+theme.layout_fullscreen             = themes_dir .. "/layout/fullscreen.png"
+theme.layout_magnifier              = themes_dir .. "/layout/magnifier.png"
+theme.layout_floating               = themes_dir .. "/layout/floating.png"
 
-theme.widget_mem                    = themes_dir .. "/mem.png"
-theme.widget_cpu                    = themes_dir .. "/cpu.png"
-theme.widget_load                   = themes_dir .. "/load.png"
-theme.widget_net                    = themes_dir .. "/net_wired.png"
-theme.widget_play                   = themes_dir .. "/play.png"
-theme.widget_pause                  = themes_dir .. "/pause.png"
-
-theme.awesome_icon                  = themes_dir .. "/awesome16.png"
+theme.widget_mem                    = themes_dir .. "/widget/mem.png"
+theme.widget_cpu                    = themes_dir .. "/widget/cpu.png"
+theme.widget_load                   = themes_dir .. "/widget/load.png"
+theme.widget_net                    = themes_dir .. "/widget/net_wired.png"
+theme.widget_play                   = themes_dir .. "/widget/play.png"
+theme.widget_pause                  = themes_dir .. "/widget/pause.png"
+theme.widget_stop                   = themes_dir .. "/widget/stop.png"
+theme.widget_consume                = themes_dir .. "/widget/consume.png"
+theme.widget_random                 = themes_dir .. "/widget/random.png"
+theme.widget_repeat                 = themes_dir .. "/widget/repeat.png"
+theme.widget_repeat_single          = themes_dir .. "/widget/repeat_single.png"
+theme.widget_single                 = themes_dir .. "/widget/single.png"
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.

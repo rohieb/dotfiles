@@ -55,10 +55,11 @@ end
 -- {{{ Variable definitions
 
 -- Path to local config (should be something like ~/.config/awesome)
-local cfgpath = awful.util.getdir("config")
+cfgpath = awful.util.getdir("config")
 
 -- Themes define colours, icons, font and wallpapers.
 -- We fork the default theme to set a custom background
+theme = { fontsize = "bigger" }
 beautiful.init(cfgpath .. "/theme.lua")
 
 -- {{{ Wallpaper

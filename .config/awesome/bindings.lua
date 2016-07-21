@@ -1,4 +1,4 @@
-local awful = require("awful")
+awful = require("awful")
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
@@ -74,7 +74,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xflock4") end),
     awful.key({ }, "XF86ScreenSaver",     function () awful.util.spawn("xflock4") end),
     awful.key({ modkey, "Control" }, "r", function () awful.util.spawn("setscreens-daystar") end),
-    awful.key({ modkey, "Control" }, "c", function () awful.util.spawn("gnome-calculator") end),
+    awful.key({ }, "XF86Launch1",         function () awful.util.spawn("gnome-calculator") end),
     awful.key({ }, "XF86Calculator",      function () awful.util.spawn("gnome-calculator") end),
     awful.key({ modkey,           }, "c", function () awful.util.spawn_with_shell("xclip -o -selection primary | xclip -i -selection clipboard") end),
 
@@ -88,6 +88,9 @@ globalkeys = awful.util.table.join(
 		awful.key({}, "XF86AudioPrev", function () awful.util.spawn("mpc prev") end),
 		awful.key({ modkey }, "Prior", function () awful.util.spawn("mpc prev") end),
 		awful.key({}, "XF86AudioStop", function () awful.util.spawn("mpc stop") end),
+		awful.key({ modkey, "Shift" }, "period", function () awful.util.spawn("mpc single") end),
+		awful.key({ modkey, "Shift" }, "comma", function () awful.util.spawn("mpc repeat") end),
+		awful.key({ modkey, "Shift" }, "minus", function () awful.util.spawn("mpc random") end),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),

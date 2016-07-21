@@ -1,6 +1,6 @@
-local awful = require("awful")
+awful = require("awful")
 awful.rules = require("awful.rules")
-local beautiful = require("beautiful")
+beautiful = require("beautiful")
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
@@ -25,6 +25,7 @@ awful.rules.rules = {
       "Gucharmap",
       "Kaffeine",
       "Evince",
+      "Eog",
       "Kmines",
       "Xsane",
       "Display.im6",

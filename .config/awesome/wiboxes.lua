@@ -1,12 +1,20 @@
-local awful = require("awful")
-local wibox = require("wibox")
-local lain = require("lain")
-local markup = lain.util.markup
+awful = require("awful")
+wibox = require("wibox")
+lain = require("lain")
+markup = lain.util.markup
+awful.util = require("awful.util")
+  escape_f = awful.util.  escape
+unescape_f = awful.util.unescape
 
 -- {{{ Wibox
 -- helpers
-local function timestring(seconds)
+function timestring(seconds)
   seconds = tonumber(seconds)
+
+  if not seconds then
+    return ""    -- some chiptunes don't have a duration.
+  end
+
   local s = seconds % 60
   local m = math.floor(seconds / 60)
   local h = math.floor(seconds / (60*60))
@@ -18,7 +26,7 @@ local function timestring(seconds)
   return str
 end
 
-local function shorten(str, maxlen)
+function shorten(str, maxlen)
   if str:len() > maxlen then
     return str:sub(0, maxlen-1) .. "…"
   else
@@ -27,45 +35,77 @@ local function shorten(str, maxlen)
 end
 
 -- space between items
-local spacerwidget    = wibox.widget.textbox(" ")
+spacerwidget    = wibox.widget.textbox(" ")
 
 -- Create a textclock widget
 mytextclock = awful.widget.textclock("%a %b %d, %H:%M:%S ", 1)
 
 -- mpd widget
-local mpdicon = wibox.widget.imagebox()
-local mpdwidget = lain.widgets.mpd({
+mpdicon = wibox.widget.imagebox()
+mpdicon_random  = wibox.widget.imagebox()
+mpdicon_single  = wibox.widget.imagebox()
+mpdicon_repeat  = wibox.widget.imagebox()
+mpdicon_consume = wibox.widget.imagebox()
+mpdwidget = lain.widgets.mpd({
   timeout = 1,
   notify = "off",
   settings = function()
-    local function get_text(artistmarkupfn)
-      artistmarkupfn = artistmarkupfn or function(s) return s end
-      return artistmarkupfn(shorten(mpd_now.artist, 30) .. " > " ..
-        shorten(mpd_now.title, 30)) .. " (" ..
-        timestring(mpd_now.elapsed) .. "/" ..
-        timestring(mpd_now.time) .. ")"
+    -- mode icons
+    img_repeat, img_single, img_random, img_consume = nil, nil, nil, nil
+    if mpd_now.repeat_mode and mpd_now.single_mode then
+      img_repeat = beautiful.widget_repeat_single
+    else
+      if mpd_now.repeat_mode then img_repeat = beautiful.widget_repeat end
+      if mpd_now.single_mode then img_single = beautiful.widget_single end
+    end
+    if mpd_now.random_mode  then img_random  = beautiful.widget_random  end
+    if mpd_now.consume_mode then img_consume = beautiful.widget_consume end
+
+    mpdicon_repeat :set_image(img_repeat)
+    mpdicon_single :set_image(img_single)
+    mpdicon_random :set_image(img_random)
+    mpdicon_consume:set_image(img_consume)
+
+    -- some info may be missing
+    local function isset(s) return (s and s ~= "N/A") end
+    local playlistinfo, artisttitle, timeinfo = "", "", ""
+
+    if mpd_now.pls_pos and tonumber(mpd_now.pls_pos) ~= nil then
+      playlistinfo = "(" .. tonumber(mpd_now.pls_pos) + 1 .. "/"
+        .. mpd_now.pls_len .. ")"
+    end
+    if isset(mpd_now.artist) and isset(mpd_now.title) then
+      artisttitle = escape_f(shorten(unescape_f(mpd_now.artist), 30)) .. " – "
+        .. escape_f(shorten(unescape_f(mpd_now.title), 30))
+    end
+    if isset(mpd_now.elapsed) and isset(mpd_now.time) then
+      timeinfo = "(" .. timestring(mpd_now.elapsed) .. "/"
+        .. timestring(mpd_now.time) .. ")"
     end
 
+    -- play/pause/stop
     if mpd_now.state == "play" then
-      widget:set_markup(get_text(function(s)
-        return markup(theme.fg_focus, s)
-      end))
-      mpdicon:set_image(beautiful.widget_play)
+      icon = beautiful.widget_play
+      text = playlistinfo .. " " .. markup(theme.fg_focus, artisttitle) .. " "
+        .. timeinfo
 
     elseif mpd_now.state == "pause" then
-      widget:set_markup(get_text() .. " [paused]")
-      mpdicon:set_image(beautiful.widget_pause)
+      icon = beautiful.widget_pause
+      text = playlistinfo .. " " .. artisttitle .. " " .. timeinfo
 
     else  -- stopped
-      widget:set_markup("")
-      mpdicon:set_image(nil)
+      icon = beautiful.widget_stop
+      text = playlistinfo .. " " .. artisttitle
     end
+
+    widget:set_markup(text)
+    mpdicon:set_image(icon)
   end
 })
 
 -- cpu widget
-local cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
-local cpuwidget = lain.widgets.cpu({
+cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
+cpuwidget = lain.widgets.cpu({
   timeout = 1,
   settings = function()
     function color(percentage)
@@ -85,8 +125,8 @@ local cpuwidget = lain.widgets.cpu({
 })
 
 -- loadavg widget
-local loadicon = wibox.widget.imagebox(beautiful.widget_load)
-local loadwidget = lain.widgets.sysload({
+loadicon = wibox.widget.imagebox(beautiful.widget_load)
+loadwidget = lain.widgets.sysload({
   timeout = 5,
   settings = function()
     function color(loadavg)
@@ -102,8 +142,8 @@ local loadwidget = lain.widgets.sysload({
 })
 
 -- memory widget
-local memicon = wibox.widget.imagebox(beautiful.widget_mem)
-local memwidget = lain.widgets.mem({
+memicon = wibox.widget.imagebox(beautiful.widget_mem)
+memwidget = lain.widgets.mem({
   timeout = 2,
   settings = function()
     function format_size(mb)
@@ -122,8 +162,8 @@ local memwidget = lain.widgets.mem({
 })
 
 -- net widget
-local neticon = wibox.widget.imagebox(beautiful.widget_net)
-local netwidget = lain.widgets.net({
+neticon = wibox.widget.imagebox(beautiful.widget_net)
+netwidget = lain.widgets.net({
   timeout = 2,
   notify = "off",
   settings = function()
@@ -217,15 +257,19 @@ for s = 1, screen.count() do
     mytopwibox[s] = awful.wibox({ position = "top", screen = s })
 
     -- Widgets that are aligned to the left
-    local top_left_layout = wibox.layout.fixed.horizontal()
+    top_left_layout = wibox.layout.fixed.horizontal()
     top_left_layout:add(mylauncher)
     top_left_layout:add(mytaglist[s])
     top_left_layout:add(mypromptbox[s])
+    top_left_layout:add(mpdicon_consume)
+    top_left_layout:add(mpdicon_repeat)
+    top_left_layout:add(mpdicon_single)
+    top_left_layout:add(mpdicon_random)
     top_left_layout:add(mpdicon)
     top_left_layout:add(mpdwidget)
 
     -- Widgets that are aligned to the right
-    local top_right_layout = wibox.layout.fixed.horizontal()
+    top_right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then
       top_right_layout:add(cpuicon)
       top_right_layout:add(cpuwidget)
@@ -249,7 +293,7 @@ for s = 1, screen.count() do
     top_right_layout:add(mytextclock)
 
     -- Now bring it all together (with the tasklist in the middle)
-    local top_layout = wibox.layout.align.horizontal()
+    top_layout = wibox.layout.align.horizontal()
     top_layout:set_left(top_left_layout)
     --top_layout:set_middle(mytasklist[s])
     top_layout:set_right(top_right_layout)
@@ -259,7 +303,7 @@ for s = 1, screen.count() do
     -- Create a bottom wibox with the task list
     mybottomwibox[s] = awful.wibox({ position = "bottom", screen = s })
 
-    local bottom_layout = wibox.layout.align.horizontal()
+    bottom_layout = wibox.layout.align.horizontal()
     bottom_layout:set_right(mylayoutbox[s])
     bottom_layout:set_middle(mytasklist[s])
     bottom_layout:set_left(nil)

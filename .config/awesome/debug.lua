@@ -1,4 +1,4 @@
-local naughty = require("naughty")
+naughty = require("naughty")
 
 --
 -- Functions for debugging

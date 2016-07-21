@@ -1,6 +1,6 @@
-local wibox = require("wibox")
-local awful = require("awful")
-local beautiful = require("beautiful")
+wibox = require("wibox")
+awful = require("awful")
+beautiful = require("beautiful")
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
