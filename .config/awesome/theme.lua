@@ -7,7 +7,7 @@ theme.settings = {
 }
 
 if theme.fontsize == "bigger" then
-  theme.settings.size      = 10
+  theme.settings.font_size = 10
   theme.settings.icon_size = 21
 end
 
