@@ -41,67 +41,71 @@ spacerwidget    = wibox.widget.textbox(" ")
 mytextclock = awful.widget.textclock("%a %b %d, %H:%M:%S ", 1)
 
 -- mpd widget
-mpdicon = wibox.widget.imagebox()
-mpdicon_random  = wibox.widget.imagebox()
-mpdicon_single  = wibox.widget.imagebox()
-mpdicon_repeat  = wibox.widget.imagebox()
-mpdicon_consume = wibox.widget.imagebox()
-mpdwidget = lain.widgets.mpd({
-  timeout = 1,
-  notify = "off",
-  settings = function()
-    -- mode icons
-    img_repeat, img_single, img_random, img_consume = nil, nil, nil, nil
-    if mpd_now.repeat_mode and mpd_now.single_mode then
-      img_repeat = beautiful.widget_repeat_single
-    else
-      if mpd_now.repeat_mode then img_repeat = beautiful.widget_repeat end
-      if mpd_now.single_mode then img_single = beautiful.widget_single end
+if string.len(awful.util.pread("mpc | grep -v '^error' ")) > 0 then
+  HAVE_MPD = true
+
+  mpdicon = wibox.widget.imagebox()
+  mpdicon_random  = wibox.widget.imagebox()
+  mpdicon_single  = wibox.widget.imagebox()
+  mpdicon_repeat  = wibox.widget.imagebox()
+  mpdicon_consume = wibox.widget.imagebox()
+  mpdwidget = lain.widgets.mpd({
+    timeout = 1,
+    notify = "off",
+    settings = function()
+      -- mode icons
+      img_repeat, img_single, img_random, img_consume = nil, nil, nil, nil
+      if mpd_now.repeat_mode and mpd_now.single_mode then
+        img_repeat = beautiful.widget_repeat_single
+      else
+        if mpd_now.repeat_mode then img_repeat = beautiful.widget_repeat end
+        if mpd_now.single_mode then img_single = beautiful.widget_single end
+      end
+      if mpd_now.random_mode  then img_random  = beautiful.widget_random  end
+      if mpd_now.consume_mode then img_consume = beautiful.widget_consume end
+
+      mpdicon_repeat :set_image(img_repeat)
+      mpdicon_single :set_image(img_single)
+      mpdicon_random :set_image(img_random)
+      mpdicon_consume:set_image(img_consume)
+
+      -- some info may be missing
+      local function isset(s) return (s and s ~= "N/A") end
+      local playlistinfo, artisttitle, timeinfo = "", "", ""
+
+      if mpd_now.pls_pos and tonumber(mpd_now.pls_pos) ~= nil then
+        playlistinfo = "(" .. tonumber(mpd_now.pls_pos) + 1 .. "/"
+          .. mpd_now.pls_len .. ")"
+      end
+      if isset(mpd_now.artist) and isset(mpd_now.title) then
+        artisttitle = escape_f(shorten(unescape_f(mpd_now.artist), 30)) .. " – "
+          .. escape_f(shorten(unescape_f(mpd_now.title), 30))
+      end
+      if isset(mpd_now.elapsed) and isset(mpd_now.time) then
+        timeinfo = "(" .. timestring(mpd_now.elapsed) .. "/"
+          .. timestring(mpd_now.time) .. ")"
+      end
+
+      -- play/pause/stop
+      if mpd_now.state == "play" then
+        icon = beautiful.widget_play
+        text = playlistinfo .. " " .. markup(theme.fg_focus, artisttitle) .. " "
+          .. timeinfo
+
+      elseif mpd_now.state == "pause" then
+        icon = beautiful.widget_pause
+        text = playlistinfo .. " " .. artisttitle .. " " .. timeinfo
+
+      else  -- stopped
+        icon = beautiful.widget_stop
+        text = playlistinfo .. " " .. artisttitle
+      end
+
+      widget:set_markup(text)
+      mpdicon:set_image(icon)
     end
-    if mpd_now.random_mode  then img_random  = beautiful.widget_random  end
-    if mpd_now.consume_mode then img_consume = beautiful.widget_consume end
-
-    mpdicon_repeat :set_image(img_repeat)
-    mpdicon_single :set_image(img_single)
-    mpdicon_random :set_image(img_random)
-    mpdicon_consume:set_image(img_consume)
-
-    -- some info may be missing
-    local function isset(s) return (s and s ~= "N/A") end
-    local playlistinfo, artisttitle, timeinfo = "", "", ""
-
-    if mpd_now.pls_pos and tonumber(mpd_now.pls_pos) ~= nil then
-      playlistinfo = "(" .. tonumber(mpd_now.pls_pos) + 1 .. "/"
-        .. mpd_now.pls_len .. ")"
-    end
-    if isset(mpd_now.artist) and isset(mpd_now.title) then
-      artisttitle = escape_f(shorten(unescape_f(mpd_now.artist), 30)) .. " – "
-        .. escape_f(shorten(unescape_f(mpd_now.title), 30))
-    end
-    if isset(mpd_now.elapsed) and isset(mpd_now.time) then
-      timeinfo = "(" .. timestring(mpd_now.elapsed) .. "/"
-        .. timestring(mpd_now.time) .. ")"
-    end
-
-    -- play/pause/stop
-    if mpd_now.state == "play" then
-      icon = beautiful.widget_play
-      text = playlistinfo .. " " .. markup(theme.fg_focus, artisttitle) .. " "
-        .. timeinfo
-
-    elseif mpd_now.state == "pause" then
-      icon = beautiful.widget_pause
-      text = playlistinfo .. " " .. artisttitle .. " " .. timeinfo
-
-    else  -- stopped
-      icon = beautiful.widget_stop
-      text = playlistinfo .. " " .. artisttitle
-    end
-
-    widget:set_markup(text)
-    mpdicon:set_image(icon)
-  end
-})
+  })
+end
 
 -- cpu widget
 cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
@@ -268,12 +272,14 @@ for s = 1, screen.count() do
     top_left_layout:add(mylauncher)
     top_left_layout:add(mytaglist[s])
     top_left_layout:add(mypromptbox[s])
-    top_left_layout:add(mpdicon_consume)
-    top_left_layout:add(mpdicon_repeat)
-    top_left_layout:add(mpdicon_single)
-    top_left_layout:add(mpdicon_random)
-    top_left_layout:add(mpdicon)
-    top_left_layout:add(mpdwidget)
+    if HAVE_MPD then
+      top_left_layout:add(mpdicon_consume)
+      top_left_layout:add(mpdicon_repeat)
+      top_left_layout:add(mpdicon_single)
+      top_left_layout:add(mpdicon_random)
+      top_left_layout:add(mpdicon)
+      top_left_layout:add(mpdwidget)
+    end
 
     -- Widgets that are aligned to the right
     top_right_layout = wibox.layout.fixed.horizontal()
