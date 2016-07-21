@@ -84,6 +84,7 @@ theme.widget_random                 = themes_dir .. "/widget/random.png"
 theme.widget_repeat                 = themes_dir .. "/widget/repeat.png"
 theme.widget_repeat_single          = themes_dir .. "/widget/repeat_single.png"
 theme.widget_single                 = themes_dir .. "/widget/single.png"
+theme.widget_task                   = themes_dir .. "/widget/task.png"
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.

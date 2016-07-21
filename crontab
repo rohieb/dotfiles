@@ -3,3 +3,4 @@ LC_ALL=C
 # m h  dom mon dow   command
 0    0 * * * logrotate -s ~/.logrotate.state ~/.logrotate.conf
 0   18 * * * if [ -d $HOME/Projects/stratum0-wiki/.git ]; then (echo; date; cd $HOME/Projects/stratum0-wiki; git pull origin master) >> $HOME/log/git-stratum0-wiki.log 2>&1; fi
+*/15 * * * * if [ -z "$(ps -Af | grep -v grep | grep '^rohieb' | grep ' task ')" ]; then (echo; date; task sync 2>&1) >> ~/log/task-sync.log; fi

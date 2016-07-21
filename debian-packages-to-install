@@ -222,6 +222,8 @@ lolcat      # important!
 logrotate
 lsdvd
 lsof
+lua-bitop
+lua-posix
 mailutils
 maint-guide
 mdbtools
@@ -346,6 +348,8 @@ sshfs
 subversion
 #systemsettings
 sysvbanner
+taskwarrior
+bugwarrior
 tango-icon-theme
 tegaki-recognize
 tegaki-train

@@ -1,0 +1,40 @@
+# [Created by task 2.2.0 1/27/2014 05:58:01]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-faq',
+# 'man task-tutorial', 'man task-color', 'man task-sync' or 'man taskrc'
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=~/.task
+
+# Color theme 
+include /usr/share/taskwarrior/dark-16.theme
+rule.precedence.color=deleted,completed,overdue,due.today,active,keyword.,tag.,project.,scheduled,due,blocking,blocked,recurring,tagged,uda.
+color.active=blue
+color.due.today=bold red
+color.overdue=bold white on red
+color.blocked=black on bright green
+color.blocking=black on bright white
+color.tagged=
+color.tag.lesefoo=yellow
+
+# custom urgency coefficients
+urgency.user.project.uni.coefficient         =  2
+urgency.user.project.lesefoo.coefficient     = -3
+
+urgency.blocked.coefficient                  = -8
+urgency.tags.coefficient                      = 0
+
+# `nextpopup ' report for awesome-wm integration
+report.nextpopup.description = Most urgent tasks, shortened 
+report.nextpopup.columns     = id,depends.count,priority,project,tags,due.relative,description.truncated_count,urgency
+report.nextpopup.filter      = status:pending limit:page
+report.nextpopup.labels      = ID,Deps,P,Project,Tag,Due,Description,Urg
+report.nextpopup.sort        = urgency-
+
+# taskserver synchronization
+taskd.certificate=\/home\/rohieb\/.task\/rohieb-r2d2.cert.pem
+taskd.key=\/home\/rohieb\/.task\/rohieb-r2d2.key.pem
+taskd.ca=\/home\/rohieb\/.task\/ca.crt
+taskd.server=rohieb.name:53589
+taskd.credentials=rohieb.name\/rohieb\/0cfbae40-7e00-49d7-a376-c8333c8a5103
