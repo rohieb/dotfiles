@@ -12,7 +12,7 @@ procs = {
   { "pasystray", },
   { "setkeymap", },
   { "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1", },
-  { "udiskie", "udiskie --smart-tray" },
+  { "udiskie", "udiskie --automount --notify --smart-tray" },
 --  { "ibus-daemon", "ibus-ademon --xim" },
 }
 
