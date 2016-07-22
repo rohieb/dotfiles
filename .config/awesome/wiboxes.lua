@@ -192,7 +192,7 @@ if  posix.stat(homepath .. "/.taskrc") and
   lain.widgets.contrib.task:attach(taskicon, {
     followmouse = true,
     font_size   = beautiful.settings.font_size,
-    timeout     = 20,
+    timeout     = 7,
   })
 end
 
