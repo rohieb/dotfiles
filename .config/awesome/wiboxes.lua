@@ -193,6 +193,7 @@ if  posix.stat(homepath .. "/.taskrc") and
     followmouse = true,
     font_size   = beautiful.settings.font_size,
     timeout     = 7,
+    cmdline     = "nextpopup",
   })
 end
 
