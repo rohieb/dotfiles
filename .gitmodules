@@ -61,3 +61,6 @@
 [submodule ".wireshark/ipnd"]
 	path = .wireshark/ipnd
 	url = https://github.com/rohieb/wireshark-ipnd-dissector
+[submodule "opt/git-imerge"]
+	path = opt/git-imerge
+	url = https://github.com/mhagger/git-imerge
