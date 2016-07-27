@@ -22,6 +22,8 @@ PATH="$HOME/bin:/sbin:/usr/sbin:$PATH"
 ### exports
 export NAME="Roland Hieber"
 export EMAIL="rohieb@rohieb.name"
+
+export EDITOR=vim
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
