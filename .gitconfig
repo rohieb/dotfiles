@@ -59,7 +59,7 @@
 	fixup = commit --fixup
 
 [core]
-	excludesfile = /home/rohieb/.gitignore
+	excludesfile = /home/rohieb/.gitrc/ignore
 
 [cola]
 	fontdiff = Terminus,8,-1,5,50,0,0,0,0,0

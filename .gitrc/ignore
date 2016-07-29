@@ -1,0 +1,32 @@
+# C/C++ build files
+*.a
+*.o
+*.so
+*.exe
+
+# vim swap files
+*.sw*
+.vimrc.local
+
+# Python byte cache
+*.pyc
+
+# build tool cache files
+autom4te.cache/
+CMakeCache.txt
+config.cache
+config.status
+
+# latex build files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.log
+*.out
+*.toc
+*.snm
+*.nav
