@@ -95,9 +95,6 @@ let g:NERDTreeQuitOnOpen=1
 " we don't want our last search matches highlighted on reopening
 call clearmatches()
 
-" auto-filetype for vimboy
-au bufread,bufnewfile ~/Documents/vimboy/* set ft=vimboy
-
 " use :WW as SudoWrite
 com! WW SudoWrite
 
