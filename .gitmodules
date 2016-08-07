@@ -64,3 +64,9 @@
 [submodule "opt/git-imerge"]
 	path = opt/git-imerge
 	url = https://github.com/mhagger/git-imerge
+[submodule ".vim/bundle/vim-airline"]
+	path = .vim/bundle/vim-airline
+	url = https://github.com/vim-airline/vim-airline
+[submodule ".vim/bundle/vim-airline-themes"]
+	path = .vim/bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
