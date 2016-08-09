@@ -10,7 +10,7 @@
 	st = status
 	co = checkout
 	br = branch
-	chp = cherry-pick -x
+	chp = cherry-pick
 	pur = pull --rebase
 
 	commit = commit --verbose
@@ -59,7 +59,7 @@
 	fixup = commit --fixup
 
 [core]
-	excludesfile = /home/rohieb/.gitignore
+	excludesfile = ~/.gitrc/ignore
 
 [cola]
 	fontdiff = Terminus,8,-1,5,50,0,0,0,0,0
@@ -68,6 +68,11 @@
 [gui]
 	editor = vi
 	historybrowser = gitk
+
+[pager]
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
 
 [diff]
 	tool = meld
@@ -95,6 +100,7 @@
 	hg-git-compat = true
 
 [http "https://hannover.ccc.de"]
-	sslCAInfo = /home/rohieb/.git/sslcerts/cacert.pem
+	sslCAInfo = ~/.git/sslcerts/cacert.pem
+
 [init]
 	templatedir = ~/.gitrc/init-template/

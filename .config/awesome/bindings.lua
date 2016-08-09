@@ -59,14 +59,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
     -- Change layouts
-    awful.key({ modkey, "Mod1"    }, "m",  function () awful.layout.set(layouts[1]) end), -- floating
-    awful.key({ modkey, "Mod1"    }, "o",  function () awful.layout.set(layouts[2]) end), -- tile right
-    awful.key({ modkey, "Mod1"    }, "u",  function () awful.layout.set(layouts[3]) end), -- tile left
-    awful.key({ modkey, "Mod1"    }, "k",  function () awful.layout.set(layouts[4]) end), -- tile bottom
-    awful.key({ modkey, "Mod1"    }, "8",  function () awful.layout.set(layouts[5]) end), -- tile top
-    awful.key({ modkey, "Mod1"    }, "9",  function () awful.layout.set(layouts[8]) end), -- spiral
-    awful.key({ modkey, "Mod1"    }, "i",  function () awful.layout.set(layouts[10]) end), -- max
-    awful.key({ modkey, "Mod1", "Shift" }, "i",  function () awful.layout.set(layouts[11]) end), -- max
+    awful.key({ modkey, "Mod1"    }, "m",  function () awful.layout.set(awful.layout.suit.floating) end),
+    awful.key({ modkey, "Mod1"    }, "o",  function () awful.layout.set(awful.layout.suit.tile) end),
+    awful.key({ modkey, "Mod1"    }, "u",  function () awful.layout.set(awful.layout.suit.tile.left) end),
+    awful.key({ modkey, "Mod1"    }, "k",  function () awful.layout.set(awful.layout.suit.tile.bottom) end),
+    awful.key({ modkey, "Mod1"    }, "8",  function () awful.layout.set(awful.layout.suit.tile.top) end),
+    awful.key({ modkey, "Mod1"    }, "i",  function () awful.layout.set(awful.layout.suit.max) end),
+    awful.key({ modkey, "Mod1", "Shift" }, "i",  function () awful.layout.set(awful.layout.suit.max.fullscreen) end), -- max
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 

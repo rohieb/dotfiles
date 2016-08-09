@@ -5,7 +5,8 @@ execute pathogen#infect()
 set shiftwidth=2 tabstop=2 softtabstop=2
 set autoindent smartindent
 set hlsearch modeline modelines=5
-
+set cursorline
+set scrolloff=7
 set listchars=tab:│\ ,eol:¶,trail:·
 set guifont=Monospace\ 8
 
@@ -60,6 +61,10 @@ set showmode
 set nocompatible               " be iMproved
 filetype plugin on
 
+" Don't interpret git commit messages starting with 'vim:' as modelines
+" http://marcschwieterman.com/blog/modelines-in-git-commit-messages/
+autocmd FileType gitrebase setlocal nomodeline
+
 " syntax highlighting is cool. we want syntax highlighting by default.
 syntax on
 
@@ -95,9 +100,6 @@ let g:NERDTreeQuitOnOpen=1
 " we don't want our last search matches highlighted on reopening
 call clearmatches()
 
-" auto-filetype for vimboy
-au bufread,bufnewfile ~/Documents/vimboy/* set ft=vimboy
-
 " use :WW as SudoWrite
 com! WW SudoWrite
 
@@ -116,6 +118,32 @@ let g:rustfmt_autosave = 1
 " pandoc config
 let g:pandoc#modules#disabled = ["folding"]
 let g:pandoc#spell#enabled = 0
+
+" Airline configuration
+let g:airline_theme='solarized'
+let g:airline_powerline_fonts=0
+"if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+"endif
+let g:airline_left_sep = ' '
+"let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '«'
+let g:airline_right_sep = ' '
+"let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+"let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+"let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = '☰'
+"let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
 
 " make text terminal-selectable as-is without any additional features
 let g:ownShowPlainTextEnabled = 1

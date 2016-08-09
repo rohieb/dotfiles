@@ -34,6 +34,18 @@ function shorten(str, maxlen)
   end
 end
 
+-- format a size in kB/MB/GB, padded to 4 characters
+function format_size(kb)
+  kb = tonumber(kb)
+  if     kb >= 1000*1000*10 then return ("%3dG")  :format(kb / (1024 * 1024))
+  elseif kb >= 1000*1000    then return ("%1.1fG"):format(kb / (1024 * 1024))
+  elseif kb >= 1000*10      then return ("%3dM")  :format(kb / (1024))
+  elseif kb >= 1000         then return ("%1.1fM"):format(kb / (1024))
+  elseif kb >= 10           then return ("%3dk")  :format(kb)
+  else                           return ("%1.1fk"):format(kb)
+  end
+end
+
 -- space between items
 spacerwidget    = wibox.widget.textbox(" ")
 
@@ -114,9 +126,9 @@ cpuwidget = lain.widgets.cpu({
   settings = function()
     function color(percentage)
       local padded = ("%3d%%"):format(percentage)
-      if     percentage > 90 then return markup(theme.magenta, padded)
-      elseif percentage > 60 then return markup(theme.orange,  padded)
-      elseif percentage > 30 then return markup(theme.yellow,  padded)
+      if     percentage >= 90 then return markup(theme.magenta, padded)
+      elseif percentage >= 60 then return markup(theme.orange,  padded)
+      elseif percentage >= 30 then return markup(theme.yellow,  padded)
       else                        return padded
       end
     end
@@ -135,9 +147,9 @@ loadwidget = lain.widgets.sysload({
   settings = function()
     function color(loadavg)
       local n = tonumber(loadavg)
-      if     n > 5   then return markup(theme.magenta, loadavg)
-      elseif n > 2.5 then return markup(theme.orange,  loadavg)
-      elseif n > 1.5 then return markup(theme.yellow,  loadavg)
+      if     n >= 5   then return markup(theme.magenta, loadavg)
+      elseif n >= 2.5 then return markup(theme.orange,  loadavg)
+      elseif n >= 1.5 then return markup(theme.yellow,  loadavg)
       else                return loadavg
       end
     end
@@ -150,17 +162,10 @@ memicon = wibox.widget.imagebox(beautiful.widget_mem)
 memwidget = lain.widgets.mem({
   timeout = 2,
   settings = function()
-    function format_size(mb)
-      if     mb > 1000*10   then return ("%3dG")  :format(mb / 1024)
-      elseif mb > 1000      then return ("%1.1fG"):format(mb / 1024)
-      elseif mb > 10        then return ("%3dM")  :format(mb)
-      else                       return ("%1.1fM"):format(mb)
-      end
-    end
     -- FIXME: memory formatting with color
-    widget:set_markup(format_size(mem_now.used) .. " " ..
-      format_size(mem_now.free) .. " " ..
-      format_size(mem_now.swapused)
+    widget:set_markup(format_size(mem_now.used * 1024) .. " " ..
+      format_size(mem_now.free * 1024) .. " " ..
+      format_size(mem_now.swapused * 1024)
     )
   end
 })
@@ -171,15 +176,6 @@ netwidget = lain.widgets.net({
   timeout = 2,
   notify = "off",
   settings = function()
-    function format_size(kb)
-      kb = tonumber(kb)
-      if     kb > 1000*1024 then return ("%1.1fG"):format(kb / (1024 * 1024))
-      elseif kb > 1000*10   then return ("%3dM")  :format(kb / (1024))
-      elseif kb > 1000      then return ("%1.1fM"):format(kb / (1024))
-      elseif kb > 10        then return ("%3dk")  :format(kb)
-      else                       return ("%1.1fk"):format(kb)
-      end
-    end
     local up_color, down_color = theme.fg_normal, theme.fg_normal
     if tonumber(net_now.sent)     > 0.2 then up_color = theme.green end
     if tonumber(net_now.received) > 0.2 then down_color = theme.red end
@@ -196,7 +192,8 @@ if  posix.stat(homepath .. "/.taskrc") and
   lain.widgets.contrib.task:attach(taskicon, {
     followmouse = true,
     font_size   = beautiful.settings.font_size,
-    timeout     = 20,
+    timeout     = 7,
+    cmdline     = "nextpopup",
   })
 end
 

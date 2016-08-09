@@ -118,8 +118,6 @@ gkrellweather
 glibc-doc-reference
 gnome-calculator
 gnome-specimen
-gnome-themes
-gnome-themes-standard
 gnupg
 gnupg2
 gnupg-agent
@@ -131,6 +129,7 @@ gpsbabel
 gpsprune
 graphviz
 grep
+greybird-gtk-theme
 gsmartcontrol
 gtk-redshift
 guayadeque
@@ -144,7 +143,6 @@ hexedit
 htop
 httperf
 hugin
-human-icon-theme
 # i3
 i3lock
 ibus-anthy
@@ -242,7 +240,6 @@ mpdscribble
 gmpc
 mpv
 mumble
-murrine-themes     # for greybird theme
 #mysql-workbench
 mysql-client
 nasm
