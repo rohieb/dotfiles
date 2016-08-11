@@ -16,7 +16,7 @@ function timestring(seconds)
   end
 
   local s = seconds % 60
-  local m = math.floor(seconds / 60)
+  local m = math.floor(seconds / 60) % 60
   local h = math.floor(seconds / (60*60))
   if h > 0 then
     return ("%d:%.2d:%.2d"):format(h, m, s)
