@@ -33,20 +33,19 @@ ICONNAMES = \
 	widget/net_wired \
 	widget/task \
 
-
 all: $(addsuffix .png,$(ICONNAMES))
-
-tilebottom.png: tile.png
-	convert $< -rotate 90 $@
-tileleft.png: tile.png
-	convert $< -rotate 180 $@
-tiletop.png: tile.png
-	convert $< -rotate 270 $@
-
-fairh.png: fairv.png
-	convert $< -rotate 90 $@
+clean:
+	rm -rf $(addsuffix .png,$(ICONNAMES))
+.PHONY: clean
 
 %.png: %.svg
 	inkscape --export-area-page --export-dpi=90 --export-png=$@ $<
 
-
+layout/tilebottom.png: layout/tile.png
+	convert $< -rotate 90 $@
+layout/tileleft.png: layout/tile.png
+	convert $< -rotate 180 $@
+layout/tiletop.png: layout/tile.png
+	convert $< -rotate 270 $@
+layout/fairh.png: layout/fairv.png
+	convert $< -rotate 90 $@

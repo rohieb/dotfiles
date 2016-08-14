@@ -4,12 +4,10 @@ License:  CC BY-NC-SA <http://creativecommons.org/licenses/by-nc-sa/4.0/>
 Source:   https://github.com/copycat-killer/awesome-copycats/tree/master/themes/powerarrow-darker/icons
 
 	- submenu
-	- layout/fair*
 	- layout/floating
 	- layout/fullscreen
 	- layout/magnifier
 	- layout/max
-	- layout/tile*
 	- widget/mem
 	- widget/net
 	- widget/net_wired

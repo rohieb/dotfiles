@@ -20,17 +20,12 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     transform="translate(0,-1031.3622)"
-     id="layer1">
-    <path
-       id="path3070"
-       transform="translate(0,1031.3622)"
-       d="M 3 3 L 3 18 L 10 18 L 10 3 L 3 3 z M 11 3 L 11 6 L 18 6 L 18 3 L 11 3 z M 4 4 L 9 4 L 9 17 L 4 17 L 4 4 z M 12 4 L 17 4 L 17 5 L 12 5 L 12 4 z M 11 7 L 11 10 L 18 10 L 18 7 L 11 7 z M 12 8 L 17 8 L 17 9 L 12 9 L 12 8 z M 11 11 L 11 14 L 18 14 L 18 11 L 11 11 z M 12 12 L 17 12 L 17 13 L 12 13 L 12 12 z M 11 15 L 11 18 L 18 18 L 18 15 L 11 15 z M 12 16 L 17 16 L 17 17 L 12 17 L 12 16 z "
-       style="color:#000000;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.354;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
-  </g>
+  <path
+     id="path3070"
+     d="m 2,2 0,17 17,0 0,-17 z m 1,1 7,0 0,15 -7,0 z m 8,0 7,0 0,3 -7,0 z m 0,4 7,0 0,3 -7,0 z m 0,4 7,0 0,3 -7,0 z m 0,4 7,0 0,3 -7,0 z"
+     style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.354;marker:none;enable-background:accumulate" />
 </svg>

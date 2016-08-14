@@ -5,11 +5,11 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   version="1.1"
-   id="svg2"
-   viewBox="0 0 21 21"
+   width="21"
    height="21"
-   width="21">
+   viewBox="0 0 21 21"
+   id="svg2"
+   version="1.1">
   <defs
      id="defs4" />
   <metadata
@@ -20,17 +20,12 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     transform="translate(0,-1031.3622)"
-     id="layer1">
-    <path
-       id="path26355"
-       transform="translate(0,1031.3622)"
-       d="M 3,3 3,7 4,7 4,5 5,5 5,4 7,4 7,3 Z M 5,5 5,6 6,6 6,5 Z M 6,6 6,7 7,7 7,6 Z M 7,7 7,8 8,8 8,7 Z M 8,8 8,9 9,9 9,8 Z m 1,1 0,1 1,0 0,-1 z m 1,1 0,1 1,0 0,-1 z m 1,0 1,0 0,-1 -1,0 z m 1,-1 1,0 0,-1 -1,0 z m 1,-1 1,0 0,-1 -1,0 z m 1,-1 1,0 0,-1 -1,0 z m 1,-1 1,0 0,-1 -1,0 z m 1,-1 1,0 0,2 1,0 0,-4 -4,0 0,1 2,0 z m -5,6 0,1 1,0 0,-1 z m 1,1 0,1 1,0 0,-1 z m 1,1 0,1 1,0 0,-1 z m 1,1 0,1 1,0 0,-1 z m 1,1 0,1 1,0 0,-1 z m 1,1 0,1 -2,0 0,1 4,0 0,-4 -1,0 0,2 z m -6,-5 -1,0 0,1 1,0 z m -1,1 -1,0 0,1 1,0 z m -1,1 -1,0 0,1 1,0 z m -1,1 -1,0 0,1 1,0 z m -1,1 -1,0 0,1 1,0 z m -1,1 -1,0 0,-2 -1,0 0,4 4,0 0,-1 -2,0 z"
-       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.35433072;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
-  </g>
+  <path
+     style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.35433072;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+     d="M 2 2 L 2 6 L 3 6 L 3 4 L 4 4 L 4 3 L 6 3 L 6 2 L 2 2 z M 4 4 L 4 5 L 5 5 L 5 4 L 4 4 z M 5 5 L 5 6 L 6 6 L 6 5 L 5 5 z M 6 6 L 6 7 L 7 7 L 7 6 L 6 6 z M 7 7 L 7 8 L 8 8 L 8 7 L 7 7 z M 8 8 L 8 9 L 9 9 L 9 8 L 8 8 z M 9 9 L 9 10 L 10 10 L 10 9 L 9 9 z M 10 10 L 10 11 L 11 11 L 11 10 L 10 10 z M 11 10 L 12 10 L 12 9 L 11 9 L 11 10 z M 12 9 L 13 9 L 13 8 L 12 8 L 12 9 z M 13 8 L 14 8 L 14 7 L 13 7 L 13 8 z M 14 7 L 15 7 L 15 6 L 14 6 L 14 7 z M 15 6 L 16 6 L 16 5 L 15 5 L 15 6 z M 16 5 L 17 5 L 17 4 L 16 4 L 16 5 z M 17 4 L 18 4 L 18 6 L 19 6 L 19 2 L 15 2 L 15 3 L 17 3 L 17 4 z M 11 11 L 11 12 L 12 12 L 12 11 L 11 11 z M 12 12 L 12 13 L 13 13 L 13 12 L 12 12 z M 13 13 L 13 14 L 14 14 L 14 13 L 13 13 z M 14 14 L 14 15 L 15 15 L 15 14 L 14 14 z M 15 15 L 15 16 L 16 16 L 16 15 L 15 15 z M 16 16 L 16 17 L 17 17 L 17 16 L 16 16 z M 17 17 L 17 18 L 15 18 L 15 19 L 19 19 L 19 15 L 18 15 L 18 17 L 17 17 z M 10 11 L 9 11 L 9 12 L 10 12 L 10 11 z M 9 12 L 8 12 L 8 13 L 9 13 L 9 12 z M 8 13 L 7 13 L 7 14 L 8 14 L 8 13 z M 7 14 L 6 14 L 6 15 L 7 15 L 7 14 z M 6 15 L 5 15 L 5 16 L 6 16 L 6 15 z M 5 16 L 4 16 L 4 17 L 5 17 L 5 16 z M 4 17 L 3 17 L 3 15 L 2 15 L 2 19 L 6 19 L 6 18 L 4 18 L 4 17 z "
+     id="path8537" />
 </svg>
