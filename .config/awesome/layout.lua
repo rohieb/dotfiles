@@ -1,17 +1,18 @@
 awful = require("awful")
+suits = awful.layout.suit
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts = {
-  awful.layout.suit.floating,
-  awful.layout.suit.tile,
-  awful.layout.suit.tile.left,
-  awful.layout.suit.tile.bottom,
-  awful.layout.suit.tile.top,
-  awful.layout.suit.fair,
-  awful.layout.suit.fair.horizontal,
-  awful.layout.suit.max,
-  awful.layout.suit.max.fullscreen,
-  awful.layout.suit.magnifier,
+  suits.floating,
+  suits.tile,
+  suits.tile.left,
+  suits.tile.bottom,
+  suits.tile.top,
+  suits.fair,
+  suits.fair.horizontal,
+  suits.max,
+  suits.max.fullscreen,
+  suits.magnifier,
 }
 -- }}}
 
@@ -24,9 +25,9 @@ tags = {
     -- "１","２","３","４","５","６","７","８","９"
   },
   layout = {
-    awful.layout.suit.floating, awful.layout.suit.max, awful.layout.suit.max,
-    awful.layout.suit.tile, awful.layout.suit.max, awful.layout.suit.max,
-    awful.layout.suit.tile.bottom, awful.layout.suit.max, awful.layout.suit.tile.left,
+    suits.floating,       suits.max,       suits.max,
+    suits.tile,           suits.max,       suits.max,
+    suits.tile.bottom,    suits.max,       suits.tile.left,
   }
 }
 for s = 1, screen.count() do
