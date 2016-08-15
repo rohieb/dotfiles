@@ -16,6 +16,11 @@ ICONNAMES = \
 	layout/tilebottom \
 	layout/tileleft \
 	layout/tiletop \
+	layout/termfair \
+	layout/centerfair \
+	layout/centerwork \
+	layout/cascade \
+	layout/cascadetile \
 	\
 	widget/pause \
 	widget/play \

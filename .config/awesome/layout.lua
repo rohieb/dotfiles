@@ -1,15 +1,22 @@
 awful = require("awful")
 suits = awful.layout.suit
 
+lain = require("lain")
+
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts = {
   suits.floating,
+  lain.layout.cascade,
+  lain.layout.cascadetile,
   suits.tile,
   suits.tile.left,
   suits.tile.bottom,
   suits.tile.top,
   suits.fair,
   suits.fair.horizontal,
+  lain.layout.termfair,
+  lain.layout.centerwork,
+  lain.layout.centerfair,
   suits.max,
   suits.max.fullscreen,
   suits.magnifier,
