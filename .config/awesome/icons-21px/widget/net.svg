@@ -5,11 +5,11 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   version="1.1"
-   id="svg2"
-   viewBox="0 0 21 21"
+   width="21"
    height="21"
-   width="21">
+   viewBox="0 0 21 21"
+   id="svg2"
+   version="1.1">
   <defs
      id="defs4" />
   <metadata
@@ -20,17 +20,12 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     transform="translate(0,-1031.3622)"
-     id="layer1">
-    <path
-       id="path35476"
-       transform="translate(0,1031.3622)"
-       d="M 9 6 L 9 7 L 12.96875 7 L 13 6 L 9 6 z M 12.96875 7 L 12.9375 8 L 14 8 L 14 7 L 12.96875 7 z M 14 8 L 14 9 L 15 9 L 15 8 L 14 8 z M 9 7 L 8 7 L 8 8 L 9 8 L 9 7 z M 8 8 L 7 8 L 7 9 L 8 9 L 8 8 z M 9 9 L 9 10 L 13 10 L 13 9 L 9 9 z M 13 10 L 13 11 L 14 11 L 14 10 L 13 10 z M 9 10 L 8 10 L 8 11 L 9 11 L 9 10 z M 10 11 L 10 12 L 12 12 L 12 11 L 10 11 z M 12 12 L 12 13 L 13 13 L 13 12 L 12 12 z M 10 12 L 9 12 L 9 13 L 10 13 L 10 12 z M 10 14 L 10 16 L 12 16 L 12 14 L 10 14 z "
-       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.35433072;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
-  </g>
+  <path
+     id="path35476"
+     d="M 9,6 9,7 12.96875,7 13,6 9,6 Z M 12.96875,7 12.9375,8 14,8 14,7 12.96875,7 Z M 14,8 14,9 15,9 15,8 14,8 Z M 9,7 8,7 8,8 9,8 9,7 Z M 8,8 7,8 7,9 8,9 8,8 Z m 1,1 0,1 4,0 0,-1 -4,0 z m 4,1 0,1 1,0 0,-1 -1,0 z m -4,0 -1,0 0,1 1,0 0,-1 z m 1,1 0,1 2,0 0,-1 -2,0 z m 2,1 0,1 1,0 0,-1 -1,0 z m -2,0 -1,0 0,1 1,0 0,-1 z m 0,2 0,2 2,0 0,-2 -2,0 z"
+     style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#eee8d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.35433072;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
 </svg>
