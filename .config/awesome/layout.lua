@@ -1,25 +1,46 @@
 awful = require("awful")
-suits = awful.layout.suit
-
 lain = require("lain")
+
+-- lain layout settings
+lain.layout.termfair.nmaster = 2
+lain.layout.termfair.ncol = 2
+
+-- short names for layout suits
+suit = {
+  floating      = awful.layout.suit.floating,
+  tileright     = awful.layout.suit.tile,
+  tileleft      = awful.layout.suit.tile.left,
+  tilebottom    = awful.layout.suit.tile.bottom,
+  tiletop       = awful.layout.suit.tile.top,
+  fairv         = awful.layout.suit.fair,
+  fairh         = awful.layout.suit.fair.horizontal,
+  max           = awful.layout.suit.max,
+  fullscreen    = awful.layout.suit.max.fullscreen,
+  magnifier     = awful.layout.suit.magnifier,
+  cascade       = lain.layout.cascade,
+  cascadetile   = lain.layout.cascadetile,
+  termfair      = lain.layout.termfair,
+  centerwork    = lain.layout.centerwork,
+  centerfair    = lain.layout.centerfair,
+}
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts = {
-  suits.floating,
-  lain.layout.cascade,
-  lain.layout.cascadetile,
-  suits.tile,
-  suits.tile.left,
-  suits.tile.bottom,
-  suits.tile.top,
-  suits.fair,
-  suits.fair.horizontal,
-  lain.layout.termfair,
-  lain.layout.centerwork,
-  lain.layout.centerfair,
-  suits.max,
-  suits.max.fullscreen,
-  suits.magnifier,
+  suit.floating,
+  suit.cascade,
+  suit.cascadetile,
+  suit.tileright,
+  suit.tileleft,
+  suit.tilebottom,
+  suit.tiletop,
+  suit.fairv,
+  suit.fairh,
+  suit.termfair,
+  suit.centerwork,
+  suit.centerfair,
+  suit.max,
+  suit.fullscreen,
+  suit.magnifier,
 }
 -- }}}
 
@@ -32,9 +53,9 @@ tags = {
     -- "１","２","３","４","５","６","７","８","９"
   },
   layout = {
-    suits.floating,       suits.max,       suits.max,
-    suits.tile,           suits.max,       suits.max,
-    suits.tile.bottom,    suits.max,       suits.tile.left,
+    suit.floating,       suit.max,       suit.termfair,
+    suit.termfair,       suit.max,       suit.max,
+    suit.tilebottom,     suit.max,       suit.tileleft,
   }
 }
 for s = 1, screen.count() do
