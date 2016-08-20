@@ -65,6 +65,24 @@ homepath = os.getenv("HOME")
 -- We fork the default theme to set a custom background
 beautiful.init(cfgpath .. "/theme.lua")
 
+-- set current wallpaper on all screens
+local wallpaper = beautiful.wallpaper
+
+if not wallpaper then
+  local f = io.open(homepath .. "/.wallpaper.txt")
+         or io.open(homepath .. "/.config/variety/wallpaper/wallpaper.jpg.txt")
+  if f then
+    wallpaper = f:read("*line")
+  end
+end
+
+if wallpaper then
+  for s = 1, screen.count() do
+    -- note: gears.wallpaper.maximized does not center the wallpaper, feh does
+    os.execute("feh --bg-fill \"" .. wallpaper .. "\"")
+  end
+end
+
 -- This is used later as the default terminal and editor to run.
 -- terminal = "xterm"
 terminal = "urxvtcd"
