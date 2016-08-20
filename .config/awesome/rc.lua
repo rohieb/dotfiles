@@ -12,11 +12,12 @@ naughty = require("naughty")
 -- List of file extensions that will be searched for icons
 --   Default: { "png", "gif" }
 naughty.config.icon_formats = { "png", "gif", "xpm" }
--- List of directories that will be serached for icons
+-- List of directories that will be searched for icons
 --   Default: { "/usr/share/pixmaps/", }
 naughty.config.icon_dirs = {
+    "/usr/share/icons/Tango/",
+    "/usr/share/icons/gnome/",
     "/usr/share/pixmaps/",
-    "/usr/share/icons/Human/",
 }
 -- Prefer 32x32 icons before searching for other sizes
 naughty.config.icon_size = 32
