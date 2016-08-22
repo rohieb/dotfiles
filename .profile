@@ -70,3 +70,10 @@ export PATH="$PATH:$HOME/lib/node_modules/.bin"
 ### autostarts
 source $HOME/.login_autostart
 if [ -n "$DISPLAY" ]; then $HOME/bin/solarized-dark; fi
+
+### start X when logging in on tty2
+if [ `tty` = "/dev/tty1" ]; then
+	echo "Starting X Server..."
+	sleep 1
+	startx
+fi
