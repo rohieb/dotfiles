@@ -64,6 +64,9 @@ export AWT_TOOLKIT=MToolkit
 # GTK3 themes with SWT look ugly sometimes
 export SWT_GTK3=0
 
+# Tell Qt5 to use GTK+ style (needs qt5-styleplugins)
+export QT_STYLE_OVERRIDE='gtk2'
+
 # locally installed Node packages
 export PATH="$PATH:$HOME/lib/node_modules/.bin"
 
