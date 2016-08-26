@@ -18,3 +18,4 @@
 .config/variety/banned.txt
 .config/variety/syncdb.json
 log/
+.local/share/applications/mimeinfo.cache
