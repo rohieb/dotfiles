@@ -115,3 +115,5 @@
 	fetchJobs = 4      # git 2.9
 [fetch]
 	recurseSubmodules = false
+[sendemail]
+	confirm = always
