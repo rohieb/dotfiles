@@ -37,6 +37,7 @@ awful.rules.rules = {
     { rule_any = { name = {
       "Variety Images",
       "Variety Recent Downloads",
+      "Variety History",
       "Terminator Preferences",
       "Tegaki",
       "qtcreator_process_stub", -- xterm started by QtCreator for program output
@@ -99,6 +100,7 @@ awful.rules.rules = {
       properties = { tag = tags[1][5] } },
 
     { rule_any = { class = {
+      "Mail",
       "Icedove",
       "Thunderbird",
       "Evolution"
