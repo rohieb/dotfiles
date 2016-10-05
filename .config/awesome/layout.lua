@@ -2,8 +2,14 @@ awful = require("awful")
 lain = require("lain")
 
 -- lain layout settings
-lain.layout.termfair.nmaster = 2
-lain.layout.termfair.ncol = 2
+lain.layout.termfair.nmaster = 2   -- up to 2 rows
+lain.layout.termfair.ncol = 1      -- full height when ≤ 2 clients
+
+lain.layout.centerfair.nmaster = 2 -- up to 2 rows
+lain.layout.centerfair.ncol = 5    -- up to 5 in one row before spitting the
+                                   -- next row (no effect with only 2 rows)
+
+lain.layout.cascadetile.ncol = 2   -- 1 ⇒ overlap slaves with master, x≠1 ⇒ don't
 
 -- short names for layout suits
 suit = {
@@ -28,16 +34,19 @@ suit = {
 layouts = {
   suit.floating,
   suit.cascade,
-  suit.cascadetile,
   suit.tileright,
   suit.tileleft,
   suit.tilebottom,
   suit.tiletop,
-  suit.fairv,
   suit.fairh,
-  suit.termfair,
-  suit.centerwork,
+  suit.cascadetile,
+
+  -- these are farily similar, group them together
+  suit.fairv,
   suit.centerfair,
+  suit.termfair,
+
+  --suit.centerwork,  -- useless on small screens
   suit.max,
   suit.fullscreen,
   suit.magnifier,
@@ -53,8 +62,8 @@ tags = {
     -- "１","２","３","４","５","６","７","８","９"
   },
   layout = {
-    suit.floating,       suit.max,       suit.termfair,
-    suit.termfair,       suit.max,       suit.max,
+    suit.floating,       suit.max,       suit.centerfair,
+    suit.fairv,          suit.max,       suit.max,
     suit.tilebottom,     suit.max,       suit.tileleft,
   }
 }
@@ -63,6 +72,8 @@ for s = 1, screen.count() do
     tags[s] = awful.tag(tags.names, s, tags.layout)
 
     -- set default column widths
+    awful.tag.setmwfact(0.2, tags[s][1])
+    awful.tag.setmwfact(0.3, tags[s][7])
     awful.tag.setmwfact(0.2, tags[s][9])
 end
 

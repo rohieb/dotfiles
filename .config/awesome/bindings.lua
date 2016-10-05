@@ -60,10 +60,11 @@ globalkeys = awful.util.table.join(
 
     -- Change layouts
     awful.key({ modkey, "Mod1"    }, "m",  function () awful.layout.set(suit.floating) end),
-    awful.key({ modkey, "Mod1"    }, "o",  function () awful.layout.set(suit.tileright) end),
-    awful.key({ modkey, "Mod1"    }, "u",  function () awful.layout.set(suit.tileleft) end),
-    awful.key({ modkey, "Mod1"    }, "k",  function () awful.layout.set(suit.tilebottom) end),
-    awful.key({ modkey, "Mod1"    }, "8",  function () awful.layout.set(suit.tiletop) end),
+    awful.key({ modkey, "Mod1"    }, "o",  function () awful.layout.set(suit.centerfair) end),
+    awful.key({ modkey, "Mod1"    }, "u",  function () awful.layout.set(suit.fairv) end),
+    awful.key({ modkey, "Mod1"    }, "k",  function () awful.layout.set(suit.tileright) end),
+    awful.key({ modkey, "Mod1"    }, "8",  function () awful.layout.set(suit.termfair) end),
+    awful.key({ modkey, "Mod1"    }, "9",  function () awful.layout.set(suit.cascadetile) end),
     awful.key({ modkey, "Mod1"    }, "i",  function () awful.layout.set(suit.max) end),
     awful.key({ modkey, "Mod1", "Shift" }, "i",  function () awful.layout.set(suit.max.fullscreen) end),
 
