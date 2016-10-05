@@ -13,9 +13,9 @@ if [ -f "$SSH_AGENT_ENV_FILE" ]; then
 fi
 
 ### start mpd and mpdscribble
-[ -x /usr/bin/mpd -a -r ~/.mpd.conf ] && \
+[ -x /usr/bin/mpd -a -r ~/.mpd/mpd.conf ] && \
 	start-stop-daemon --quiet --start --user $USER --pidfile ~/.mpd/pid \
-	--oknodo --startas /usr/bin/mpd -- ~/.mpd.conf
+	--oknodo --startas /usr/bin/mpd -- ~/.mpd/mpd.conf
 [ -x /usr/bin/mpdscribble -a -r ~/.mpdscribble/mpdscribble.conf ] && \
 	start-stop-daemon --quiet --start --user $USER --pidfile ~/.mpdscribble/pid \
 	--oknodo --startas /usr/bin/mpdscribble -- --conf ~/.mpdscribble/mpdscribble.conf
