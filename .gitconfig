@@ -55,7 +55,8 @@
 
 	rb = rebase
 	sub = submodule
-	fixup = commit --fixup
+	fix = commit --fixup
+	sq  = commit --squash
 
 	im  = imerge merge
 	imc = imerge continue
