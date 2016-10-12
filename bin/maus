@@ -1,0 +1,28 @@
+#!/bin/sh
+
+OUTFILE="$HOME/Videos/maus/maus-`date +%Y-%m-%d --date='last sat+25hours'`.mp4"
+
+echo "Writing to $OUTFILE ..."
+echo
+
+entry_url="http://www.wdrmaus.de/aktuelle-sendung/index.php5?startVideo=1"
+jsplayer_regex='http://deviceids-medp.wdr.de/ondemand.*\.js'
+jsplayer_url=$(curl -L "$entry_url" 2>/dev/null | grep -om1 "$jsplayer_regex")
+echo "Found JS player URL: $jsplayer_url"
+if [ -z "$jsplayer_url" ]; then
+	echo "Ooops. Extracting the JS player URL failed :("
+	exit
+fi
+
+video_regex='http://[^"]*\?\.\(m3u8\)'
+video_url=$(curl -L "$jsplayer_url" 2>/dev/null | grep -om1 "$video_regex")
+echo "Found video URL: $video_url"
+if [ -z "$video_url" ]; then
+	echo "Ooops. Extracting the video URL failed :("
+	exit
+fi
+
+ffmpeg -i "$video_url" -c:a copy -c:v copy -bsf:a aac_adtstoasc -movflags empty_moov "$OUTFILE"
+
+echo
+echo "Written to $OUTFILE"

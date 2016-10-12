@@ -18,3 +18,9 @@
 .config/variety/banned.txt
 .config/variety/syncdb.json
 log/
+.local/share/applications/mimeinfo.cache
+/.mpd/state
+/.mpd/sticker.sql
+/.mpd/tag_cache
+/.mpd/playlists/
+/.mpd/pid

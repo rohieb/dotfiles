@@ -53,13 +53,18 @@
 	bi = bisect
 	pop = stash pop
 
-	icon = imerge continue
 	rb = rebase
 	sub = submodule
-	fixup = commit --fixup
+	fix = commit --fixup
+	sq  = commit --squash
+
+	im  = imerge merge
+	imc = imerge continue
+	imr = imerge rebase
 
 [core]
 	excludesfile = ~/.gitrc/ignore
+	hooksPath = ~/.gitrc/init-template/hooks/    # git 2.9
 
 [cola]
 	fontdiff = Terminus,8,-1,5,50,0,0,0,0,0
@@ -76,6 +81,7 @@
 
 [diff]
 	tool = meld
+	compactionHeuristic = true      # git 2.9
 
 [merge]
 	tool = meld
@@ -104,3 +110,10 @@
 
 [init]
 	templatedir = ~/.gitrc/init-template/
+
+[submodule]
+	fetchJobs = 4      # git 2.9
+[fetch]
+	recurseSubmodules = false
+[sendemail]
+	confirm = always

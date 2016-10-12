@@ -74,7 +74,7 @@ epiphany-extensions
 evince-gtk
 evolution
 evolution-plugins
-#feh
+feh
 ffmpeg
 figlet
 file-roller
@@ -316,6 +316,7 @@ qt4-doc
 qt4-doc-html
 qt5-sdk
 qt5-doc-html
+qt5-styleplugins       # for gtk+ style
 qtcreator
 quilt
 qtbase5-dbg   # auto

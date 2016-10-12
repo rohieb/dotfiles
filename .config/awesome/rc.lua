@@ -13,11 +13,12 @@ gears = require("gears")
 -- List of file extensions that will be searched for icons
 --   Default: { "png", "gif" }
 naughty.config.icon_formats = { "png", "gif", "xpm" }
--- List of directories that will be serached for icons
+-- List of directories that will be searched for icons
 --   Default: { "/usr/share/pixmaps/", }
 naughty.config.icon_dirs = {
+    "/usr/share/icons/Tango/",
+    "/usr/share/icons/gnome/",
     "/usr/share/pixmaps/",
-    "/usr/share/icons/Human/",
 }
 -- Prefer 32x32 icons before searching for other sizes
 naughty.config.icon_size = 32
@@ -66,13 +67,23 @@ homepath = os.getenv("HOME")
 theme = { fontsize = "bigger" }
 beautiful.init(cfgpath .. "/theme.lua")
 
--- {{{ Wallpaper
-if beautiful.wallpaper then
-    for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-    end
+-- set current wallpaper on all screens
+local wallpaper = beautiful.wallpaper
+
+if not wallpaper then
+  local f = io.open(homepath .. "/.wallpaper.txt")
+         or io.open(homepath .. "/.config/variety/wallpaper/wallpaper.jpg.txt")
+  if f then
+    wallpaper = f:read("*line")
+  end
 end
--- }}}
+
+if wallpaper then
+  for s = 1, screen.count() do
+    -- note: gears.wallpaper.maximized does not center the wallpaper, feh does
+    os.execute("feh --bg-fill \"" .. wallpaper .. "\"")
+  end
+end
 
 -- This is used later as the default terminal and editor to run.
 -- terminal = "xterm"

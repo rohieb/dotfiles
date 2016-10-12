@@ -65,6 +65,11 @@ case "$TERM" in
 		;;
 esac
 
+# silent tty2
+if [ `tty` = "/dev/tty2" ]; then
+	PS1=
+fi
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
 		test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"

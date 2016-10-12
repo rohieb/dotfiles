@@ -1,2 +1,2 @@
 #!/bin/sh
-/usr/bin/chromium --disk-cache-size=100 "$@"
+/usr/bin/chromium --overscroll-history-navigation=0 --disk-cache-size=100 "$@"

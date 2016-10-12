@@ -16,7 +16,7 @@ function timestring(seconds)
   end
 
   local s = seconds % 60
-  local m = math.floor(seconds / 60)
+  local m = math.floor(seconds / 60) % 60
   local h = math.floor(seconds / (60*60))
   if h > 0 then
     return ("%d:%.2d:%.2d"):format(h, m, s)
@@ -90,8 +90,8 @@ if string.len(awful.util.pread("mpc | grep -v '^error' ")) > 0 then
           .. mpd_now.pls_len .. ")"
       end
       if isset(mpd_now.artist) and isset(mpd_now.title) then
-        artisttitle = escape_f(shorten(unescape_f(mpd_now.artist), 30)) .. " – "
-          .. escape_f(shorten(unescape_f(mpd_now.title), 30))
+        artisttitle = escape_f(shorten(unescape_f(mpd_now.artist), 22)) .. " – "
+          .. escape_f(shorten(unescape_f(mpd_now.title), 26))
       end
       if isset(mpd_now.elapsed) and isset(mpd_now.time) then
         timeinfo = "(" .. timestring(mpd_now.elapsed) .. "/"
