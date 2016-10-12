@@ -31,10 +31,3 @@ report.nextpopup.columns     = id,depends.count,priority,project,tags,due.relati
 report.nextpopup.filter      = status:pending limit:page
 report.nextpopup.labels      = ID,Deps,P,Project,Tag,Due,Description,Urg
 report.nextpopup.sort        = urgency-
-
-# taskserver synchronization
-taskd.certificate=\/home\/rohieb\/.task\/rohieb-r2d2.cert.pem
-taskd.key=\/home\/rohieb\/.task\/rohieb-r2d2.key.pem
-taskd.ca=\/home\/rohieb\/.task\/ca.crt
-taskd.server=rohieb.name:53589
-taskd.credentials=rohieb.name\/rohieb\/0cfbae40-7e00-49d7-a376-c8333c8a5103
