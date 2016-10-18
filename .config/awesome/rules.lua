@@ -29,6 +29,7 @@ awful.rules.rules = {
       "Kmines",
       "Xsane",
       "Display.im6",
+      "Display",
       "kpat",
       "kmines",
       "Xmessage",
