@@ -9,3 +9,5 @@ cat > ~/.vimrc.solarized <<EOF
 set bg=dark
 EOF
 xrdb -merge ~/.solarized.resources.dark
+
+urxvtcd
