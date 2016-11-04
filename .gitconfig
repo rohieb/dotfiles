@@ -89,7 +89,6 @@
 
 [push]
 	default = simple
-	followTags = true
 
 [rebase]
 	autoSquash = true
@@ -117,3 +116,4 @@
 	recurseSubmodules = false
 [sendemail]
 	confirm = always
+	envelopesender = auto
