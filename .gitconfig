@@ -116,3 +116,4 @@
 	recurseSubmodules = false
 [sendemail]
 	confirm = always
+	envelopesender = auto
