@@ -10,4 +10,6 @@ set bg=light
 EOF
 xrdb -merge ~/.solarized.resources.light
 
-urxvtcd
+if [ "$1" != "-n" -a "$1" != "--no-term" ]; then
+	urxvtcd
+fi
