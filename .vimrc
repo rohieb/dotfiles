@@ -9,6 +9,7 @@ set cursorline
 set scrolloff=7
 set listchars=tab:│\ ,eol:¶,trail:·
 set guifont=Monospace\ 8
+set toolbar=
 
 set textwidth=80
 
