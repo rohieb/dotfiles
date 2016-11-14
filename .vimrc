@@ -9,11 +9,14 @@ set cursorline
 set scrolloff=7
 set listchars=tab:│\ ,eol:¶,trail:·
 set guifont=Monospace\ 8
-set toolbar=
 
 set textwidth=80
 
 set autochdir
+
+if has('gui_running')
+	set toolbar=
+endif
 
 " Map leader character to ,
 let mapleader = ","
