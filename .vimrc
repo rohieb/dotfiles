@@ -14,6 +14,10 @@ set textwidth=80
 
 set autochdir
 
+if has('gui_running')
+	set toolbar=
+endif
+
 " Map leader character to ,
 let mapleader = ","
 
