@@ -119,10 +119,6 @@ let g:GPGPreferSign = 1
 " rust.vim config
 let g:rustfmt_autosave = 1
 
-" pandoc config
-let g:pandoc#modules#disabled = ["folding"]
-let g:pandoc#spell#enabled = 0
-
 " Airline configuration
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts=0
