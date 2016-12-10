@@ -9,11 +9,14 @@ set cursorline
 set scrolloff=7
 set listchars=tab:│\ ,eol:¶,trail:·
 set guifont=Monospace\ 8
-set toolbar=
 
 set textwidth=80
 
 set autochdir
+
+if has('gui_running')
+	set toolbar=
+endif
 
 " Map leader character to ,
 let mapleader = ","
@@ -115,10 +118,6 @@ let g:GPGPreferSign = 1
 
 " rust.vim config
 let g:rustfmt_autosave = 1
-
-" pandoc config
-let g:pandoc#modules#disabled = ["folding"]
-let g:pandoc#spell#enabled = 0
 
 " Airline configuration
 let g:airline_theme='solarized'

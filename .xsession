@@ -1,3 +1,3 @@
 #!/bin/sh
 [ -e .profile ] && source .profile
-[ -e .profile ] && source .xinitrc
+[ -e .xinitrc ] && source .xinitrc

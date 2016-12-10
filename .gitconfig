@@ -23,6 +23,7 @@
 	ca = diff --cached
 	cached = diff --cached
 	stat = show --stat
+	fullstat = show --stat=100000 --stat-graph-width=40
 	fulldiff = diff -p --no-prefix -U20000
 
 	a = add -p
@@ -48,6 +49,8 @@
 	cop = checkout -p
 	pu = push
 	hard = reset --hard
+	rehead = reset HEAD
+	reco = !sh -c 'git reset HEAD && git checkout .'
 
 	redo = !sh -c 'git reset --soft $(git merge-base master HEAD)'
 	bi = bisect

@@ -2,14 +2,21 @@
 
 ### start ssh agent
 SSH_AGENT_ENV_FILE=$HOME/.ssh/ssh-agent-info
+start_ssh_agent() {
+	ssh-agent -s > $SSH_AGENT_ENV_FILE
+	. "$SSH_AGENT_ENV_FILE" > /dev/null
+}
+
 if [ -f "$SSH_AGENT_ENV_FILE" ]; then
 	. "$SSH_AGENT_ENV_FILE" > /dev/null
 	# file may be old, try connecting
-	if [ -z "$(ps aux|grep $SSH_AGENT_PID|grep ssh-agent)" ]; then
+	if [ -z "$(ps aux|grep $USER|grep $SSH_AGENT_PID|grep ssh-agent)" ]; then
 		# daemon does not exist with this pid, start new one
-		ssh-agent -s > $SSH_AGENT_ENV_FILE
-		. "$SSH_AGENT_ENV_FILE" > /dev/null
+		start_ssh_agent
 	fi
+else
+	# no agent env file yet
+	start_ssh_agent
 fi
 
 ### start mpd and mpdscribble
