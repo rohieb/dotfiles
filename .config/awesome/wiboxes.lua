@@ -46,6 +46,23 @@ function format_size(kb)
   end
 end
 
+-- apply color to string according to number in range. thresholds must be
+-- monotonic, i.e. either   yellow < orange < magenta < MAX_INT   or
+-- MAX_INT > yellow > orange > magenta   must be true.
+-- also applies fn(num) to the value before coloring it.
+function mycolor(yellow, orange, magenta, num, fn)
+  if type(fn) ~= "function" then fn = function(s) return s end end
+  local op = function(n,m)
+		if yellow > magenta then return n <= m else return n >= m end
+	end
+  print(("%s %s %s %s"):format(yellow, orange, magenta, num)) ---- FIXME
+  local n = tonumber(num)
+  if op(n,magenta)                      then return markup(theme.magenta, fn(n)) end
+  if op(n,orange) and not op(n,magenta) then return markup(theme.orange,  fn(n)) end
+  if op(n,yellow) and not op(n,orange)  then return markup(theme.yellow,  fn(n)) end
+  return fn(n)
+end
+
 -- space between items
 spacerwidget    = wibox.widget.textbox(" ")
 
@@ -158,11 +175,14 @@ memicon = wibox.widget.imagebox(beautiful.widget_mem)
 memwidget = lain.widgets.mem({
   timeout = 2,
   settings = function()
-    -- FIXME: memory formatting with color
-    widget:set_markup(format_size(mem_now.used * 1024) .. " " ..
-      format_size(mem_now.free * 1024) .. " " ..
-      format_size(mem_now.swapused * 1024)
-    )
+    local m  = function(n) return n * 1024 end
+    local g  = function(n) return m(m(n)) end
+    local mn = function(s) return m(mem_now[s]) end  -- mem_now uses `free -m`
+    -- FIXME: make thresholds more configurable, detect total amount of RAM?
+    local used = mycolor(g(1.6), g(2.2), g(2.6), mn("used"    ), format_size)
+    local free = mycolor(m(500), m(300), m(100), mn("free"    ), format_size)
+    local swap = mycolor(m(100), m(350), m(700), mn("swapused"), format_size)
+    widget:set_markup(used .. " " .. free .. " " .. swap)
   end
 })
 
