@@ -10,6 +10,10 @@ lain.layout.centerfair.ncol = 5    -- up to 5 in one row before spitting the
                                    -- next row (no effect with only 2 rows)
 
 lain.layout.cascadetile.ncol = 2   -- 1 ⇒ overlap slaves with master, x≠1 ⇒ don't
+lain.layout.cascadetile.offset_x = 10
+lain.layout.cascadetile.offset_y = 110 -- about 8 console lines
+lain.layout.cascade.offset_x = 10
+lain.layout.cascade.offset_y = 110
 
 -- short names for layout suits
 suit = {
