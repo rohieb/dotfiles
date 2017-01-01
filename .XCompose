@@ -1,12 +1,30 @@
 include "%S/en_US.UTF-8/Compose"
+
 <Multi_key> <r> <e>               : "♻"
 <Multi_key> <c> <c> <c> <p>       : "☭"
 <Multi_key> <V> <V>               : "✔"
 <Multi_key> <X> <X>               : "✘"
-<Multi_key> <p> <o> <o>           : "💩"
 <Multi_key> <asterisk> <asterisk> : "•"
 <Multi_key> <o> <bar>             : "🎜"
 <Multi_key> <period> <bar>        : "🎜"
+
+# Some useful LaTeX sequences
+<Multi_key> <backslash> <i> <n>             : "∈"
+<Multi_key> <backslash> <n> <i> <n>         : "∉"
+<Multi_key> <backslash> <e> <x>             : "∃"
+<Multi_key> <backslash> <n> <e> <x>         : "∄"
+<Multi_key> <backslash> <a> <l> <l>         : "∀"
+
+# Some Unicode smileys
+<Multi_key> <O> <colon> <parenright>      : "😇"
+<Multi_key> <colon> <D>                   : "😁"
+<Multi_key> <colon> <bar>                 : "😑"
+<Multi_key> <colon> <slash>               : "😕"
+<Multi_key> <B> <parenright>              : "😎"
+<Multi_key> <colon> <O>                   : "😮"
+<Multi_key> <greater> <colon> <parenleft> : "😠"
+<Multi_key> <backslash> <o> <slash>       : "🙌"
+<Multi_key> <p> <o> <o>                   : "💩"
 
 <Multi_key> <d> <u> <n> <n> <o>              : "¯\\_(ツ)_/¯"
 <Multi_key> <d> <s> <a> <p>                  : "ಠ_ಠ"
