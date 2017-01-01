@@ -52,15 +52,15 @@ fi
 # tell Java applications to use anti-aliasing
 export _JAVA_OPTIONS="$_JAVA_OPTIONS -Dawt.useSystemAAFontSettings=on"
 # tell Java Swing to use our GTK+ theme by default
-# GTK LAF is broken with OpenJDK 8
-#export _JAVA_OPTIONS="$_JAVA_OPTIONS -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+# (Note that GTK LAF is broken with ATK bridge, see
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=820227#10 )
+export _JAVA_OPTIONS="$_JAVA_OPTIONS -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 # tell Java apps to prefer IPv4 addresses
 export _JAVA_OPTIONS="$_JAVA_OPTIONS -Djava.net.preferIPv4Addresses=true"
 # fix some gray windows in OpenJDK
 # see https://awesome.naquadah.org/wiki/Problems_with_Java and
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=718803#63
 export _JAVA_AWT_WM_NONREPARENTING=1
-export AWT_TOOLKIT=MToolkit
 # GTK3 themes with SWT look ugly sometimes
 export SWT_GTK3=0
 
