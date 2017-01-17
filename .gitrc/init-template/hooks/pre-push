@@ -50,14 +50,18 @@ do
 		fi
 
 		# Check for WIP commit, unless env variable $GIT_PUSH_FORCE_WIP is set
-		if [ -z "$GIT_PUSH_FORCE_WIP" ]; then
-			commit=`git rev-list -n 1 --grep '^\(WIP\|fixup!\|squash!\|FIXME\|XXX\)' "$range"`
-			if [ -n "$commit" ]
-			then
-				echo "Found WIP commit in $local_ref, not pushing"
-				echo "Offending commit:"
-				git show --oneline $commit | head -n 1
+		offending_pattern='^\(WIP\|fixup!\|squash!\|FIXME\|XXX\)'
+		offending_commits=$(git log --oneline --grep "$offending_pattern" $range)
+		if [ -n "$offending_commits" ]; then
+			echo "WARNING: Found WIP commits in $local_ref:"
+			echo "$offending_commits"
+			echo
+
+			if [ -z "$GIT_PUSH_FORCE_WIP" ]; then
+				echo "If you really want to push this commit, set GIT_PUSH_FORCE_WIP=1."
 				exit 1
+			else
+				echo "Warning overridden by GIT_PUSH_FORCE_WIP=1."
 			fi
 		fi
 	fi
