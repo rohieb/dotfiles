@@ -5,7 +5,6 @@ execute pathogen#infect()
 set shiftwidth=2 tabstop=2 softtabstop=2
 set autoindent smartindent
 set hlsearch modeline modelines=5
-set cursorline
 set scrolloff=7
 set listchars=tab:│\ ,eol:¶,trail:·
 set guifont=Monospace\ 8
