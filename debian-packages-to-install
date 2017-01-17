@@ -4,7 +4,6 @@ adduser
 # anki
 apt-doc
 apt-file
-aptitude-dbg
 aptitude-doc-en
 arduino
 audacity
@@ -16,7 +15,6 @@ baobab
 binutils-mingw-w64
 blender
 blueman
-brasero
 bridge-utils
 bsdgames
 bsdgames-nonfree
@@ -34,8 +32,6 @@ colordiff
 colormake
 colortest-python
 command-not-found
-conkeror
-cowdancer         # auto, for pubuilder
 cpanminus
 cppreference-doc-en-html
 cppman
@@ -79,7 +75,6 @@ ffmpeg
 figlet
 file-roller
 finger
-flashplugin-nonfree     # TODO: -> pepperflashplugin, is this still needed?
 # fontforge
 fonts-freefont-otf
 fonts-inconsolata
@@ -110,13 +105,14 @@ git-doc
 git-extras
 git-gui
 git-remote-hg
+git-mediawiki
 git-sh
 gkrellm
-gkrellm-volume
 gkrellmoon
 gkrellweather
 glibc-doc-reference
 gnome-calculator
+gnome-font-viewer
 gnome-specimen
 gnupg
 gnupg2
@@ -132,8 +128,6 @@ grep
 greybird-gtk-theme
 gsmartcontrol
 gtk-redshift
-guayadeque
-guayadeque-dbg
 gucharmap
 guilt
 gv
@@ -202,6 +196,7 @@ latex-beamer
 libcppunit-dev
 libcppunit-doc
 libnotify-bin
+libpam-gnome-keyring
 libqt4-dev-bin
 libqt5sql5-sqlite   # auto
 libreoffice-calc
@@ -212,6 +207,7 @@ libreoffice-writer
 libtext-multimarkdown-perl
 libtravel-routing-de-vrr-perl  # for efa(1)
 libwww-dict-leo-org-perl   # for leo(1)
+lightdm
 lintian
 linux-doc
 linux-headers-amd64
@@ -265,22 +261,21 @@ ogmrip-profiles
 ogmrip-video-copy
 okteta
 okular
-openjdk-6-jdk
-openjdk-6-jre
+default-jre
+default-jdk
 openprinting-ppds
 openscad
 openshot
 openssh-blacklist-extra
 openssh-server
 openstreetmap-client
-#pandoc
+pandoc
 packaging-tutorial
 pasystray
 patchutils
 pavucontrol
 pbuilder
 pdftk
-pepperflashplugin-nonfree
 perl-doc
 pgpdump
 php5-cli
@@ -319,11 +314,7 @@ qt5-doc-html
 qt5-styleplugins       # for gtk+ style
 qtcreator
 quilt
-qtbase5-dbg   # auto
-qtxmlpatterns5-dbg    # auto
 rawtherapee
-r-base
-r-doc-info
 reportbug
 rtmpdump
 rxvt-unicode
@@ -336,8 +327,6 @@ seascope
 sed
 shutter
 signing-party
-sl         # for teh lulz
-slic3r
 smartmontools
 sox
 sqlite3
