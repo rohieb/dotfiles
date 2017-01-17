@@ -24,3 +24,9 @@ log/
 /.mpd/tag_cache
 /.mpd/playlists/
 /.mpd/pid
+.local/share/applications/wine/
+.wireshark/preferences
+.wireshark/heuristic_protos
+.wireshark/colorfilters
+.wireshark/disabled_protos
+.config/mpv/watch_later/
