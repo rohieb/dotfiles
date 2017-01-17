@@ -18,6 +18,8 @@ include "%S/en_US.UTF-8/Compose"
 # Some Unicode smileys
 <Multi_key> <O> <colon> <parenright>      : "😇"
 <Multi_key> <colon> <D>                   : "😁"
+<Multi_key> <colon> <P>                   : "😛"
+<Multi_key> <colon> <p>                   : "😛"
 <Multi_key> <colon> <bar>                 : "😑"
 <Multi_key> <colon> <slash>               : "😕"
 <Multi_key> <B> <parenright>              : "😎"
