@@ -372,6 +372,7 @@ uuid
 vagalume
 valgrind
 variety           # not in Debian, see ppa:peterlevi/ppa
+vdirsyncer
 vim
 vim-fugitive
 vim-pathogen

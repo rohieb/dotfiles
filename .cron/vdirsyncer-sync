@@ -1,0 +1,20 @@
+#!/bin/sh
+
+mkdir -vp $HOME/log
+
+if [ -z "$(ip r | grep '^default')" ]; then
+	# No internet access
+	exit
+fi
+
+if [ -x "`which vdirsyncer`" -a -r $HOME/.config/vdirsyncer/config ]; then
+	(
+		echo
+		date
+		nice ionice vdirsyncer sync
+	) >> $HOME/log/calendar.log
+
+	if [ -x "`which khal`" -a $HOME/.config/khal/khal.conf ]; then
+		nice khal > /dev/null
+	fi
+fi

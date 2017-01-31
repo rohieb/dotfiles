@@ -30,3 +30,5 @@ log/
 .wireshark/colorfilters
 .wireshark/disabled_protos
 .config/mpv/watch_later/
+.config/vdirsyncer/passwords
+.config/vdirsyncer/status

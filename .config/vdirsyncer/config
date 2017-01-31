@@ -1,0 +1,111 @@
+[general]
+status_path = "~/.config/vdirsyncer/status/"
+
+
+[pair neptun_home]
+a = "neptun_home_remote"
+b = "neptun_home_local"
+collections = null
+conflict_resolution = ["command", "meld" ]
+
+[storage neptun_home_remote]
+type = "caldav"
+url = "https://rohieb.name:5233/calendar/rohieb/home"
+username = "rohieb"
+password.fetch = ["command", "~/.config/vdirsyncer/get-password.sh", "neptun"]
+item_types = ["VEVENT", "VCONTACT"]
+
+[storage neptun_home_local]
+type = "filesystem"
+path = "~/.local/share/vdirsyncer/neptun_home"
+fileext = ".ics"
+
+
+[pair neptun_birthdays]
+a = "neptun_birthdays_remote"
+b = "neptun_birthdays_local"
+collections = null
+conflict_resolution = ["command", "meld" ]
+
+[storage neptun_birthdays_remote]
+type = "caldav"
+url = "https://rohieb.name:5233/calendar/rohieb/birthdays"
+username = "rohieb"
+password.fetch = ["command", "~/.config/vdirsyncer/get-password.sh", "neptun"]
+
+[storage neptun_birthdays_local]
+type = "filesystem"
+path = "~/.local/share/vdirsyncer/neptun_birthdays"
+fileext = ".ics"
+
+
+[pair neptun_uni]
+a = "neptun_uni_remote"
+b = "neptun_uni_local"
+collections = null
+conflict_resolution = ["command", "meld" ]
+
+[storage neptun_uni_remote]
+type = "caldav"
+url = "https://rohieb.name:5233/calendar/rohieb/uni"
+username = "rohieb"
+password.fetch = ["command", "~/.config/vdirsyncer/get-password.sh", "neptun"]
+
+[storage neptun_uni_local]
+type = "filesystem"
+path = "~/.local/share/vdirsyncer/neptun_uni"
+fileext = ".ics"
+
+
+[pair neptun_work]
+a = "neptun_work_remote"
+b = "neptun_work_local"
+collections = null
+conflict_resolution = ["command", "meld" ]
+
+[storage neptun_work_remote]
+type = "caldav"
+url = "https://rohieb.name:5233/calendar/rohieb/work"
+username = "rohieb"
+password.fetch = ["command", "~/.config/vdirsyncer/get-password.sh", "neptun"]
+
+[storage neptun_work_local]
+type = "filesystem"
+path = "~/.local/share/vdirsyncer/neptun_work"
+fileext = ".ics"
+
+
+[pair google_holidays_de]
+a = "google_holidays_de_remote"
+b = "google_holidays_de_local"
+collections = null
+conflict_resolution = "a wins"
+partial_sync = "revert"
+
+[storage google_holidays_de_remote]
+type = "http"
+url = "http://www.google.com/calendar/ical/de.german%23holiday%40group.v.calendar.google.com/public/basic.ics"
+read_only = "true"
+
+[storage google_holidays_de_local]
+type = "filesystem"
+path = "~/.local/share/vdirsyncer/google-holidays-de"
+fileext = ".ics"
+
+
+[pair stratum0]
+a = "stratum0_remote"
+b = "stratum0_local"
+collections = null
+conflict_resolution = "a wins"
+partial_sync = "revert"
+
+[storage stratum0_remote]
+type = "http"
+url = "https://stratum0.org/kalender/termine.ics"
+read_only = "true"
+
+[storage stratum0_local]
+type = "filesystem"
+path = "~/.local/share/vdirsyncer/stratum0"
+fileext = ".ics"
