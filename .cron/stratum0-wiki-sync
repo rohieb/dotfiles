@@ -7,11 +7,11 @@ if [ -z "$(ip r | grep '^default')" ]; then
 	exit
 fi
 
-if [ -d $HOME/Projects/stratum0-wiki/.git ]; then
+if [ -d $HOME/Documents/Hackerspace/wiki/.git ]; then
 	(
 		echo
 		date
-		cd $HOME/Projects/stratum0-wiki
+		cd $HOME/Documents/Hackerspace/wiki/
 		git pull origin master
 	) >> $HOME/log/git-stratum0-wiki.log 2>&1
 fi
