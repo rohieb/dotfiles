@@ -12,6 +12,6 @@ if [ -d $HOME/Documents/Hackerspace/wiki/.git ]; then
 		echo
 		date
 		cd $HOME/Documents/Hackerspace/wiki/
-		git pull origin master
+		git fetch origin
 	) >> $HOME/log/git-stratum0-wiki.log 2>&1
 fi
