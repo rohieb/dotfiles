@@ -1,0 +1,21 @@
+#!/bin/sh
+
+mkdir -vp $HOME/log
+
+if [ -z "`ping -w 10 -q -c1 8.8.8.8 | grep '1 received'`" ] || \
+   ! curl rohieb.name:5233 > /dev/null 2>&1 ; then
+	# No internet access
+	exit
+fi
+
+if [ -x "`which vdirsyncer`" -a -r $HOME/.config/vdirsyncer/config ]; then
+	(
+		echo
+		date
+		nice ionice vdirsyncer sync
+	) >> $HOME/log/calendar.log
+
+	if [ -x "`which khal`" -a $HOME/.config/khal/khal.conf ]; then
+		nice khal > /dev/null
+	fi
+fi
