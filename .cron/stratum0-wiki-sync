@@ -1,0 +1,17 @@
+#!/bin/sh
+
+mkdir -vp $HOME/log
+
+if [ -z "$(ip r | grep '^default')" ]; then
+	# No internet access
+	exit
+fi
+
+if [ -d $HOME/Projects/stratum0-wiki/.git ]; then
+	(
+		echo
+		date
+		cd $HOME/Projects/stratum0-wiki
+		git pull origin master
+	) >> $HOME/log/git-stratum0-wiki.log 2>&1
+fi
