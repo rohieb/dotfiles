@@ -19,11 +19,11 @@ color.tagged=
 color.tag.lesefoo=yellow
 
 # custom urgency coefficients
-urgency.user.project.uni.coefficient         =  2
+urgency.inherit                              = on
+urgency.blocked.coefficient                  = 0
+urgency.blocking.coefficient                 = 0
 urgency.user.project.lesefoo.coefficient     = -3
-
-urgency.blocked.coefficient                  = -8
-urgency.tags.coefficient                      = 0
+urgency.tags.coefficient                     = 0
 
 # `nextpopup ' report for awesome-wm integration
 report.nextpopup.description = Most urgent tasks, shortened 
