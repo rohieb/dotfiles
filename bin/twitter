@@ -1,0 +1,6 @@
+#!/bin/sh
+firefox \
+	https://twitter.com/i/notifications \
+	https://twitter.com/daniel_bohrer/lists/missinginaction \
+	https://twitter.com/daniel_bohrer/lists/lesebefehl \
+	https://twitter.com/daniel_bohrer/with_replies \
