@@ -1,0 +1,10 @@
+#!/bin/sh
+file="$(/usr/bin/texdoc -M -l -I $1 | awk '/\.pdf\>/{print $3}')"
+if [ -z "$file" ] ; then
+	echo "Could not find anything for '$file'."
+	if [ -n "$DISPLAY" ]; then
+		xmessage "Could not find anything for '$file'."
+	fi
+else
+	viewpdf-autocrop $file
+fi

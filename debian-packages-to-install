@@ -275,6 +275,8 @@ pasystray
 patchutils
 pavucontrol
 pbuilder
+pdfcrop
+pdfjam        # pdfnup and friends
 pdftk
 perl-doc
 pgpdump
@@ -290,7 +292,7 @@ pidgin-privacy-please
 pidgin-themes
 polipo
 policykit-1-gnome
-polly
+poppler-utils      # for pdfinfo, pdftotext, etc.
 printer-driver-hpijs
 pristine-tar    # auto, for git-buildpackage
 proxychains

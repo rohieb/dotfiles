@@ -1,0 +1,15 @@
+#!/bin/sh
+tmpdir=$(mktemp -d /tmp/evince-autocrop.XXXXXX)
+basename=$(basename "$1")
+filename="$tmpdir/$basename"
+
+pdfcrop --margins 10 "$1" "$filename.tmp"
+
+# fix metadata and bookmarks, pdfcrop doesn't keep them
+pdftk "$1" dump_data_utf8 output - |
+	grep '^Bookmark\|^Info' |
+	pdftk "$filename.tmp" update_info - output $filename
+
+xdg-open $filename
+
+rm -rf $tmpdir
