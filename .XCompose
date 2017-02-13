@@ -7,6 +7,8 @@ include "%S/en_US.UTF-8/Compose"
 <Multi_key> <asterisk> <asterisk> : "•"
 <Multi_key> <o> <bar>             : "🎜"
 <Multi_key> <period> <bar>        : "🎜"
+<Multi_key> <q> <e> <d>           : "∎"
+<Multi_key> <z> <w> <n> <j>       : "‌"
 
 # Some useful LaTeX sequences
 <Multi_key> <backslash> <i> <n>             : "∈"
