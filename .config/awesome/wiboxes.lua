@@ -50,7 +50,8 @@ end
 spacerwidget    = wibox.widget.textbox(" ")
 
 -- Create a textclock widget
-mytextclock = awful.widget.textclock("%a %b %d, %H:%M:%S ", 1)
+mytextclock = awful.widget.textclock("<span foreground='" .. theme.fg_focus ..
+  "'>%a %b %d, %H:%M:%S </span>", 1)
 
 -- mpd widget
 if string.len(awful.util.pread("mpc | grep -v '^error' ")) > 0 then
