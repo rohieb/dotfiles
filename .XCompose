@@ -8,7 +8,24 @@ include "%S/en_US.UTF-8/Compose"
 <Multi_key> <o> <bar>             : "🎜"
 <Multi_key> <period> <bar>        : "🎜"
 <Multi_key> <q> <e> <d>           : "∎"
-<Multi_key> <z> <w> <n> <j>       : "‌"
+
+# Unicode spacing
+<Multi_key> <e> <m> <q>           : " "  # U+2000 EN QUAD
+<Multi_key> <e> <n> <q>           : " "  # U+2001 EM QUAD
+<Multi_key> <e> <n> <space>       : " "  # U+2002 EN SPACE
+<Multi_key> <e> <m> <space>       : " "  # U+2003 EM SPACE
+<Multi_key> <3> <e> <m>           : " "  # U+2004 THREE-PER-EM SPACE
+<Multi_key> <4> <e> <m>           : " "  # U+2005 FOUR-PER-EM SPACE
+<Multi_key> <6> <e> <m>           : " "  # U+2006 SIX-PER-EM SPACE
+<Multi_key> <f> <space>           : " "  # U+2007 FIGURE SPACE
+<Multi_key> <.> <space>           : " "  # U+2008 PUNCTUATION SPACE
+<Multi_key> <t> <space>           : " "  # U+2009 THIN SPACE
+<Multi_key> <h> <space>           : " "  # U+200A HAIR SPACE
+<Multi_key> <z> <w> <space>       : "​"  # U+200B ZERO WIDTH SPACE
+<Multi_key> <z> <w> <n> <j>       : "‌"  # U+200C ZERO WIDTH NON-JOINER
+<Multi_key> <z> <w> <j>           : "‌"  # U+200D ZERO WIDTH JOINER
+<Multi_key> <l> <t> <r> <m>       : "‎"  # U+200E LEFT-TO-RIGHT MARK
+<Multi_key> <r> <t> <l> <m>       : "‏"  # U+200F RIGHT-TO-LEFT MARK
 
 # Some useful LaTeX sequences
 <Multi_key> <backslash> <i> <n>             : "∈"
