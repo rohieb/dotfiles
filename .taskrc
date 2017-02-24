@@ -24,6 +24,7 @@ urgency.blocked.coefficient                  = 0
 urgency.blocking.coefficient                 = 0
 urgency.user.project.lesefoo.coefficient     = -3
 urgency.tags.coefficient                     = 0
+urgency.uda.priority.L.coefficient           = -0.5
 
 # `nextpopup ' report for awesome-wm integration
 report.nextpopup.description = Most urgent tasks, shortened 
