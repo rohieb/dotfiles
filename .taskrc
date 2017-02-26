@@ -13,8 +13,8 @@ rule.precedence.color=deleted,completed,overdue,due.today,active,keyword.,tag.,p
 color.active=blue
 color.due.today=bold red
 color.overdue=bold white on red
-color.blocked=black on bright green
-color.blocking=black on bright white
+color.blocked=on bright green
+color.blocking=black on green
 color.tagged=
 color.tag.lesefoo=yellow
 
