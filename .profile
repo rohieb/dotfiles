@@ -17,7 +17,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set PATH so it includes user's private bin if it exists
-PATH="$HOME/bin:/sbin:/usr/sbin:$PATH"
+PATH="$HOME/bin:$HOME/.local/bin:/sbin:/usr/sbin:$PATH"
 
 ### exports
 export NAME="Roland Hieber"
