@@ -19,3 +19,5 @@ alias refox='killall -9 iceweasel && iceweasel > /dev/null &'
 alias colorcat='pygmentize -g'
 
 alias gpg=gpg2
+
+alias k='khal calendar'
