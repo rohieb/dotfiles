@@ -13,6 +13,7 @@ URxvt.keysym.C-2: command:\033]710;-*-terminus-medium-r-*-*-14-*-*-*-*-*-iso1064
 URxvt.keysym.C-3: command:\033]710;-*-terminus-medium-r-*-*-18-*-*-*-*-*-iso10646-*\007\033]711;-*-terminus-bold-r-*-*-18-*-*-*-*-*-iso10646-*\007
 URxvt.keysym.C-4: command:\033]710;-*-terminus-medium-r-*-*-24-*-*-*-*-*-iso10646-*\007\033]711;-*-terminus-bold-r-*-*-24-*-*-*-*-*-iso10646-*\007
 URxvt.keysym.C-5: command:\033]710;-*-terminus-medium-r-*-*-32-*-*-*-*-*-iso10646-*\007\033]711;-*-terminus-bold-r-*-*-32-*-*-*-*-*-iso10646-*\007
+URxvt.keysym.C-6: command:\033]710;xft:Droid Sans Mono-14\007\033]711;xft:Droid Sans Mono-14:bold\007
 
 !! bell
 URxvt.urgentOnBell: true
