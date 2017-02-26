@@ -17,7 +17,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set PATH so it includes user's private bin if it exists
-PATH="$HOME/bin:/sbin:/usr/sbin:$PATH"
+PATH="$HOME/bin:$HOME/.local/bin:/sbin:/usr/sbin:$PATH"
 
 ### exports
 export NAME="Roland Hieber"
@@ -69,6 +69,9 @@ export QT_STYLE_OVERRIDE='gtk2'
 
 # locally installed Node packages
 export PATH="$PATH:$HOME/lib/node_modules/.bin"
+
+# solarized dircolors
+eval `dircolors ~/opt/dircolors-solarized/dircolors.ansi-universal`
 
 ### autostarts
 source $HOME/.login_autostart

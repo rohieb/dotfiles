@@ -6,6 +6,7 @@ alias l='ls -lah'
 #alias make='colormake'
 
 alias iotop='sudo iotop'
+alias iftop='sudo iftop'
 alias iptraf='sudo iptraf'
 
 psgrep() {
@@ -19,3 +20,5 @@ alias refox='killall -9 iceweasel && iceweasel > /dev/null &'
 alias colorcat='pygmentize -g'
 
 alias gpg=gpg2
+
+alias k='khal calendar'

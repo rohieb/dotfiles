@@ -60,7 +60,7 @@ sleep 5
 
 setkeymap
 
-killall xfce4-power-manager
-xfce4-power-manager
+killall -9 xfce4-power-manager
+(sleep 5; xfce4-power-manager) &
 
 # vim: set ts=2 sw=2 expandtab smartindent autoindent:

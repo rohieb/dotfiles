@@ -13,8 +13,8 @@ rule.precedence.color=deleted,completed,overdue,due.today,active,keyword.,tag.,p
 color.active=blue
 color.due.today=bold red
 color.overdue=bold white on red
-color.blocked=black on bright green
-color.blocking=black on bright white
+color.blocked=on bright green
+color.blocking=black on green
 color.tagged=
 color.tag.lesefoo=yellow
 
@@ -32,6 +32,10 @@ report.nextpopup.columns     = id,depends.count,priority,project,tags,due.relati
 report.nextpopup.filter      = status:pending limit:page
 report.nextpopup.labels      = ID,Deps,P,Project,Tag,Due,Description,Urg
 report.nextpopup.sort        = urgency-
+
+# contexts
+context.s0latex=proj:s0.latex or ((proj:m4rkup or proj:s0) and +latex)
+context.s0v=proj:s0.v or proj:m4rkup or +s0v
 
 # taskserver synchronization
 taskd.certificate=\/home\/rohieb\/.task\/rohieb-r2d2.cert.pem
