@@ -6,6 +6,7 @@ alias l='ls -lah'
 #alias make='colormake'
 
 alias iotop='sudo iotop'
+alias iftop='sudo iftop'
 alias iptraf='sudo iptraf'
 
 psgrep() {
