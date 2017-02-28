@@ -16,6 +16,7 @@ awful.rules.rules = {
 
     -- floating windows
     { rule_any = { class = {
+      "2048-qt",
       "d-feet",
       "MPlayer",
       "mpv",
@@ -26,7 +27,7 @@ awful.rules.rules = {
       "Kaffeine",
       "Evince",
       "Eog",
-      "Kmines",
+      "Kmines", "kmines",
       "Xsane",
       "Display.im6",
       "Display",

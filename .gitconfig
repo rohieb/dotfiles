@@ -22,7 +22,8 @@
 	dif = diff
 	ca = diff --cached
 	cached = diff --cached
-	stat = show --stat
+	stat     = show --stat=100000 --stat-graph-width=40
+	fullstat = show --stat=100000 --stat-graph-width=40
 	fulldiff = diff -p --no-prefix -U20000
 
 	a = add -p

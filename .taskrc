@@ -13,17 +13,18 @@ rule.precedence.color=deleted,completed,overdue,due.today,active,keyword.,tag.,p
 color.active=blue
 color.due.today=bold red
 color.overdue=bold white on red
-color.blocked=black on bright green
-color.blocking=black on bright white
+color.blocked=on bright green
+color.blocking=black on green
 color.tagged=
 color.tag.lesefoo=yellow
 
 # custom urgency coefficients
-urgency.user.project.uni.coefficient         =  2
+urgency.inherit                              = on
+urgency.blocked.coefficient                  = 0
+urgency.blocking.coefficient                 = 0
 urgency.user.project.lesefoo.coefficient     = -3
-
-urgency.blocked.coefficient                  = -8
-urgency.tags.coefficient                      = 0
+urgency.tags.coefficient                     = 0
+urgency.uda.priority.L.coefficient           = -0.5
 
 # `nextpopup ' report for awesome-wm integration
 report.nextpopup.description = Most urgent tasks, shortened 
@@ -31,3 +32,7 @@ report.nextpopup.columns     = id,depends.count,priority,project,tags,due.relati
 report.nextpopup.filter      = status:pending limit:page
 report.nextpopup.labels      = ID,Deps,P,Project,Tag,Due,Description,Urg
 report.nextpopup.sort        = urgency-
+
+# contexts
+context.s0latex=proj:s0.latex or ((proj:m4rkup or proj:s0) and +latex)
+context.s0v=proj:s0.v or proj:m4rkup or +s0v

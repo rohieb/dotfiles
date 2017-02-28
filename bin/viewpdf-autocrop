@@ -1,0 +1,84 @@
+#!/bin/sh
+CACHEDIR="$XDG_CACHE_DIR"
+if [ -z "$CACHEDIR" ]; then
+	CACHEDIR="$HOME/.cache"
+fi
+CACHEDIR="$CACHEDIR/viewpdf-autocrop"
+
+# for the following gs magic, see http://stackoverflow.com/a/6184547/4521877
+crop_file() {
+	# determine maximum cropbox, plus 10 bp margin
+	infile="$1"
+	outfile="$2"
+
+	if [ -n "$verbose" ]; then
+		tty="`(tty -s && tty) || echo /dev/null`"
+	else
+		tty=/dev/null
+	fi
+
+	cropbox=$(
+		gs -sDEVICE=bbox -dBATCH -dNOPAUSE "$infile" 2>&1 | tee $tty | awk '
+			BEGIN { YMIN = XMIN = 65535; YMAX = XMAX = 0; }
+			/^\%\%BoundingBox/ {
+				YMIN = YMIN < $2 ? YMIN : $2;
+				XMIN = XMIN < $3 ? XMIN : $3;
+				YMAX = YMAX > $4 ? YMAX : $4;
+				XMAX = XMAX > $5 ? XMAX : $5;
+			}
+			END { print YMIN-10 " " XMIN-10 " " YMAX+10 " " XMAX+10 }
+		'
+	)
+	echo $cropbox > $tty
+
+	if [ -n "$cropbox" ]; then
+		# set new cropbox
+		gs  -o "$outfile" -sDEVICE=pdfwrite \
+			-c "[/CropBox [$cropbox] /PAGES pdfmark" -f "$infile"  > $tty
+		echo "$outfile"
+	else
+		# somehow no crop box, fall back to viewing original file
+		echo "Could not crop, cropbox is empty. Viewing original file." >&2
+		echo "$infile"
+	fi
+}
+
+################################################################################
+mkdir -p "$CACHEDIR"
+
+# option parsing
+force=
+help=
+file=
+verbose=
+while [ -n "$1" ]; do
+	case $1 in
+		-f|--force)     force=1;;
+		-h|--help)      help=1;;
+		-v|--verbose)   verbose=1;;
+		*)              file="$1";;
+	esac
+	shift
+done
+
+if [ -z "$file" -o -n "$help" ]; then
+	echo "Usage: $0 [-f|--force] <pdf file>"
+	echo
+	echo " -f, --force    force regeneration of cropped file in cache"
+	echo " -v, --verbose  more verbose output"
+	echo " -h, --help     show this help text"
+	exit 1
+fi
+
+# the real work
+basename="$(basename "$file")"
+cachefile="$CACHEDIR/$basename"
+if [ -f $cachefile  -a  $cachefile -nt $file  -a  -z "$force" ]; then
+	echo "Using cached file $cachefile"
+	openfile="$cachefile"
+else
+	echo "Cropping $file to $cachefile"
+	openfile="$(crop_file "$file" "$cachefile")"
+fi
+
+xdg-open "$openfile"

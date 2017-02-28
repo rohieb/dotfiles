@@ -49,12 +49,6 @@
 [submodule ".vim/bundle/rust.vim"]
 	path = .vim/bundle/rust.vim
 	url = https://github.com/rust-lang/rust.vim
-[submodule ".vim/bundle/vim-pandoc-syntax"]
-	path = .vim/bundle/vim-pandoc-syntax
-	url = https://github.com/vim-pandoc/vim-pandoc-syntax
-[submodule ".vim/bundle/vim-pandoc"]
-	path = .vim/bundle/vim-pandoc
-	url = https://github.com/vim-pandoc/vim-pandoc
 [submodule ".config/awesome/lain"]
 	path = .config/awesome/lain
 	url = https://github.com/rohieb/lain.git
@@ -76,3 +70,9 @@
 [submodule ".vim/bundle/vim-unimpaired"]
 	path = .vim/bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired
+[submodule ".vim/bundle/editorconfig"]
+	path = .vim/bundle/editorconfig
+	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "opt/dircolors-solarized"]
+	path = opt/dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized

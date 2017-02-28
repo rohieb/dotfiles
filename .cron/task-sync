@@ -1,0 +1,19 @@
+#!/bin/sh
+
+mkdir -vp $HOME/log
+
+if [ -z "$(ip r | grep '^default')" ]; then
+	# No internet access
+	exit
+fi
+
+if [ -x "`which task`" \
+     -a -r $HOME/.taskrc \
+     -a -z "$(ps -Af | grep -v grep | grep '^rohieb' | grep ' task ')" \
+   ]; then
+	(
+		echo
+		date
+		task sync 2>&1
+	) >> ~/log/task-sync.log
+fi
