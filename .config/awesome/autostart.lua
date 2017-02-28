@@ -3,7 +3,6 @@
 -- https://wiki.archlinux.org/index.php/Awesome#Transitioning_away_from_Gnome3
 --
 procs = {
-  { "nm-applet", },
   { "s0trayicon", },
   { "blueman-applet", },
   { "gkrellm", },
