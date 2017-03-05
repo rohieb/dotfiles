@@ -8,6 +8,7 @@ alias l='ls -lah'
 alias iotop='sudo iotop'
 alias iftop='sudo iftop'
 alias iptraf='sudo iptraf'
+alias dmesg='sudo dmesg'
 
 psgrep() {
 	ps -Af | grep "$*"
