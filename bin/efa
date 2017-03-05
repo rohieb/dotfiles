@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/bin/efa --efa-url=http://bsvg.efa.de/bsvagstd/XSLT_TRIP_REQUEST2 "$@"

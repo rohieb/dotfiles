@@ -33,6 +33,10 @@ include "%S/en_US.UTF-8/Compose"
 <Multi_key> <backslash> <e> <x>             : "∃"
 <Multi_key> <backslash> <n> <e> <x>         : "∄"
 <Multi_key> <backslash> <a> <l> <l>         : "∀"
+<Multi_key> <backslash> <a> <n> <d>         : "∧"
+<Multi_key> <backslash> <o> <r>             : "∨"
+<Multi_key> <backslash> <c> <u> <p>         : "∪"
+<Multi_key> <backslash> <c> <a> <p>         : "∩"
 
 # Some Unicode smileys
 <Multi_key> <O> <colon> <parenright>      : "😇"
