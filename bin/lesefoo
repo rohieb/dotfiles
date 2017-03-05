@@ -1,0 +1,5 @@
+#!/bin/sh
+link="$1"
+shift
+task add proj:lesefoo "$@"
+task +LATEST annotate "$link"
