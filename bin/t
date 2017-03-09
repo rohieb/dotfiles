@@ -1,7 +1,0 @@
-#!/bin/sh
-
-if [ "$#" -lt 1 ]; then
-	task next
-else
-	task "$@"
-fi

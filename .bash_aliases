@@ -23,3 +23,4 @@ alias colorcat='pygmentize -g'
 alias gpg=gpg2
 
 alias k='khal calendar'
+alias t=task
