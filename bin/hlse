@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -z "$1" -o "$1" = "-h" -o "$1" = "--help" ]; then
+	echo "Usage: hlse <pattern>"
+	echo "      where <pattern> is a basic regex suitable for sed's s command."
+	echo "Highlight a search expression in input stream"
+	exit
+fi
+
+sed "s/\($1\)/"'\x1b[7m\1\x1b[0m/g'
