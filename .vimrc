@@ -1,6 +1,9 @@
 " Call pathogen
 execute pathogen#infect()
 
+" load matchit plugin for matching braces, tags, if/else/endif etc.
+packadd! matchit
+
 " set various preferred options...
 set shiftwidth=2 tabstop=2 softtabstop=2
 set autoindent smartindent
