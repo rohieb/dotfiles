@@ -70,9 +70,6 @@ export QT_STYLE_OVERRIDE='gtk2'
 # locally installed Node packages
 export PATH="$PATH:$HOME/lib/node_modules/.bin"
 
-# solarized dircolors
-eval `dircolors ~/opt/dircolors-solarized/dircolors.ansi-universal`
-
 ### autostarts
 source $HOME/.login_autostart
 if [ -n "$DISPLAY" ]; then $HOME/bin/solarized-dark --no-term; fi

@@ -1,0 +1,77 @@
+rule.precedence.color=deleted,completed,overdue,due.today,due,tag.next,active,blocked,blocking,uda.priority,recurring
+
+# General decoration
+color.label=
+color.label.sort=
+color.alternate=
+color.header=white
+color.footnote=white
+color.warning=bold red
+color.error=white on red
+color.debug=blue
+
+# Task state
+color.completed=green on bright black
+color.deleted=inverse
+color.active=white on green  # green = you should work on this (or `stop` it)
+color.recurring=blue
+color.scheduled=
+color.until=
+color.blocked=color10  # solarized gray = you cannot work on this
+color.blocking=yellow  # slight highlight: don't forget these
+
+# Due
+color.due=red
+color.due.today=bold black on magenta
+color.overdue=bold white on magenta
+
+# Project
+color.project.none=
+
+# Priority
+color.uda.priority.H=
+color.uda.priority.M=
+color.uda.priority.L=on black
+
+# Tags
+color.tag.next=black on green      # green = this is your main task
+color.tag.none=
+color.tagged=
+
+# UDA
+#color.uda.X=
+
+# Report: burndown
+color.burndown.done=on green
+color.burndown.pending=on red
+color.burndown.started=on white
+
+# Report: history
+color.history.add=black on red
+color.history.delete=black on white
+color.history.done=black on green
+
+# Report: summary
+color.summary.background=white on black
+color.summary.bar=black on green
+
+# Command: calendar
+color.calendar.due=red
+color.calendar.due.today=bold red on white
+color.calendar.overdue=white on magenta
+color.calendar.today=bold on white
+#color.calendar.due=white on red
+#color.calendar.due.today=bold white on red
+#color.calendar.overdue=black on bright red
+color.calendar.weekend=white
+color.calendar.holiday=white
+color.calendar.weeknumber=color10 on black
+
+# Command: sync
+color.sync.added=green
+color.sync.changed=yellow
+color.sync.rejected=red
+
+# Command: undo
+color.undo.after=green
+color.undo.before=red

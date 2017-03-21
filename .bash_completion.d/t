@@ -1,0 +1,8 @@
+if [ -r /usr/share/bash-completion/completions/task ]; then
+	source /usr/share/bash-completion/completions/task
+elif [ -r /etc/bash_completion.d/task ]; then
+	source /etc/bash_completion.d/task
+fi
+if [ "$(type -t _task)" = "function" ]; then
+	complete -o nospace -F _task t
+fi

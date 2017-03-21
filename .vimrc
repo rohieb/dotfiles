@@ -1,6 +1,9 @@
 " Call pathogen
 execute pathogen#infect()
 
+" load matchit plugin for matching braces, tags, if/else/endif etc.
+packadd! matchit
+
 " set various preferred options...
 set shiftwidth=2 tabstop=2 softtabstop=2
 set autoindent smartindent
@@ -52,6 +55,8 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 nnoremap <F3> :set invhlsearch hlsearch?<CR>
 inoremap <F3> <Esc>:set invhlsearch hlsearch?<CR>a
+nnoremap <S-F3> :let @/=''<CR>        " clear search
+nnoremap [25~ :let @/=''<CR>
 nnoremap <F4> :set invlist list?<CR>
 inoremap <F4> <Esc>:set invlist list?<CR>a
 nnoremap <F5> :NERDTreeToggle<CR>
