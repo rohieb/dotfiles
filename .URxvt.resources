@@ -34,7 +34,6 @@ URxvt.scrollBar: true
 URxvt.scrollstyle: plain
 URxvt.thickness: 3
 
-URxvt.fading: 20
 URxvt.transparent: false
 
 !! do not send modifier keys as 8th bit (breaks vim)
