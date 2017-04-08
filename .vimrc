@@ -90,7 +90,7 @@ if &term != "linux" || has('gui_running')
 	if has('gui_running')
 		set background=light
 	else
-		if filereadable("~/.vimrc.solarized")
+		if filereadable(glob("~/.vimrc.solarized"))
 			source ~/.vimrc.solarized
 		else
 			set background=dark
