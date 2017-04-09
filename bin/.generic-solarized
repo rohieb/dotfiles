@@ -1,0 +1,103 @@
+#!/bin/sh
+readonly SELF="$(basename "$0")"
+
+readonly  S_base03=rgb:00/2b/36
+readonly  S_base02=rgb:07/36/42
+readonly  S_base01=rgb:58/6e/75
+readonly  S_base00=rgb:65/7b/83
+readonly   S_base0=rgb:83/94/96
+readonly   S_base1=rgb:93/a1/a1
+readonly   S_base2=rgb:ee/e8/d5
+readonly   S_base3=rgb:fd/f6/e3
+readonly  S_yellow=rgb:b5/89/00
+readonly  S_orange=rgb:cb/4b/16
+readonly     S_red=rgb:dc/32/2f
+readonly S_magenta=rgb:d3/36/82
+readonly  S_violet=rgb:6c/71/c4
+readonly    S_blue=rgb:26/8b/d2
+readonly    S_cyan=rgb:2a/a1/98
+readonly   S_green=rgb:85/99/00
+
+# send XTerm Operating System Command
+# see urxvt(7) for a list
+xterm_osc() {
+	ps=$1
+	pt=$2
+	printf "\e]%s;%s\007" "$ps" "$pt"
+}
+
+# check for supported terms
+case "$TERM" in
+	rxvt*|xterm)
+		;;
+	linux)
+		# doesn't support changing colors, but don't complain on every tty login
+		exit
+		;;
+	*)
+		echo Unsupported terminal $TERM, doing nothing.
+		exit
+		;;
+esac
+
+# find out what to do
+case "$SELF" in
+
+	solarized-dark)
+		readonly COLORSCHEME=dark
+		;;
+
+	solarized-light)
+		readonly COLORSCHEME=light
+		;;
+
+	*)
+		echo 'Call me as solarized-dark or solarized-light.'
+		exit
+		;;
+esac
+
+if [ "$1" = "--all" -o "$1" = "-a" ]; then
+	# set resources for future terminal instances
+	xrdb -merge ~/.solarized.resources.$COLORSCHEME
+
+	# tell vim about our decision
+	cat > ~/.vimrc.solarized <<-EOF
+		" This file will be overwritten by ~/bin/solarized-*
+		set bg=$COLORSCHEME
+	EOF
+fi
+
+# set up ANSI color scheme
+xterm_osc 4 "0;$S_base02"
+xterm_osc 4 "1;$S_red"
+xterm_osc 4 "2;$S_green"
+xterm_osc 4 "3;$S_yellow"
+xterm_osc 4 "4;$S_blue"
+xterm_osc 4 "5;$S_magenta"
+xterm_osc 4 "6;$S_cyan"
+xterm_osc 4 "7;$S_base2"
+xterm_osc 4 "8;$S_base03"
+xterm_osc 4 "9;$S_orange"
+xterm_osc 4 "10;$S_base01"
+xterm_osc 4 "11;$S_base00"
+xterm_osc 4 "12;$S_base0"
+xterm_osc 4 "14;$S_base1"
+xterm_osc 4 "13;$S_violet"
+xterm_osc 4 "15;$S_base1"
+xterm_osc 4 "15;$S_base3"
+
+# set up bgcolor, fgcolor and cursors
+if [ "$COLORSCHEME" = "dark" ]; then
+	xterm_osc 10  $S_base0   # text foreground
+	xterm_osc 11  $S_base03  # text background
+	xterm_osc 12  $S_base1   # text cursor foreground
+	xterm_osc 13  $S_base1   # mouse pointer color
+	xterm_osc 708 $S_base03  # border color
+else
+	xterm_osc 10  $S_base00  # text foreground
+	xterm_osc 11  $S_base3   # text background
+	xterm_osc 12  $S_base01  # text cursor foreground
+	xterm_osc 13  $S_base01  # mouse pointer color
+	xterm_osc 708 $S_base3   # border color
+fi

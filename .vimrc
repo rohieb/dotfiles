@@ -90,7 +90,7 @@ if &term != "linux" || has('gui_running')
 	if has('gui_running')
 		set background=light
 	else
-		if filereadable("~/.vimrc.solarized")
+		if filereadable(glob("~/.vimrc.solarized"))
 			source ~/.vimrc.solarized
 		else
 			set background=dark
@@ -99,6 +99,17 @@ if &term != "linux" || has('gui_running')
 	let g:solarized_termtrans=1   " avoid problems with terminal transparency
 	colorscheme solarized
 endif
+
+" simplify toggling between dark and light background
+function! MyToggleBackground()
+	if &background == "dark"
+		set background=light
+	else
+		set background=dark
+	end
+endfunction
+nnoremap <F12> :call MyToggleBackground()<CR>
+inoremap <F12> <Esc>:call MyToggleBackground()<CR>a
 
 " prevent nerdtree vom opening at startup
 let g:nerdtree_tabs_open_on_gui_startup = 0
