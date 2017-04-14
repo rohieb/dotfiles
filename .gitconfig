@@ -67,7 +67,6 @@
 
 [core]
 	excludesfile = ~/.gitrc/ignore
-	hooksPath = ~/.gitrc/init-template/hooks/    # git 2.9
 
 [cola]
 	fontdiff = Terminus,8,-1,5,50,0,0,0,0,0
