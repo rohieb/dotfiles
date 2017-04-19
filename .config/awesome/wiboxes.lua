@@ -133,7 +133,11 @@ cpuwidget = lain.widgets.cpu({
       else                        return padded
       end
     end
-    widget:set_markup(color(cpu_now[1].usage) .. color(cpu_now[2].usage))
+    local cpustring = ""
+    for i,_ in ipairs(cpu_now) do
+      cpustring = cpustring .. color(cpu_now[i].usage)
+    end
+    widget:set_markup(cpustring)
   end
 })
 
