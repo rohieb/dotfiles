@@ -13,7 +13,8 @@ xset b off # turn off stupid bell sound
 which numlockx >/dev/null 2>&1 && numlockx on
 
 # synaptics settings
-if [ -x /usr/bin/synclient ]; then
+# (synclient -l exists with 1 if no synaptics driver was loaded)
+if [ -x /usr/bin/synclient -a synclient -l ]; then
 	synclient HorizTwoFingerScroll=1
 fi
 
