@@ -20,4 +20,8 @@ fi
 
 $HOME/bin/setkeymap
 
+if [ -x $HOME/bin/setscreens-$HOSTNAME ]; then
+	$HOME/bin/setscreens-$HOSTNAME
+fi
+
 exec awesome
