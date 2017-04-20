@@ -1,0 +1,6 @@
+#!/bin/sh
+PARAM="-n 10"
+if [ -n "$1" ]; then
+	PARAM="$@"
+fi
+exec git gr $PARAM
