@@ -1,0 +1,148 @@
+#!/bin/bash
+#
+# bash_completion for PTXdist by Wolfram Sang, Pengutronix e.K., in 2008-2010
+#                             by Michael Olbrich, Pengutronix e.K., in 2012
+# part of PTXdist, so same licence.
+#
+
+if _have ptxdist; then
+
+declare -a _ptxdist_completion_opts
+declare -a _ptxdist_completion_cmds
+declare -a _ptxdist_completion_newpkg
+__ptxdist_completion_packages() {
+	set -- $(${_ptxdist_cmd} print STATEDIR PTXDIST_PTXCONFIG PTXDIST_PLATFORMCONFIG PTXDIST_COLLECTIONCONFIG)
+	local cache="${1}/.bash_completion_packages"
+	if [ -z "${2}" -o "${2}" -nt "${cache}" -o "${3}" -nt "${cache}" -o "${4}" -nt "${cache}" ]; then
+		${_ptxdist_cmd} print PTX_PACKAGES_SELECTED 2>/dev/null | tee "${cache}" 2>/dev/null
+	else
+		cat "${cache}"
+	fi
+}
+_ptxdist_completion()
+{
+	local cur prev words cword split
+	local cmds _ptxdist_cmd cmd
+	local -a args
+	local last word
+
+	_ptxdist_cmd="${COMP_WORDS[0]}"
+
+	COMPREPLY=()
+	cur=( $(_get_cword) )
+
+	if [ ${#_ptxdist_completion_opts[@]} -eq 0 ]; then
+		_ptxdist_completion_opts=( $(${_ptxdist_cmd} | sed -n 's,.*\(--[a-z0-9-]*=\?\).*,\1,p') )
+	fi
+	if [ ${#_ptxdist_completion_cmds[@]} -eq 0 ]; then
+		_ptxdist_completion_cmds=( $(${_ptxdist_cmd} | sed -n 's/^  \([a-z][^ \t]*\)[ \t].*/\1/p' | sort -u | grep -v ptxdist) )
+	fi
+
+	words=()
+	last=
+	split=false
+	cword=${COMP_CWORD}
+	if [ "${cur}" = "=" ]; then
+		cur=
+		cword=$[cword+1]
+	fi
+	for (( i=0 ; i<${cword}; i++ )); do
+		word="${COMP_WORDS[i]}"
+		if [ "${last}" = "=" ]; then
+			words[${#words[@]}-1]+="=${word}"
+		elif [ "${word}" != "=" ]; then
+			words[${#words[@]}]="${word}"
+		fi
+		last="${word}"
+	done
+	if [ "${last}" = "=" ]; then
+		split=true
+	fi
+	prev=${words[${#words[@]}-1]}
+	cword=${#words[@]}
+
+	if ${split}; then
+		case "${prev}" in
+		--toolchain)
+			_filedir -d
+			;;
+		--*config)
+			COMPREPLY=( $( compgen -f -X "*.old" $cur ) )
+			compopt -o filenames
+			;;
+		esac
+		return 0
+	fi
+
+	for (( i=1 ; i<${cword}; i++ )); do
+		local tmp="${words[i]}"
+		if grep -q "\<${tmp}\>" <<< "${_ptxdist_completion_cmds[*]}"; then
+			# the command that is currently completed
+			cmd="${tmp}"
+			continue
+		fi
+		case "${tmp}" in
+		--*config=*|--toolchain=*|--force|-f)
+			# extra options for ptxdist for 'ptxdist print ...'
+			_ptxdist_cmd="${_ptxdist_cmd} ${tmp}"
+			;;
+		-*)
+			continue
+			;;
+		*)
+			if [ -n "${cmd}" ]; then
+				args[${#args[@]}]="${tmp}"
+			fi
+			;;
+		esac
+	done
+
+	# Complete depending on options
+	case ${cmd} in
+	"")
+		# if no commands were given, complete on commands themselves
+		COMPREPLY=( $( compgen -W "${_ptxdist_completion_cmds[*]} help" -- $cur ) )
+		;;
+	menuconfig)
+		COMPREPLY=( $( compgen -W "kernel platform barebox board collection user" -- $cur) )
+		;;
+	clone)
+		#HACK! Enable filename completion without specifying '-o filenames' during complete (that will add slashes to commands if there is a dir of the same name :( )
+		compgen -f /dummy >/dev/null
+		[ ${#args[@]} -lt 2 ] && _filedir -d
+		;;
+	toolchain|export_src)
+		compgen -f /dummy >/dev/null
+		[ ${#args[@]} -lt 1 ] && _filedir -d
+		;;
+	select|platform|collection)
+		compgen -f /dummy >/dev/null
+		[ ${#args[@]} -lt 1 ] && _filedir
+		;;
+	clean)
+		COMPREPLY=( $( compgen -W root -- $cur ) )
+		;&
+	get|extract|prepare|compile|install|targetinstall|tags)
+		COMPREPLY+=( $( compgen -W "$(__ptxdist_completion_packages)" -- $cur ) )
+		;;
+	drop)
+		COMPREPLY=( $( compgen -W "$( cd $($_ptxdist_cmd print PTXDIST_PLATFORMDIR)/state; ls *.+(get|extract|prepare|compile|install|targetinstall) )" -- $cur ) )
+		;;
+	newpackage)
+		if [ ${#_ptxdist_completion_newpkg[@]} -eq 0 ]; then
+			_ptxdist_completion_newpkg=( $(${_ptxdist_cmd} newpackage | sed -n 's/^  \([^ ]*\) .*$/\1/p') )
+		fi
+		if [ ${#args[@]} -lt 1 ]; then
+			COMPREPLY=( $( compgen -W "${_ptxdist_completion_newpkg[*]}" -- $cur) )
+		fi
+		;;
+	esac
+	COMPREPLY+=( $( compgen -W "${_ptxdist_completion_opts[*]}" -- $cur ) )
+	[[ $COMPREPLY == *= ]] && compopt -o nospace
+	return 0
+}
+
+complete -F _ptxdist_completion ptxdist
+
+fi
+
