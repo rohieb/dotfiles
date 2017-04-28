@@ -19,7 +19,9 @@ else
 	start_ssh_agent
 fi
 
-### start mpd and mpdscribble
-[ -x /usr/bin/mpd -a -r ~/.mpd/mpd.conf ] && \
+### start mpd
+if [ -x /usr/bin/mpd -a -r ~/.mpd/mpd.conf ] ; then
 	start-stop-daemon --quiet --start --user $USER --pidfile ~/.mpd/pid \
-	--oknodo --startas /usr/bin/mpd -- ~/.mpd/mpd.conf
+		--oknodo --startas /usr/bin/mpd -- ~/.mpd/mpd.conf
+	export MPD_PORT=6601
+fi
