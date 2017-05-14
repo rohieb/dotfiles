@@ -1,4 +1,6 @@
 # vim:set tw=0:o
 LC_ALL=C.UTF-8
 # m h  dom mon dow   command
-0    0 * * * [ -e ~/.logrotate.conf ] && /usr/sbin/logrotate -s ~/.logrotate.state ~/.logrotate.conf
+0    */3 * * * [ -e ~/.logrotate.conf ] && /usr/sbin/logrotate -s ~/.logrotate.state ~/.logrotate.conf
+
+# host-specific things go here:
