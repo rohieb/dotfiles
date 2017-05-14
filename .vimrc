@@ -27,6 +27,14 @@ map [6^ gt
 map <C-PageUp> gT
 map [5^ gT
 
+" fix navigate-by-word insides screen(1)
+if match($TERM, "screen")!=-1
+	nmap [1;5D b
+	nmap [1;5C w
+	imap [1;5D b
+	imap [1;5C w
+end
+
 " window management
 map <C-Up> <C-W><Up>
 map Oa <C-W><Up>
