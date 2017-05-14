@@ -2,5 +2,3 @@
 LC_ALL=C.UTF-8
 # m h  dom mon dow   command
 0    0 * * * [ -e ~/.logrotate.conf ] && /usr/sbin/logrotate -s ~/.logrotate.state ~/.logrotate.conf
-0   18 * * * [ -x $HOME/.cron/stratum0-wiki-sync ] && $HOME/.cron/stratum0-wiki-sync
-*/15 * * * * [ -x $HOME/.cron/task-sync ] && $HOME/.cron/task-sync
