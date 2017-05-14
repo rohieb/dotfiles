@@ -65,6 +65,9 @@
 	imc = imerge continue
 	imr = imerge rebase
 
+	svr = svn rebase
+	svd = svn dcommit
+
 [core]
 	excludesfile = ~/.gitrc/ignore
 
