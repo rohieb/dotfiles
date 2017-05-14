@@ -3,7 +3,9 @@ LC_ALL=C.UTF-8
 PATH=/home/rohieb/bin:/usr/local/bin:/usr/bin:/bin
 
 # m h  dom mon dow   command
-0    0 * * * [ -e ~/.logrotate.conf ] && /usr/sbin/logrotate -s ~/.logrotate.state ~/.logrotate.conf
+0    */3 * * * [ -e ~/.logrotate.conf ] && /usr/sbin/logrotate -s ~/.logrotate.state ~/.logrotate.conf
+
+# host-specific things go here:
 0   18 * * * [ -x $HOME/.cron/stratum0-wiki-sync ] && $HOME/.cron/stratum0-wiki-sync
 */15 * * * * [ -x $HOME/.cron/task-sync ] && $HOME/.cron/task-sync
 */15 * * * * [ -x $HOME/.cron/vdirsyncer-sync ] && $HOME/.cron/vdirsyncer-sync

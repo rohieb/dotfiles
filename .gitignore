@@ -54,3 +54,12 @@ log/
 .config/pavucontrol.ini
 .config/pulse/
 .vim/doc/
+.config/hub
+opt/hub-linux-amd64*
+bin/hub
+.local/lib/
+.local/doc/
+.local/bin/
+.config/chromium/
+.config/MusicBrainz/
+bin/qpaeq

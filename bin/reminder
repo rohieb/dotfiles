@@ -1,0 +1,6 @@
+#!/bin/sh
+# Usage: $0 <time> <text>
+TIME=$1
+shift
+set -x
+echo "DISPLAY=$DISPLAY notify-send -u critical '$@'" | at $TIME

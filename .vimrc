@@ -3,7 +3,7 @@ execute pathogen#infect()
 
 " set various preferred options...
 set shiftwidth=2 tabstop=2 softtabstop=2
-set autoindent smartindent
+set autoindent
 set hlsearch modeline modelines=5
 set scrolloff=7
 set listchars=tab:│\ ,eol:¶,trail:·
@@ -26,6 +26,14 @@ map <C-PageDown> gt
 map [6^ gt
 map <C-PageUp> gT
 map [5^ gT
+
+" fix navigate-by-word insides screen(1)
+if match($TERM, "screen")!=-1
+	nmap [1;5D b
+	nmap [1;5C w
+	imap [1;5D b
+	imap [1;5C w
+end
 
 " window management
 map <C-Up> <C-W><Up>

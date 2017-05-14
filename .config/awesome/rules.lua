@@ -89,9 +89,6 @@ awful.rules.rules = {
     { rule = { class = "com-st-microxplorer-maingui-IOConfigurator" },
       properties = { tag = tags[1][3] } },
 
-    { rule = { class = "Terminator" },
-      properties = { tag = tags[1][4] } },
-
     { rule_any = { class = {
       "Iceweasel",
       "Firefox-bin",

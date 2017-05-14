@@ -113,6 +113,19 @@ globalkeys = awful.util.table.join(
 )
 
 clientkeys = awful.util.table.join(
+    awful.key({ modkey,           }, "i",      function (c)
+      naughty.notify({ text =
+        "class: " .. c.class .. "\n" ..
+        "name:  " .. c.name  .. "\n" ..
+        "window: " .. c.window .. "\n" ..
+        "instance: " .. c.instance .. "\n" ..
+        "pid: " .. c.pid .. "\n" ..
+        "role: " .. (c.role or "") .. "\n" ..
+        "machine: " .. c.machine .. "\n" ..
+        "icon_name: " .. c.icon_name .. "\n" ..
+        ""})
+      end),
+
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
