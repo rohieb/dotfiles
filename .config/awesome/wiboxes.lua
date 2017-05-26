@@ -190,7 +190,7 @@ if  posix.stat(homepath .. "/.taskrc") and
   HAVE_TASK = true
 
   taskicon = wibox.widget.imagebox(beautiful.widget_task)
-  lain.widgets.contrib.task:attach(taskicon, {
+  lain.widgets.contrib.task.attach(taskicon, {
     followmouse = true,
     font_size   = beautiful.settings.font_size,
     timeout     = 7,
