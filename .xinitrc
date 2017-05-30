@@ -14,7 +14,7 @@ which numlockx >/dev/null 2>&1 && numlockx on
 
 # synaptics settings
 # (synclient -l exists with 1 if no synaptics driver was loaded)
-if [ -x /usr/bin/synclient -a synclient -l ]; then
+if [ -x /usr/bin/synclient ] && synclient -l; then
 	synclient HorizTwoFingerScroll=1
 fi
 
