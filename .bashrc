@@ -48,7 +48,7 @@ if [ -n "$SSH_CONNECTION" ]; then
 	PS1_WITH_HOSTNAME=1
 fi
 
-PS1="\[${__YELLOW}\]\t\[${__RESET}\]"
+PS1="\[${__BLUE}\]\t\[${__RESET}\]"
 PS1="${PS1}${debian_chroot:+($debian_chroot)}"
 PS1="${PS1}\[${__RED}\]\$(__ps1_status)\[${__RESET}\]"
 if [ -n "$PS1_WITH_HOSTNAME" ]; then PS1="${PS1}\[${__RED}\] \u@\h\[${__RESET}\]"; fi

@@ -67,6 +67,7 @@
 
 	svr = svn rebase
 	svd = svn dcommit
+	sv = !sh -c 'git svn rebase && git svn dcommit'
 
 [core]
 	excludesfile = ~/.gitrc/ignore
