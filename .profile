@@ -19,6 +19,12 @@ fi
 # set PATH so it includes user's private bin if it exists
 PATH="$HOME/bin:$HOME/.local/bin:/sbin:/usr/sbin:$PATH"
 
+# locally installed Node packages
+export PATH="$HOME/lib/node_modules/.bin:$PATH"
+
+# locally installed cabal packages
+export PATH="$HOME/.cabal/bin:$PATH"
+
 ### exports
 export NAME="Roland Hieber"
 export EMAIL="rohieb@rohieb.name"
@@ -66,9 +72,6 @@ export SWT_GTK3=0
 
 # Tell Qt5 to use GTK+ style (needs qt5-styleplugins)
 export QT_STYLE_OVERRIDE='gtk2'
-
-# locally installed Node packages
-export PATH="$PATH:$HOME/lib/node_modules/.bin"
 
 ### autostarts
 source $HOME/.login_autostart
