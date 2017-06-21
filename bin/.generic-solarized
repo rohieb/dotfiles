@@ -101,3 +101,6 @@ else
 	xterm_osc 13  $S_base01  # mouse pointer color
 	xterm_osc 708 $S_base3   # border color
 fi
+
+# set background in vim
+echo "set bg=$COLORSCHEME" > ~/.vimrc.solarized
