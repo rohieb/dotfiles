@@ -1,16 +1,19 @@
 # ~/.login_autostart: start programs on every login
 
 ### start ssh agent
-SSH_AGENT_ENV_FILE=$HOME/.ssh/ssh-agent-info
+SSH_AGENT_ENV_FILE=$HOME/.ssh/ssh-agent-info-`hostname`
 start_ssh_agent() {
-	ssh-agent -s > $SSH_AGENT_ENV_FILE
-	. "$SSH_AGENT_ENV_FILE" > /dev/null
+	echo Starting new SSH Agent...
+	ssh-agent -s > "$SSH_AGENT_ENV_FILE"
+	. "$SSH_AGENT_ENV_FILE"
 }
 
-if [ -f "$SSH_AGENT_ENV_FILE" ]; then
+if [ -r "$SSH_AGENT_ENV_FILE" ]; then
 	. "$SSH_AGENT_ENV_FILE" > /dev/null
+
 	# file may be old, try connecting
-	if [ -z "$(ps aux|grep $USER|grep $SSH_AGENT_PID|grep ssh-agent)" ]; then
+	if [ -z "$(ps aux|grep $USER|grep $SSH_AGENT_PID|grep ssh-agent)" ] || \
+	   [ ! -S "$SSH_AUTH_SOCK" ]; then
 		# daemon does not exist with this pid, start new one
 		start_ssh_agent
 	fi
