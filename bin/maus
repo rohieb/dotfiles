@@ -14,8 +14,8 @@ if [ -z "$jsplayer_url" ]; then
 	exit
 fi
 
-video_regex='http://[^"]*\?\.\(m3u8\)'
-video_url=$(curl -L "$jsplayer_url" 2>/dev/null | grep -om1 "$video_regex" | head -n 1)
+video_regex='//[^"]*\?\.\(m3u8\)'
+video_url="http:"$(curl -L "$jsplayer_url" 2>/dev/null | grep -om1 "$video_regex" | head -n 1)
 echo "Found video URL: $video_url"
 if [ -z "$video_url" ]; then
 	echo "Ooops. Extracting the video URL failed :("
