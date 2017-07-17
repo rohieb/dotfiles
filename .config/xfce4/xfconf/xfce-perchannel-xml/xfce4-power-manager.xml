@@ -4,7 +4,7 @@
   <property name="xfce4-power-manager" type="empty">
     <property name="power-button-action" type="uint" value="1"/>
     <property name="show-tray-icon" type="int" value="1"/>
-    <property name="critical-power-action" type="uint" value="2"/>
+    <property name="critical-power-action" type="uint" value="1"/>
     <property name="lid-action-on-battery" type="uint" value="1"/>
     <property name="inactivity-on-battery" type="uint" value="60"/>
     <property name="sleep-button-action" type="uint" value="1"/>
