@@ -12,6 +12,7 @@
 	br = branch
 	chp = cherry-pick
 	pur = pull --rebase
+	fopa = format-patch
 
 	commit = commit --verbose
 	ci = commit --verbose
@@ -47,6 +48,7 @@
 	rbc = rebase --continue
 	f = fetch
 	cop = checkout -p
+	rep = reset -p
 	pu = push
 	hard = reset --hard
 	rehead = reset HEAD
