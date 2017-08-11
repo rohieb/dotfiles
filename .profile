@@ -50,6 +50,9 @@ export LC_TELEPHONE="de_DE.UTF-8"
 export LC_MEASUREMENT="de_DE.UTF-8"
 export LC_IDENTIFICATION="de_DE.UTF-8"
 
+# for sh compatibility
+export HOSTNAME=`hostname`
+
 # set up local perl lib in ~/.perl5
 if perl -Mlocal::lib > /dev/null 2>&1; then
 	eval $(perl -Mlocal::lib=$HOME/.perl5)
