@@ -1,4 +1,5 @@
 #!/bin/sh
+export BROWSER=firefox
 # make KDE find our GTK+ style
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
