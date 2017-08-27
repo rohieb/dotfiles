@@ -1,0 +1,31 @@
+$include /etc/inputrc
+
+# Map "page up" and "page down" to search the history
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
+
+# Don't disturb co-workers
+set bell-style visible
+
+# Use LS_COLORS in matches
+set colored-stats On
+set colored-completion-prefix On
+
+# print sorted matches horizontally first, then vertically
+set print-completions-horizontally On
+
+# Ignore case in completion
+#set completion-ignore-case On
+
+# Only show parts that are different, not the whole match
+set completion-prefix-display-length 1
+
+# Don't require two tabs to complete symlink directories
+set mark-symlinked-directories On
+
+# Don't require two tabs if matches are ambiguous
+set show-all-if-ambiguous On
+set show-all-if-unmodified On
+
+# Highlight matching parentheses
+set blink-matching-paren On

@@ -1,0 +1,2 @@
+#!/bin/sh
+notify-send -u critical '<span font="16">'"$(echo -n $@)"'</span>'
