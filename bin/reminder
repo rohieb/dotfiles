@@ -1,5 +1,14 @@
 #!/bin/sh
-# Usage: $0 <time> <text>
+
+usage() {
+	echo "Usage: `basename $0` <time> <text>"
+}
+
+if [ $# -lt 2 -o "$1" = "-h" -o "$1" = "--help" ]; then
+	usage
+	exit 1
+fi
+
 TIME=$1
 shift
 set -x
