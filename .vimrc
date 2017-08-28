@@ -12,7 +12,6 @@ set guifont=Monospace\ 8
 set textwidth=80
 
 set autochdir
-set directory=~/.vim/swp
 
 if has('gui_running')
 	set toolbar=
