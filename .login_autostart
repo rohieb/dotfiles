@@ -1,5 +1,9 @@
 # ~/.login_autostart: start programs on every login
 
+### restart pulseaudio inside dbus session for module-dbus
+pulseaudio --kill
+pulseaudio --start --log-target=syslog
+
 ### start ssh agent
 SSH_AGENT_ENV_FILE=$HOME/.ssh/ssh-agent-info-`hostname`
 start_ssh_agent() {
