@@ -1,4 +1,5 @@
 #!/bin/sh
+LC_ALL=C.UTF-8
 
 mkdir -vp $HOME/log
 
