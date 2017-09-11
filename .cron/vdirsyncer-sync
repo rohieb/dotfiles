@@ -3,7 +3,8 @@ LC_ALL=C.UTF-8
 
 mkdir -vp $HOME/log
 
-if [ -z "$(ip r | grep '^default')" ]; then
+if [ -z "`ping -w 10 -q -c1 8.8.8.8 | grep '1 received'`" ] || \
+   ! curl rohieb.name:5233 > /dev/null 2>&1 ; then
 	# No internet access
 	exit
 fi
