@@ -29,6 +29,9 @@ report.nextpopup.sort        = urgency-
 context.s0latex=proj:s0.latex or ((proj:m4rkup or proj:s0) and +latex)
 context.s0v=proj:s0.v or proj:m4rkup or +s0v
 
+# bugwarrior UDAs
+include ~/.taskrc.bugwarrior
+
 # taskserver synchronization
 taskd.certificate=\/home\/rohieb\/.task\/rohieb-r2d2.cert.pem
 taskd.key=\/home\/rohieb\/.task\/rohieb-r2d2.key.pem
