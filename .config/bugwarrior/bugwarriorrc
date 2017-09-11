@@ -1,0 +1,59 @@
+[general]
+targets = github, gitlab_s0_own, gitlab_s0_assigned
+
+log.level = INFO
+inline_links = False
+annotation_links = True
+annotation_comments = False
+shorten = False
+description_length = 1000
+
+[gitlab_s0_own]
+service = gitlab
+gitlab.add_tags = issue
+gitlab.login = rohieb
+gitlab.token = @oracle:eval:cat ~/.config/bugwarrior/secrets/gitlab_s0
+gitlab.host = gitli.stratum0.org
+gitlab.import_labels_as_tags = False
+gitlab.include_todos = False
+gitlab.include_regex = rohieb/.*
+gitlab.description_template = {{gitlabtitle}} (#{{gitlabnumber}})
+gitlab.project_template = {%% if project == "stratum0-latex" %%}s0.latex{#
+  \#}{%% else %%}{{ project }}{%% endif %%}
+
+[gitlab_s0_assigned]
+service = gitlab
+gitlab.only_if_assigned = rohieb
+gitlab.add_tags = issue
+gitlab.login = rohieb
+gitlab.token = @oracle:eval:cat ~/.config/bugwarrior/secrets/gitlab_s0
+gitlab.host = gitli.stratum0.org
+gitlab.import_labels_as_tags = False
+gitlab.include_todos = False
+gitlab.exclude_regex = rohieb/*
+gitlab.description_template = {{gitlabtitle}} (#{{gitlabnumber}})
+gitlab.project_template = {%% if project == "talk-recordings" %%}s0.talks{#
+  \#}{%% elif project == "jverein-regressionstests" %%}s0.jverein{#
+  \#}{%% elif project == "jverein-finance-report" %%}s0.jverein{#
+  \#}{%% elif project == "jverein-member-reports" %%}s0.jverein{#
+  \#}{%% else %%}{{ project }}{%% endif %%}
+
+[github]
+service = github
+github.login = rohieb
+github.username = rohieb
+github.token = @oracle:eval:cat ~/.config/bugwarrior/secrets/github
+github.import_labels_as_tags = False
+github.include_user_issues = False
+github.involved_issues = False
+github.include_user_repos = True
+github.query = assignee:rohieb is:open
+github.exclude_repos = ibrdtn, mpv-notify
+github.add_tags = issue
+github.description_template = {{githubtitle}} (#{{githubnumber}})
+github.project_template = {%% if project == "minutes-m4rkup" %%}m4rkup{#
+  \#}{%% elif project == "stratum0-latex" %%}s0.latex{#
+  \#}{%% elif project == "StratumOpenCloseMonitor" %%}s0.openclose{#
+  \#}{%% elif project == "StratumsphereTrayIcon" %%}s0.openclose{#
+  \#}{%% elif project == "bottle-clip-name-tag" %%}bottleclip{#
+  \#}{%% else %%}{{ project }}{%% endif %%}

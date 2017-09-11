@@ -8,6 +8,17 @@ if [ -z "`ping -w 10 -q -c1 8.8.8.8 | grep '1 received'`" ]; then
 	exit
 fi
 
+if [ -x "`which bugwarrior-pull`" \
+     -a -r $HOME/.config/bugwarrior/bugwarriorrc \
+     -a -z "$(ps -Af | grep -v grep | grep '^rohieb' | grep 'bugwarrior-pull ')" \
+   ]; then
+	(
+		echo
+		date
+		bugwarrior-pull 2>&1
+	) >> ~/log/task-sync.log
+fi
+
 if [ -x "`which task`" \
      -a -r $HOME/.taskrc \
      -a -z "$(ps -Af | grep -v grep | grep '^rohieb' | grep ' task ')" \
