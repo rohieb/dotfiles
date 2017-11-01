@@ -18,7 +18,7 @@ include "%S/en_US.UTF-8/Compose"
 <Multi_key> <4> <e> <m>           : " "  # U+2005 FOUR-PER-EM SPACE
 <Multi_key> <6> <e> <m>           : " "  # U+2006 SIX-PER-EM SPACE
 <Multi_key> <f> <space>           : " "  # U+2007 FIGURE SPACE
-<Multi_key> <.> <space>           : " "  # U+2008 PUNCTUATION SPACE
+<Multi_key> <period> <space>      : " "  # U+2008 PUNCTUATION SPACE
 <Multi_key> <t> <space>           : " "  # U+2009 THIN SPACE
 <Multi_key> <h> <space>           : " "  # U+200A HAIR SPACE
 <Multi_key> <z> <w> <space>       : "​"  # U+200B ZERO WIDTH SPACE
