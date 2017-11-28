@@ -2,7 +2,7 @@
 execute pathogen#infect()
 
 " set various preferred options...
-set shiftwidth=2 tabstop=2 softtabstop=2
+set tabstop=2 softtabstop=0 shiftwidth=0
 set autoindent
 set hlsearch modeline modelines=5
 set scrolloff=7
