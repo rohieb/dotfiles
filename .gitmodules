@@ -79,3 +79,6 @@
 [submodule ".vim/bundle/conflict-marker"]
 	path = .vim/bundle/conflict-marker
 	url = https://github.com/rhysd/conflict-marker.vim
+[submodule "opt/fasd"]
+	path = opt/fasd
+	url = https://github.com/clvv/fasd

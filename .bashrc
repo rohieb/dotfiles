@@ -140,3 +140,6 @@ complete -F _quilt_completion $_quilt_complete_opt dquilt
 # cdp/cdg magic, thx to @Drahflow
 cdp() { pwd > ~/tmp/.magic-cdg-path; }
 cdg() { cd "`cat ~/tmp/.magic-cdg-path`"; }
+
+# fasd init
+eval "$(fasd --init bash-hook posix-alias)"
