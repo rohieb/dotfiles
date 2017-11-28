@@ -47,10 +47,10 @@ __ps1_ptxdist_platform() {
 	# 5 levels should be enough for configs/platform-*/projectroot/loader/entries/
 	# after that, the prompt gets too long anyway
 	for dir in . .. ../.. ../../.. ../../../.. ../../../../.. ; do
-		if [ -h $dir/selected_platformconfig ]; then
+		if [ -h "$dir/selected_platformconfig" ]; then
 			awk -F '"' \
 				'/^PTXCONF_PLATFORM=/ { print " " $2; exit }' \
-				$dir/selected_platformconfig
+				"$dir/selected_platformconfig"
 			return
 		fi
 	done
