@@ -1,2 +1,7 @@
 #!/bin/sh
-exec $ptxdist_nice ptxdist "$@"
+if [ -z "$ptxdist" ]; then
+	ptxdist=`which ptxdist`
+fi
+
+set -x
+exec $ptxdist_nice $ptxdist $ptxdist_dev_params "$@"
