@@ -40,7 +40,7 @@
 	graph = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit
 	g     = !git graph '@{u}^..@'
 	gr    = !git graph
-	gra   = !git graph --all
+	gra   = !git graph --branches --tags --remotes
 
 	assume-unchanged = update-index --assume-unchanged
 	no-assume-unchanged = update-index --no-assume-unchanged
