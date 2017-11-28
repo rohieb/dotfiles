@@ -117,9 +117,6 @@
 [remote-hg]
 	hg-git-compat = true
 
-[http "https://hannover.ccc.de"]
-	sslCAInfo = ~/.git/sslcerts/cacert.pem
-
 [init]
 	templatedir = ~/.gitrc/init-template/
 
