@@ -25,3 +25,7 @@ alias gpg=gpg2
 alias k='khal calendar'
 
 alias dd='dd status=progress'
+
+if [ -r ~/.bash_aliases.$HOSTNAME ]; then
+	source ~/.bash_aliases.$HOSTNAME
+fi
