@@ -1,2 +1,2 @@
 #!/bin/sh
-exec nice ionice -c 3 ptxdist "$@"
+exec $ptxdist_nice ptxdist "$@"
