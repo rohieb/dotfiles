@@ -129,3 +129,5 @@
 [sendemail]
 	confirm = always
 	envelopesender = auto
+[notes]
+	rewriteRef = refs/notes/commits
