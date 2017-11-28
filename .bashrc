@@ -49,7 +49,7 @@ __ps1_ptxdist_platform() {
 	for dir in . .. ../.. ../../.. ../../../.. ../../../../.. ; do
 		if [ -h $dir/selected_platformconfig ]; then
 			awk -F '"' \
-				'/^PTXCONF_PLATFORM=/ { print " '"$__YELLOW"'" $2 "'"$__RESET"'"; exit }' \
+				'/^PTXCONF_PLATFORM=/ { print " " $2; exit }' \
 				$dir/selected_platformconfig
 			return
 		fi
@@ -66,7 +66,7 @@ PS1="${PS1}${debian_chroot:+($debian_chroot)}"
 PS1="${PS1}\[${__RED}\]\$(__ps1_status)\[${__RESET}\]"
 if [ -n "$PS1_WITH_HOSTNAME" ]; then PS1="${PS1}\[${__RED}\] \u@\h\[${__RESET}\]"; fi
 PS1="${PS1} \[${__GREEN}\]\w\[${__RESET}\]"
-PS1="${PS1}\$(__ps1_ptxdist_platform)"
+PS1="${PS1}\[${__YELLOW}\]\$(__ps1_ptxdist_platform)\[${__RESET}\]"
 PS1="${PS1}\$(__git_ps1)"    # git_ps1 already has space at the beginning
 PS1="${PS1} \$ "
 
