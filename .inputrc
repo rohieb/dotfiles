@@ -5,7 +5,7 @@ $include /etc/inputrc
 "\e[6~": history-search-forward
 
 # Don't disturb co-workers
-set bell-style visible
+set bell-style none
 
 # Use LS_COLORS in matches
 set colored-stats On
