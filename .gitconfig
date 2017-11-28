@@ -73,6 +73,8 @@
 	svd = svn dcommit
 	sv = !sh -c 'git svn rebase && git svn dcommit'
 
+	noa = notes add -m
+
 [core]
 	excludesfile = ~/.gitrc/ignore
 
