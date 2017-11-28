@@ -23,3 +23,5 @@ alias colorcat='pygmentize -g'
 alias gpg=gpg2
 
 alias k='khal calendar'
+
+alias dd='dd status=progress'
