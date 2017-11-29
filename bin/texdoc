@@ -1,4 +1,9 @@
 #!/bin/sh
+if [ "$#" -gt 1 ]; then
+	exec /usr/bin/texdoc "$@"
+	exit
+fi
+
 file="$(/usr/bin/texdoc -M -l -I $1 | awk '/\.pdf\>/{print $3; exit}')"
 if [ -z "$file" ] ; then
 	echo "Could not find anything for '$file'."
