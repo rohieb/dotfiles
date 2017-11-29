@@ -1,0 +1,6 @@
+if [ "$(type -t _ptxdist_completion)" = "function" ]; then
+	if [ -r ~/.bash_completion.d/ptxdist ]; then
+		source ~/.bash_completion.d/ptxdist
+	fi
+	complete -F _ptxdist_completion pqj
+fi

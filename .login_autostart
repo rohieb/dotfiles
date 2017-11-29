@@ -1,5 +1,14 @@
 # ~/.login_autostart: start programs on every login
 
+### restart pulseaudio inside dbus session for module-dbus
+if [ -n "`which pacmd`" ] && [ -n "`which pulseaudio`" ] && \
+   pulseaudio --check && \
+   [ -z "`pacmd list-modules | grep module-dbus-protocol`" ]; then
+	echo Note: Restarting pulseaudio inside DBus user session
+	pulseaudio --kill
+	pulseaudio --start --log-target=syslog
+fi
+
 ### start ssh agent
 SSH_AGENT_ENV_FILE=$HOME/.ssh/ssh-agent-info-`hostname`
 start_ssh_agent() {

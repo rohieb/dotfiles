@@ -1,0 +1,10 @@
+# source this script
+eval "ptxdist_dev_deactivate() {
+	export PS1='$PS1'
+	export ptxdist_dev_params='$ptxdist_dev_params'
+	export ptxdist='$ptxdist'
+}"
+export ptxdist="$HOME/Projects/ptxdist/bin/ptxdist"
+export ptxdist_dev_params="-f"
+export PS1='\[\033[35m\](PTX DEV!)\[\033[0m\] '"$PS1"
+# vim: ft=sh

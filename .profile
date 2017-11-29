@@ -76,6 +76,10 @@ export SWT_GTK3=0
 # Tell Qt5 to use GTK+ style (needs qt5-styleplugins)
 export QT_STYLE_OVERRIDE='gtk2'
 
+if [ -r ~/.profile.$HOSTNAME ]; then
+	source ~/.profile.$HOSTNAME
+fi
+
 ### autostarts
 source $HOME/.login_autostart
 if [ -n "$DISPLAY" ]; then $HOME/bin/solarized-dark; fi

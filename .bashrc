@@ -42,6 +42,25 @@ __ps1_status() {
 		echo -en " =$ret"
 	fi
 }
+__ps1_shortpwd() {
+	if [ -r "$HOME/.shortpwd.sed" ]; then
+		pwd | sed -e "s:^$HOME:~:" -f "$HOME/.shortpwd.sed"
+	else
+		pwd | sed -e "s:^$HOME:~:"
+	fi
+}
+__ps1_ptxdist_platform() {
+	# 5 levels should be enough for configs/platform-*/projectroot/loader/entries/
+	# after that, the prompt gets too long anyway
+	for dir in . .. ../.. ../../.. ../../../.. ../../../../.. ; do
+		if [ -h "$dir/selected_platformconfig" ]; then
+			awk -F '"' \
+				'/^PTXCONF_PLATFORM=/ { print " " $2; exit }' \
+				"$dir/selected_platformconfig"
+			return
+		fi
+	done
+}
 
 PS1_WITH_HOSTNAME=
 if [ -n "$SSH_CONNECTION" ]; then
@@ -52,7 +71,8 @@ PS1="\[${__BLUE}\]\t\[${__RESET}\]"
 PS1="${PS1}${debian_chroot:+($debian_chroot)}"
 PS1="${PS1}\[${__RED}\]\$(__ps1_status)\[${__RESET}\]"
 if [ -n "$PS1_WITH_HOSTNAME" ]; then PS1="${PS1}\[${__RED}\] \u@\h\[${__RESET}\]"; fi
-PS1="${PS1} \[${__GREEN}\]\w\[${__RESET}\]"
+PS1="${PS1} \[${__GREEN}\]\$(__ps1_shortpwd)\[${__RESET}\]"
+PS1="${PS1}\[${__YELLOW}\]\$(__ps1_ptxdist_platform)\[${__RESET}\]"
 PS1="${PS1}\$(__git_ps1)"    # git_ps1 already has space at the beginning
 PS1="${PS1} \$ "
 
@@ -120,3 +140,6 @@ complete -F _quilt_completion $_quilt_complete_opt dquilt
 # cdp/cdg magic, thx to @Drahflow
 cdp() { pwd > ~/tmp/.magic-cdg-path; }
 cdg() { cd "`cat ~/tmp/.magic-cdg-path`"; }
+
+# fasd init
+eval "$(fasd --init bash-hook posix-alias)"

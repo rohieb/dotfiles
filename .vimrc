@@ -2,7 +2,7 @@
 execute pathogen#infect()
 
 " set various preferred options...
-set shiftwidth=2 tabstop=2 softtabstop=2
+set tabstop=2 softtabstop=0 shiftwidth=0
 set autoindent
 set hlsearch modeline modelines=5
 set scrolloff=7
@@ -12,7 +12,6 @@ set guifont=Monospace\ 8
 set textwidth=80
 
 set autochdir
-set directory=~/.vim/swp
 
 if has('gui_running')
 	set toolbar=

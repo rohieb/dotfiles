@@ -6,6 +6,9 @@
 [color]
 	ui = auto
 
+[commit]
+	verbose = 1
+
 [alias]
 	st = status
 	co = checkout
@@ -14,9 +17,9 @@
 	pur = pull --rebase
 	fopa = format-patch
 
-	commit = commit --verbose
-	ci = commit --verbose
-	amend = commit --verbose --amend
+	ci = commit
+	cis = commit --signoff
+	amend = commit --amend
 
 	d = diff
 	di = diff
@@ -36,9 +39,9 @@
 	lastlog = log --graph HEAD@{1}..HEAD --format='%C(auto)%h %Cgreen(%an) %Creset%s'
 	fetchlog = log --graph HEAD..FETCH_HEAD --format='%C(auto)%h %Cgreen(%an) %Creset%s'
 	graph = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit
-	g     = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit '@{u}^..@'
-	gr    = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit
-	gra   = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit --all
+	g     = !git graph '@{u}^..@'
+	gr    = !git graph
+	gra   = !git graph --branches --tags --remotes
 
 	assume-unchanged = update-index --assume-unchanged
 	no-assume-unchanged = update-index --no-assume-unchanged
@@ -70,6 +73,8 @@
 	svr = svn rebase
 	svd = svn dcommit
 	sv = !sh -c 'git svn rebase && git svn dcommit'
+
+	noa = notes add -m
 
 [core]
 	excludesfile = ~/.gitrc/ignore
@@ -112,9 +117,6 @@
 [remote-hg]
 	hg-git-compat = true
 
-[http "https://hannover.ccc.de"]
-	sslCAInfo = ~/.git/sslcerts/cacert.pem
-
 [init]
 	templatedir = ~/.gitrc/init-template/
 
@@ -125,3 +127,5 @@
 [sendemail]
 	confirm = always
 	envelopesender = auto
+[notes]
+	rewriteRef = refs/notes/commits

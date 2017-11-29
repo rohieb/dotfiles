@@ -1,0 +1,3 @@
+#!/bin/bash
+cores=$(grep '^processor' /proc/cpuinfo | wc -l)
+exec p -q -j${ptxdist_jobs:-$cores} -k "$@"
