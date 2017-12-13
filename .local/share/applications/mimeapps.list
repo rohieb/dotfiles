@@ -1,6 +1,7 @@
 [Default Applications]
 application/x-shellscript=org.gnome.gedit.desktop
 text/english=org.gnome.gedit.desktop
+text/markdown=org.gnome.gedit.desktop;
 text/plain=org.gnome.gedit.desktop
 text/x-c++hdr=org.gnome.gedit.desktop
 text/x-chdr=org.gnome.gedit.desktop
@@ -63,6 +64,7 @@ text/calendar=thunderbird.desktop
 text/x-vcard=thunderbird.desktop
 x-scheme-handler/mailto=thunderbird.desktop
 
+application/x-xcf=gimp.desktop
 image/bmp=eog.desktop
 image/gif=eog.desktop
 image/jpeg=eog.desktop
