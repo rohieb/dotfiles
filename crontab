@@ -1,6 +1,6 @@
 # vim:set tw=0:o
 LC_ALL=C.UTF-8
-PATH=/home/rohieb/bin:/usr/local/bin:/usr/bin:/bin
+PATH=/home/rohieb/bin:/home/rohieb/.local/bin:/usr/local/bin:/usr/bin:/bin
 
 # m h  dom mon dow   command
 0    */3 * * * [ -e ~/.logrotate.conf ] && /usr/sbin/logrotate -s ~/.logrotate.state ~/.logrotate.conf
