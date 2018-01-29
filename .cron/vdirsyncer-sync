@@ -4,16 +4,12 @@ LC_ALL=C.UTF-8
 mkdir -vp $HOME/log
 
 if [ -z "`ping -w 10 -q -c1 8.8.8.8 | grep '1 received'`" ] ; then
-	echo "No internet access, skipping sync" >> $HOME/log/calendar.log
+	echo "No internet access, skipping sync" | ts >> $HOME/log/calendar.log
 	exit
 fi
 
 if [ -x "`which vdirsyncer`" -a -r $HOME/.config/vdirsyncer/config ]; then
-	(
-		echo
-		date
-		nice ionice vdirsyncer sync
-	) >> $HOME/log/calendar.log
+	nice ionice vdirsyncer sync | ts >> $HOME/log/calendar.log
 
 	if [ -x "`which khal`" -a $HOME/.config/khal/khal.conf ]; then
 		nice khal > /dev/null
