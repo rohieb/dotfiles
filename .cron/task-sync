@@ -4,7 +4,7 @@ LC_ALL=C.UTF-8
 mkdir -vp $HOME/log
 
 if [ -z "`ping -w 10 -q -c1 8.8.8.8 | grep '1 received'`" ]; then
-	echo "No internet access, skipping sync" >> ~/log/task-sync.log
+	echo "No internet access, skipping sync" | ts >> $HOME/log/task-sync.log
 	exit
 fi
 
@@ -12,20 +12,12 @@ if [ -x "`which bugwarrior-pull`" \
      -a -r $HOME/.config/bugwarrior/bugwarriorrc \
      -a -z "$(ps -Af | grep -v grep | grep '^rohieb' | grep 'bugwarrior-pull ')" \
    ]; then
-	(
-		echo
-		date
-		bugwarrior-pull 2>&1
-	) >> ~/log/task-sync.log
+	bugwarrior-pull 2>&1 | ts >> $HOME/log/task-sync.log
 fi
 
 if [ -x "`which task`" \
      -a -r $HOME/.taskrc \
      -a -z "$(ps -Af | grep -v grep | grep '^rohieb' | grep ' task ')" \
    ]; then
-	(
-		echo
-		date
-		task sync 2>&1
-	) >> ~/log/task-sync.log
+	task sync 2>&1 | ts >> $HOME/log/task-sync.log
 fi
