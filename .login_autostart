@@ -37,3 +37,7 @@ if [ -x /usr/bin/mpd -a -r ~/.mpd/mpd.conf ] ; then
 		--oknodo --startas /usr/bin/mpd -- ~/.mpd/mpd.conf
 	export MPD_PORT=6601
 fi
+
+if [ -e "$HOME/.login_autostart.$HOSTNAME" ]; then
+	source "$HOME/.login_autostart.$HOSTNAME"
+fi
