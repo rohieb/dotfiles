@@ -82,6 +82,7 @@
 [cola]
 	fontdiff = Terminus,8,-1,5,50,0,0,0,0,0
 	tabwidth = 4
+	spellcheck = false
 
 [gui]
 	editor = vi
