@@ -82,3 +82,6 @@
 [submodule "opt/fasd"]
 	path = opt/fasd
 	url = https://github.com/clvv/fasd
+[submodule "opt/mutt-colors-solarized"]
+	path = opt/mutt-colors-solarized
+	url = https://github.com/altercation/mutt-colors-solarized/
