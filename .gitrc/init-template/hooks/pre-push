@@ -57,11 +57,13 @@ do
 			echo "$offending_commits"
 			echo
 
-			if [ -z "$GIT_PUSH_FORCE_WIP" ]; then
-				echo "If you really want to push this commit, set GIT_PUSH_FORCE_WIP=1."
+			if [ -z "$GIT_PUSH_FORCE_WIP" -a \
+			     -z "$(ps -ocommand= -p $PPID | grep -- '--force\(-with-lease\)\?\>')" ]; then
+				echo -n "If you really want to push this commit, use --force,"
+				echo " or set GIT_PUSH_FORCE_WIP=1"
 				exit 1
 			else
-				echo "Warning overridden by GIT_PUSH_FORCE_WIP=1."
+				echo "Warning overridden by force."
 			fi
 		fi
 	fi

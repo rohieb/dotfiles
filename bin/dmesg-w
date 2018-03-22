@@ -1,0 +1,6 @@
+#!/bin/bash
+# Why?
+# - dmesg -w doesn't show correct timestamps, only relative values to system boot time
+# - journalctl has not enough color
+# - log colorizers etc. must be configured first
+exec dmesg -w --color=always | ts "$(echo -e "\033[34m")"'%Y-%m-%d %H:%M:%S'

@@ -34,8 +34,12 @@ if [ -n "$WAIT" ]; then
 	sleep $WAIT
 fi
 
-# use png32 to add alpha channel, otherwise Twitter converts it to JPG...
-import $IMOPTS png32:$FILENAME
+import $IMOPTS ${FILENAME}.tmp
+
+# add alpha pixel to prevent Twitter from converting it to JPG...
+convert ${FILENAME}.tmp -alpha set -channel A \
+	 -region 1x1 -evaluate set 90% ${FILENAME}
+rm ${FILENAME}.tmp
 
 if [ -n "$UPLOAD" ]; then
 	PASTE=$(upload screenshots $FILENAME)
