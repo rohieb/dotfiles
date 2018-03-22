@@ -18,7 +18,10 @@
 	fopa = format-patch
 
 	ci = commit
+	cia = commit --all
+	ciam = commit --all -m.
 	cis = commit --signoff
+	cisa = commit --signoff --all
 	amend = commit --amend
 
 	d = diff
