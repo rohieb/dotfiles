@@ -37,11 +37,11 @@ end
 -- format a size in kB/MB/GB, padded to 4 characters
 function format_size(kb)
   kb = tonumber(kb)
-  if     kb >= 1000*1000*10 then return ("%3dG")  :format(kb / (1024 * 1024))
+  if     kb >= 1000*1000*10 then return ("%3dG")  :format(math.floor(kb / (1024 * 1024)))
   elseif kb >= 1000*1000    then return ("%1.1fG"):format(kb / (1024 * 1024))
-  elseif kb >= 1000*10      then return ("%3dM")  :format(kb / (1024))
+  elseif kb >= 1000*10      then return ("%3dM")  :format(math.floor(kb / (1024)))
   elseif kb >= 1000         then return ("%1.1fM"):format(kb / (1024))
-  elseif kb >= 10           then return ("%3dk")  :format(kb)
+  elseif kb >= 10           then return ("%3dk")  :format(math.floor(kb))
   else                           return ("%1.1fk"):format(kb)
   end
 end
