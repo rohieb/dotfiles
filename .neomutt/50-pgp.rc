@@ -1,0 +1,4 @@
+# vim: ft=neomuttrc
+# pgp
+set pgp_use_gpg_agent = yes
+send2-hook ~A 'set crypt_autosign = no'

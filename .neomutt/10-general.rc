@@ -1,0 +1,6 @@
+# vim: ft=neomuttrc
+# general settings
+set auto_tag = yes
+set header_cache = "~/.cache/mutt-`hostname`"
+set sendmail = "~/bin/sendmail -oem -oi"
+set sendmail_wait = 1

@@ -1,0 +1,4 @@
+# vim: ft=neomuttrc
+# some default custom variables
+set my_folder_sep = '/'
+set my_archives = '=Archives'

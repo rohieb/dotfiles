@@ -1,0 +1,3 @@
+# vim: ft=neomuttrc
+# account-specific overrides
+source ~/.neomutt/90accounts.sh|

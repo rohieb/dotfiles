@@ -1,0 +1,8 @@
+#!/bin/sh
+# set default attachment download folder
+cd ~/tmp
+if [ -x /usr/bin/neomutt ]; then
+	exec /usr/bin/neomutt "$@"
+else
+	exec /usr/bin/mutt "$@"
+fi

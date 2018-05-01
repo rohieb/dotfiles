@@ -1,0 +1,7 @@
+# vim: ft=neomuttrc
+# edit options
+set send_charset = 'utf8'
+set edit_headers = yes
+set reverse_name = yes		# choose the receiver address as From when replying
+set fast_reply = yes
+set include = yes
