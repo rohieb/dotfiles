@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ -r ~/.msmtprc ]; then
+	exec msmtp -C ~/.msmtprc --read-envelope-from "$@"
+else
+	exec /usr/sbin/sendmail "$@"
+fi
