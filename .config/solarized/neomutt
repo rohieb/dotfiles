@@ -1,0 +1,17 @@
+# vim: ft=sh
+# yes, we use base02/base2 for the highlights. deal with it. they work better.
+if [ $COLORSCHEME = dark ]; then
+	cat > ~/.neomutt/colors.solarized.sh <<"EOF"
+S_hl=$S_base2
+S_fg=$S_base0
+S_dim=$S_base01
+S_bg=$S_base03
+EOF
+else
+	cat > ~/.neomutt/colors.solarized.sh <<"EOF"
+S_hl=$S_base02
+S_fg=$S_base00
+S_dim=$S_base1
+S_bg=$S_base3
+EOF
+fi
