@@ -1,0 +1,4 @@
+# vim: ft=neomuttrc
+# disable display filters on patch mails, since they could break the diff
+message-hook '~h "^X-Mailer: git-send-email"' 'unset display_filter'
+message-hook '~b "^-{3} " ~b "^\\+{3} " ~b "^@@ "' 'unset display_filter'
