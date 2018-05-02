@@ -1,0 +1,3 @@
+# vim: ft=sh
+# set background in vim
+echo "set bg=$COLORSCHEME" > ~/.vimrc.solarized

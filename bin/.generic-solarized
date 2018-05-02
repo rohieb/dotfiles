@@ -102,5 +102,9 @@ else
 	xterm_osc 708 $S_base3   # border color
 fi
 
-# set background in vim
-echo "set bg=$COLORSCHEME" > ~/.vimrc.solarized
+DROPIN_DIR=~/.config/solarized/
+if [ -d $DROPIN_DIR -a -n "`ls -A $DROPIN_DIR`" ]; then
+	for snippet in $DROPIN_DIR/*; do
+		. $snippet
+	done
+fi
