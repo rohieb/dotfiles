@@ -1,0 +1,18 @@
+# vim: ft=neomuttrc
+
+# t-prot arguments
+set my_tprot_args = '-cmekatlS --max-lines=2500 --bigq --pgp-short --pgp-move-vrf -Mmutt -L/etc/t-prot/footers -A/etc/t-prot/ads'
+
+# toggle TOFU protection with ,td (disable) and ,te (enable)
+macro generic ,td "<enter-command>unset display_filter<enter>" "Turn TOFU protection off"
+macro pager   ,td "<enter-command>unset display_filter<enter><exit><display-message>" "Turn TOFU protection off"
+macro generic ,te "<enter-command>set display_filter='t-prot $my_tprot_args'<enter>" "Turn TOFU protection on"
+macro pager   ,te "<enter-command>set display_filter='t-prot $my_tprot_args'<enter><exit><display-message>" "Turn TOFU protection on"
+
+# enable it by default
+set display_filter="t-prot $my_tprot_args"
+
+# color scheme
+color body brightmagenta default '^\[---=\| TOFU protection by t-prot.*\|=---\]$'
+color body brightmagenta default '^\[---=\| Overlong signature removed by t-prot.*\|=---\]$'
+
