@@ -17,6 +17,10 @@ CMakeCache.txt
 config.cache
 config.status
 
+# ctags
+TAGS
+tags
+
 # latex build files
 *.aux
 *.bbl
