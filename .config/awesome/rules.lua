@@ -55,6 +55,8 @@ awful.rules.rules = {
       "Dolphin",
       "Iceweasel",
       "Firefox",
+      "Firefox-esr",
+      "Navigator",
       "Rawtherapee",
       "Clementine"
     } }, properties = { floating = false } },
