@@ -1,0 +1,35 @@
+#!/bin/sh
+usage() {
+	echo "Usage: input | `basename $0` [color]"
+	echo "Color text in specific color.  Available colors:"
+	echo "  black red green yellow blue magenta cyan white"
+	echo "  or colorN for generic color number N"
+}
+
+black=0
+red=1
+green=2
+yellow=3
+blue=4
+magenta=5
+cyan=6
+white=7
+
+case $1 in
+	color[0-9]+)
+		color=`echo $1 | sed 's/^color//'`
+		;;
+	*)
+		eval "color=\$$1"
+		;;
+esac
+
+if [ -z "$color" -o "$color" = --help -o "$color" = -h ]; then
+	usage
+	exit
+fi
+
+start='\033[3'$color'm'
+end='\033[0m'
+
+awk '{ print "'$start'" $0 "'$end'" }'

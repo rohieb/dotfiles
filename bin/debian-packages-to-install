@@ -1,0 +1,106 @@
+#!/bin/bash
+# parse package databases like the following:
+#
+#     [dependenttask]
+#     somesoftwarepackage
+#     # this is a comment
+#     someothersoftwarepackage  [A]
+#
+#     [mainsection]
+#     -> dependentsection
+#     foobar
+
+dirname=$(dirname "$0")
+dotfilesdir=$(readlink -m "$dirname/..")
+
+# parse task database
+declare -a sections
+declare -A sectiondeps
+declare -A packages
+declare -a autopackages
+
+while read line; do
+	case "$line" in
+		'')
+			# ignore empty lines
+			continue
+			;;
+		'#'*)
+			# ignore comments
+			continue
+			;;
+		'['*']')
+			# [new section]
+			currentsection=${line}
+			currentsection=${currentsection#[}
+			currentsection=${currentsection%]}
+			sections+=("$currentsection")
+			packages["$currentsection"]=""
+			;;
+		'-> '*)
+			# -> section dependencies
+			section=${line#'-> '}
+			sectiondeps["$currentsection"]+=" $section"
+			;;
+		*)
+			# packages in section
+			# split at # for comments
+			package=${line%%'#'*}
+			comment=${line#*'#'}
+
+			# auto flag [A]
+			case "$package" in
+				*' [A]'*)
+					package=${package%%' '*}
+					autopackages+=($package)
+					;;
+			esac
+
+			packages["$currentsection"]+=" $package"
+	esac
+done < "$dotfilesdir"/debian-packages-to-install 
+
+#echo Packages in section $section: ${packages["$section"]}
+#for section in ${sections[@]}; do
+#	echo $section:
+#	for pkg in ${packages[$section]}; do
+#		echo "    $pkg"
+#	done
+#done
+
+# add parameters as default target sections, and do dependency resolution:
+declare -A targets    # we basically use this as a bit set by setting targets[sectionname]=1
+declare -a ts
+#ts=($*)
+#while [ -n "${ts[0]}" ]; do
+#	t=${ts[0]}
+#	ts=("${ts[@]:1}")   # shift by one
+#
+#	if [ -z "${packages[$t]}" ]; then
+#		echo "Warning: unknown section '$t', or it has no packages. Ignoring."
+#		continue
+#	fi
+#	echo -en $t'\t\t'
+#	if [ "${targets[$t]}" = 1 ]; then
+#		# we already looked at this target
+#		echo "already done."
+#		continue;
+#	else
+#		# recurse
+#		echo ": ${sectiondeps[$t]}"
+#		ts+=("${sectiondeps[$t]}")
+#		targets[$t]=1
+#	fi
+#done
+echo ${sections[@]}
+for t in $*; do targets[$t]=1; done
+echo target sections:
+echo ${!targets[@]}
+
+# resolve selected sections to packages
+targetpkgs=""
+for section in ${!targets[@]}; do
+	targetpkgs="$targetpkgs ${packages[$section]}"
+done
+
+sudo apt -o APT::Install-Recommends=0 install ${targetpkgs}

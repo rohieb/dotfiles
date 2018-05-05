@@ -1,0 +1,17 @@
+# vim: ft=neomuttrc
+# sidebar
+set sidebar_visible
+set mail_check_stats
+set sidebar_format = "%B %* %?N?%N?"
+set sidebar_sort_method = alpha
+set sidebar_divider_char = ' ┃ '
+set sidebar_delim_chars="$my_folder_sep"
+set sidebar_short_path
+set sidebar_folder_indent
+set sidebar_indent_string="  "
+bind index,pager <F5> sidebar-toggle-visible
+bind index,pager \CO sidebar-open
+bind index,pager \CH sidebar-prev
+bind index,pager \CL sidebar-next
+bind index,pager \CP sidebar-prev-new
+bind index,pager \CN sidebar-next-new

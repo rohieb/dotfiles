@@ -1,0 +1,42 @@
+#!/bin/sh
+dirname=`dirname "$0"`
+dotfilesdir=`readlink -m "$dirname"`
+moveprefix="moved-by-dotfiles-install"
+
+doit() {
+	echo "$@"
+	"$@"
+}
+
+set -e
+
+doit git submodule update --init --recursive
+
+cd "$dotfilesdir"
+for dotfile in * .* ; do
+	case "$dotfile" in
+		  . \
+		| .. \
+		| .*.sw* \
+		| .git \
+		| .gitignore \
+		| install \
+		| debian-packages-to-install* \
+		| LICENSE \
+		| README)
+			continue;;
+	esac
+
+	# notice: -e is false for dead symlinks
+	if [ -e ~/"$dotfile" -o -h ~/"$dotfile" ]; then
+		movefile=~/"$dotfile".$moveprefix
+		if [ -e "$movefile" -o -h "$movefile" ]; then
+			echo NOTICE: "$movefile" already exists, not linking ~/"$dotfile"
+			echo '#' mv ~/"$dotfile" "$movefile"
+			continue
+		else
+			doit mv ~/"$dotfile" "$movefile"
+		fi
+	fi
+	doit ln -s "$dotfilesdir"/"$dotfile" ~/"$dotfile"
+done

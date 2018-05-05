@@ -1,0 +1,16 @@
+[Unit]
+Description=Offline IMAP Sync for account %I
+Documentation=man:offlineimap(1)
+After=network.target
+ConditionPathExists=%h/.offlineimaprc
+
+[Service]
+Environment="PATH=/bin:/usr/bin"
+ExecStart=/usr/bin/offlineimap -c %h/.offlineimaprc -u basic -a %I
+Restart=always
+RestartSec=1
+TimeoutStopSec=20
+
+[Install]
+WantedBy=default.target
+WantedBy=offlineimap.target

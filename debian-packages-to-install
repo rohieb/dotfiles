@@ -1,180 +1,506 @@
-# vim: set syntax=cfg
-abcde
-adb
+# vim: set syntax=config
+[base]
 adduser
-# anki
-apt-doc
-apt-file
-aptitude-doc-en
-arduino
-audacity
+apt-transport-https
+aptitude
+bash
+bash-completion
+cifs-utils        # mount.cifs
+command-not-found
+coreutils
+cron
+dash
+default-jre
+etckeeper
+fdisk
+file
+git
+grep
+info
+isc-dhcp-client
+iproute2
+less
+locales
+mailutils
+man-db
+manpages
+moreutils        # for ts(1)
+network-manager
+ntp
+openssh-client
+openssh-server
+pulseaudio
+pulseaudio-module-zeroconf
+ssmtp
+sudo
+systemd
+tzdata
+traceroute
+usbutils
+vim
+vim-fugitive
+vim-nox
+vim-pathogen
+vim-scripts
+
+[base:laptop]
+-> base
+bluetooth
+iw
+powertop
+rfkill
+vainfo
+wireless-tools
+
+[base:laptop:thinkpad-t450]
+-> base:laptop
+firmware-iwlwifi
+i965-va-driver
+intel-microcode
+xserver-xorg-video-intel
+
+[base:utils]
+-> base
+autossh
 avahi-utils
-avrdude
+bc
+bridge-utils
+bsdmainutils      # cal, ncal, col, hexdump
+bsdutils          # logger, renice, wall
+bzip2
+colortest-python
+curl
+debianutils
+diffutils
+dos2unix
+dnsutils     # dig, nslookup
+eject
+figlet
+findutils
+finger
+ftp
+gawk
+gnupg
+gnupg-agent
+gpm
+gzip
+hexedit
+htop
+iputils-ping
+iotop
+iperf
+iprint
+iptables
+iptraf
+libtravel-routing-de-vrr-perl  # for efa(1)
+libwww-dict-leo-org-perl   # for leo(1)
+logrotate
+lsof
+netcat-openbsd
+netcat-traditional
+nmap
+numlockx
+openssl
+pass
+patch
+pinentry-curses
+pv
+pwgen
+reportbug
+rsnapshot
+rsync
+screen
+sane-utils
+sqlite3
+signing-party    # caff
+sshfs
+tar
+tcplay             # instead of truecrypt
+telnet
+time               # GNU time, not the shell builtin
+qrencode
+unzip
+uuid-runtime
+vlock
+w3m-img
+wget
+xz-utils
+zip
+
+[base:printing]
+-> base
+cups
+#cups-filters
+cups-bsd
+cups-pdf
+foomatic-db
+hplip
+openprinting-ppds
+printer-driver-hpijs
+
+[base:mail]
+-> base
+maildir-utils             # mu
+mailutils
+mutt
+notmuch
+offlineimap
+procmail              # formail
+ssmtp
+
+[desktop:base]
+blueman
+dbus-user-session
+file-roller
+greybird-gtk-theme
+gnome-keyring
+i3lock
+libnotify-bin
+libpam-gnome-keyring
+mesa-utils     # glxgears
+network-manager-gnome
+pasystray
+pavucontrol
+pinentry-gtk2
+pulseaudio-module-bluetooth
+redshift-gtk
+rxvt-unicode
+tango-icon-theme
+uuid     # for ~/bin/shoot
+xserver-xorg
+x11-xserver-utils      # xrdb, xset
+xclip
+xcursor-themes
+xfonts-100dpi
+xfonts-base
+xfonts-scalable
+xfonts-terminus
+xfonts-terminus-oblique
+xfonts-traditional
+xinit
+xsel
+xterm
+
+[desktop:awesome]
+-> desktop:base
 awesome
 awesome-extra
-baobab
-binutils-mingw-w64
-blender
+feh
+lua-posix
+libnotify-bin
+lua5.3
+
+[desktop:laptop]
+-> desktop:base
 blueman
-bridge-utils
-bsdgames
-bsdgames-nonfree
-build-essential   # make, gcc, g++, libc-dev, dpkg-dev
-bzr
+
+[office]
+-> desktop:apps
+-> base:mail
+bugwarrior
+gnucash
+khal   # if not from source
+ledger
+libreoffice-calc
+libreoffice-draw
+libreoffice-impress
+libreoffice-style-galaxy
+libreoffice-writer
+lightning
+mumble
+taskwarrior
+vdirsyncer
+xul-ext-sogo-connector
+
+[desktop:apps]
+-> desktop:base
 calibre
 cheese
 chromium
-cifs-utils        # mount.cifs
+evince
+gnome-calculator
+gnome-font-viewer
+#gnome-specimen      # not in unstable
+gv
+firefox
+hexchat
+pidgin
+pidgin-extprefs
+pidgin-otr
+pidgin-plugin-pack
+pidgin-privacy-please
+pidgin-themes     # for small emoticon theme
+screenruler
+thunderbird
+udiskie
+vim-gtk
+xsane
+xul-ext-dispmua
+xul-ext-imap-acl
+
+[desktop:utils]
+-> desktop:base
+baobab
+gedit
+gkrellm
+gkrellmoon
+gkrellweather
+gtk-redshift
+gucharmap
+ibus-anthy
+ibus-pinyin
+ibus-table-latex
+ibus-table-translit
+ibus-tegaki
+okular
+transmission
+wireshark
+
+[versioncontrol]
+-> base:mail
+colordiff
+diffstat
+diffutils
+git-cola
+git-doc
+git-email
+git-extras
+git-gui
+git-man
+git-mediawiki
+git-remote-hg
+git-svn
+gitk
+guilt
+meld
+mercurial
+patchutils
+quilt
+tig
+wdiff
+
+[devel:general]
+-> versioncontrol
+autoconf
+automake
+binutils
+bison
+build-essential
+colormake
+doxygen
+doxygen-doc
+exuberant-ctags
+flex
+gcc
+gdb
+gdbserver
+id-utils
+seascope
+strace
+pkg-config
+valgrind
+xxd
+
+[devel:asm]
+-> devel:general
+nasm
+yasm
+
+[devel:c]
+-> devel:general
 clang
-clementine
 cmake
 cmake-curses-gui
-colordiff
-colormake
-colortest-python
-command-not-found
-cpanminus
+g++
 cppreference-doc-en-html
 cppman
-cron
-cups-bsd
-cups-pdf
-cvs
-# cyrus-admin
-d-feet
+
+[devel:debian]
+-> devel:c
+build-essential
+debhelper
 debootstrap
 debian-policy
 debtags
 developers-reference
 devscripts
-dia
-diffstat
-#digikam
-djmount      # for upnp
-dnsutils     # dig, nslookup
-dolphin
-dos2unix
-doxygen
-doxygen-doc
-doxypy
+dgit
+dpkg-dev
 dpatch
 dput
-# drascula
+fakeroot
+git-buildpackage
+lintian
+maint-guide
+packaging-tutorial
+python3-debian [A]      # recommends for devscripts
+
+[devel:embedded]
+-> devel:c
+binutils-arm-none-eabi
+binutils-avr
+avrdude
+gcc-arm-none-eabi
+gcc-avr
+gdb-arm-none-eabi
+libnewlib-dev
+libnewlib-doc
+openocd
+
+[devel:java]
+-> devel:general
+default-jdk
+
+[devel:android]
+-> devel:java
+adb
+
+[devel:lua]
+lua5.3
+
+[devel:perl]
+cpanminus
+
+[devel:python]
+ipython
+python3
+python3-dev
+python3-docutils
+python3-pip
+python3-sphinx
+python3-virtualenv
+python3-serial
+
+[devel:ruby]
+ruby
+bundler
+
+[devel:ptxdist]
+-> devel:c
+autoconf
+automake
+build-essential
+bzip2
+bison
+flex
+gawk
+gettext
+gzip
+libncurses5-dev
+texinfo
+python3-dev
+python3-sphinx
+wget
+
+[multimedia]
+-> base
+audacity
+gmpc
+ffmpeg
+mediathekview
+mpc
+mpd
+mpv
+pulseaudio-equalizer
+
+[multimedia:cddvd]
+-> multimedia
+abcde
 dvd+rw-tools
 dvdbackup
-dvgrab
-ecryptfs-utils
-elfutils
-eog-plugins
-epiphany-browser
-epiphany-extensions
-evince-gtk
-evolution
-evolution-plugins
-feh
-ffmpeg
-figlet
-file-roller
-finger
-# fontforge
+lsdvd
+
+[graphics]
+-> desktop:base
+dia
+gimp
+gimp-data-extras
+graphviz
+hugin
+inkscape
+imagemagick
+
+[photography]
+-> graphics
+rawtherapee
+
+[graphics:3d]
+blender
+openscad
+
+[3dprinting]
+-> graphics:3d
+#libwx-perl [A]  # GUI for slic3r
+#slic3r
+
+[openstreetmap]
+-> desktop:base
+josm
+gpsbabel
+gpsprune
+
+[text]
+-> base
+dot2tex
+latexdiff
+latexmk
+ikiwiki
+ingerman
+kbibtex
+pdftk
+pandoc
+poppler-utils    # pdftotext
+texlive
+texlive-extra-utils   # ctanupload, texdiff, pdfjam/pdfnup/pdfcrop etc.
+texlive-fonts-extra   # 850 MB, but bera, ccicons, cm-unicode, dejavu
+texlive-fonts-extra-doc  # 60 MB
+texlive-lang-english
+texlive-lang-german
+texlive-latex-base-doc    # 50 MB
+texlive-latex-extra
+#texlive-latex-extra-doc  # 520 MB
+texlive-latex-recommended
+texlive-latex-recommended-doc   # 51 MB
+texlive-luatex
+texlive-plain-generic    # abbr, iftex
+texlive-pstricks
+texlive-science
+texlive-science-doc       # 60 MB
+texlive-xetex
+qpdf
+
+[fonts]
+cm-super
+fonts-dejavu
+fonts-ebgaramond
+fonts-ebgaramond-extra
 fonts-freefont-otf
+fonts-font-awesome
 fonts-inconsolata
 fonts-junction
 fonts-linuxlibertine
 fonts-ocr-a
-fonts-roboto
-foomatic-db
-foomatic-filters
-fortune-mod
-fortunes-bofh-excuses
-fortunes-debian-hints
-freeciv-client-sdl
-ftp
-#galax
-#gammaray
-gawk
-gcc-avr
-#gccintro
-gedit
-gimp
-gimp-data-extras
-git
-git-annex
-git-buildpackage
-git-cola
-git-doc
-git-extras
-git-gui
-git-remote-hg
-git-mediawiki
-git-sh
-gkrellm
-gkrellmoon
-gkrellweather
-glibc-doc-reference
-gnome-calculator
-gnome-font-viewer
-gnome-specimen
-gnupg
-gnupg2
-gnupg-agent
+fonts-open-sans
+fonts-roboto-hinted
+lmodern
+texlive-fonts-extra-links
+
+[science]
 gnuplot
-golly
-#google-earth-stable
-gpodder
-gpsbabel
-gpsprune
-graphviz
-grep
-greybird-gtk-theme
-gsmartcontrol
-gtk-redshift
-gucharmap
-guilt
-gv
-hedgewars
-help2man
-hexedit
-htop
-httperf
-hugin
-# i3
-i3lock
-ibus-anthy
-ibus-pinyin
-ibus-pinyin-db-android
-ibus-table-latex
-ibus-table-translit
-ibus-tegaki
-icedove
-icedtea-7-plugin
-iceowl-extension
-iceweasel
-id-utils     # auto, for seahorse
-id3
-#iftop
-ikiwiki
-#imposm
-info
-ingerman
-inkscape
-iodine
-iotop
-iperf
-iptables
-iptraf
-iputils-arping
-iputils-ping
-ipython
-josm
-#joystick
-#jstest-gtk
-#jxplorer
-kaffeine
-kanjipad
+python3-matplotlib
+python3-scipy
+
+[games:base]
+-> base
+bsdgames
+bsdgames-nonfree
+
+[games:desktop]
+-> desktop:base
+freeciv-client-sdl
 katomic
-kbattleship
-kbibtex
+hedgewars
+knavalbattle
 kbounce
 kbreakout
 kcachegrind
@@ -183,240 +509,89 @@ kigo
 killbots
 kino
 kmines
-kmymoney
-kmymoney-dbg
 knetwalk
 kolf
 kpat
 ksirk
 kspaceduel
 ksudoku
-ktron
-latexmk
-latex-beamer
-libcppunit-dev
-libcppunit-doc
-libnotify-bin
-libpam-gnome-keyring
-libqt4-dev-bin
-libqt5sql5-sqlite   # auto
-libreoffice-calc
-libreoffice-draw
-libreoffice-impress
-libreoffice-style-galaxy
-libreoffice-writer
-libtext-multimarkdown-perl
-libtravel-routing-de-vrr-perl  # for efa(1)
-libwww-dict-leo-org-perl   # for leo(1)
-lightdm
-lintian
-linux-doc
-linux-headers-amd64
-linux-source
-lolcat      # important!
-logrotate
-lsdvd
-lsof
-lua-bitop
-lua-posix
-mailutils
-maint-guide
-mdbtools
-mdbtools-gmdb
-mediathekview
-meld
-mercurial
-mesa-utils
-#mono-runtime
-moreutils        # for ts(1)
-mosh
-#mplayer
-mpc
-mpd
-gmpc
-mpv
-mumble
-#mysql-workbench
-mysql-client
-nasm
-netcat-openbsd
-netcat-traditional
-#netselect-apt
-network-manager-gnome
-network-manager-openconnect-gnome
-network-manager-openvpn-gnome
-network-manager-pptp-gnome
-network-manager-vpnc-gnome
-nginx-light
-nmap
-#nodejs
-#npm
-ntp
-numlockx
-ogmrip
-ogmrip-ac3
-ogmrip-mpeg
-ogmrip-oggz
-ogmrip-profiles
-ogmrip-video-copy
-okteta
-okular
-default-jre
-default-jdk
-openprinting-ppds
-openscad
-openshot
-openssh-blacklist-extra
-openssh-server
-openstreetmap-client
-pandoc
-packaging-tutorial
-pasystray
-patchutils
-pavucontrol
-pbuilder
-pdfcrop
-pdfjam        # pdfnup and friends
-pdftk
-perl-doc
-pgpdump
-php5-cli
-php5-fpm
-pidgin
-pidgin-extprefs
-pidgin-libnotify
-pidgin-musictracker
-pidgin-otr
-pidgin-plugin-pack
-pidgin-privacy-please
-pidgin-themes
-polipo
-policykit-1-gnome
-poppler-utils      # for pdfinfo, pdftotext, etc.
-printer-driver-hpijs
-pristine-tar    # auto, for git-buildpackage
-proxychains
-pulseaudio
-pv
-pwgen
-python-dbus
-python-docutils    # reStructuredText support
-python-matplotlib
-# python-pip
-python-serial
-python-setuptools
-#python-twisted
-qpdf
-qrencode
-qt4-default
-qt4-doc
-qt4-doc-html
-qt5-sdk
-qt5-doc-html
-qt5-styleplugins       # for gtk+ style
-qtcreator
-quilt
-rawtherapee
-reportbug
-rtmpdump
-rxvt-unicode
-samba
-screen
-screenruler
+#ktron       # not in testing?
 scummvm
-seahorse
-seascope
-sed
-shutter
-signing-party
-smartmontools
-sox
-sqlite3
-sqlitebrowser
-sshfs
-subversion
-#systemsettings
-sysvbanner
-taskwarrior
-bugwarrior
-tango-icon-theme
-tegaki-recognize
-tegaki-train
-telnet
-texlive
-texlive-extra-utils
-texlive-fonts-extra
-#texlive-fonts-extra-doc  # 60 MB
-texlive-lang-english
-texlive-lang-german
-texlive-latex-base-doc    # 38 MB
-texlive-latex-extra
-#texlive-latex-extra-doc  # 320 MB
-texlive-latex-recommended
-texlive-latex-recommended-doc   # 37 MB
-texlive-math-extra
-texlive-pstricks
-texlive-science
-texlive-science-doc       # 23 MB
-tftpd
-time
-toilet
-tor
-traceroute
-transmission
-ttf-anonymous-pro
-udiskie
-unetbootin
-#unixodbc
-unrar
-usbutils
-uuid
-vagalume
-valgrind
-variety           # not in Debian, see ppa:peterlevi/ppa
-vdirsyncer
-vim
-vim-fugitive
-vim-pathogen
-vim-scripts
-virtualbox
-vlan
-vlock
-vulture-nethack
-w3m-img
-wakeonlan
-wdiff
 wesnoth
-wesnoth-1.10-aoi
-wikidpad
-wine32    # auto
-wine
-winetricks
-wireshark
-wodim
-wpagui
-xchat
-xclip
-xcursor-themes
-xfce4-power-manager
-xinit
-xinput
-xnest
-xsane
-xscreensaver
-xscreensaver-data-extra
-xscreensaver-gl-extra
-xul-ext-status4evar
-xul-ext-useragentswitcher
-xul-ext-webdeveloper
-xul-ext-cookie-monster
-xul-ext-dispmua
-xul-ext-https-everywhere
-xul-ext-imap-acl
-xul-ext-livehttpheaders
-yasm
-zbar-tools
-zenity
-zip
-zsh
-zsnes:i386
+
+[games]
+-> games:desktop
+-> games:base
+
+# ------- TODO to be categorized or removed: ---------
+# anki
+#bzr
+#d-feet
+#djmount      # for upnp
+#dolphin
+#doxypy
+#elfutils
+#eog-plugins
+#glibc-doc-reference
+#golly
+#gsmartcontrol
+#help2man
+#httperf
+#id3
+#iodine
+#libcppunit-dev
+#libcppunit-doc
+#libqt4-dev-bin
+#libqt5sql5-sqlite   # auto
+#libtext-multimarkdown-perl
+#lolcat      # important!
+#mdbtools
+#mdbtools-gmdb
+#mesa-utils
+#mosh
+#mysql-client
+#nginx-light
+#okteta
+#pbuilder
+#perl-doc
+#pgpdump
+#php5-cli
+#php5-fpm
+#polipo
+#policykit-1-gnome
+#pristine-tar    # auto, for git-buildpackage
+#proxychains
+#python-dbus
+#qt4-default
+#qt4-doc
+#qt4-doc-html
+#qt5-sdk
+#qt5-doc-html
+#qt5-styleplugins       # for gtk+ style
+#qtcreator
+#samba
+#seahorse
+#smartmontools
+#sox
+#sysvbanner
+#tegaki-recognize
+#tegaki-train
+#tftpd
+#toilet
+#tor
+#ttf-anonymous-pro
+#unrar
+#variety           # not in Debian, see ppa:peterlevi/ppa
+#virtualbox
+#vulture-nethack
+#wakeonlan
+#wine32*   # auto
+#wine
+#winetricks
+#xinput
+#xnest
+#xscreensaver
+#xscreensaver-data-extra
+#xscreensaver-gl-extra
+#zbar-tools
+#zsh

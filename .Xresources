@@ -1,6 +1,8 @@
 !! see https://github.com/blinry/dotfiles/commit/de408862
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
+Xcursor.theme: DMZ-Black
+Xcursor.size: 16
 
 #include ".solarized.resources.dark"
 #include ".URxvt.resources"

@@ -1,17 +1,30 @@
 #!/bin/sh
+usage() {
+	echo "Usage: tea <timespec...> [additional info]"
+	echo "  where <timespec> is something like 10h, 5m, 2s, or combinations"
+	echo "  and [additional info] is printed to tell which tea has finished"
+}
 
 if [ -z "$1" -o "$1" = "--help" -o "$1" = "-h" ]; then
 	if [ -n "$DISPLAY" ]; then
-		xmessage "Usage: tea <amount of minutes>"
+		xmessage "`usage`"
 	else
-		echo "Usage: tea <amount of minutes>"
+		usage
 	fi
 	exit 0
 fi
-minutes=$1     # if we do 1 * 60, things will be off by a factor
-sleep $((minutes*60))
-if [ -n "$2" ]; then
-	add=" ($2)"
+
+# split up into timespec and additional info
+add=""
+for param; do
+	case $param in
+		[0-9]*)	true;;
+		*)	add="$add $param"
+	esac
+done
+
+if [ -z "$add" ]; then
+	add=" ($add)"
 fi
 
 notify-send -u critical "<big><big><b>Your tea has finished$add</b></big></big>"

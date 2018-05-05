@@ -1,0 +1,15 @@
+# vim: ft=neomuttrc
+# keep patterns in sync with clear.rc
+#		fg		bg	pattern
+color body	red		default	'^-.*'			# removed lines and --- file info
+color body	green		default	'^\+.*'			# added lines and +++ file info
+color body	blue		default	'^@@.*'			# hunk lines
+color body	brightdefault	default	'^(diff|index) .*'	# git info lines at start of each file
+
+# additional git pseudo-headers
+color body	magenta		default	'^From: .*'
+color body	magenta		default	'^Signed-off-by: .*'
+color body	yellow		default	'^Reported-by: .*'
+color body	yellow		default	'^Acked-by: .*'
+color body	yellow		default	'^Reviewed-by: .*'
+color body	yellow		default	'^Tested-by: .*'

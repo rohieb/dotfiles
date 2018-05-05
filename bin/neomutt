@@ -1,0 +1,14 @@
+#!/bin/sh
+# if in screen, don't complain about missing colors (which are interpreted by
+# the terminal emulator behind it nevertheless)
+if [ "$TERM" = "screen" ]; then
+	export TERM=screen-256color
+fi
+
+# set default attachment download folder
+cd ~/tmp
+if [ -x /usr/bin/neomutt ]; then
+	exec /usr/bin/neomutt "$@"
+else
+	exec /usr/bin/mutt "$@"
+fi

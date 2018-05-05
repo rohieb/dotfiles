@@ -12,7 +12,6 @@
 [alias]
 	st = status
 	br = branch
-	chp = cherry-pick
 	fopa = format-patch
 	bi = bisect
 	sub = submodule
@@ -20,8 +19,12 @@
 	f = fetch
 	pu = push
 	pur = pull --rebase
+	puf = push --force-with-lease
 
 	a = add -p
+
+	chp = cherry-pick
+	chpc = cherry-pick --continue
 
 	ci = commit
 	cia = commit --all

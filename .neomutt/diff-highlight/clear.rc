@@ -1,0 +1,15 @@
+# vim: ft=neomuttrc
+# keep patterns in sync with apply.rc
+#
+uncolor body				'^-.*'			# removed lines and --- file info
+uncolor body				'^\+.*'			# added lines and +++ file info
+uncolor body				'^@@.*'			# hunk lines
+uncolor body				'^(diff|index) .*'	# git info lines at start of each file
+
+# additional git pseudo-headers
+uncolor body				'^From: .*'
+uncolor body				'^Signed-off-by: .*'
+uncolor body				'^Reported-by: .*'
+uncolor body				'^Acked-by: .*'
+uncolor body				'^Reviewed-by: .*'
+uncolor body				'^Tested-by: .*'

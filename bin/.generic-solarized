@@ -35,8 +35,13 @@ case "$TERM" in
 		exit
 		;;
 	*)
-		echo Unsupported terminal $TERM, doing nothing.
-		exit
+		if [ "$1" = "-f" -o "$1" = "--force" ]; then
+			echo "Warning: unsupported terminal '$TERM', but you forced me."
+			sleep 1
+		else
+			echo "Unsupported terminal '$TERM', doing nothing. Try -f at your own risk."
+			exit
+		fi
 		;;
 esac
 
@@ -102,5 +107,9 @@ else
 	xterm_osc 708 $S_base3   # border color
 fi
 
-# set background in vim
-echo "set bg=$COLORSCHEME" > ~/.vimrc.solarized
+DROPIN_DIR=~/.config/solarized/
+if [ -d $DROPIN_DIR -a -n "`ls -A $DROPIN_DIR`" ]; then
+	for snippet in $DROPIN_DIR/*; do
+		. $snippet
+	done
+fi

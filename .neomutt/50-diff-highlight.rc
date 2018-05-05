@@ -1,0 +1,14 @@
+# vim: ft=neomuttrc
+# diff highlighting for mails
+
+# TODO FIXME: we need a way to override the automatic behaviour for <exit><display-message> to work:
+macro pager   ,dd '<enter-command>source ~/.neomutt/diff-highlight/apply.rc<enter><exit><display-message>' 'apply diff highlighting'
+macro pager   ,dc '<enter-command>source ~/.neomutt/diff-highlight/clear.rc<enter><exit><display-message>' 'clear diff highlighting'
+message-hook ~A 'source ~/.neomutt/diff-highlight/clear.rc'
+
+# try to autodetect patches in message bodies:
+message-hook '~b "^-{3} " ~b "^\\+{3} " ~b "^@@ "' 'source ~/.neomutt/diff-highlight/apply.rc'
+
+# auto-detect special user agents:
+message-hook '~h "^X-Mailer: git-send-email"'	'source ~/.neomutt/diff-highlight/apply.rc'
+message-hook '~h "^X-Mailer: DokuWiki"'		'source ~/.neomutt/diff-highlight/apply.rc'

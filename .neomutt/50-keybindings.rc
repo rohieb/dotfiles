@@ -1,0 +1,5 @@
+# vim: ft=neomuttrc
+# keyboard shortcuts
+
+# archive mails -- $my_archives can be account-specific
+macro index,pager ,a "<save-message>$my_archives$my_folder_sep`date +%Y`" "save mail to archive folder"
