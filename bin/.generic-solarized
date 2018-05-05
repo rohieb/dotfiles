@@ -35,8 +35,13 @@ case "$TERM" in
 		exit
 		;;
 	*)
-		echo Unsupported terminal $TERM, doing nothing.
-		exit
+		if [ "$1" = "-f" -o "$1" = "--force" ]; then
+			echo "Warning: unsupported terminal '$TERM', but you forced me."
+			sleep 1
+		else
+			echo "Unsupported terminal '$TERM', doing nothing. Try -f at your own risk."
+			exit
+		fi
 		;;
 esac
 
