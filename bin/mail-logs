@@ -1,0 +1,13 @@
+#!/bin/sh -e
+# source me for better job control
+for file in ~/.config/systemd/user/default.target.wants/offlineimap@*.service; do
+	srv=`basename $file`
+	acct=`echo $srv | sed 's/^.*@\(.*\)\.service$/\1/'`
+	color=`awk '/^color status/ {print $4}' ~/.neomutt/accounts/$acct.folderhooks`
+	if [ -z "$color" ]; then color=white; fi
+	echo "journalctl -f --user-unit $srv | colorlines $color"
+	eval "journalctl -f --user-unit $srv | colorlines $color &"
+done
+if [ -r ~/log/msmtp.log ]; then
+	tail -f ~/log/msmtp.log &
+fi
