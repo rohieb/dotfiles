@@ -1,2 +1,2 @@
 # vim: ft=neomuttrc
-source ~/.neomutt/50colors.sh|
+source ~/.neomutt/50-colors.sh|
