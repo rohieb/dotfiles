@@ -1,6 +1,3 @@
-source solarized.muttrc
-color markers       black           default
-
 set mbox_type="Maildir"
 set folder="~/Maildir/"
 set spoolfile="+INBOX"

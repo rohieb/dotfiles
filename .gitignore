@@ -80,4 +80,3 @@ bin/qpaeq
 .local/etc/bash_completion.d/
 .local/etc/fish/completions/
 .config/evince/
-.mutt/solarized.muttrc

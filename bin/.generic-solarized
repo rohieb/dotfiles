@@ -104,6 +104,3 @@ fi
 
 # set background in vim
 echo "set bg=$COLORSCHEME" > ~/.vimrc.solarized
-
-# set colorscheme in mutt
-echo "source solarized-$COLORSCHEME.muttrc" > ~/.mutt/solarized.muttrc
