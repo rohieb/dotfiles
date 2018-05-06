@@ -16,15 +16,29 @@ fi
 
 # split up into timespec and additional info
 add=""
+timespec=""
 for param; do
 	case $param in
-		[0-9]*)	true;;
-		*)	add="$add $param"
+		[0-9]*)
+			if [ -n "$timespec" ]; then
+				timespec="$timespec $param"
+			else
+				timespec="$param"
+			fi
+			;;
+		*)
+			if [ -n "$add" ]; then
+				add="$add $param"
+			else
+				add="$param"
+			fi
+			;;
 	esac
 done
 
-if [ -z "$add" ]; then
+if [ -n "$add" ]; then
 	add=" ($add)"
 fi
 
+sleep $timespec
 notify-send -u critical "<big><big><b>Your tea has finished$add</b></big></big>"
