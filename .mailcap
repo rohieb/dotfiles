@@ -1,5 +1,9 @@
 inode/directory;	dolphin %i -caption %c %s;			test=test -n "$DISPLAY"
 
+# note: Firefox first, so it is chosen for mutt's <view-mailcap> action
+text/html; firefox %s >/dev/null 2>&1; test=test -n "$DISPLAY"; needsterminal;
+text/html; w3m -I %{charset} -T text/html; copiousoutput;
+
 image/bmp; eog %s; test=test -n "$DISPLAY"
 image/gif; eog %s; test=test -n "$DISPLAY"
 image/jpeg; eog %s; test=test -n "$DISPLAY"
