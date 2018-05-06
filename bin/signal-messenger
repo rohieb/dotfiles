@@ -1,2 +1,0 @@
-#!/bin/sh
-exec /usr/bin/chromium --enable-remote-extensions --profile-directory=Default --app-id=bikioccmkafdpakkkcpdbppfkghcmihk
