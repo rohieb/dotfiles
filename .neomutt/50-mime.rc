@@ -1,0 +1,3 @@
+# vim: ft=neomuttrc
+auto_view text/html
+alternative_order text/plain text/enriched text/html
