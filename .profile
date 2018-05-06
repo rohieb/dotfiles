@@ -46,7 +46,7 @@ export LC_IDENTIFICATION="de_DE.UTF-8"
 export HOSTNAME=`hostname`
 
 # set up local perl lib in ~/.perl5
-if perl -Mlocal::lib > /dev/null 2>&1; then
+if perl -Mlocal::lib=$HOME/.perl5 > /dev/null 2>&1; then
 	eval $(perl -Mlocal::lib=$HOME/.perl5)
 fi
 
