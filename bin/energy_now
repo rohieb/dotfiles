@@ -18,7 +18,7 @@ output_power() {
 
 	if [ "$status" = "Discharging" ]; then
 		echo -n "$yellow$status$normal, "
-	elif [ "$status" = "Charging" ]; then
+	elif [ "$status" = "Charging" -o "$status" = "Full" ]; then
 		echo -n "$green$status$normal, "
 	else
 		echo -n "$status, "
