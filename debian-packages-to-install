@@ -58,6 +58,7 @@ firmware-iwlwifi
 i965-va-driver
 intel-microcode
 xserver-xorg-video-intel
+xserver-xorg-input-synaptics
 
 [base:utils]
 -> base
@@ -96,6 +97,7 @@ libtravel-routing-de-vrr-perl  # for efa(1)
 libwww-dict-leo-org-perl   # for leo(1)
 logrotate
 lsof
+mmv
 netcat-openbsd
 netcat-traditional
 nmap
@@ -114,6 +116,7 @@ sane-utils
 sqlite3
 signing-party    # caff
 sshfs
+sqlite3
 tar
 tcplay             # instead of truecrypt
 telnet
@@ -142,15 +145,20 @@ printer-driver-hpijs
 -> base
 maildir-utils             # mu
 mailutils
-mutt
+msmtp
+neomutt
 notmuch
 offlineimap
 procmail              # formail
 ssmtp
+t-prot
 
 [desktop:base]
 blueman
 dbus-user-session
+dmz-cursor-theme
+eog
+eog-plugins
 file-roller
 greybird-gtk-theme
 gnome-keyring
@@ -184,6 +192,7 @@ xterm
 [desktop:awesome]
 -> desktop:base
 awesome
+awesome-doc
 awesome-extra
 feh
 lua-posix
@@ -245,6 +254,7 @@ gedit
 gkrellm
 gkrellmoon
 gkrellweather
+gsmartcontrol
 gtk-redshift
 gucharmap
 ibus-anthy
@@ -255,6 +265,7 @@ ibus-tegaki
 okular
 transmission
 wireshark
+nodejs       # for native-client / firefox send to mpv
 
 [versioncontrol]
 -> base:mail
@@ -295,6 +306,7 @@ gcc
 gdb
 gdbserver
 id-utils
+manpages-dev
 seascope
 strace
 pkg-config
@@ -388,7 +400,7 @@ gettext
 gzip
 libncurses5-dev
 texinfo
-python3-dev
+python-dev
 python3-sphinx
 wget
 
@@ -397,6 +409,7 @@ wget
 audacity
 gmpc
 ffmpeg
+id3
 mediathekview
 mpc
 mpd
@@ -525,19 +538,16 @@ wesnoth
 
 # ------- TODO to be categorized or removed: ---------
 # anki
-#bzr
 #d-feet
 #djmount      # for upnp
 #dolphin
 #doxypy
 #elfutils
-#eog-plugins
 #glibc-doc-reference
 #golly
 #gsmartcontrol
 #help2man
 #httperf
-#id3
 #iodine
 #libcppunit-dev
 #libcppunit-doc
