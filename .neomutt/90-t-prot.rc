@@ -15,4 +15,4 @@ set display_filter="t-prot $my_tprot_args"
 # color scheme
 color body brightmagenta default '^\[---=\| TOFU protection by t-prot.*\|=---\]$'
 color body brightmagenta default '^\[---=\| Overlong signature removed by t-prot.*\|=---\]$'
-
+color body brightmagenta default '^\[---=\| Quote block shrunk by t-prot.*\|=---\]$'
