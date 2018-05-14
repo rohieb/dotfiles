@@ -50,13 +50,16 @@ color header		bright$S_hl	default		"^Subject:"
 color header		bright$S_hl	default		"^From:"
 
 # mail body
+color signature		$S_dim		default		# mail signatures
+color tilde		default		default
+
+# mail body: different quoting syntaxes
 color quoted		blue		default
 color quoted1		cyan		default
 color quoted2		yellow		default
 color quoted3		red		default
 color quoted4		magenta		default
-color signature		$S_dim		default		# mail signatures
-color tilde		default		default
+color body		bright$S_hl	default		"^-----[^-].+[^-]-----$"
 
 # mail: gpg
 color attach_headers	bright$S_hl	default		"^\\\\[-- The following data is signed --\\\\].*$"
