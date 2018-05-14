@@ -2,7 +2,7 @@
 # sidebar
 set sidebar_visible
 set mail_check_stats
-set sidebar_format = "%B %* %?N?%N?"
+set sidebar_format = "%B %?F?[%F]?%* %?N?%N?"
 set sidebar_sort_method = alpha
 set sidebar_divider_char = ' ┃ '
 set sidebar_delim_chars="$my_folder_sep"

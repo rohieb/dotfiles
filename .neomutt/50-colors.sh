@@ -29,8 +29,8 @@ color message		$S_hl		default
 color sidebar_divider	$S_dim		default
 color sidebar_divider	default		default
 color sidebar_ordinary	default		default
+color sidebar_flagged	blue		default
 color sidebar_new	bright$S_hl	default
-color sidebar_flagged	default		default
 
 # index
 color index		default		default		"~A"	# all mail by default
