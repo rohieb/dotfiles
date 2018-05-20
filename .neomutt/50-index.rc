@@ -4,5 +4,5 @@ folder-hook . 'set sort = threads'
 folder-hook . 'set sort_aux = last-date'
 
 # Conditional dates, see https://www.neomutt.org/feature/cond-date
-set index_format="%4C %Z %<[y?%<[m?%<[d?%[ %H:%M]&%[%a %d.]>&%[%d.%b]>&%[%b'%y]> %-15.15L (%?l?%4l&%4c?) %s"
+set index_format="%4C %Z %<[y?%<[m?%<[23H?%[ %H:%M]&%[%a %d.]>&%[%d.%b]>&%[%b'%y]> %-15.15L (%?l?%4l&%4c?) %s"
 set confirmappend = no
