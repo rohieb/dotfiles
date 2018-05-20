@@ -26,6 +26,9 @@ alias k='khal calendar'
 
 alias dd='dd status=progress'
 
+alias sysu="systemctl --user"
+complete -F _systemctl sysu
+
 if [ -r ~/.bash_aliases.$HOSTNAME ]; then
 	source ~/.bash_aliases.$HOSTNAME
 fi
