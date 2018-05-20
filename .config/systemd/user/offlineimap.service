@@ -1,0 +1,10 @@
+[Unit]
+Description=OfflineIMAP one-time full sync
+Documentation=man:offlineimap(1)
+After=network.target
+ConditionPathExists=%h/.offlineimaprc
+
+[Service]
+Type=oneshot
+Environment="PATH=/bin:/usr/bin"
+ExecStart=/usr/bin/offlineimap -c %h/.offlineimaprc -u basic -o

@@ -1,3 +1,0 @@
-[Unit]
-Description=All OfflineIMAP sync accounts
-Requires=sockets.target
