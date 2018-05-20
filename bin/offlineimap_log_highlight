@@ -1,0 +1,31 @@
+#!/bin/bash -e
+ansi_reset='\033[0m'
+ansi_boldwhite='\033[37;1m'
+
+awk_changes=
+awk_accounts=
+
+for acct in $(awk -F'[] ]' '/^\[Account/ {print $2;}' ~/.offlineimaprc); do
+	color=$(awk '/^color status/ {print $4}' ~/.neomutt/accounts/$acct.folderhooks)
+	if [ -z "$color" ]; then
+		color=white
+	fi
+
+	ansi_color=$(colorlines --print $color | sed 's/\x1b/\\x1b/g')
+	awk_accounts="$awk_accounts color_${acct} = \"$ansi_color\";"
+	awk_changes="$awk_changes /Processing account $acct/ { color = color_${acct} }"
+done
+
+awk "$(cat <<EOF
+	BEGIN {
+		$awk_accounts
+		color = "$ansi_reset"
+	}
+	$awk_changes
+	/Deleting [0-9]+ messages/ { print "$ansi_boldwhite" \$0 "$ansi_reset"; next }
+	/Copy message UID/         { print "$ansi_boldwhite" \$0 "$ansi_reset"; next }
+	/Adding flag/              { print "$ansi_boldwhite" \$0 "$ansi_reset"; next }
+	                           { print color \$0 "$ansi_reset" }
+	/Finished account/         { color = "$ansi_reset" }
+EOF
+)"
