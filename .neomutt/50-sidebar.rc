@@ -11,7 +11,7 @@ set sidebar_folder_indent
 set sidebar_indent_string="  "
 bind index,pager <F5> sidebar-toggle-visible
 bind index,pager \CO sidebar-open
-bind index,pager \CH sidebar-prev
-bind index,pager \CL sidebar-next
+bind index,pager \CL sidebar-prev
+bind index,pager \CH sidebar-next
 bind index,pager \CP sidebar-prev-new
 bind index,pager \CN sidebar-next-new
