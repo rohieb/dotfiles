@@ -9,7 +9,12 @@ uncolor body				'^(diff|index) .*'	# git info lines at start of each file
 # additional git pseudo-headers
 uncolor body				'^From: .*'
 uncolor body				'^Signed-off-by: .*'
-uncolor body				'^Reported-by: .*'
+
 uncolor body				'^Acked-by: .*'
+uncolor body				'^Cc: .*'
+uncolor body				'^Co-Developed-by .*'
+uncolor body				'^Fixes: .*'
+uncolor body				'^Reported-by: .*'
 uncolor body				'^Reviewed-by: .*'
+uncolor body				'^Suggested-by: .*'
 uncolor body				'^Tested-by: .*'

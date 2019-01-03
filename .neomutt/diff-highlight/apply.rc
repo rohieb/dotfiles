@@ -9,7 +9,12 @@ color body	brightdefault	default	'^(diff|index) .*'	# git info lines at start of
 # additional git pseudo-headers
 color body	magenta		default	'^From: .*'
 color body	magenta		default	'^Signed-off-by: .*'
-color body	yellow		default	'^Reported-by: .*'
+
 color body	yellow		default	'^Acked-by: .*'
+color body	yellow		default	'^Cc: .*'
+color body	yellow		default	'^Co-Developed-by: .*'
+color body	yellow		default	'^Fixes: .*'
+color body	yellow		default	'^Reported-by: .*'
 color body	yellow		default	'^Reviewed-by: .*'
+color body	yellow		default	'^Suggested-by: .*'
 color body	yellow		default	'^Tested-by: .*'
