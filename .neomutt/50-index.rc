@@ -3,6 +3,17 @@
 folder-hook . 'set sort = threads'
 folder-hook . 'set sort_aux = last-date'
 
-# Conditional dates, see https://www.neomutt.org/feature/cond-date
-set index_format="%4C %Z %<[y?%<[m?%<[23H?%[ %H:%M]&%[%a %d.]>&%[%d.%b]>&%[%b'%y]> %-15.15L (%?l?%4l&%4c?) %s"
+set index_format = "%4C %Z %<[12m?%<[7d?%<[23H?%[ %H:%M]&%[%a %d.]>&%[%d.%b]>&%[%b'%y]> %-15.15L (%4c) %s"
+# message number:   %4C
+# message flags:        %Z
+# if date older than 12m:  %<[12m?                                           &%[%b'%y]>
+# if date in 7d-11m:              %<[7d?                           &%[%d.%b]>
+# if date in 23h-7d:                    %<[23H?%        &%[%a %d.]>
+# if date younger than 23h:                     [ %H:%M]
+#   (using conditional dates, see https://www.neomutt.org/feature/cond-date,
+#   nested ifs, %<...>, see https://neomutt.org/feature/nested-if,
+#   and %[fmt], date and time of the message converted to the local time zone)
+# To/From addresses:                                                                    %-15.15L
+# Message size in bytes:                                                                         (%4c)
+# Subject:                                                                                             %s
 set confirmappend = no
