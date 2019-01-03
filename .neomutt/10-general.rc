@@ -2,6 +2,6 @@
 # general settings
 set auto_tag = yes
 set header_cache = "~/.cache/mutt-`hostname`"
-set sendmail = "~/bin/sendmail -oem -oi"
+source ~/.neomutt/11-sendmail.sh|
 set sendmail_wait = 1
 unset wait_key
