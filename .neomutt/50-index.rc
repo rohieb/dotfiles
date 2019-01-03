@@ -1,7 +1,7 @@
 # vim: ft=neomuttrc
 # index behaviour
 folder-hook . 'set sort = threads'
-folder-hook . 'set sort_aux = last-date'
+folder-hook . 'set sort_aux = date'
 
 set index_format = "%4C %Z %<[12m?%<[7d?%<[23H?%[ %H:%M]&%[%a %d.]>&%[%d.%b]>&%[%b'%y]> %-15.15L (%4c) %s"
 # message number:   %4C
