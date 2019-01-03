@@ -42,6 +42,7 @@ color index		$S_bg		red		"~D"	# deleted messages
 
 # pager
 color attachment	$S_dim		default
+color attach_headers	bright$S_hl	default		"^\\\\[-- Attachment #.* --\\\\]$"
 color markers		$S_bg		default		# invisible pls
 
 # mail headers
