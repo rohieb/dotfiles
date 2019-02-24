@@ -1,0 +1,3 @@
+#!/bin/sh
+# set proxy to a nonexisting port to prevent loading remote content
+w3m -o http_proxy=http://127.0.44.44:9999 -o https_proxy=http://127.0.44.44:9999 "$@"

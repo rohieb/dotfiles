@@ -1,8 +1,8 @@
 inode/directory;	dolphin %i -caption %c %s;			test=test -n "$DISPLAY"
 
-# note: Firefox first, so it is chosen for mutt's <view-mailcap> action
-text/html; firefox %s >/dev/null 2>&1; test=test -n "$DISPLAY"; needsterminal;
-text/html; w3m -I %{charset} -T text/html; copiousoutput;
+# note: first entry is chosen for mutt's <view-mailcap> action
+text/html; w3m-no-remote-content -I %{charset} -T text/html -o confirm_qq=false; needsterminal
+text/html; w3m-no-remote-content -I %{charset} -T text/html; copiousoutput;
 
 # viewical reads from stdin only
 text/calendar; cat %s | viewical; copiousoutput;
