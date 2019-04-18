@@ -1,0 +1,4 @@
+*.jpg	diff=visual
+*.png 	diff=visual
+*.gif 	diff=visual
+*.svg 	diff=visual

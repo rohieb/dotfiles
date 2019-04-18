@@ -1,0 +1,41 @@
+#!/bin/sh
+# Open the old and new images of a commit in an image viewer
+#
+# Usage:
+# 1. put this file into a folder somewhere on your $PATH
+# 2. add the following lines to ~/.gitconfig:
+#        [diff "visual"]
+#        	command = "git-wrapper-visual-diff"
+# 3. add the following lines to ~/.config/git/attributes:
+#        *.jpg	diff=visual
+#        *.png 	diff=visual
+#        *.gif 	diff=visual
+#        *.svg 	diff=visual
+# 4. call git log -p / git show / git diff with the --ext-diff parameter
+#
+# See manpages for more info: section "Defining an external diff driver" in
+# gitattributes(5), section "GIT_EXTERNAL_DIFF" in git(1)
+#
+# TODO: maybe use https://github.com/ewanmellor/git-diff-image instead?
+
+path="$1"
+oldfile="$2"
+oldhex="$3"
+oldmode="$4"
+newfile="$5"
+newhex="$6"
+newmode="$7"
+
+# Output on stderr or stdout is only printed by git diff later after this
+# script exits, but we want to see the old and new filenames
+echo >/dev/tty
+echo diff "$path" >/dev/tty
+echo --- "$oldfile" mode "$oldmode" index "$oldhex" >/dev/tty
+echo +++ "$newfile" mode "$newmode" index "$newhex" >/dev/tty
+xdg-open "$oldfile" &
+pidold=$!
+xdg-open "$newfile" &
+pidnew=$!
+
+# don't exit while running, or git will remove the files again.
+wait $pidold $pidnew

@@ -1,3 +1,6 @@
+[diff "visual"]
+	command = "git-wrapper-visual-diff"
+
 [user]
 	name = Roland Hieber
 	email = rohieb@rohieb.name
