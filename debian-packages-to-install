@@ -148,6 +148,7 @@ mailutils
 msmtp
 neomutt
 notmuch
+notmuch-mutt
 offlineimap
 procmail              # formail
 ssmtp
