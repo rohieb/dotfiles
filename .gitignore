@@ -79,3 +79,4 @@ bin/qpaeq
 .local/etc/fish/completions/
 .config/evince/
 .neomutt/colors.solarized.sh
+.vim/yank-paste-everywhere
