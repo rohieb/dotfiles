@@ -1,6 +1,14 @@
 #!/bin/sh
-PARAM="-n 10"
-if [ -n "$1" ]; then
-	PARAM="$@"
+# by default, show the 10 latest commits
+
+. git-limit-range
+
+pr_debug "gg params: '$@'"
+if ! printf "%s" "$@" | grep -q -- '-n'; then
+	set -- -n 10
 fi
-exec git gr $PARAM
+
+pr_debug "gg params: '$@'"
+limit_range=`git_limit_range_include_upstreams "$@"`
+set -x
+git gr $limit_range
