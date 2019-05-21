@@ -1,0 +1,21 @@
+#!/bin/sh
+host="$1"
+shift
+
+set -x
+while true; do
+	case "$*" in
+		"")
+			echo "Usage: $0 <host> <screen-args>"
+			exit 1
+			;;
+		-*)
+			ssh $host -t screen "$@"
+			;;
+		*)
+			ssh $host -t screen -Ax $1
+			;;
+	esac
+
+	sleep 2
+done
