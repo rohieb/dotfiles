@@ -1,0 +1,5 @@
+#!/bin/sh
+# show diff for all unmerged files
+git status --porcelain=v2 \
+	| awk '/^u (AA|UU)/ { shift; print $NF }' \
+	| xargs sh -c 'echo "$@"; exec git diff "$@"'

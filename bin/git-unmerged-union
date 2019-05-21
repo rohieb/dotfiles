@@ -1,0 +1,57 @@
+#!/bin/bash
+
+__YELLOW='\033[33m'
+__RESET='\033[0m'
+
+GIT="git -c core.abbrev=12 -c core.pager=cat -c pager.diff=cat"
+GIT_DIR=$(git rev-parse --git-dir)
+info() {
+	echo -e "$@"
+}
+snip() { info "${__YELLOW}------------------ 8< ------------------${__RESET}"; }
+snap() { info "${__YELLOW}------------------ >8 ------------------${__RESET}"; }
+
+# param: filenames for diff, or empty
+conflicting_diff_lines() {
+	if [ ! -f ${GIT_DIR}/MERGE_HEAD ]; then
+		return 1
+	fi
+
+	${GIT} diff "$@" \
+		| grep -v '^\(++<<<<<<<\|++=======\|++>>>>>>>\|--- a/\|+++ b/\)' \
+		| grep '^++'
+	}
+
+try_union() {
+	filename="$1"
+	if [ -z "$(conflicting_diff_lines "${filename}")" ] &&
+		sed -i '/^\(<<<<<<< \|=======\|>>>>>>> \)/d' ${filename} &&
+		${GIT} add "${filename}"
+	then
+		info "Auto-solved: ${filename}"
+		snip
+		${GIT} diff --cached "${filename}"
+		snap
+	else
+		info "Unable to auto-solve:"
+		snip
+		${GIT} diff "${filename}"
+		snap
+	fi
+}
+
+try_union_all() {
+	if ! [ -f ${GIT_DIR}/MERGE_HEAD ] && ! [ -f ${GIT_DIR}/REBASE_HEAD ]; then # no conflict
+		echo "no conflicts?"
+		return 0
+	fi
+
+	${GIT} status --porcelain=v1 \
+		| awk '/^UU / { print $2 }' \
+		| while read filename; do
+			info "Resolving merge conflict in ${filename}..." &&
+			try_union "${filename}"
+		done
+}
+
+try_union_all
