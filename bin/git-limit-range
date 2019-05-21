@@ -1,0 +1,113 @@
+# vim: ft=sh
+# Commit limiting to speed up loading in large repositories
+# Limits commits up to the following base points (in that order):
+# - environment variable $base
+# - refs/worktree/base
+# - refs/heads/base, refs/tags/base
+
+# number of commits to include below the cutting point
+GIT_LIMIT_CONTEXT=5
+
+pr_debug() {
+	if [ -n "$_git_limit_range_debug" ]; then
+		(printf "%s " "$@"; echo) >&2
+	fi
+}
+
+git_find_upstream() {
+	if [ -z "$1" ]; then
+		branch=HEAD
+	else
+		branch=$1
+	fi
+	upstream=`git rev-parse --abbrev-ref --symbolic-full-name ${branch}@{u} 2>/dev/null`
+	if [ "$?" = 0 ]; then
+		echo $upstream
+	fi
+}
+
+# call with git-log params
+# output will be params ready to pass to git-log
+git_limit_range() {
+	params=
+	committishs=
+	limit_range=
+
+	# first parse all parameters
+	pr_debug "git_limit_range: input params: '$@'"
+	while [ -n "$1" ]; do
+		p="$1"; shift
+		# stop parsing at --
+		pr_debug "git_limit_range: parsing '$p'"
+		if [ "$p" = "--" ]; then
+			pr_debug "git_limit_range: found stop marker"
+			params="$params $@"
+			break;
+		elif git rev-parse --verify --quiet "$p^{commit}" > /dev/null; then
+			pr_debug "git_limit_range: '$p' is a committish"
+			committishs="$committishs $p"
+		else
+			params="$params $p"
+		fi
+	done
+
+	# find out where to limit to
+	if [ -n "$base" ]; then
+		# include base in output for compleness if possible
+		pr_debug "git_limit_range: limiting to \$base: '$base'"
+		limit_range="${base}^.."
+	elif [ -n "`git show-ref refs/worktree/base`" ]; then
+		# base may be (a symref to) the initial commit, then base^ is
+		# undefined. but then it also makes no sense to limit the output and
+		# only exclude the first commit.
+		# allow overwriting base in local worktree:
+		if git rev-parse --verify -q 'refs/worktree/base^' > /dev/null; then
+			pr_debug "git_limit_range: limiting to refs/worktree/base"
+			limit_range="refs/worktree/base^.."
+		fi
+	elif [ -n "`git show-ref refs/heads/base refs/tags/base`" ]; then
+		# same as above, but not local to current worktree
+		if git rev-parse --verify -q 'base^' > /dev/null; then
+			pr_debug "git_limit_range: limiting to refs/{heads,tags}base"
+			limit_range="base^.."
+		fi
+	else
+		# try to use last tag
+		last_tag="`git describe --tags --abbrev=0 2>/dev/null`"
+		if [ "$?" = 0 ]; then
+			limit_range="$last_tag^1~${GIT_LIMIT_CONTEXT}.."
+			pr_debug "git_limit_range: limiting to last tag: '$last_tag'"
+		fi
+	fi
+
+	pr_debug "git_limit_range: limit range is '$limit_range'"
+
+	# then limit committishs
+	pr_debug "git_limit_range: got committishs: '$committishs'"
+	if [ -z "$committishs" ]; then
+		set -- "HEAD"
+	else
+		set -- $committishs
+	fi
+	while [ -n "$1" ]; do
+		p="$1"; shift
+		pr_debug "git_limit_range: limiting committish '$p'"
+		params="$params $limit_range$p"
+		if [ -n "$_git_limit_range_include_upstreams" ]; then
+			upstream=`git_find_upstream $p`
+			pr_debug "git_limit_range: upstream is '$upstream'"
+			if [ -n "$upstream" ]; then
+				params="$params $limit_range$upstream"
+			fi
+		fi
+	done
+
+	pr_debug "git_limit_range: output params: '$params'"
+	printf "%s" "$params"
+
+}
+
+# also include upstream branch in log output
+git_limit_range_include_upstreams() {
+	_git_limit_range_include_upstreams=1 git_limit_range "$@"
+}
