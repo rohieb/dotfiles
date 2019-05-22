@@ -30,6 +30,7 @@ git_find_upstream() {
 # output will be params ready to pass to git-log
 git_limit_range() {
 	params=
+	raw_params=
 	committishs=
 	limit_range=
 
@@ -41,7 +42,7 @@ git_limit_range() {
 		pr_debug "git_limit_range: parsing '$p'"
 		if [ "$p" = "--" ]; then
 			pr_debug "git_limit_range: found stop marker"
-			params="$params $@"
+			raw_params="$@"
 			break;
 		elif git rev-parse --verify --quiet "$p^{commit}" > /dev/null; then
 			pr_debug "git_limit_range: '$p' is a committish"
@@ -84,7 +85,8 @@ git_limit_range() {
 
 	# then limit committishs
 	pr_debug "git_limit_range: got committishs: '$committishs'"
-	if [ -z "$committishs" ]; then
+	if [ -z "$committishs" -a -z "$raw_params" ]; then
+		# no committishs before -- and nothing after --
 		set -- "HEAD"
 	else
 		set -- $committishs
@@ -102,8 +104,8 @@ git_limit_range() {
 		fi
 	done
 
-	pr_debug "git_limit_range: output params: '$params'"
-	printf "%s" "$params"
+	pr_debug "git_limit_range: output params: '$params $raw_params'"
+	printf "%s" "$params $raw_params"
 
 }
 
