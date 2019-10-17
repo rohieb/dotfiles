@@ -139,6 +139,7 @@ cups-pdf
 foomatic-db
 hplip
 openprinting-ppds
+printer-driver-cups-pdf
 printer-driver-hpijs
 
 [base:mail]
@@ -146,6 +147,7 @@ printer-driver-hpijs
 maildir-utils             # mu
 mailutils
 msmtp
+muttprint
 neomutt
 notmuch
 notmuch-mutt
