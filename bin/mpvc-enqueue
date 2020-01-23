@@ -1,0 +1,24 @@
+#!/bin/sh
+if [ -z "$1" ]; then
+	echo "Usage: $0 <filename or URL...>"
+	exit 1
+fi
+
+socket=~/.cache/mpvc.socket
+
+# start mpvc if not already running
+if ! socat - "${socket}" >/dev/null 2>&1 <<EOF
+	{ "command": ["get_property", "playback-time"] }
+EOF
+then
+	echo Starting continuous mpv media player...
+	echo See output in ~/.cache/mpvc.log
+	mpvc --term-status-msg='' > ~/.cache/mpvc.log 2>&1 &
+	sleep 2
+fi
+
+# fill playlist
+for f in $@; do
+	echo loadfile \"$1\" append-play | socat - "${socket}"
+	echo show-text \"loaded $1\" | socat - "${socket}"
+done

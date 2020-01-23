@@ -1,0 +1,3 @@
+#!/bin/sh
+echo Listening on ~/.cache/mpvc.socket
+mpv --idle --input-ipc-server=~/.cache/mpvc.socket "$@"
