@@ -1,0 +1,4 @@
+# vim: ft=neomuttrc
+# keyboard shortcuts: pipe video URLs to mpv
+macro index y "<display-message><view-attachments><search>text/plain<enter><pipe-entry>mpvc-enqueue-from-email<enter><exit><exit>"
+macro pager y                  "<view-attachments><search>text/plain<enter><pipe-entry>mpvc-enqueue-from-email<enter><exit>"
