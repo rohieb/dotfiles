@@ -78,8 +78,14 @@ git_limit_range() {
 		fi
 	else
 		# try to use last tag
-		last_tag="`git describe --tags --abbrev=0 2>/dev/null`"
-		if [ "$?" = 0 ]; then
+		# strange bug with gcc... "warning: tag 'gcc_9_2_0_release' is really 'releases/gcc-9.2.0' here"
+		# and we cannot use gcc_9_2_0_release it as a ref
+		# https://public-inbox.org/git/20200205141332.lov2f2fvinehcd3a@pengutronix.de/T/#u
+		last_tag=$(git describe --tags --abbrev=0 2>&1 | sed -n "s/^warning: tag '.*' is really '\(.*\)' here$/\1/p")
+		if [ -z "$last_tag" ]; then
+			last_tag="`git describe --tags --abbrev=0 2>/dev/null`"
+		fi
+		if [ -n "$last_tag" ]; then
 			limit_range="$last_tag^1~${GIT_LIMIT_CONTEXT}.."
 			pr_debug "git_limit_range: limiting to last tag: '$last_tag'"
 		fi
