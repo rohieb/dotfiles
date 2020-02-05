@@ -28,9 +28,12 @@ git_find_upstream() {
 
 # call with git-log params
 # output will be params ready to pass to git-log
+# all comittishes before a literal '--' are limited, all parameters after '--'
+# are left in peace.
 git_limit_range() {
 	params=
 	raw_params=
+	have_raw_params=
 	committishs=
 	limit_range=
 
@@ -41,6 +44,7 @@ git_limit_range() {
 		# stop parsing at --
 		pr_debug "git_limit_range: parsing '$p'"
 		if [ "$p" = "--" ]; then
+			have_raw_params=1
 			pr_debug "git_limit_range: found stop marker"
 			raw_params="$@"
 			break;
@@ -85,7 +89,7 @@ git_limit_range() {
 
 	# then limit committishs
 	pr_debug "git_limit_range: got committishs: '$committishs'"
-	if [ -z "$committishs" -a -z "$raw_params" ]; then
+	if [ -z "$committishs" -a -z "$have_raw_params" ]; then
 		# no committishs before -- and nothing after --
 		set -- "HEAD"
 	else
