@@ -8,5 +8,13 @@ set quote_regexp = '^([ \t]*[>])+'	# remove everything except '>'
 
 ignore * In-Reply-To:
 unhdr_order *
-unignore  From: Reply-To: Date: To: Cc: Bcc: Message-ID: X-Mailer: User-Agent: Subject:
-hdr_order From: Reply-To: Date: To: Cc: Bcc: Message-ID: X-Mailer: User-Agent: Subject:
+unignore  From: Reply-To: Date: To: Cc: Bcc: \
+          Resent-From: Resent-Date: Resent-To: Resent-Cc: Resent-Bcc: \
+          Message-ID: Archived-At: \
+          X-Mailer: User-Agent: \
+          Subject:
+hdr_order From: Reply-To: Date: To: Cc: Bcc: \
+          Resent-From: Resent-Date: Resent-To: Resent-Cc: Resent-Bcc: \
+          Message-ID: Archived-At: \
+          X-Mailer: User-Agent: \
+          Subject:
