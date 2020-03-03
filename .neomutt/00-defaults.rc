@@ -2,3 +2,4 @@
 # some default custom variables
 set my_folder_sep = '/'
 set my_archives = '=Archives'
+set my_cfgdir = $HOME/.neomutt
