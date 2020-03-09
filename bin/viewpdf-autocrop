@@ -73,7 +73,10 @@ fi
 # the real work
 basename="$(basename "$file")"
 cachefile="$CACHEDIR/$basename"
-if [ -f $cachefile  -a  $cachefile -nt $file  -a  -z "$force" ]; then
+if [ "$(stat -c '%s' "$file")" -gt $((1024*1024)) ]; then
+	echo "Note: not cropping file larger than 1 MiB."
+	openfile="$file"
+elif [ -f $cachefile  -a  $cachefile -nt $file  -a  -z "$force" ]; then
 	echo "Using cached file $cachefile"
 	openfile="$cachefile"
 else
