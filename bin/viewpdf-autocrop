@@ -20,7 +20,7 @@ crop_file() {
 	cropbox=$(
 		gs -sDEVICE=bbox -dBATCH -dNOPAUSE "$infile" 2>&1 | tee $tty | awk '
 			BEGIN { YMIN = XMIN = 65535; YMAX = XMAX = 0; }
-			/^\%\%BoundingBox/ {
+			/^%%BoundingBox/ {
 				YMIN = YMIN < $2 ? YMIN : $2;
 				XMIN = XMIN < $3 ? XMIN : $3;
 				YMAX = YMAX > $4 ? YMAX : $4;
