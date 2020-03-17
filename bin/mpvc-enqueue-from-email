@@ -5,4 +5,4 @@ filter() {
 }
 urls="`filter`"
 echo found $urls
-mpvc-enqueue "$urls"
+mpvc-enqueue $urls

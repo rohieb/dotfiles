@@ -19,6 +19,6 @@ fi
 
 # fill playlist
 for f in $@; do
-	echo loadfile \"$1\" append-play | socat - "${socket}"
-	echo show-text \"loaded $1\" | socat - "${socket}"
+	echo loadfile \"$f\" append-play | socat - "${socket}"
+	echo show-text \"loaded $f\" | socat - "${socket}"
 done
