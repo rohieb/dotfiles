@@ -2,9 +2,12 @@
 
 set my_notmuch_cache=`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/`
 
-# copied from notmuch-mutt
+# adapted from upstream notmuch-mutt package
+# we do a `notmuch new` every 30 minutes by cron, so it should not take too
+# long to do it here too in order to get an up-to-date cache.
 macro index,pager <F8> \
 "<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+<shell-escape>notmuch new >/dev/null<enter>\
 <shell-escape>notmuch-mutt -o $my_notmuch_cache/results -r --prompt search<enter>\
 <change-folder-readonly>$my_notmuch_cache/results<enter>\
 <enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
@@ -12,6 +15,7 @@ macro index,pager <F8> \
 
 macro index,pager <F9> \
 "<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+<shell-escape>notmuch new >/dev/null<enter>\
 <pipe-message>notmuch-mutt -o $my_notmuch_cache/results -r thread<enter>\
 <change-folder-readonly>$my_notmuch_cache/results<enter>\
 <enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
