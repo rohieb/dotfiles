@@ -1,0 +1,18 @@
+#!/bin/sh
+for i in "$@"; do
+	case "$i" in
+		*.asc|*.gpg|*.sig)
+			printf "Skipping signature file: %s\n" "$i"
+			continue
+			;;
+	esac
+	if [ -d "$i" ]; then
+		continue
+	fi
+	if [ -f "${i}.gpg" ] || [ -f "${i}.asc" ] || [ -f "${i}.sig" ]; then
+		printf "Skipping already signed file: %s\n" "$i"
+		continue
+	fi
+	printf "%s\n" "$i"
+	gpg --detach-sign --armor "$i"
+done
