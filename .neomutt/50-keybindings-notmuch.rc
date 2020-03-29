@@ -28,3 +28,17 @@ macro index,pager ,fn "\
 <pipe-message> notmuch-where-on-disk -<enter>\
 <enter-command> set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>\
 " "notmuch: show filename of current message"
+
+# note: things go horribly wrong when doing a set my_var=`get-input-from-stdin`
+macro index,pager ,i "\
+<enter-command> set my_old_wait_key=\$wait_key nowait_key<enter>\
+<shell-escape> notmuch new >/dev/null && \
+ rm -f $my_notmuch_cache/where-on-disk && \
+ notmuch-where-on-disk --verbose --mailbox > $my_notmuch_cache/where-on-disk<enter>\
+<enter-command> set my__folder=\`awk '{print $1; exit}' $my_notmuch_cache/where-on-disk\`<enter>\
+<enter-command> set my__id=\`awk '{print $2; exit}' $my_notmuch_cache/where-on-disk\`<enter>\
+<enter-command> set wait_key=\$my_old_wait_key<enter> \
+<enter-command> source $my_cfgdir/dynamic/neomutt-search-mail-by-id.rc<enter>\
+<enter-command> set my__folder='' my__id=''<enter>\
+_6kgMbnD\
+" "notmuch: go to folder containing message ID"
