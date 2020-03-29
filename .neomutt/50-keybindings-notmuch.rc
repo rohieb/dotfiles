@@ -20,3 +20,11 @@ macro index,pager <F9> \
 <change-folder-readonly>$my_notmuch_cache/results<enter>\
 <enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
       "notmuch: reconstruct thread"
+
+macro index,pager ,fn "\
+<enter-command> set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+<shell-escape> notmuch new >/dev/null<enter>\
+<enter-command> set wait_key<enter>\
+<pipe-message> notmuch-where-on-disk -<enter>\
+<enter-command> set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>\
+" "notmuch: show filename of current message"
