@@ -7,6 +7,16 @@ text/html; w3m -I %{charset} -T text/html; copiousoutput;
 # viewical reads from stdin only
 text/calendar; cat %s | viewical; copiousoutput;
 
+# application formats that are basically human-understandable:
+application/ecmascript; cat %s; copiousoutput;
+application/javascript; cat %s; copiousoutput;
+application/json; cat %s; copiousoutput;
+application/x-shellscript; cat %s; copiousoutput;
+application/sieve; cat %s; copiousoutput;
+application/SGML; cat %s; copiousoutput;
+application/sql; cat %s; copiousoutput;
+application/xml; cat %s; copiousoutput;
+
 image/bmp; eog %s; test=test -n "$DISPLAY"
 image/gif; eog %s; test=test -n "$DISPLAY"
 image/jpeg; eog %s; test=test -n "$DISPLAY"
