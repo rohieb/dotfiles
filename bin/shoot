@@ -45,9 +45,9 @@ if [ -n "$UPLOAD" ]; then
 	PASTE=$(upload screenshots $FILENAME)
 fi
 
-echo "$PASTE" | xclip -selection primary
-echo "$PASTE" | xclip -selection clipboard
-echo "$PASTE"
+printf "$PASTE" | xclip -selection primary
+printf "$PASTE" | xclip -selection clipboard
+printf "%s\n" "$PASTE"
 
 if [ -n "$ROOT" ]; then
 	notify-send "Done. You can now move again."
