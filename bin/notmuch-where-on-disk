@@ -65,6 +65,11 @@ main() {
 		id="$1"
 	fi
 
+	if [ -z "$1" ]; then
+		echo "Missing Message-ID." >&2
+		exit 1
+	fi
+
 	results=()
 	for result in $(notmuch search --format=text --output=files id:"$id"); do
 		if [ -n "$opt_choose" ]; then
