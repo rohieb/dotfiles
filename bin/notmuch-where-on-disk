@@ -1,0 +1,66 @@
+#!/bin/sh
+usage() {
+	cat <<EOF
+Description:
+        $0 - print path on disk of messages using neomutt cache
+Usage:
+        $0 [options] <message-id>
+Options:
+        <message-id>    Message-ID to search for.
+                        If -, read mail from stdin. If empty, prompt for ID.
+        -h, --help      show this help
+        -v, --verbose   print original message IDs after path
+        -m, --mailbox   only print mailbox containing message
+EOF
+}
+
+opt_mailbox=
+opt_verbose=
+eval set -- "$(getopt -o 'hmv' --long help,mailbox,verbose -- "$@")"
+while [ -n "$1" ]; do
+	case "$1" in
+		-h|--help)		usage $0; exit;;
+		-m|--mailbox)		opt_mailbox=1;;
+		-v|--verbose)		opt_verbose=1;;
+		--)			shift; break;;
+		*)			break;;
+	esac
+	shift
+done
+
+if [ -n "$opt_mailbox" ]; then
+	print_message() {
+		filename=$(dirname "$1")
+		case "$filename" in
+			*/cur) print_verbose "${filename%%cur}" "$2";;
+			*/new) print_verbose "${filename%%new}" "$2";;
+			*/tmp) print_verbose "${filename%%tmp}" "$2";;
+		esac
+	}
+else
+	print_message() { print_verbose "$1" "$2"; }
+fi
+
+if [ -n "$opt_verbose" ]; then
+	print_verbose() { printf "%s\t%s\n" "${1}" "${2}"; }
+else
+	print_verbose() { printf "%s\n" "$1"; }
+fi
+
+main() {
+	ids=
+	if [ -z "$1" ]; then
+		printf 'Search for Message-ID: ' >&2
+		read ids
+	elif [ "$1" = "-" ]; then
+		ids=$(sed -n 's/^message-id:\s\+<\(.*\)>/\1/ip')
+	else
+		ids="$@"
+	fi
+
+	for id in $ids; do
+		print_message "$(notmuch search --format=text --output=files id:"$id")" "$id"
+	done
+}
+
+main "$@"
