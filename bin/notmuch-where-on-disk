@@ -28,16 +28,19 @@ while [ -n "$1" ]; do
 	shift
 done
 
+path_to_mailbox() {
+	filename=$(dirname "$1")
+	case "$filename" in
+		*/cur) echo "${filename%%cur}";;
+		*/new) echo "${filename%%new}";;
+		*/tmp) echo "${filename%%tmp}";;
+	esac
+}
 if [ -n "$opt_mailbox" ]; then
-	print_message() {
-		filename=$(dirname "$1")
-		case "$filename" in
-			*/cur) print_verbose "${filename%%cur}" "$2";;
-			*/new) print_verbose "${filename%%new}" "$2";;
-			*/tmp) print_verbose "${filename%%tmp}" "$2";;
-		esac
-	}
+	transform_path() { path_to_mailbox "$1"; }
+	print_message() { print_verbose "$(transform_path "$1")" "$2"; }
 else
+	transform_path() { echo "$1"; }
 	print_message() { print_verbose "$1" "$2"; }
 fi
 
