@@ -54,15 +54,14 @@ main() {
 	ids=
 	if [ -z "$1" ]; then
 		printf 'Search for Message-ID: ' >&2
-		read ids
+		read id
 	elif [ "$1" = "-" ]; then
-		ids=$(sed -n 's/^message-id:\s\+<\(.*\)>/\1/ip')
+		id=$(sed -n 's/^message-id:\s\+<\(.*\)>/\1/ip')
 	else
-		ids="$@"
+		id="$1"
 	fi
 
-	for id in $ids; do
-		print_message "$(notmuch search --format=text --output=files id:"$id")" "$id"
+	print_message "$(notmuch search --format=text --output=files id:"$id")" "$id"
 	done
 }
 
