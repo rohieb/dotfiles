@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 usage() {
 	cat <<EOF
 Description:
@@ -10,16 +10,20 @@ Options:
                         If -, read mail from stdin. If empty, prompt for ID.
         -h, --help      show this help
         -v, --verbose   print original message IDs after path
+        -c, --choose    if message exists in multiple mailboxes, prompt which
+                        one to print on stdout
         -m, --mailbox   only print mailbox containing message
 EOF
 }
 
+opt_choose=
 opt_mailbox=
 opt_verbose=
-eval set -- "$(getopt -o 'hmv' --long help,mailbox,verbose -- "$@")"
+eval set -- "$(getopt -o 'chmv' --long choose,help,mailbox,verbose -- "$@")"
 while [ -n "$1" ]; do
 	case "$1" in
 		-h|--help)		usage $0; exit;;
+		-c|--choose)		opt_choose=1;;
 		-m|--mailbox)		opt_mailbox=1;;
 		-v|--verbose)		opt_verbose=1;;
 		--)			shift; break;;
@@ -61,8 +65,28 @@ main() {
 		id="$1"
 	fi
 
-	print_message "$(notmuch search --format=text --output=files id:"$id")" "$id"
+	results=()
+	for result in $(notmuch search --format=text --output=files id:"$id"); do
+		if [ -n "$opt_choose" ]; then
+			results+=( $(transform_path "$result") )
+		else
+			print_message "$result" "$id"
+		fi
 	done
+
+	if [ -n "$opt_choose" ]; then
+		if [ "${#results[@]}" -gt 1 ]; then
+			echo "Choose from multiple results:" >&2
+			select tmp in "${results[@]}"; do
+				n=$((REPLY-1))
+				# we've already transformed the path above if necessary
+				print_verbose "${results[$n]}" "$id"
+				break
+			done
+		else
+			print_verbose "${results}" "${id}"
+		fi
+	fi
 }
 
 main "$@"
