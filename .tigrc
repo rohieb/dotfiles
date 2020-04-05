@@ -1,0 +1,10 @@
+set line-graphics = utf-8
+set main-view = id date:default author:full,width=18 commit-title:graph=v2,refs=yes
+
+bind main T !git tag "%(prompt Enter tag name: )" %(commit)
+bind diff T !git tag "%(prompt Enter tag name: )" %(commit)
+bind main B !git rbi %(commit)^
+bind diff B !git rbi %(commit)^
+
+bind diff } :/^diff
+bind diff { :?^diff
