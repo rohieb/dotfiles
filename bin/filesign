@@ -1,8 +1,15 @@
 #!/bin/sh
+
+if [ "$1" = "-v" ]; then
+	verbose() { "$@"; }
+else
+	verbose() { :; }
+fi
+
 for i in "$@"; do
 	case "$i" in
 		*.asc|*.gpg|*.sig)
-			printf "Skipping signature file: %s\n" "$i"
+			verbose printf "Skipping signature file: %s\n" "$i"
 			continue
 			;;
 	esac
@@ -10,7 +17,7 @@ for i in "$@"; do
 		continue
 	fi
 	if [ -f "${i}.gpg" ] || [ -f "${i}.asc" ] || [ -f "${i}.sig" ]; then
-		printf "Skipping already signed file: %s\n" "$i"
+		verbose printf "Skipping already signed file: %s\n" "$i"
 		continue
 	fi
 	printf "%s\n" "$i"
