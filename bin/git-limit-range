@@ -5,6 +5,8 @@
 # - refs/worktree/base
 # - refs/heads/base, refs/tags/base
 
+git rev-parse --git-dir || exit 128
+
 # number of commits to include below the cutting point
 GIT_LIMIT_CONTEXT=5
 
