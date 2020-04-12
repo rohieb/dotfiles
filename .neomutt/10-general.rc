@@ -1,7 +1,10 @@
 # vim: ft=neomuttrc
 # general settings
 set auto_tag = yes
-set header_cache = "~/.cache/mutt-`hostname`"
+
+set my_cache_dir=`echo ${XDG_CACHE_HOME:-$HOME/.cache}/`
+set header_cache = "$my_cache_dir/mutt-`hostname`"
+
 source ~/.neomutt/11-sendmail.sh|
 set sendmail_wait = 1
 unset wait_key
