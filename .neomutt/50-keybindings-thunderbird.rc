@@ -1,0 +1,9 @@
+# vim: ft=neomuttrc
+
+macro index,pager ,tb "\
+<enter-command> set my_old_wait_key='$wait_key' wait_key=no<enter>\
+<shell-escape> rm -f $my_cache_dir/mbox.eml && touch $my_cache_dir/mbox.eml<enter>\
+<copy-message>$my_cache_dir/mbox.eml<enter>\
+<shell-escape> thunderbird -file $my_cache_dir/mbox.eml &<enter>\
+<enter-command> set wait_key=\$my_old_wait_key<enter>\
+" "Open mail with Thunderbird"
