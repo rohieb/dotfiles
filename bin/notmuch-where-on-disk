@@ -60,7 +60,7 @@ main() {
 		printf 'Search for Message-ID: ' >&2
 		read id
 	elif [ "$1" = "-" ]; then
-		id=$(sed -n 's/^message-id:\s\+<\?\(.*\)>\?/\1/ip')
+		id=$(sed -n 's/^message-id:\s\+<\?\([^>]*\)>\?/\1/ip')
 	else
 		id="$1"
 	fi
