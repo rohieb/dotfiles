@@ -4,11 +4,16 @@
 # - environment variable $base
 # - refs/worktree/base
 # - refs/heads/base, refs/tags/base
+#
+# Respects the following git-config settings:
+# - limitRange.context             (int) number of commits to include below the limit base
+# - limitRange.disable             (bool) disable limiting completely
+# - limitRange.disableLastTag      (bool) don't use last tag as a limit base
+#
 
 git rev-parse --git-dir || exit 128
 
-# number of commits to include below the cutting point
-GIT_LIMIT_CONTEXT=5
+GIT_LIMIT_CONTEXT=$(git config --type int --default 5 limitRange.context)
 
 pr_debug() {
 	if [ -n "$_git_limit_range_debug" ]; then
@@ -38,6 +43,12 @@ git_limit_range() {
 	have_raw_params=
 	committishs=
 	limit_range=
+
+	if [ "$(git config --type bool --default false limitRange.disable)" = "true" ]; then
+		pr_debug 'git_limit_range: disabled by $_git_limit_range_debug'
+		printf "%s" "$@"
+		return
+	fi
 
 	# first parse all parameters
 	pr_debug "git_limit_range: input params: '$@'"
@@ -78,7 +89,7 @@ git_limit_range() {
 			pr_debug "git_limit_range: limiting to refs/{heads,tags}base"
 			limit_range="base^.."
 		fi
-	else
+	elif [ "$(git config --type bool --default false limitRange.disableLastTag)" = "false" ]; then
 		# try to use last tag
 		# strange bug with gcc... "warning: tag 'gcc_9_2_0_release' is really 'releases/gcc-9.2.0' here"
 		# and we cannot use gcc_9_2_0_release it as a ref
