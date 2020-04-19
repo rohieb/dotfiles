@@ -1,6 +1,17 @@
 #!/bin/sh
 # for each unmerged file, start a vim to merge them
-# note: xargs redirects /dev/null to stdin, and vim does not like that
-git status --porcelain=v2 \
-	| awk '/^u (AA|UU)/ { shift; print $NF }' \
-	| xargs sh -c 'echo "$@"; exec vim -p "$@" < /dev/tty' vim
+files=$(git status --porcelain=v2 | awk '/^u (AA|UU)/ { shift; print $NF }')
+if [ -z "$files" ]; then
+	echo "Falling back to git grep..."
+	files=$(git grep '^<<<<<<<' | cut -d':' -f1 | uniq)
+fi
+if [ -z "$files" ] && ag --help > /dev/null 2>&1; then
+	echo "Falling back to ag..."
+	files=$(ag -l '^<<<<<<<' . | uniq)
+fi
+if [ -z "$files" ]; then
+	echo "Falling back to grep..."
+	files=$(grep -l -R --exclude-dir=.git '^<<<<<<<' . | uniq)
+fi
+files=$(echo ${files} | cut -d' ' -f1-50)
+vim -p ${files}
