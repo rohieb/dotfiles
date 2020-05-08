@@ -1,0 +1,89 @@
+#!/bin/sh
+usage() {
+	cat << EOF
+ffmpeg screengrabber wrapper. End recording by pressing 'q'.
+
+Usage: $0 [options] [name]
+
+Parameters:
+
+  name                  optional string to include in the file name
+
+  -h, --help            Show this help screen
+  -w, --window          Choose window to set recording area
+                        (default: record whole screen)
+EOF
+}
+
+# Parameter parsing
+# ----------------
+opt_title=
+opt_window=
+while [ -n "$1" ]; do
+	case "$1" in
+		-w|--window)	opt_window=1;;
+		-h|--help)	usage "$0"; exit;;
+		*)		opt_title="${opt_title}${1}"
+	esac
+        shift
+done
+
+# Variable setup
+# --------------
+
+if [ -z "$DISPLAY" ]; then
+        echo "Error: Empty \$DISPLAY variable. Are you sure you're running an X session?"
+        exit 1
+fi
+
+tmpfile=$(mktemp --tmpdir ffmpeg-screengrab.XXXXXXXX)
+trap "rm $tmpfile" EXIT
+
+# Output file name
+if [ -n "$opt_title" ]; then
+	opt_title="-${opt_title}"
+fi
+outputfile="screengrab${opt_title}-$(date +%Y%m%d-%H%M%S).mkv"
+
+# Recording area
+if [ -z "$opt_window" ]; then
+        opt_window="-root"
+else
+        opt_window=""
+        echo "Please select the window you want to record by clicking the mouse in that window..."
+fi
+xwininfo $opt_window > "$tmpfile"
+
+#awk '/-geometry / { print ' | 
+winname=$(awk '/Window id:/ { $1=""; print }' "$tmpfile")
+winx=$(awk '/Absolute upper-left X:/ { print $4 }' "$tmpfile")
+winy=$(awk '/Absolute upper-left Y:/ { print $4 }' "$tmpfile")
+winw=$(awk '/Width:/  { print $2 }' "$tmpfile")
+winh=$(awk '/Height:/ { print $2 }' "$tmpfile")
+if 
+        [ -z "$winx" ] ||
+        [ -z "$winy" ] ||
+        [ -z "$winh" ] ||
+        [ -z "$winw" ]; then
+        echo "Error: could not detect geometry from xwininfo :("
+        exit 2
+fi
+winarea="${winw}x${winh}"
+winpos="+${winx},${winy}"
+
+# Recording
+# ---------
+printf "Recording %s\n" "$winname"
+printf "Recording size %s, offset %s\n" "$winarea" "$winpos"
+printf "Writing to %s\n" "$outputfile"
+printf "Press q (in this terminal) to stop recording.\n\n"
+sleep 3
+
+ffmpeg -f x11grab \
+	-video_size "${winarea}" \
+        -i ${DISPLAY}${winpos} \
+	-framerate 10 \
+	-c:v h264 -preset ultrafast -q:v 2 \
+	"${outputfile}"
+
+printf "Recording written to %s\n" "$outputfile"
