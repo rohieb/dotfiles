@@ -65,7 +65,7 @@ main() {
 		id="$1"
 	fi
 
-	if [ -z "$1" ]; then
+	if [ -z "$id" ]; then
 		echo "Missing Message-ID." >&2
 		exit 1
 	fi
