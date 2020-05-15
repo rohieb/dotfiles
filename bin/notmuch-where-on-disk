@@ -12,6 +12,7 @@ Options:
         -v, --verbose   print original message IDs after path
         -c, --choose    if message exists in multiple mailboxes, prompt which
                         one to print on stdout
+                        Note: mail cannot be piped to stdin in this case
         -m, --mailbox   only print mailbox containing message
 EOF
 }
@@ -84,6 +85,10 @@ main() {
 			echo "Choose from multiple results:" >&2
 			select tmp in "${results[@]}"; do
 				n=$((REPLY-1))
+				if [ "$REPLY" -gt "${#results[@]}" ]; then
+					echo Illegal input >&2
+					exit 3
+				fi
 				# we've already transformed the path above if necessary
 				print_verbose "${results[$n]}" "$id"
 				break
