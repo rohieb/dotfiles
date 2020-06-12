@@ -1,0 +1,23 @@
+#!/bin/sh
+if [ -z "$@" ]; then
+	echo "Usage: $0 <message-ids ...>"
+	exit 1
+fi
+
+mkdir -p ~/.cache/mail-ref
+cat > ~/.cache/mail-ref/filter.jq <<"EOF"
+.[] |
+	(.timestamp | strftime("%Y-%m-%d")),
+	", ",
+	(.authors | split("|")[0]),
+	": \"",
+	.subject,
+	"\""
+EOF
+
+for id in $@; do
+	printf "<%s> (%s)\n" \
+		"$id" \
+		"$(notmuch search --format=json --format-version=1 --output=summary id:"$id" \
+		  | jq -jrf ~/.cache/mail-ref/filter.jq)"
+done
