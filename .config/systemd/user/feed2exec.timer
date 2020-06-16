@@ -1,0 +1,9 @@
+[Unit]
+Description=Periodic feed2exec sync
+
+[Timer]
+OnBootSec=30m
+OnUnitActiveSec=1h
+
+[Install]
+WantedBy=timers.target
