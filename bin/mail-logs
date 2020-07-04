@@ -5,6 +5,9 @@ units="
 	done)
 	--user-unit offlineimap
 	--user-unit offlineimap.timer
+	--user-unit feed2exec
+	--user-unit vdirsyncer-sync
+	--user-unit taskwarrior-sync
 "
 
 while true; do
