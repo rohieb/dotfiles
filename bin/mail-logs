@@ -1,13 +1,19 @@
-#!/bin/bash -e
-# source me for better job control
+#!/bin/sh -ex
+units="
+	$(for unit in ~/.config/systemd/user/offlineimap-quick.target.wants/*; do
+		printf " --user-unit %s" "$(basename "$unit")";
+	done)
+	--user-unit offlineimap
+	--user-unit offlineimap.timer
+"
 
-for acct in $(awk -F'[] ]' '/^\[Account/ { print $2; }' ~/.offlineimaprc); do
-	# eval - we want the full cmdline in the job name
-	eval "journalctl -b -f --user-unit offlineimap-quick@$acct.service | offlineimap_log_highlight &"
+while true; do
+	(
+		if [ -r ~/log/msmtp.log ]; then
+			tail -f ~/log/msmtp.log &
+		fi
+		journalctl -n 2000 -b -f $units
+	) | offlineimap_log_highlight
+	echo 'Restarting log in 2 seconds...'
+	sleep 2
 done
-
-journalctl -b -f --user-unit 'offlineimap.*' | offlineimap_log_highlight &
-
-if [ -r ~/log/msmtp.log ]; then
-	tail -f ~/log/msmtp.log &
-fi
