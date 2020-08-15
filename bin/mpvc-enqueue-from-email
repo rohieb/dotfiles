@@ -3,6 +3,6 @@ filter() {
 	grep -oe 'https\?:\/\/[^][<>() ]\+' | tr -d ']' \
 	| grep -v 'youtube.com\/subscription_manager'
 }
-urls="`filter`"
-echo found $urls
-mpvc-enqueue $urls
+url="`filter | head -n 1`"
+echo found $url
+mpvc-enqueue $url
