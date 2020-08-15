@@ -1,0 +1,50 @@
+#!/bin/sh
+if [ -z "$1" ] || [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+	echo "Usage: $0 <youtube-url>"
+	echo
+	echo "Subscribe to the YouTube channel in the URL via feed2imap"
+	exit 1
+fi
+
+cachefile=$(mktemp /tmp/yt-subscribe.XXXXXX) || (
+	echo "Unable to mktemp!" >&2
+	exit 1
+)
+cleanup() { rm "$cachefile"; }
+trap cleanup EXIT
+
+while [ -n "$1" ]; do
+	url="$1"
+	echo "$url"
+	shift
+
+	youtube-dl --playlist-items 1 --dump-json "$url" > "$cachefile"
+	if [ $? != 0 ]; then
+		echo "Could not get JSON for '$url'" >&2
+	fi
+
+	uploader_id=$(jq -r ".uploader_id" < "$cachefile")
+	if [ $? != 0 ] || [ -z "$uploader_id" ] || [ "$uploader_id" = "null" ]; then
+		echo "Could not get Channel ID from '$url'" >&2
+		exit 2
+	fi
+
+	uploader=$(jq -r ".uploader" < "$cachefile")
+	if [ $? != 0 ] || [ -z "$uploader" ] || [ "$uploader" = "null" ]; then
+		echo "Could not get Channel Name from '$url'" >&2
+		exit 2
+	fi
+	
+	url="https://www.youtube.com/feeds/videos.xml?channel_id=$uploader_id"
+	
+	printf "Subscribe to '%s'? (Y/n) " "$uploader"
+	read answer
+	case "$answer" in
+		""|Y|y)
+			feed2exec add "$uploader on YouTube" "$url" \
+				--filter feed2exec_youtube \
+				--output feed2exec.plugins.maildir \
+				--folder YouTube
+			break;
+	esac
+done
