@@ -1,4 +1,8 @@
 # vim: ft=neomuttrc
 # keyboard shortcuts: pipe video URLs to mpv
-macro index y "<display-message><view-attachments><search>text/plain<enter><pipe-entry>mpvc-enqueue-from-email<enter><exit><exit>"
-macro pager y                  "<view-attachments><search>text/plain<enter><pipe-entry>mpvc-enqueue-from-email<enter><exit>"
+
+macro index,pager y \
+"<enter-command> set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key pipe_decode nowait_key<enter>\
+<pipe-message> mpvc-enqueue-from-email<enter>\
+<enter-command> set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+	"Add YouTube URLs to the mpv playlist"
