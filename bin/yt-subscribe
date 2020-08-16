@@ -24,9 +24,14 @@ while [ -n "$1" ]; do
 		echo "Could not get JSON for '$url'" >&2
 	fi
 
-	uploader_id=$(jq -r ".uploader_id" < "$cachefile")
-	if [ $? != 0 ] || [ -z "$uploader_id" ] || [ "$uploader_id" = "null" ]; then
+	channel_id=$(jq -r ".channel_id" < "$cachefile")
+	if [ $? != 0 ] || [ -z "$channel_id" ] || [ "$channel_id" = "null" ]; then
 		echo "Could not get Channel ID from '$url'" >&2
+		continue
+	fi
+	if [ "$(echo "$channel_id" | cut -c1-2)" != "UC" ]; then
+		echo "When parsing '$url':" >&2
+		echo "This does not look like a Channel ID: '$channel_id'" >&2
 		continue
 	fi
 
@@ -35,8 +40,8 @@ while [ -n "$1" ]; do
 		echo "Could not get Channel Name from '$url'" >&2
 		continue
 	fi
-	
-	url="https://www.youtube.com/feeds/videos.xml?channel_id=$uploader_id"
+
+	url="https://www.youtube.com/feeds/videos.xml?channel_id=$channel_id"
 	
 	printf "Subscribe to '%s'? (Y/n) " "$uploader"
 	read answer
