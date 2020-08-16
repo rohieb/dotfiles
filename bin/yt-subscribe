@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ -z "$1" ] || [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
-	echo "Usage: $0 <youtube-url>"
+	echo "Usage: $0 <youtube-urls...>"
 	echo
 	echo "Subscribe to the YouTube channel in the URL via feed2imap"
 	exit 1
@@ -18,6 +18,7 @@ while [ -n "$1" ]; do
 	echo "$url"
 	shift
 
+	echo > "$cachefile"
 	youtube-dl --playlist-items 1 --dump-json "$url" > "$cachefile"
 	if [ $? != 0 ]; then
 		echo "Could not get JSON for '$url'" >&2
@@ -26,13 +27,13 @@ while [ -n "$1" ]; do
 	uploader_id=$(jq -r ".uploader_id" < "$cachefile")
 	if [ $? != 0 ] || [ -z "$uploader_id" ] || [ "$uploader_id" = "null" ]; then
 		echo "Could not get Channel ID from '$url'" >&2
-		exit 2
+		continue
 	fi
 
 	uploader=$(jq -r ".uploader" < "$cachefile")
 	if [ $? != 0 ] || [ -z "$uploader" ] || [ "$uploader" = "null" ]; then
 		echo "Could not get Channel Name from '$url'" >&2
-		exit 2
+		continue
 	fi
 	
 	url="https://www.youtube.com/feeds/videos.xml?channel_id=$uploader_id"
@@ -45,6 +46,6 @@ while [ -n "$1" ]; do
 				--filter feed2exec_youtube \
 				--output feed2exec.plugins.maildir \
 				--folder YouTube
-			break;
+			;;
 	esac
 done
