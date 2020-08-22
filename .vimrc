@@ -4,7 +4,7 @@ execute pathogen#infect()
 " set various preferred options...
 set tabstop=2 softtabstop=0 shiftwidth=0
 set autoindent
-set hlsearch modeline modelines=5
+set hlsearch incsearch modeline modelines=5
 set scrolloff=7
 set listchars=tab:│\ ,eol:¶,trail:·
 set guifont=Monospace\ 8
@@ -12,6 +12,9 @@ set guifont=Monospace\ 8
 set textwidth=80
 
 set autochdir
+
+" always show status line
+set laststatus=2
 
 if has('gui_running')
 	set toolbar=
