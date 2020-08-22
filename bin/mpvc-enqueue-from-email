@@ -1,8 +1,0 @@
-#!/bin/sh
-filter() {
-	grep -oe 'https\?:\/\/[^][<>() ]\+' | tr -d ']' \
-	| grep -v 'youtube.com\/subscription_manager'
-}
-url="`filter | head -n 1`"
-echo found $url
-mpvc-enqueue $url

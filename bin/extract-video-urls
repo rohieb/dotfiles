@@ -1,0 +1,2 @@
+#!/bin/sh
+grep -oe '\(https\?:\/\/youtu.be\/\|https\?://\(www\.\)\?youtube.com/\(watch?\|playlist\?\)\)[^]>)" ]\+'
