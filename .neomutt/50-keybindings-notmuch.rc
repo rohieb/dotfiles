@@ -40,5 +40,5 @@ macro index,pager ,i "\
 <enter-command> set wait_key=\$my_old_wait_key<enter> \
 <enter-command> source $my_cfgdir/dynamic/jump-to-mail.rc<enter>\
 <enter-command> set my__folder='' my__id=''<enter>\
-_6kgMbnD\
+µ6kgMbn\
 " "notmuch: go to folder containing message ID"

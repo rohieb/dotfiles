@@ -1,0 +1,4 @@
+# vim: ft=neomuttrc
+
+# µ is used as prefix for dynamic macros, make sure it is unbound
+bind pager µ noop

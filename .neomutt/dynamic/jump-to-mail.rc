@@ -1,5 +1,5 @@
 # vim: ft=neomuttrc
 # sourced by 50-keybindings-notmuch.rc
-macro index,pager _6kgMbnD \
+macro index,pager µ6kgMbn \
 	"<change-folder>$my__folder<enter><search>~i $my__id<enter>" \
 	"(internal, dynamic) jump to folder containing mail $my__id"
