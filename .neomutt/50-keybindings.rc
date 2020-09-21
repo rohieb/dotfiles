@@ -6,3 +6,10 @@ bind index,pager <Tab> next-unread
 
 # archive mails -- $my_archives can be account-specific
 macro index,pager ,a "<save-message>$my_archives$my_folder_sep`date +%Y`" "save mail to archive folder"
+
+set my_cmd_deletefourweeks_descr = "delete everything older than 4 weeks which is read and not flagged"
+set my_cmd_deletefourweeks = "<untag-pattern> ~A<enter>\
+<tag-pattern> ~R!~D!~F~r >4w<enter>\
+<tag-prefix><delete-message>"
+macro index ,d4       "$my_cmd_deletefourweeks"                  $my_cmd_deletefourweeks_descr
+macro pager ,d4 "<exit>$my_cmd_deletefourweeks<display-message>" $my_cmd_deletefourweeks_descr
