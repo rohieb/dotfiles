@@ -39,6 +39,6 @@ macro index,pager ,i "\
 <enter-command> set my__id=\`awk '{print $2; exit}' $my_notmuch_cache/where-on-disk\`<enter>\
 <enter-command> set wait_key=\$my_old_wait_key<enter> \
 <enter-command> source $my_cfgdir/dynamic/jump-to-mail.rc<enter>\
-<enter-command> set my__folder='' my__id=''<enter>\
+<enter-command> unset my__folder my__id<enter>\
 µ6kgMbn\
 " "notmuch: go to folder containing message ID"
