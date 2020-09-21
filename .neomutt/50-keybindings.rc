@@ -16,3 +16,6 @@ macro pager ,d4 "<exit>$my_cmd_deletefourweeks<display-message>" $my_cmd_deletef
 
 macro index ,sd "<enter-command> set sort=date<enter>" "sort index by date"
 macro index ,ss "<enter-command> set sort=threads<enter><enter-command>set sort_aux=date<enter>" "sort index by thread"
+
+macro pager _ "<enter-command> set pager_index_lines=10<enter>"
+macro pager - "<enter-command> set pager_index_lines=25<enter>"

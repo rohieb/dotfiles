@@ -1,7 +1,7 @@
 # vim: ft=neomuttrc
 # pager behaviour
 set pager_stop = yes
-set pager_index_lines = 20
+set pager_index_lines = 10
 set markers = no
 set tilde = no
 set quote_regexp = '^([ \t]*[>])+'	# remove everything except '>'
