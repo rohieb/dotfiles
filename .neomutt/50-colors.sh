@@ -49,6 +49,7 @@ color markers		$S_bg		default		# invisible pls
 color hdrdefault	default		default
 color header		bright$S_hl	default		"^Subject:"
 color header		bright$S_hl	default		"^From:"
+color header		bright$S_hl	default		"^Resent-From:"
 
 # mail body
 color signature		$S_dim		default		# mail signatures
