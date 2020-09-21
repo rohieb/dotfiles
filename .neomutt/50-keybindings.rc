@@ -13,3 +13,6 @@ set my_cmd_deletefourweeks = "<untag-pattern> ~A<enter>\
 <tag-prefix><delete-message>"
 macro index ,d4       "$my_cmd_deletefourweeks"                  $my_cmd_deletefourweeks_descr
 macro pager ,d4 "<exit>$my_cmd_deletefourweeks<display-message>" $my_cmd_deletefourweeks_descr
+
+macro index ,sd "<enter-command> set sort=date<enter>" "sort index by date"
+macro index ,ss "<enter-command> set sort=threads<enter><enter-command>set sort_aux=date<enter>" "sort index by thread"
