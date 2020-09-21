@@ -4,9 +4,9 @@
 set my_cmd_copy_to_git_queue_descr = "Copy tagged mails into ~/tmp/git/ and format for git-am"
 set my_cmd_copy_to_git_queue = '<enter-command>set my_old_wait_key="$wait_key"<enter>\
 <enter-command>set wait_key="no"<enter>\
-<shell-escape>sh -c "rm -rf -- ~/tmp/git/cur/* ~/tmp/git/new/* ~/tmp/git/tmp/* ~/tmp/git/*.eml"<enter>\
-<tag-prefix><copy-message>~/tmp/git/<enter>\
-<shell-escape>maildir-to-git-am-queue ~/tmp/git/ ~/tmp/git/<enter>\
+<shell-escape>sh -c "rm -rf -- ~/tmp/mutt-git; mkdir -p ~/tmp/mutt-git/cur ~/tmp/mutt-git/new ~/tmp/mutt-git/tmp"<enter>\
+<tag-prefix><copy-message>~/tmp/mutt-git/<enter>\
+<shell-escape>maildir-to-git-am-queue ~/tmp/mutt-git/ ~/tmp/mutt-git/<enter>\
 <enter-command>set wait_key="$my_old_wait_key"<enter>'
 macro index ,gq       "$my_cmd_copy_to_git_queue"                  $my_cmd_copy_to_git_queue_descr
 macro pager ,gq "<exit>$my_cmd_copy_to_git_queue<display-message>" $my_cmd_copy_to_git_queue_descr
