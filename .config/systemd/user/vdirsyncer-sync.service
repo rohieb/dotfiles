@@ -1,0 +1,11 @@
+[Unit]
+Description=vdirsyncer calendar sync
+Documentation=man:vdirsyncer(1)
+Wants=network-online.target
+After=network-online.target
+AssertPathExists=%h/.config/vdirsyncer/config
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/vdirsyncer sync
+ExecStartPost=/bin/sh -c 'if [ -n "`which khal`" ]; then nice khal > /dev/null 2>&1; fi'
