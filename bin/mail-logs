@@ -8,6 +8,7 @@ units="
 	--user-unit feed2exec
 	--user-unit vdirsyncer-sync
 	--user-unit taskwarrior-sync
+	--user-unit notmuch-new
 "
 
 while true; do

@@ -1,0 +1,9 @@
+[Unit]
+Description=Update the notmuch index
+Wants=network-online.target
+After=network-online.target
+AssertPathExists=%h/.notmuch-config
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/notmuch new
