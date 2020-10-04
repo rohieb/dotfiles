@@ -30,26 +30,26 @@ color sidebar_divider	$S_dim		default
 color sidebar_divider	default		default
 color sidebar_ordinary	default		default
 color sidebar_flagged	blue		default
-color sidebar_new	bright$S_hl	default
+color sidebar_new	$S_hl		default
 
 # index
 color index		default		default		"~A"	# all mail by default
 color index		$S_dim		default		"~P"	# from me
 color index		blue		default		"~F"	# flagged messages
 color index		yellow		default		"~T"	# tagged messages
-color index		bright$S_hl	default		"~N|~O"	# new/unread messages
+color index		$S_hl		default		"~N|~O"	# new/unread messages
 color index		$S_bg		red		"~D"	# deleted messages
 
 # pager
 color attachment	$S_dim		default
-color attach_headers	bright$S_hl	default		"^\\\\[-- Attachment #.* --\\\\]$"
+color attach_headers	$S_hl		default		"^\\\\[-- Attachment #.* --\\\\]$"
 color markers		$S_bg		default		# invisible pls
 
 # mail headers
 color hdrdefault	default		default
-color header		bright$S_hl	default		"^Subject:"
-color header		bright$S_hl	default		"^From:"
-color header		bright$S_hl	default		"^Resent-From:"
+color header		$S_hl		default		"^Subject:"
+color header		$S_hl		default		"^From:"
+color header		$S_hl		default		"^Resent-From:"
 
 # mail body
 color signature		$S_dim		default		# mail signatures
@@ -61,11 +61,11 @@ color quoted1		cyan		default
 color quoted2		yellow		default
 color quoted3		red		default
 color quoted4		magenta		default
-color body		bright$S_hl	default		"^-----[^-].+[^-]-----$"
+color body		$S_hl		default		"^-----[^-].+[^-]-----$"
 
 # mail: gpg
-color attach_headers	bright$S_hl	default		"^\\\\[-- The following data is signed --\\\\].*$"
-color attach_headers	bright$S_hl	default		"^\\\\[-- End of signed data --\\\\\.*$"
+color attach_headers	$S_hl		default		"^\\\\[-- The following data is signed --\\\\].*$"
+color attach_headers	$S_hl		default		"^\\\\[-- End of signed data --\\\\].*$"
 color body		green		default		"^(gpg: )?Good signature from.*$"
 color body		red		default		"^(gpg: )?B[Aa][Dd] signature from.*$"
 color body		red		default		"^(gpg: )?Note: This key has expired!.*$"
