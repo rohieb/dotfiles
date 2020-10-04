@@ -80,3 +80,7 @@ bin/qpaeq
 .config/evince/
 .neomutt/colors.solarized.sh
 .vim/yank-paste-everywhere
+.config/systemd/user/default.target.wants/
+.config/systemd/user/multi-user.target.wants/
+.config/systemd/user/offlineimap-quick.target.wants/
+.config/systemd/user/timers.target.wants/
