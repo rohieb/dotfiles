@@ -1,7 +1,8 @@
 [Unit]
 Description=OfflineIMAP one-time quick-sync for account %I
 Documentation=man:offlineimap(1)
-After=network.target
+Wants=network-online.target
+After=network-online.target
 AssertPathExists=%h/.offlineimaprc
 
 [Service]

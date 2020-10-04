@@ -1,13 +1,13 @@
 [Unit]
 Description=feed2exec sync
 Documentation=man:feed2exec(1)
-After=network.target
+Wants=network-online.target
+After=network-online.target
 AssertPathExists=%h/.config/feed2exec.ini
 
 [Service]
 Type=oneshot
 Environment="PATH=/bin:/usr/bin PYTHONPATH=.local/lib/python3"
-ExecStartPre=/usr/bin/nm-online -qt 10
 ExecStart=/usr/bin/feed2exec -v fetch
 
 [Install]
