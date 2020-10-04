@@ -1,0 +1,11 @@
+[Unit]
+Description=taskwarrior sync
+Documentation=man:task(1)
+Wants=network-online.target
+After=network-online.target
+AssertPathExists=%h/.taskrc
+AssertPathExistsGlob=%h/.task/*.pem
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/task sync
