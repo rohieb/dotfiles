@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ "$#" -lt 1 ]; then
-	git status
+	git st
 else
 	git "$@"
 fi
