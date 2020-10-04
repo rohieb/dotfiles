@@ -1,0 +1,12 @@
+[Unit]
+Description=Sync everything
+Wants=network-online.target
+After=network-online.target
+Requires=taskwarrior-sync.service
+Requires=vdirsyncer-sync.service
+Requires=feed2exec.service
+Requires=offlineimap.service
+Requires=notmuch-new.service
+
+[Service]
+ExecStart=/bin/true

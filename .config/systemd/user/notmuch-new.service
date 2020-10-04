@@ -2,6 +2,7 @@
 Description=Update the notmuch index
 Wants=network-online.target
 After=network-online.target
+After=offlineimap.service
 AssertPathExists=%h/.notmuch-config
 
 [Service]

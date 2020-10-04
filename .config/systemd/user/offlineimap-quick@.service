@@ -3,12 +3,10 @@ Description=OfflineIMAP one-time quick-sync for account %I
 Documentation=man:offlineimap(1)
 Wants=network-online.target
 After=network-online.target
+Conflicts=offlineimap.service
 AssertPathExists=%h/.offlineimaprc
 
 [Service]
-Type=simple
+Type=oneshot
 Environment="PATH=/bin:/usr/bin"
 ExecStart=/usr/bin/offlineimap -c %h/.offlineimaprc -u basic -o -q -a %I
-
-[Install]
-WantedBy=offlineimap-quick.target

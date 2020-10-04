@@ -3,6 +3,7 @@ Description=taskwarrior sync
 Documentation=man:task(1)
 Wants=network-online.target
 After=network-online.target
+After=vdirsyncer-sync.service
 AssertPathExists=%h/.taskrc
 AssertPathExistsGlob=%h/.task/*.pem
 

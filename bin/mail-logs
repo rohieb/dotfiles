@@ -3,8 +3,9 @@ units="
 	$(for unit in ~/.config/systemd/user/offlineimap-quick.target.wants/*; do
 		printf " --user-unit %s" "$(basename "$unit")";
 	done)
+	--user-unit osync
+	--user-unit osync.timer
 	--user-unit offlineimap
-	--user-unit offlineimap.timer
 	--user-unit feed2exec
 	--user-unit vdirsyncer-sync
 	--user-unit taskwarrior-sync

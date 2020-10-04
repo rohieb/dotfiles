@@ -3,12 +3,10 @@ Description=feed2exec sync
 Documentation=man:feed2exec(1)
 Wants=network-online.target
 After=network-online.target
+After=taskwarrior-sync.service
 AssertPathExists=%h/.config/feed2exec.ini
 
 [Service]
 Type=oneshot
 Environment="PATH=/bin:/usr/bin" "PYTHONPATH=.local/lib/python3"
 ExecStart=/usr/bin/feed2exec -v fetch
-
-[Install]
-WantedBy=multi-user.target

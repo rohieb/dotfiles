@@ -3,6 +3,7 @@ Description=OfflineIMAP one-time full sync
 Documentation=man:offlineimap(1)
 Wants=network-online.target
 After=network-online.target
+After=feed2exec.service
 AssertPathExists=%h/.offlineimaprc
 
 [Service]
