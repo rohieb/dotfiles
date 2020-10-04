@@ -50,7 +50,8 @@ while [ -n "$1" ]; do
 			feed2exec add "$uploader on YouTube" "$url" \
 				--filter feed2exec_youtube \
 				--output feed2exec.plugins.maildir \
-				--folder YouTube
+				--folder YouTube &&
+			feed2exec -v fetch --pattern "$uploader"
 			;;
 	esac
 done
