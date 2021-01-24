@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# download or play current Sendung mit der Maus episode
+# Usage:
+# maus [--save]
+
 OUTFILE="$HOME/Videos/maus/maus-`date +%Y-%m-%d --date='last sat+25hours'`.mp4"
 
 echo "Writing to $OUTFILE ..."
@@ -36,7 +40,12 @@ if [ -z "$video_url" ]; then
 	exit
 fi
 
-ffmpeg -i "$video_url" -c:a copy -c:v copy -bsf:a aac_adtstoasc -movflags empty_moov "$OUTFILE"
+if [ "$1" = "-s" -o  "$1" = "--save" ];  then
+	ffmpeg -i "$video_url" -c:a copy -c:v copy -bsf:a aac_adtstoasc -movflags empty_moov "$OUTFILE"
+else
+	mpv $video_url
+fi
 
 echo
 echo "Written to $OUTFILE"
+touch $OUTFILE
