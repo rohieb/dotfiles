@@ -1,0 +1,6 @@
+#!/bin/sh
+# prevent syncing any local data loss
+systemctl --user stop osync.timer osync feed2exec taskwarrior-sync offlineimap notmuch-new vdirsyncer-sync
+for acct in $(awk -F'[] ]' '/^\[Account/ {print $2;}' ~/.offlineimaprc); do
+	systemctl --user stop offlineimap-quick@"${acct}"
+done
