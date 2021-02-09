@@ -10,4 +10,4 @@ AssertPathExists=%h/.config/feed2exec.ini
 Type=oneshot
 Environment="PATH=/bin:/usr/bin" "PYTHONPATH=.local/lib/python3"
 TimeoutStartSec=5m
-ExecStart=/usr/bin/feed2exec -v fetch
+ExecStart=/usr/bin/feed2exec --database ~/.local/share/feed2exec.db -v fetch
