@@ -7,5 +7,6 @@ AssertPathExists=%h/.config/vdirsyncer/config
 
 [Service]
 Type=oneshot
+TimeoutStartSec=5m
 ExecStart=/usr/bin/vdirsyncer sync
 ExecStartPost=/bin/sh -c 'if [ -n "`which khal`" ]; then nice khal > /dev/null 2>&1; fi'

@@ -9,4 +9,5 @@ AssertPathExistsGlob=%h/.task/*.pem
 
 [Service]
 Type=oneshot
+TimeoutStartSec=5m
 ExecStart=/usr/bin/task sync

@@ -9,4 +9,5 @@ AssertPathExists=%h/.offlineimaprc
 [Service]
 Type=oneshot
 Environment="PATH=/bin:/usr/bin"
+TimeoutStartSec=10m
 ExecStart=/usr/bin/offlineimap -c %h/.offlineimaprc -u basic -o
