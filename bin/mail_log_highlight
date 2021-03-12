@@ -31,6 +31,8 @@ cat > ~/.cache/offlineimap_log_highlight.awk <<EOF
 	/Adding flag/              { print "$ansi_boldwhite" \$0 "$ansi_reset"; next }
 	                           { print color \$0 "$ansi_reset" }
 	/Finished account/         { color = "$ansi_reset" }
+	# feed2exec output
+	/saved item .* to .*/      { print "$ansi_boldwhite" \$0 "$ansi_reset"; next }
 EOF
 
 awk -f ~/.cache/offlineimap_log_highlight.awk -

@@ -18,7 +18,7 @@ while true; do
 			tail -f ~/log/msmtp.log &
 		fi
 		journalctl -n 2000 -b -f $units
-	) | offlineimap_log_highlight
+	) | mail_log_highlight
 	echo 'Restarting log in 2 seconds...'
 	sleep 2
 done
