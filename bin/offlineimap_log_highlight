@@ -18,7 +18,7 @@ for acct in $(awk -F'[] ]' '/^\[Account/ {print $2;}' ~/.offlineimaprc); do
 	awk_changes="$awk_changes /Establishing connection to .* ($acct)/ { color = color_${acct} }"
 done
 
-awk "$(cat <<EOF
+cat > ~/.cache/offlineimap_log_highlight.awk <<EOF
 	BEGIN {
 		$awk_accounts
 		color = "$ansi_reset"
@@ -32,4 +32,6 @@ awk "$(cat <<EOF
 	                           { print color \$0 "$ansi_reset" }
 	/Finished account/         { color = "$ansi_reset" }
 EOF
-)"
+
+awk -f ~/.cache/offlineimap_log_highlight.awk -
+echo awk exited with $?
