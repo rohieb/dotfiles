@@ -24,11 +24,23 @@ alias gpg=gpg2
 
 alias k='khal calendar'
 
-alias dd='dd status=progress'
+alias dd='dd status=progress conv=fsync,fdatasync'
 
 alias sysu="systemctl --user"
+
 complete -F _systemctl sysu
+
+alias v="vdirsyncer sync"
+
+alias diff='diff --color -u'
+
+alias cal="ncal -w3"
 
 if [ -r ~/.bash_aliases.$HOSTNAME ]; then
 	source ~/.bash_aliases.$HOSTNAME
 fi
+
+alias python=python3
+
+alias ffprobe='ffprobe -hide_banner'
+alias ffmpeg='ffmpeg -hide_banner'
