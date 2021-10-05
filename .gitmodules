@@ -85,3 +85,6 @@
 [submodule "opt/bitbake"]
 	path = opt/bitbake
 	url = git://git.openembedded.org/bitbake
+[submodule ".vim/bundle/vim-table-mode"]
+	path = .vim/bundle/vim-table-mode
+	url = https://github.com/dhruvasagar/vim-table-mode
