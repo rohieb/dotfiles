@@ -2,6 +2,7 @@
 # pager behaviour
 set pager_stop = yes
 set pager_index_lines = 10
+set pager_context = 5
 set markers = no
 set tilde = no
 set quote_regexp = '^([ \t]*[>])+'	# remove everything except '>'
