@@ -47,6 +47,9 @@ export MPD_PORT=6600
 # for sh compatibility
 export HOSTNAME=`hostname`
 
+# prefer user.email in .git/config, or fall back to $EMAIL
+unset GIT_AUTHOR_NAME GIT_AUTHOR_EMAIL GIT_COMMITTER_NAME GIT_COMMITTER_EMAIL
+
 # set up local perl lib in ~/.perl5
 if perl -Mlocal::lib=$HOME/.perl5 > /dev/null 2>&1; then
 	eval $(perl -Mlocal::lib=$HOME/.perl5)
