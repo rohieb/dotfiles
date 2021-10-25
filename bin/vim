@@ -1,0 +1,2 @@
+#!/bin/sh -x
+exec /usr/bin/vim -p "$@"
