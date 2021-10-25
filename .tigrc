@@ -12,3 +12,6 @@ bind diff } :/^diff
 bind diff { :?^diff
 bind stage } :/^diff
 bind stage { :?^diff
+
+bind main E !git notes edit %(commit)
+bind diff E !git notes edit %(commit)
