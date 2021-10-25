@@ -1,0 +1,20 @@
+#!/bin/sh
+verbose() {
+	printf "%s\n" "$*"
+	"$@"
+}
+
+tmp=$(mktemp -d ./.rmfast-XXXXX)
+echo mkdir "${tmp}"
+if [ -z "$tmp" ]; then
+	 echo "Unable to mktemp" >&2
+	 exit 3
+fi
+
+set -e
+for target in "${@}"; do
+	unique=$(mktemp -u XXXXX)
+	name=$(basename "${target}")
+	verbose mv "$target" "${tmp}/${name}.${unique}"
+done
+verbose rm -rf "$tmp" &
