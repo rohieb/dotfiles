@@ -82,3 +82,6 @@
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
+[submodule "opt/bitbake"]
+	path = opt/bitbake
+	url = git://git.openembedded.org/bitbake
