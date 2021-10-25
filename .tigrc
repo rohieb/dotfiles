@@ -10,3 +10,5 @@ bind diff B !git rbi %(commit)^
 
 bind diff } :/^diff
 bind diff { :?^diff
+bind stage } :/^diff
+bind stage { :?^diff
