@@ -1,6 +1,9 @@
 [diff "visual"]
 	command = "git-wrapper-visual-diff"
 
+[core]
+	abbrev = 12
+
 [color]
 	ui = auto
 
