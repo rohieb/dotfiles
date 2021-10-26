@@ -21,7 +21,7 @@
 [alias]
 	st = status
 	br = branch
-	fopa = format-patch
+	fopa = format-patch --notes --indent-heuristic --no-renames -N --no-signature --summary --stat=80
 	bi = bisect
 	sub = submodule
 
