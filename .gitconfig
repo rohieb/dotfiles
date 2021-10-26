@@ -10,6 +10,9 @@
 [commit]
 	verbose = 1
 
+[log]
+	date = format:%Y-%m-%d %H:%M:%S
+
 [alias]
 	st = status
 	br = branch
