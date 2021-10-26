@@ -65,9 +65,9 @@
 	lastlog = log --graph HEAD@{1}..HEAD --format='%C(auto)%h %Cgreen(%an) %Creset%s'
 	fetchlog = log --graph HEAD..FETCH_HEAD --format='%C(auto)%h %Cgreen(%an) %Creset%s'
 	graph = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit
-	g     = !git graph '@{u}^..@'
-	gr    = !git graph
-	gra   = !git graph --branches --tags --remotes
+	g     = graph '@{u}^..@'
+	gr    = graph
+	gra   = graph --branches --tags --remotes
 
 	rb = rebase
 	rbi = rebase -i
