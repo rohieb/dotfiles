@@ -13,6 +13,11 @@
 [log]
 	date = format:%Y-%m-%d %H:%M:%S
 
+[pretty]
+	fixes = Fixes: %h (%ad, \"%s\")
+	ref = commit %h (%ad, %an: \"%s\")
+	shortref = commit %h (\"%s\")
+
 [alias]
 	st = status
 	br = branch
@@ -68,6 +73,14 @@
 	g     = graph '@{u}^..@'
 	gr    = graph
 	gra   = graph --branches --tags --remotes
+
+	fixes = show --no-patch --no-notes --date="format:%Y-%m-%d" --pretty=fixes --abbrev=20
+	urlref= !sh -c "'git ref \"$@\"; echo; git url \"$@\"'" --                                # "URL reference"
+	url   = show --no-patch --no-notes --pretty=url --abbrev=20                               # uses pretty.url from repo's .git/config
+	ref   = show --no-patch --no-notes --date="format:%Y-%m-%d" --pretty=ref --abbrev=20      # "reference format"
+	cite  = !sh -c "'git longref \"$@\"; echo; git url \"$@\"'" --                            # "full reference/citation format"
+	longref = show --no-patch --no-notes                                                      # "long reference format"
+	shortref = show --no-patch --no-notes --pretty=shortref --abbrev=20                       # "short reference format'
 
 	rb = rebase
 	rbi = rebase -i
