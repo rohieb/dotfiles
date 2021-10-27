@@ -77,6 +77,8 @@ export QT_STYLE_OVERRIDE='gtk2'
 
 export BC_ENV_ARGS='-l'  # load math library and print decimal points
 
+export FZF_DEFAULT_OPTS="--no-color"
+
 if [ -r ~/.profile.$HOSTNAME ]; then
 	source ~/.profile.$HOSTNAME
 fi
