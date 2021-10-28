@@ -4,7 +4,7 @@ dotfilesdir=`readlink -m "$dirname"`
 moveprefix="moved-by-dotfiles-install"
 
 doit() {
-	echo "$@"
+	printf "%s\n" "$*"
 	"$@"
 }
 
