@@ -1,6 +1,6 @@
 #!/bin/sh
 usage() {
-	echo "Usage: $(basename "$0") [-v] screen|ebook|printer|prepress|default [files.pdf …]";
+	echo "Usage: $(basename "$0") [-v] [screen|ebook|printer|prepress|default] [files.pdf …]";
 	echo
 	echo "-v           be verbose"
 	echo "screen       screen-view-only quality, 72 dpi images"
@@ -8,14 +8,15 @@ usage() {
 	echo "printer      high quality, 300 dpi images"
 	echo "prepress     high quality, color preserving, 300 dpi imgs"
 	echo "default      almost identical to /screen"
+	echo "             [default if nothing else was specified on the command line]"
 	echo
 	echo "Output will be in <file>.shrunk-<quality>.pdf"
 }
 
 verbose="-q"
-quality=
+quality="default"
 
-while [ -n "$2" ]; do
+while [ -n "$1" ]; do
 	case "$1" in
 		screen|ebook|printer|prepress|default)	quality="$1" ;;
 		-v)	verbose="" ;;
