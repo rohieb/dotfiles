@@ -1,0 +1,33 @@
+#!/bin/sh
+usage() {
+	echo "Usage: $(basename "$0") [-v] screen|ebook|printer|prepress|default <file.pdf>";
+	echo
+	echo "-v           be verbose"
+	echo "screen       screen-view-only quality, 72 dpi images"
+	echo "ebook        low quality, 150 dpi images"
+	echo "printer      high quality, 300 dpi images"
+	echo "prepress     high quality, color preserving, 300 dpi imgs"
+	echo "default      almost identical to /screen"
+	echo
+	echo "Output will be in <file>.shrunk-<quality>.pdf"
+}
+
+verbose="-q"
+quality=
+
+while [ -n "$2" ]; do
+	case "$1" in
+		screen|ebook|printer|prepress|default)	quality="$1" ;;
+		-v)	verbose="" ;;
+		*)	usage; exit 1;;
+	esac
+	shift
+done
+
+output=${1%.*}
+if [ -z "$1" -o -z "$quality" ]; then
+	usage
+	exit 1
+fi
+set -x
+gs ${verbose} -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dPDFSETTINGS=/${quality} -sOutputFile="${output}".shrunk-${quality}.pdf "$1"
