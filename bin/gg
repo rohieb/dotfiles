@@ -3,9 +3,10 @@
 
 . git-limit-range
 
+orig_params="$@"
 pr_debug "gg params: '$@'"
 if ! printf "%s" "$@" | grep -q -- '-n'; then
-	set -- -n 10
+	set -- -n 10 $orig_params
 fi
 
 pr_debug "gg params: '$@'"
