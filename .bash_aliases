@@ -39,6 +39,7 @@ if [ -r ~/.bash_aliases.$HOSTNAME ]; then
 fi
 
 alias python=python3
+alias pip=pip3
 
 alias ffprobe='ffprobe -hide_banner'
 alias ffmpeg='ffmpeg -hide_banner'
