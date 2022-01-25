@@ -32,8 +32,6 @@ complete -F _systemctl sysu
 
 alias v="vdirsyncer sync"
 
-alias diff='diff --color -u'
-
 alias cal="ncal -w3"
 
 if [ -r ~/.bash_aliases.$HOSTNAME ]; then
@@ -44,3 +42,8 @@ alias python=python3
 
 alias ffprobe='ffprobe -hide_banner'
 alias ffmpeg='ffmpeg -hide_banner'
+
+alias diff='diffless'
+alias patch="patch --merge"
+# gpatch: patch after failed git-am
+alias gpatch="patch --merge -p1 -r - --no-backup-if-mismatch"
