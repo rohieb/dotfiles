@@ -6,3 +6,5 @@ term screen-256color
 vbell off
 # increase scrollback for long bitbake/gcc/ptxdist outputs
 defscrollback 5000
+
+shell /bin/bash
