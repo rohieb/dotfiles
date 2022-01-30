@@ -1,0 +1,7 @@
+#!/bin/sh
+file="$(git ls-files "$(git rev-parse --show-toplevel)" | fzf -q "$*")"
+if [ -z "$file" ] ; then
+	echo; echo "no files found or selected"
+	exit 1
+fi
+exec vim "$file"
