@@ -1,0 +1,10 @@
+#!/bin/sh -ex
+
+archive=$(realpath -e "${1}")
+dir=$(basename ${1})-extracted
+mkdir ${dir}
+cd ${dir}
+ar x "${archive}" || tar xf "${archive}"
+tar xf control.tar.[xg]z
+tar xf data.tar.[xg]z
+rm control.tar.[xg]z data.tar.[xg]z
