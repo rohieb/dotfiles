@@ -92,10 +92,10 @@ done
 ffmpeg -f x11grab \
 	-video_size "${winarea}" \
         -i ${DISPLAY}${winpos} \
-	-c:v h264 -preset ultrafast -q:v 2 \
 	-f pulse -i ${microphone} ${monitors} \
 	-b:a 128k\
 	-framerate 30 \
+	-c:v h264 -preset ultrafast -crf 2 \
 	-map 0:v -map 1:a ${monitor_maps} \
 	"${outputfile}"
 
