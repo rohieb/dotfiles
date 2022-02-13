@@ -79,11 +79,25 @@ printf "Writing to %s\n" "$outputfile"
 printf "Press q (in this terminal) to stop recording.\n\n"
 sleep 3
 
+# multichannel audio with microphone and all monitors
+microphone="alsa_input.pci-0000_00_1b.0.analog-stereo"
+monitors=""
+monitor_maps=""
+i=2
+for m in $(pacmd list-sources | sed -n 's;^\s\+name: <\([^>]\+\.monitor\)>;\1;p'); do
+	monitors="${monitors} -f pulse -i ${m}"
+	monitor_maps="${monitor_maps} -map ${i}:a"
+	i=$((i+1))
+done
+
 ffmpeg -f x11grab \
 	-video_size "${winarea}" \
         -i ${DISPLAY}${winpos} \
 	-framerate 10 \
 	-c:v h264 -preset ultrafast -q:v 2 \
+	-f pulse -i ${microphone} ${monitors} \
+	-b:a 128k\
+	-map 0:v -map 1:a ${monitor_maps} \
 	"${outputfile}"
 
 printf "Recording written to %s\n" "$outputfile"
