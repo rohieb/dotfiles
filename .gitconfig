@@ -132,6 +132,7 @@
 	autoSquash = true
 	autoStash = true
 	missingCommitsCheck = warn
+	instructionFormat = %ai [%<(18,trunc)%an]%d %s
 
 [achievement]
 	upload = false
