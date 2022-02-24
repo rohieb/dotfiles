@@ -46,5 +46,7 @@ alias ffmpeg='ffmpeg -hide_banner'
 
 alias diff='diffless'
 alias patch="patch --merge"
+grepdiff() { command grepdiff --output-matching=hunk "$@" | colordiff -u | diff-highlight | less -R --quit-if-one-screen ; }
+
 # gpatch: patch after failed git-am
 alias gpatch="patch --merge -p1 -r - --no-backup-if-mismatch"
