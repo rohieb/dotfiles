@@ -55,7 +55,8 @@ if perl -Mlocal::lib=$HOME/.perl5 > /dev/null 2>&1; then
 	eval $(perl -Mlocal::lib=$HOME/.perl5)
 fi
 
-export PYTHONPATH=.local/lib/python3
+# locally installed python packages
+export PYTHONPATH=$HOME/.local/lib/python3
 
 # tell Java applications to use anti-aliasing
 export _JAVA_OPTIONS="$_JAVA_OPTIONS -Dawt.useSystemAAFontSettings=on"
