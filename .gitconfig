@@ -153,5 +153,6 @@
 [sendemail]
 	confirm = always
 	envelopesender = auto
+	composeencoding = utf8
 [notes]
 	rewriteRef = refs/notes/commits
