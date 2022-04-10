@@ -1,0 +1,5 @@
+_gg() {
+	__git_complete_command log
+}
+
+__git_complete gg _gg
