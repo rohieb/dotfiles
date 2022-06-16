@@ -1,13 +1,81 @@
-#!/bin/sh
+#!/bin/bash
 if [ -z "$1" ]; then
-	echo "Usage: $0 <filename or URL...>"
+	echo "Usage: $0 [--next|--prev|--quit|<filename or URL...>]"
 	exit 1
 fi
 
 socket=~/.cache/mpvc.socket
 
+IPC_DEBUG=
+if [ -n "$IPC_DEBUG" ]; then
+	_ipc_debug_out() { printf "%s\n" "$@" | sed -u 's/^/IPC: /' > /dev/stderr; }
+	_ipc_debug_in () { printf "%s\n" "$@" | sed -u 's/^/RES: /' > /dev/stderr; }
+else
+	_ipc_debug_out() { :; }
+	_ipc_debug_in()	 { :; }
+fi
+
+# returns 0 on success, and sets $error
+_ipc() {
+	cmd=$1
+	shift
+	quotedargs=
+	if [ -n "$1" ]; then
+		quotedargs=$(printf ',"%s"' "$@")
+	fi
+
+	ipccmd=$(printf '{"command":["%s"%s]}' "${cmd}" "${quotedargs}")
+	_ipc_debug_out "$ipccmd"
+
+	res=$(printf "%s\n" "$ipccmd" | socat - "${socket}")
+	_ipc_debug_in "$res"
+
+	error=$( printf "%s" "$res" | jq -rM '.error' )
+	if [ "${error}" != "success" ]; then
+		_ipc_err "IPC: Could not do {%s%s}: %s\n" "$cmd" "$quotedargs" "$error"
+		return 1
+	fi
+	_ipc_result "%s\n" "$res"
+}
+ipc() {
+	_ipc_err()	{ printf "$@" >&2; }
+	_ipc_result()	{ printf "$@"; }
+
+	while [ -n "$1" ]; do
+		case "$1" in
+			--noerror)	shift; _ipc_err()	{ :; } ;;
+			--quiet|-q)	shift; _ipc_result()	{ :; } ;;
+			*)		break;;
+		esac
+	done
+
+	_ipc "$@"
+}
+
+get_property() {
+	r=$(ipc get_property "$@")
+	error=$( printf "%s" "$r" | jq -rM '.error' )
+	if [ "${error}" != "success" ]; then
+		return 1
+	fi
+	printf "%s" "$r" | jq -rM .data
+}
+
+# transform relative file names into absolute file names
+params=()
+for p in "$@"; do
+	realp=$(realpath -e -- "$p" 2>/dev/null)
+	if [ $? != 0 ]; then
+		# no file, probably option or URL
+		realp="$p"
+	fi
+	params=("${params[@]}" "$realp")
+done
+set -- "${params[@]}"
+
 # start mpvc if not already running
-if ! socat - "${socket}" >/dev/null 2>&1 <<EOF
+# FIXME: refactor to get_property()?
+if ! [ -S "${socket}" ] || ! socat - "${socket}" >/dev/null 2>&1 <<EOF
 	{ "command": ["get_property", "playback-time"] }
 EOF
 then
@@ -17,8 +85,40 @@ then
 	sleep 2
 fi
 
-# fill playlist
-for f in $@; do
-	echo loadfile \"$f\" append-play | socat - "${socket}"
-	echo show-text \"loaded $f\" | socat - "${socket}"
-done
+case "$1" in
+	--quit|-q|--kill)
+		ipc -q quit
+		;;
+
+	--next|-n)
+		ipc -q playlist-next weak
+		;;
+
+	--prev|-p)
+		if ! pos=$(get_property playlist-pos); then
+			# playback has ended after last playlist entry
+			if ! pos=$(get_property playlist-count); then
+				printf "Could not get playlist-count: %s\n", "$error"
+				exit 1
+			fi
+			if ! ipc -q set_property 'playlist-pos' "$((pos-1))"; then
+				printf "Could not set playlist-pos: %s\n", "$error"
+				exit 1
+			fi
+		else
+			ipc -q playlist-prev weak
+		fi
+		;;
+
+	--playlist|-l)
+		get_property playlist | jq -rM '.[].filename'
+		;;
+
+	*)
+		# fill playlist
+		for f in "$@"; do
+			ipc -q loadfile "$f" append-play
+			ipc -q show-text "queued $f"
+		done
+		;;
+esac
