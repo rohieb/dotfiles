@@ -4,4 +4,4 @@ socket=~/.cache/mpvc.socket
 echo Listening on "${socket}"
 rm "${socket}"
 cd ~/tmp
-mpv --idle --input-ipc-server="${socket}" "$@"
+mpv --geometry='1280x720+50%+50%' --idle --input-ipc-server="${socket}" "$@"
