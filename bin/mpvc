@@ -1,4 +1,7 @@
 #!/bin/sh
-echo Listening on ~/.cache/mpvc.socket
+socket=~/.cache/mpvc.socket
+
+echo Listening on "${socket}"
+rm "${socket}"
 cd ~/tmp
-mpv --idle --input-ipc-server=~/.cache/mpvc.socket "$@"
+mpv --idle --input-ipc-server="${socket}" "$@"
