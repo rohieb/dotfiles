@@ -88,3 +88,9 @@
 [submodule ".vim/bundle/vim-table-mode"]
 	path = .vim/bundle/vim-table-mode
 	url = https://github.com/dhruvasagar/vim-table-mode
+[submodule ".vim/bundle/vim-lsp"]
+	path = .vim/bundle/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp
+[submodule ".vim/bundle/vim-lsp-settings"]
+	path = .vim/bundle/vim-lsp-settings
+	url = https://github.com/mattn/vim-lsp-settings
