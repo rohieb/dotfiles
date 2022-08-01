@@ -24,13 +24,6 @@ endif
 " Map leader character to ,
 let mapleader = ","
 
-" Tabs
-" (for urxvt, <C-...> syntax somehow does not work...)
-map <C-PageDown> gt
-map [6^ gt
-map <C-PageUp> gT
-map [5^ gT
-
 " fix navigate-by-word insides screen(1)
 if match($TERM, "screen")!=-1
 	nmap [1;5D b
@@ -38,20 +31,6 @@ if match($TERM, "screen")!=-1
 	imap [1;5D b
 	imap [1;5C w
 end
-
-" window management
-map <C-Up> <C-W><Up>
-map Oa <C-W><Up>
-map <C-Down> <C-W><Down>
-map Ob <C-W><Down>
-map <C-k> <C-W>-
-map <C-j> <C-W>+
-
-" shortcuts
-im üü <ESC>:wa<CR>
-map üü <ESC>:wa<CR>
-im ää <ESC>:wa<CR>:!make<CR>
-map ää <ESC>:wa<CR>:!make<CR>
 
 " make gf always open a new tab
 map gf :tabnew <cfile><CR>
