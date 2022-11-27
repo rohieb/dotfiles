@@ -19,6 +19,8 @@
 	shortref = commit %h (\"%s\")
 
 [alias]
+	b4 = "!f() { b4 am -l -t -o - $1 | git am -s; }; f"
+
 	st = status
 	br = branch
 	fopa = format-patch --notes --indent-heuristic --no-renames -N --no-signature --summary --stat=80
