@@ -28,3 +28,6 @@ endfunction
 
 nmap <silent>]h :call GitGutterNextHunkCycle()<CR>
 nmap <silent>[h :call GitGutterPrevHunkCycle()<CR>
+
+" update signs after :w
+autocmd BufWritePost * GitGutter
