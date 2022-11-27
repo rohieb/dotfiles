@@ -13,5 +13,15 @@ let g:fzf_preview_window = []
 " Buffers: Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
 
+function g:ProjectFiles()
+	let l:oldpwd = chdir(expand('%:p:h'))
+	Gcd
+	verbose pwd
+	FZF
+	call chdir(fnameescape(l:oldpwd))
+	verbose pwd
+endfunction
+
+map Ä :call ProjectFiles()<CR>
 map ; :Buffers<CR>
 map Ö :GFiles<CR>
