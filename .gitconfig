@@ -1,6 +1,9 @@
 [diff "visual"]
 	command = "git-wrapper-visual-diff"
 
+[am]
+	threeWay = true
+
 [core]
 	abbrev = 12
 
