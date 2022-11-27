@@ -1,3 +1,3 @@
-set et sw=2
+setl et sw=2
 " easier autocomplete for file names
-set isk+=-,.
+setl isk+=-,.

@@ -1,2 +1,2 @@
 let b:match_words='`:'',(:),{:},[:],<:>'
-set matchpairs+=`:',(:),{:},[:],<:>
+setl matchpairs+=`:',(:),{:},[:],<:>

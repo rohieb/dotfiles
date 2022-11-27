@@ -1,1 +1,1 @@
-set noet tw=0
+setl noet tw=0
