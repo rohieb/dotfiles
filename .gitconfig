@@ -14,7 +14,7 @@
 	verbose = 1
 
 [log]
-	date = format:%Y-%m-%d %H:%M:%S
+	date = format:%a %Y-%m-%d %H:%M:%S
 
 [pretty]
 	fixes = Fixes: %h (%ad, \"%s\")
