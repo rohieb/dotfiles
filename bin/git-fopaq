@@ -1,0 +1,6 @@
+#!/bin/sh
+# keep in sync with git-amq
+PATCHDIR=~/tmp/mutt-git/
+mkdir -p "${PATCHDIR}"
+rm -rf "${PATCHDIR}"/*
+git fopa -o "${PATCHDIR}" "$@"

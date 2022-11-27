@@ -27,6 +27,8 @@
 	bi = bisect
 	sub = submodule
 
+	# amq: see ~/bin/git-amq
+
 	f = fetch
 	pu = push
 	pur = pull --rebase

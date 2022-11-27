@@ -1,0 +1,7 @@
+#!/bin/sh
+# keep in sync with git-fopaq and neomutt config
+PATCHDIR=${1:-~/tmp/mutt-git/}
+
+for i in "${PATCHDIR}"/*; do echo $i; done
+echo
+git am "${PATCHDIR}"/*
