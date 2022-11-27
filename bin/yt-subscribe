@@ -47,11 +47,12 @@ while [ -n "$1" ]; do
 	read answer
 	case "$answer" in
 		""|Y|y)
+			export PYTHONPATH=.local/lib/python3
 			feed2exec add "$uploader on YouTube" "$url" \
 				--filter feed2exec_youtube \
 				--output feed2exec.plugins.maildir \
 				--folder YouTube &&
-			feed2exec -v fetch --pattern "$uploader"
+			feed2exec --database ~/.local/share/feed2exec.db -v fetch --pattern "$uploader"
 			;;
 	esac
 done
