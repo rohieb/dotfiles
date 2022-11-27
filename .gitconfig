@@ -66,10 +66,10 @@
 	stp = stash pop
 	sts = stash save
 
-	ol = log --oneline
-	lastlog = log --graph HEAD@{1}..HEAD --format='%C(auto)%h %Cgreen(%an) %Creset%s'
-	fetchlog = log --graph HEAD..FETCH_HEAD --format='%C(auto)%h %Cgreen(%an) %Creset%s'
-	graph = log --graph --pretty='%C(auto)%h%d %Cgreen(%an)%Creset %s' --abbrev-commit
+	ol = log --format='%C(auto)%h %C(blue)%ad %C(green)(%an) %C(reset)%s'
+	lastlog = log --graph HEAD@{1}..HEAD --format='%C(auto)%h %C(blue)%ad %C(green)(%an) %C(reset)%s'
+	fetchlog = log --graph HEAD..FETCH_HEAD --format='%C(auto)%h %C(blue)%ad %C(green)(%an) %C(reset)%s'
+	graph = log --graph --pretty='%C(auto)%h%d %C(blue)%ad %C(green)(%an)%C(reset) %s' --abbrev-commit
 	g     = graph '@{u}^..@'
 	gr    = graph
 	gra   = graph --branches --tags --remotes
