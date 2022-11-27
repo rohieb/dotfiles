@@ -62,6 +62,19 @@ __ps1_ptxdist_platform() {
 	done
 }
 
+xterm_window_title() {
+	printf '\033]0;%s\007' "$@"
+}
+
+# argument 1: default value if TITLE is unset
+__ps1_xterm_window_title() {
+	local the_title=${TITLE:+$TITLE}
+	the_title=${the_title:-"$1"}
+	if [ -n "$the_title" ]; then
+		xterm_window_title "$the_title"
+	fi
+}
+
 PS1_WITH_HOSTNAME=
 if [ -n "$SSH_CONNECTION" ]; then
 	PS1_WITH_HOSTNAME=1
@@ -76,10 +89,9 @@ PS1="${PS1}\[${__YELLOW}\]\$(__ps1_ptxdist_platform)\[${__RESET}\]"
 PS1="${PS1}\$(__git_ps1)"    # git_ps1 already has space at the beginning
 PS1="${PS1} \$ "
 
-# If this is an xterm set the title to user@host:dir
 case "$TERM" in
 	xterm*|rxvt*)
-		PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+		PS1="${PS1}\[\$(__ps1_xterm_window_title \"${debian_chroot:+($debian_chroot) }\"'\w')\]"
 		;;
 	*)
 		;;
