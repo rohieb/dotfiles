@@ -65,6 +65,9 @@ __ps1_ptxdist_platform() {
 xterm_window_title() {
 	printf '\033]0;%s\007' "$@"
 }
+screen_window_title() {
+	printf '\033k%s\033\\' "$@"
+}
 
 # argument 1: default value if TITLE is unset
 __ps1_xterm_window_title() {
@@ -72,6 +75,11 @@ __ps1_xterm_window_title() {
 	the_title=${the_title:-"$1"}
 	if [ -n "$the_title" ]; then
 		xterm_window_title "$the_title"
+	fi
+}
+__ps1_screen_window_title() {
+	if [ -n "$TITLE" ]; then
+		screen_window_title "$TITLE"
 	fi
 }
 
@@ -93,7 +101,8 @@ case "$TERM" in
 	xterm*|rxvt*)
 		PS1="${PS1}\[\$(__ps1_xterm_window_title \"${debian_chroot:+($debian_chroot) }\"'\w')\]"
 		;;
-	*)
+	screen*)
+		PS1="${PS1}\[\$(__ps1_screen_window_title)\]"
 		;;
 esac
 
