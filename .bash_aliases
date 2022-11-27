@@ -54,3 +54,5 @@ grepdiff() { command grepdiff --output-matching=hunk "$@" | colordiff -u | diff-
 
 # gpatch: patch after failed git-am
 alias gpatch="patch --merge -p1 -r - --no-backup-if-mismatch"
+
+alias feed2exec='echo "No. Wrong database. Please start the systemd unit instead."'
