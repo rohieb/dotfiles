@@ -31,7 +31,8 @@
 
 	f = fetch
 	pu = push
-	pur = pull --rebase
+	pull = pull --no-stat
+	pur = pull --no-stat --rebase
 	puf = push --force-with-lease
 
 	a = add -p
@@ -129,6 +130,9 @@
 [merge]
 	tool = meld
 	defaultToUpstream = true
+
+[pull]
+	ff = only
 
 [push]
 	default = simple
