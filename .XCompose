@@ -48,6 +48,7 @@ include "%S/en_US.UTF-8/Compose"
 <Multi_key> <colon> <slash>               : "😕"
 <Multi_key> <colon> <parenleft>           : "😞"
 <Multi_key> <colon> <parenright>          : "🙂"       # U+1F642 SLIGHTLY SMILING FACE
+<Multi_key> <colon> <asterisk>            : "😘"       # U+1F618 FACE THROWING A KISS
 <Multi_key> <semicolon> <parenright>      : "😉"
 <Multi_key> <semicolon> <P>               : "😜"
 <Multi_key> <B> <parenright>              : "😎"
@@ -60,6 +61,8 @@ include "%S/en_US.UTF-8/Compose"
 <Multi_key> <colon> <s> <w> <e>           : "😅"       # U+1F605 SMILING FACE WITH OPEN MOUTH AND COLD SWEAT
 <Multi_key> <asterisk> <underscore> <asterisk> : "😍"  # U+1F60D SMILING FACE WITH HEART-SHAPED EYES
 <Multi_key> <colon> <3>                   : "😊"       # U+1F60A SMILING FACE WITH SMILING EYES
+<Multi_key> <colon> <t> <h> <u>           : "👍"       # U+1F44D THUMBS UP SIGN
+<Multi_key> <plus> <1>                    : "👍"       # U+1F44D THUMBS UP SIGN
 
 <Multi_key> <d> <u> <n> <n> <o>              : "¯\\_(ツ)_/¯"
 <Multi_key> <d> <s> <a> <p>                  : "ಠ_ಠ"
