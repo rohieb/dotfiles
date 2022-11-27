@@ -11,7 +11,11 @@ alias iptraf='sudo iptraf'
 alias dmesg='sudo dmesg'
 
 psgrep() {
-	ps -Af | grep "$*"
+	tmp="$(mktemp || (echo "Unable to mktemp"; return 5))"
+	ps -Ao user,pid,ppid,%cpu,%mem,tty,stat,bsdstart,bsdtime,cmd > "$tmp"
+	head -n 1 "$tmp"
+	grep "$*" < "$tmp"
+	rm -f "$tmp"
 }
 
 alias add-ssh-keys="ssh-add $HOME/.ssh/id*priv"
