@@ -62,6 +62,10 @@
 	fullstat = show --stat=100000 --stat-graph-width=40
 	fulldiff = diff -p --no-prefix -U20000
 
+	# use 'git set-default-branch refs/heads/origin/master' or similiar
+	set-default-branch = symbolic-ref refs/heads/DEFAULT_BRANCH
+	rdd = !"f() { git range-diff refs/heads/DEFAULT_BRANCH ${1:-'@{u}'} ${2:-HEAD}; }; f"
+
 	co = checkout
 	cop = checkout -p
 
@@ -94,6 +98,7 @@
 	rb = rebase
 	rbi = rebase -i
 	rbc = rebase --continue
+	rbd = rebase -i refs/heads/DEFAULT_BRANCH
 
 	im  = imerge merge
 	imc = imerge continue
