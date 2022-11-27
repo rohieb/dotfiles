@@ -167,5 +167,9 @@
 	composeencoding = utf8
 	transferEncoding = 8bit
 
+[stash]
+	showPatch = true
+	showStat = true
+
 [notes]
 	rewriteRef = refs/notes/commits
