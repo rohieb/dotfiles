@@ -1,6 +1,0 @@
-#!/bin/sh
-. git-limit-range
-
-limit_range=`git_limit_range_include_upstreams "$@"`
-set -x
-/usr/bin/tig $limit_range

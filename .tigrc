@@ -3,6 +3,9 @@ set main-view = id date:custom,format="%a %y-%m-%d %H:%M:%S" author:abbreviated,
 
 set diff-highlight = true
 
+# Limit number of commits loaded by default
+set main-options = -n 5000
+
 bind main T !git tag "%(prompt Enter tag name: )" %(commit)
 bind diff T !git tag "%(prompt Enter tag name: )" %(commit)
 bind main B !git rbi %(commit)^
