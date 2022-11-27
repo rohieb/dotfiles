@@ -18,3 +18,6 @@ bind stage { :?^diff
 
 bind main E !git notes edit %(commit)
 bind diff E !git notes edit %(commit)
+
+bind main P !git fopa -1 %(commit)
+bind diff P !git fopa -1 %(commit)
