@@ -1,0 +1,3 @@
+#!/bin/sh
+mkdir -p ~/.cache/
+pwd > ~/.cache/magic-cdg-path
