@@ -154,6 +154,7 @@
 
 [init]
 	templatedir = ~/.gitrc/init-template/
+	defaultBranch = main
 
 [submodule]
 	fetchJobs = 4      # git 2.9
