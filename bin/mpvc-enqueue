@@ -4,6 +4,7 @@ if [ -z "$1" ]; then
 	exit 1
 fi
 
+logfile=~/.cache/mpvc.log
 socket=~/.cache/mpvc.socket
 
 IPC_DEBUG=
@@ -80,8 +81,8 @@ if ! [ -S "${socket}" ] || ! socat - "${socket}" >/dev/null 2>&1 <<EOF
 EOF
 then
 	echo Starting continuous mpv media player...
-	echo See output in ~/.cache/mpvc.log
-	mpvc --force-window=yes --term-status-msg='' "$@" > ~/.cache/mpvc.log 2>&1 &
+	echo See output in ${logfile}
+	mpvc --force-window=yes --term-status-msg='' "$@" > ${logfile} 2>&1 &
 	exit
 fi
 
