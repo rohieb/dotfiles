@@ -49,7 +49,7 @@ alias ffprobe='ffprobe -hide_banner'
 alias ffmpeg='ffmpeg -hide_banner'
 
 alias diff='diffless'
-alias patch="patch --merge"
+alias patch="patch --merge=diff3"
 grepdiff() { command grepdiff --output-matching=hunk "$@" | colordiff -u | diff-highlight | less -R --quit-if-one-screen ; }
 
 # gpatch: patch after failed git-am
