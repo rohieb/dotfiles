@@ -75,6 +75,22 @@ __ps1_ptxdist_platform() {
 	fi
 }
 
+__ps1_metamake_platform() {
+	if [ ! -r ~/.ptx_metamake_selected_platforms ]; then
+		return
+	fi
+
+        # 5 levels should be enough, after that, the prompt gets too long anyway
+        for dir in . .. ../.. ../../.. ../../../.. ../../../../.. ; do
+                cdir="$(readlink -f "${dir}")"
+                line="$(sed -n 's;^\s*"'"${cdir}"'"\s*:\s*"\([^"]\+\)".*$; (\1);p' ~/.ptx_metamake_selected_platforms)"
+                if [ -n "${line}" ]; then
+                        printf "%s" "${line}"
+                        return
+                fi
+        done
+}
+
 xterm_window_title() {
 	printf '\033]0;%s\007' "$@"
 }
@@ -118,6 +134,7 @@ if [ -n "$PS1_WITH_HOSTNAME" ]; then PS1="${PS1}\[${__RED}\] \u@\h\[${__RESET}\]
 PS1="${PS1} \[${__GREEN}\]\$(__ps1_shortpwd)\[${__RESET}\]"
 PS1="${PS1}\[${__YELLOW}\]\$(__ps1_env_var \${MACHINE})\[${__RESET}\]"
 PS1="${PS1}\[${__YELLOW}\]\$(__ps1_ptxdist_platform)\[${__RESET}\]"
+PS1="${PS1}\[${__YELLOW}\]\$(__ps1_metamake_platform)\[${__RESET}\]"
 PS1="${PS1}\$(__git_ps1)"    # git_ps1 already has space at the beginning
 PS1="${PS1} \$ "
 
