@@ -49,17 +49,24 @@ __ps1_shortpwd() {
 		pwd | sed -e "s:^$HOME:~:"
 	fi
 }
+
+__ptxdist_platform() {
+	local config=$(readlink -e ./selected_platformconfig)
+	if [ -z "${config}" ]; then
+		local configs
+		configs=( $(echo configs/platform-*/platformconfig) )
+		config=${configs[0]}
+	fi
+	if [ -e "${config}" ]; then
+		awk -F '"' '/^PTXCONF_PLATFORM=/ { print $2; exit }' "${config}"
+		return
+	fi
+}
 __ps1_ptxdist_platform() {
-	# 5 levels should be enough for configs/platform-*/projectroot/loader/entries/
-	# after that, the prompt gets too long anyway
-	for dir in . .. ../.. ../../.. ../../../.. ../../../../.. ; do
-		if [ -h "$dir/selected_platformconfig" ]; then
-			awk -F '"' \
-				'/^PTXCONF_PLATFORM=/ { print " " $2; exit }' \
-				"$dir/selected_platformconfig"
-			return
-		fi
-	done
+	local p=$(__ptxdist_platform)
+	if [ -n "${p}" ]; then
+		echo " ${p}"
+	fi
 }
 
 xterm_window_title() {
