@@ -65,6 +65,7 @@
 	# use 'git set-default-branch refs/heads/origin/master' or similiar
 	set-default-branch = symbolic-ref refs/heads/DEFAULT_BRANCH
 	rdd = !"f() { git range-diff refs/heads/DEFAULT_BRANCH ${1:-'@{u}'} ${2:-HEAD}; }; f"
+	ld = graph --boundary refs/heads/DEFAULT_BRANCH...@ refs/heads/DEFAULT_BRANCH...@{u}
 
 	co = checkout
 	cop = checkout -p
@@ -79,6 +80,7 @@
 	stp = stash pop
 	sts = stash save
 
+	sl = log --oneline --no-decorate
 	ol = log --format='%C(auto)%h %C(blue)%ad %C(green)(%an) %C(reset)%s'
 	lastlog = log --graph HEAD@{1}..HEAD --format='%C(auto)%h %C(blue)%ad %C(green)(%an) %C(reset)%s'
 	fetchlog = log --graph HEAD..FETCH_HEAD --format='%C(auto)%h %C(blue)%ad %C(green)(%an) %C(reset)%s'
@@ -97,6 +99,7 @@
 
 	rb = rebase
 	rbi = rebase -i
+	rbin = rebase -i --no-autosquash
 	rbc = rebase --continue
 	rbd = rebase -i refs/heads/DEFAULT_BRANCH
 
