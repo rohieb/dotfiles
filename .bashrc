@@ -34,6 +34,7 @@ __GREEN='\033[32m'
 __RED='\033[31m'
 __YELLOW='\033[33m'
 __BLUE='\033[34m'
+__CYAN='\033[36m'
 __RESET='\033[0m'
 
 __ps1_env_var() {
@@ -135,6 +136,7 @@ PS1="${PS1} \[${__GREEN}\]\$(__ps1_shortpwd)\[${__RESET}\]"
 PS1="${PS1}\[${__YELLOW}\]\$(__ps1_env_var \${MACHINE})\[${__RESET}\]"
 PS1="${PS1}\[${__YELLOW}\]\$(__ps1_ptxdist_platform)\[${__RESET}\]"
 PS1="${PS1}\[${__YELLOW}\]\$(__ps1_metamake_platform)\[${__RESET}\]"
+PS1="${PS1}\[${__CYAN}\]\$(__ps1_env_var \$LG_PLACE)\[${__RESET}\]"
 PS1="${PS1}\$(__git_ps1)"    # git_ps1 already has space at the beginning
 PS1="${PS1} \$ "
 
