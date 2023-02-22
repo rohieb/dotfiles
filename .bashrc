@@ -36,6 +36,12 @@ __YELLOW='\033[33m'
 __BLUE='\033[34m'
 __RESET='\033[0m'
 
+__ps1_env_var() {
+        if [ -n "$1" ]; then
+                echo " $1"
+        fi
+}
+
 __ps1_status() {
 	ret=$?
 	if [ "$ret" != "0" ]; then
@@ -110,6 +116,7 @@ PS1="${PS1}\[${__YELLOW}\]\$(__ps1_bitbake)\[${__RESET}\]"
 PS1="${PS1}\[${__RED}\]\$(__ps1_status)\[${__RESET}\] ${TTY}"
 if [ -n "$PS1_WITH_HOSTNAME" ]; then PS1="${PS1}\[${__RED}\] \u@\h\[${__RESET}\]"; fi
 PS1="${PS1} \[${__GREEN}\]\$(__ps1_shortpwd)\[${__RESET}\]"
+PS1="${PS1}\[${__YELLOW}\]\$(__ps1_env_var \${MACHINE})\[${__RESET}\]"
 PS1="${PS1}\[${__YELLOW}\]\$(__ps1_ptxdist_platform)\[${__RESET}\]"
 PS1="${PS1}\$(__git_ps1)"    # git_ps1 already has space at the beginning
 PS1="${PS1} \$ "
