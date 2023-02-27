@@ -1,0 +1,23 @@
+#!/bin/sh
+# rename mails in maildir so git-am can apply them in order
+
+set -e
+
+maildir="$1"
+outputdir="$2"
+
+if [ -z "$outputdir" ]; then
+	echo "Usage: $0 <maildir> <outputdir>"
+	exit 1
+fi
+
+mkdir -p "$outputdir"
+
+# notes: we rely on the "PATCH nn/mm" ordering in the subject.
+# also maildir does not allow spaces in file names, so we're safe here.
+for m in `find "$maildir/cur/" "$maildir/new/" "$maildir/tmp/" -type f`; do
+	subj=`formail -c -xSubject < "$m" | tr -c 'a-zA-Z0-9' '-' | sed 's/--/-/g; s/^-\+//; s/-\+$//'`
+	mv -v "$m" "$outputdir/$subj.eml"
+done
+
+exit 0
