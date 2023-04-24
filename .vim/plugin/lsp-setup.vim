@@ -8,6 +8,24 @@ let g:lsp_preview_max_width = 60
 " disable automatic popups for function signature
 let g:lsp_signature_help_enabled = 0
 
+let g:lsp_settings = {
+\   'pylsp': {
+\       'workspace_config': {
+\           'pylsp': {
+\               'configurationSources': [],
+\               'plugins': {
+\                   'flake8': {
+\                       'enabled': v:true,
+\                       'config': '~/.config/flake8',
+\                   },
+\                   'autopep8': { 'enabled': v:false },
+\                   'pycodestyle': { 'enabled': v:false },
+\               }
+\           }
+\       }
+\   }
+\}
+
 fu s:lsp_enable()
     let g:lsp_auto_enable = 1
     call lsp#enable()
