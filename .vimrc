@@ -11,9 +11,6 @@ set guifont=Monospace\ 8
 
 set textwidth=80
 
-" keep disabled, see https://github.com/junegunn/fzf.vim/issues/856#issuecomment-895215783
-set noautochdir
-
 " always show status line
 set laststatus=2
 
