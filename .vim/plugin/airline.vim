@@ -11,3 +11,9 @@ let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
+
+" don't care about whitespace errors
+let g:airline#extensions#whitespace#enabled = 0
+
+" add buffer number (%n) to the default filename section
+let g:airline_section_c = "%<%n: %f%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#"
