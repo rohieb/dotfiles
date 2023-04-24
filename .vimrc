@@ -29,9 +29,6 @@ if match($TERM, "screen")!=-1
 	imap [1;5C w
 end
 
-" make gf always open a new tab
-map gf :tabnew <cfile><CR>
-
 " toggle shortcuts for paste, hlsearch, invlist
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>

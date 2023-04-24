@@ -18,3 +18,8 @@ map <C-Down> <C-W><Down>
 map Ob <C-W><Down>
 map <C-k> <C-W>-
 map <C-j> <C-W>+
+
+" more flexible 'go to file' mappings
+map gf :tabf <cfile><CR>
+map <Leader>f :find <cfile><CR>
+map sgf :splitf <cfile><CR>
