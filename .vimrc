@@ -83,8 +83,3 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
-
-" load local vimrc if exists
-if filereadable(".vimrc.local")
-	source .vimrc.local
-endif
