@@ -23,26 +23,6 @@ end
 set nocompatible               " be iMproved
 filetype plugin indent on
 
-" solarized config
-if &term != "linux" || has('gui_running')
-	if has('gui_running')
-		set background=light
-	else
-		if filereadable(glob("~/.vimrc.solarized"))
-			source ~/.vimrc.solarized
-		else
-			set background=dark
-		endif
-	endif
-	let g:solarized_termtrans=1   " avoid problems with terminal transparency
-	colorscheme solarized
-endif
-
-" prevent nerdtree vom opening at startup
-let g:nerdtree_tabs_open_on_gui_startup = 0
-" but close when opening file
-let g:NERDTreeQuitOnOpen=1
-
 " use :WW as SudoWrite
 com! WW SudoWrite
 
@@ -57,29 +37,3 @@ let g:GPGPreferSign = 1
 
 " rust.vim config
 let g:rustfmt_autosave = 1
-
-" Airline configuration
-let g:airline_theme='solarized'
-let g:airline_powerline_fonts=0
-"if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-"endif
-let g:airline_left_sep = ' '
-"let g:airline_left_sep = '»'
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '«'
-let g:airline_right_sep = ' '
-"let g:airline_right_sep = '◀'
-let g:airline_symbols.crypt = '🔒'
-"let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-"let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.maxlinenr = '☰'
-"let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.branch = '⎇'
-"let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-"let g:airline_symbols.paste = '∥'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = '∄'
-let g:airline_symbols.whitespace = 'Ξ'
