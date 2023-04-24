@@ -52,7 +52,7 @@ set showmode
 
 " filetype detection via plugins
 set nocompatible               " be iMproved
-filetype plugin on
+filetype plugin indent on
 
 " Don't interpret git commit messages starting with 'vim:' as modelines
 " http://marcschwieterman.com/blog/modelines-in-git-commit-messages/
