@@ -2,7 +2,6 @@
 execute pathogen#infect()
 
 " set various preferred options...
-set tabstop=2 softtabstop=0 shiftwidth=0
 set autoindent
 set modeline modelines=5
 
