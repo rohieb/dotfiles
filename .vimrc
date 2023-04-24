@@ -131,25 +131,6 @@ let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
 
-" make text terminal-selectable as-is without any additional features
-let g:ownShowPlainTextEnabled = 1
-function! OwnToggleShowPlainText()
-	if g:ownShowPlainTextEnabled
-		set colorcolumn=+1
-		set number
-		let g:ownShowPlainTextEnabled = 0
-	else
-		call g:gitgutter#disable()
-		set colorcolumn=0
-		set nonumber
-		let g:ownShowPlainTextEnabled = 1
-	endif
-endfunction
-call OwnToggleShowPlainText()
-command! ToggleShowPlainText call OwnToggleShowPlainText()
-nnoremap <F7> :ToggleShowPlainText<CR>
-inoremap <F7> <Esc>:ToggleShowPlainText<CR>a
-
 " load local vimrc if exists
 if filereadable(".vimrc.local")
 	source .vimrc.local
