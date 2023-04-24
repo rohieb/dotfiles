@@ -23,10 +23,6 @@ end
 set nocompatible               " be iMproved
 filetype plugin indent on
 
-" Don't interpret git commit messages starting with 'vim:' as modelines
-" http://marcschwieterman.com/blog/modelines-in-git-commit-messages/
-autocmd FileType gitrebase setlocal nomodeline
-
 " solarized config
 if &term != "linux" || has('gui_running')
 	if has('gui_running')
