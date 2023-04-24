@@ -4,6 +4,7 @@ function s:plaintext_mode_disable()
     setl signcolumn=auto
     setl colorcolumn=+1
     setl number
+    setl cursorline
     let b:plaintext_mode_enabled = 0
 endfunction
 command PlaintextModeEnable :call s:plaintext_mode_enable()
@@ -12,6 +13,7 @@ function s:plaintext_mode_enable()
     setl signcolumn=no
     setl colorcolumn=0
     setl nonumber
+    setl nocursorline
     let b:plaintext_mode_enabled = 1
 endfunction
 command PlaintextModeDisable :call s:plaintext_mode_disable()
