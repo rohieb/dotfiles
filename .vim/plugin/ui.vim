@@ -1,3 +1,4 @@
+set mouse=a
 set listchars=tab:│\ ,eol:¶,trail:·
 set guifont=Monospace\ 8
 set textwidth=80
