@@ -4,19 +4,8 @@ execute pathogen#infect()
 " set various preferred options...
 set tabstop=2 softtabstop=0 shiftwidth=0
 set autoindent
-set hlsearch incsearch modeline modelines=5
-set scrolloff=7
-set listchars=tab:│\ ,eol:¶,trail:·
-set guifont=Monospace\ 8
+set modeline modelines=5
 
-set textwidth=80
-
-" always show status line
-set laststatus=2
-
-if has('gui_running')
-	set toolbar=
-endif
 
 " Map leader character to ,
 let mapleader = ","
@@ -29,20 +18,6 @@ if match($TERM, "screen")!=-1
 	imap [1;5C w
 end
 
-" toggle shortcuts for paste, hlsearch, invlist
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
-nnoremap <F3> :set invhlsearch hlsearch?<CR>
-inoremap <F3> <Esc>:set invhlsearch hlsearch?<CR>a
-nnoremap <S-F3> :let @/=''<CR>        " clear search
-nnoremap [25~ :let @/=''<CR>
-nnoremap <F4> :set invlist list?<CR>
-inoremap <F4> <Esc>:set invlist list?<CR>a
-nnoremap <F5> :NERDTreeToggle<CR>
-inoremap <F5> <Esc>:NERDTreeToggle<CR>a
-
-" we always want to know which mode we're in
-set showmode
 
 " filetype detection via plugins
 set nocompatible               " be iMproved
@@ -51,10 +26,6 @@ filetype plugin indent on
 " Don't interpret git commit messages starting with 'vim:' as modelines
 " http://marcschwieterman.com/blog/modelines-in-git-commit-messages/
 autocmd FileType gitrebase setlocal nomodeline
-
-" syntax highlighting is cool. we want syntax highlighting by default.
-syntax on
-
 
 " solarized config
 if &term != "linux" || has('gui_running')
@@ -71,24 +42,10 @@ if &term != "linux" || has('gui_running')
 	colorscheme solarized
 endif
 
-" simplify toggling between dark and light background
-function! MyToggleBackground()
-	if &background == "dark"
-		set background=light
-	else
-		set background=dark
-	end
-endfunction
-nnoremap <F12> :call MyToggleBackground()<CR>
-inoremap <F12> <Esc>:call MyToggleBackground()<CR>a
-
 " prevent nerdtree vom opening at startup
 let g:nerdtree_tabs_open_on_gui_startup = 0
 " but close when opening file
 let g:NERDTreeQuitOnOpen=1
-
-" we don't want our last search matches highlighted on reopening
-call clearmatches()
 
 " use :WW as SudoWrite
 com! WW SudoWrite
