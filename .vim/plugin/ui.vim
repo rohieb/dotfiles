@@ -30,8 +30,6 @@ nnoremap <S-F3> :let @/=''<CR>        " clear search
 nnoremap [25~ :let @/=''<CR>        " the urxvt equivalent
 nnoremap <F4> :set invlist list?<CR>
 inoremap <F4> <Esc>:set invlist list?<CR>a
-nnoremap <F5> :NERDTreeToggle<CR>
-inoremap <F5> <Esc>:NERDTreeToggle<CR>a
 
 " simplify toggling between dark and light background
 function! s:background_toggle()
