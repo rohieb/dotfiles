@@ -4,7 +4,7 @@
 color body	red		default	'^-.*'			# removed lines and --- file info
 color body	green		default	'^\+.*'			# added lines and +++ file info
 color body	blue		default	'^@@.*'			# hunk lines
-color body	brightdefault	default	'^(diff|index) .*'	# git info lines at start of each file
+color body	brightdefault	default	'^(diff|index|(new|deleted) file|(old|new) mode) .*'	# git info lines at start of each file
 
 # additional git pseudo-headers
 color body	magenta		default	'^From: .*'
