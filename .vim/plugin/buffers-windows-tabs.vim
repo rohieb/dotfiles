@@ -4,6 +4,17 @@ set hidden
 " open more tabs when instructed so on the command line
 set tabpagemax=10000
 
+" Quickfix pane
+function s:ToggleQuickfixWindow()
+    if getqflist({'winid' : 0}).winid == 0
+        copen
+    else
+        cclose
+    endif
+endfunction
+command ToggleQuickfixWindow call s:ToggleQuickfixWindow()
+nnoremap <F8> :ToggleQuickfixWindow<CR>
+
 " Tabs
 " (for urxvt, <C-...> syntax somehow does not work...)
 map <C-PageDown> gt
