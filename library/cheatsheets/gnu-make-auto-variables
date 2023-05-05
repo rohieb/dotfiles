@@ -1,0 +1,16 @@
+GNU Make Automatic Variables
+============================
+
+$@    rule target name
+$<    first prerequisite
+$^    all prerequisites
+$+    like $^, but prerequisites can appear more than once
+$?    all prerequisites that are newer than the target
+$*    matching stem of implicit (%) rule
+$|    all order-only prerequisites, with spaces between them
+
+$(@D), $(<D), $(^D), $(+D), $(?D), $(*D):
+      directory part of the target/prerequisite/stem
+
+$(@F), $(<F), $(^F), $(+F), $(?F), $(*F):
+      file part of the target/prerequisite/stem
