@@ -1,0 +1,29 @@
+i.MX6QDL Pad Control Register:
+
+1____		=> Hysteresis enabled
+
+_0___		=> no Pull Up/Down/Keeper enabled
+_1___		=> Keeper enabled
+_3___		=> 100K Pull-Down enabled
+_7___		=> 47K Pull-Up enabled
+_B___		=> 100K Pull-Up enabled
+_F___		=> 22K Pull-Up enabled
+
+__0__		=> Open Drain disabled
+__8__		=> Open Drain enabled
+
+___[0-3]_	=> Speed = Low (50 MHz)
+___[4-B]_	=> Speed = Medium (100 MHz, 150 MHz)
+___[C-F]_	=> Speed = High (100 MHz, 150 MHz, 200 MHz)
+
+___[048C][01]_	=> Drive Strength = HI-Z
+___[048C][89]_	=> Drive Strength = 150 Ohm @ 3.3V, 260 Ohm @ 1.8V
+___[159D][01]_	=> Drive Strength =  75 Ohm @ 3.3V, 130 Ohm @ 1.8V
+___[159D][89]_	=> Drive Strength =  50 Ohm @ 3.3V,  90 Ohm @ 1.8V
+___[26AE][01]_	=> Drive Strength =  37 Ohm @ 3.3V,  60 Ohm @ 1.8V
+___[26AE][89]_	=> Drive Strength =  30 Ohm @ 3.3V,  50 Ohm @ 1.8V
+___[37BF][01]_	=> Drive Strength =  25 Ohm @ 3.3V,  40 Ohm @ 1.8V
+___[37BF][89]_	=> Drive Strength =  20 Ohm @ 3.3V,  33 Ohm @ 1.8V
+
+____[08]	=> Slew Rate = slow
+____[19]	=> Slew Rate = fast
