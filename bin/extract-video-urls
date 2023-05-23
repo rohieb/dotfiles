@@ -1,2 +1,14 @@
 #!/bin/sh
-grep -oe '\(https\?:\/\/youtu.be\/\|https\?://\(www\.\)\?youtube.com/\(watch?\|playlist\?\)\)[^]>)" ]\+'
+tmp=$(mktemp)
+trap "rm $tmp" EXIT
+
+# note: ] loses its special meaning as first character inside a bracket expr
+grep -oe 'https\?://[^])>" ]\+' > "$tmp"
+
+if grep -e 'dai\.ly/' < "$tmp" ; then
+	# prefer full Japanology Plus episodes
+	exit
+fi
+grep -e 'youtu.be\|\(www\.\)\?youtube.com/\(watch\|playlist\)' < "$tmp"
+grep -e 'patreon.com/posts/' < "$tmp"
+grep -e 'woodworkingmasterclasses\.com/\(videos/\|gh/tracking/email/click/\)' < "$tmp" | head -n 2 | tail -n 1
