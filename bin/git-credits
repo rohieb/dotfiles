@@ -1,0 +1,29 @@
+#!/bin/sh
+range=$1
+
+if [ -z "$range" ]; then
+	tag="$(git tag -l | tail -n 1)"
+	if [ -z "$tag" ]; then
+		echo "No last tag found."
+		echo "Usage:" "$(basename "$0")" "<revision-range>"
+		exit 1
+	else
+		range="${tag}^.."
+	fi
+fi
+
+if ! git rev-list --quiet "${range}"; then
+	# git-rev-list will print an error message
+	exit 1
+fi
+
+(
+	git shortlog -s --group=author                 "${range}"
+	git shortlog -s --group=committer              "${range}"
+	git shortlog -s --group=trailer:acked-by       "${range}"
+	git shortlog -s --group=trailer:reported-by    "${range}"
+	git shortlog -s --group=trailer:reviewed-by    "${range}"
+	git shortlog -s --group=trailer:signed-off-by  "${range}"
+	git shortlog -s --group=trailer:suggested-by   "${range}"
+	git shortlog -s --group=trailer:tested-by      "${range}"
+) | cut -f2 | LC_ALL=C sort | uniq
