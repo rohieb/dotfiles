@@ -58,9 +58,6 @@
 [submodule ".vim/bundle/vim-airline-themes"]
 	path = .vim/bundle/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
-[submodule ".vim/bundle/vim-autotag"]
-	path = .vim/bundle/vim-autotag
-	url = https://github.com/craigemery/vim-autotag
 [submodule ".vim/bundle/vim-unimpaired"]
 	path = .vim/bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired
