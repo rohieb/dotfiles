@@ -2,7 +2,7 @@ inode/directory;	dolphin %i -caption %c %s;			test=test -n "$DISPLAY"
 
 # note: first entry is chosen for mutt's <view-mailcap> action
 text/html; w3m-no-remote-content -I %{charset} -T text/html -o confirm_qq=false; needsterminal
-text/html; w3m-no-remote-content -I %{charset} -T text/html -dump -o display_link_number=true -o decode_url=true; copiousoutput
+text/html; w3m-no-remote-content -I %{charset} -T text/html -dump -cols 80 -o display_link_number=true -o decode_url=true; copiousoutput
 
 # viewical reads from stdin only
 text/calendar; cat %s | viewical; copiousoutput;
