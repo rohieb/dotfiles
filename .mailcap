@@ -7,6 +7,9 @@ text/html; w3m-no-remote-content -I %{charset} -T text/html -dump -o display_lin
 # viewical reads from stdin only
 text/calendar; cat %s | viewical; copiousoutput;
 
+# various text formats that each need a single mailcap entry…
+text/markdown; cat %s; copiousoutput;
+
 # application formats that are basically human-understandable:
 application/ecmascript; cat %s; copiousoutput;
 application/javascript; cat %s; copiousoutput;
