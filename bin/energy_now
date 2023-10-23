@@ -18,7 +18,7 @@ output_power() {
 
 	if [ "${status}" = "Discharging" ]; then
 		color="${yellow}"
-	elif [ "${status}" = "Charging" -o "${status}" = "Full" ]; then
+	elif [ "${status}" = "Charging" ] || [ "${status}" = "Full" ]; then
 		color="${green}"
 	else
 		color="${normal}"
@@ -40,7 +40,7 @@ output_power() {
 			minutes=$(echo "(${energy_mWh} / ${power_mW} - ${hours}) * 60" | bc -l)
 			minutes=$(echo ${minutes} | cut -f 1 -d .)
 			minutes=$(printf '%.2d' ${minutes})
-			if [ "${hours}" -lt 1 -a "${minutes}" -lt 30 ]; then
+			if [ "${hours}" -lt 1 ] && [ "${minutes}" -lt 30 ]; then
 				color="${red}"
 			elif [ "${hours}" -lt 2 ]; then
 				color="${yellow}"
