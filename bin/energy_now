@@ -4,15 +4,19 @@ green="\e[32m"
 yellow="\e[33m"
 normal="\e[0m"
 
+demicro() {
+	echo "scale=2; $1 / 1000000" | bc
+}
+
 output_power() {
 	BAT="$1"
 	status=$(cat ${BAT}/status)
-	energy_mWh=$(cat ${BAT}/energy_now)
-	energy_Wh=$(echo "scale=2; ${energy_mWh} / 1000000" | bc)
-	energy_full_mWh=$(cat ${BAT}/energy_full)
+	energy_uWh=$(cat ${BAT}/energy_now)
+	energy_Wh=$(demicro "${energy_uWh}")
+	energy_full_uWh=$(cat ${BAT}/energy_full)
 	capacity_percent=$(cat ${BAT}/capacity)
-	power_mW=$(cat ${BAT}/power_now)
-	power_W=$(echo "scale=2; ${power_mW} / 1000000" | bc)
+	power_uW=$(cat ${BAT}/power_now)
+	power_W=$(demicro "${power_uW}")
 
 	printf "%s" "$(basename ${BAT}): "
 
@@ -34,10 +38,10 @@ output_power() {
 	fi
 	printf "${color}%d%%${normal} (%s Wh)" "${capacity_percent}" "${energy_Wh}"
 
-	if [ "${power_mW}" -gt 0 ]; then
+	if [ "${power_uW}" -gt 0 ]; then
 		if [ "${status}" = "Discharging" ]; then
-			hours=$((energy_mWh / power_mW)) || '0'
-			minutes=$(echo "(${energy_mWh} / ${power_mW} - ${hours}) * 60" | bc -l)
+			hours=$((energy_uWh / power_uW)) || '0'
+			minutes=$(echo "(${energy_uWh} / ${power_uW} - ${hours}) * 60" | bc -l)
 			minutes=$(echo ${minutes} | cut -f 1 -d .)
 			minutes=$(printf '%.2d' ${minutes})
 			if [ "${hours}" -lt 1 ] && [ "${minutes}" -lt 30 ]; then
@@ -48,9 +52,9 @@ output_power() {
 				color="${green}"
 			fi
 		elif [ "${status}" = "Charging" ]; then
-			energy_left_mWh=$((energy_full_mWh - energy_mWh))
-			hours=$((energy_left_mWh / power_mW)) || '0'
-			minutes=$(echo "(${energy_left_mWh} / ${power_mW} - ${hours}) * 60" | bc -l)
+			energy_left_uWh=$((energy_full_uWh - energy_uWh))
+			hours=$((energy_left_uWh / power_uW)) || '0'
+			minutes=$(echo "(${energy_left_uWh} / ${power_uW} - ${hours}) * 60" | bc -l)
 			color="${normal}"
 		fi
 		minutes=$(echo ${minutes} | cut -f 1 -d .)
