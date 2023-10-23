@@ -6,59 +6,59 @@ normal="\033[0m"
 
 output_power() {
 	BAT="$1"
-	status=$(cat $BAT/status)
-	energy_mWh=$(cat $BAT/energy_now)
-	energy_Wh=$(echo "scale=2; $energy_mWh / 1000000" | bc)
-	energy_full_mWh=$(cat $BAT/energy_full)
-	capacity_percent=$(cat $BAT/capacity)
-	power_mW=$(cat $BAT/power_now)
-	power_W=$(echo "scale=2; $power_mW / 1000000" | bc)
+	status=$(cat ${BAT}/status)
+	energy_mWh=$(cat ${BAT}/energy_now)
+	energy_Wh=$(echo "scale=2; ${energy_mWh} / 1000000" | bc)
+	energy_full_mWh=$(cat ${BAT}/energy_full)
+	capacity_percent=$(cat ${BAT}/capacity)
+	power_mW=$(cat ${BAT}/power_now)
+	power_W=$(echo "scale=2; ${power_mW} / 1000000" | bc)
 
 	echo -n "$(basename ${BAT}): "
 
-	if [ "$status" = "Discharging" ]; then
-		echo -n "$yellow$status$normal, "
-	elif [ "$status" = "Charging" -o "$status" = "Full" ]; then
-		echo -n "$green$status$normal, "
+	if [ "${status}" = "Discharging" ]; then
+		echo -n "${yellow}${status}${normal}, "
+	elif [ "${status}" = "Charging" -o "${status}" = "Full" ]; then
+		echo -n "${green}${status}${normal}, "
 	else
-		echo -n "$status, "
+		echo -n "${status}, "
 	fi
 
-	if [ "$capacity_percent" -lt 10 ]; then
-		echo -n "$red$capacity_percent%$normal";
-	elif [ "$capacity_percent" -lt 25 ]; then
-		echo -n "$yellow$capacity_percent%$normal";
+	if [ "${capacity_percent}" -lt 10 ]; then
+		echo -n "${red}${capacity_percent}%${normal}";
+	elif [ "${capacity_percent}" -lt 25 ]; then
+		echo -n "${yellow}${capacity_percent}%${normal}";
 	else
-		echo -n "$green$capacity_percent%$normal";
+		echo -n "${green}${capacity_percent}%${normal}";
 	fi
-	echo -n " ($energy_Wh Wh)"
+	echo -n " (${energy_Wh} Wh)"
 
-	if [ "$power_mW" -gt 0 ]; then
-		if [ "$status" = "Discharging" ]; then
-			hours=$(($energy_mWh / $power_mW)) || '0'
-			minutes=$(echo "($energy_mWh / $power_mW - $hours) * 60" | bc -l)
-			minutes=$(echo $minutes | cut -f 1 -d .)
-			minutes=$(printf '%.2d' $minutes)
-			if [ "$hours" -lt 1 -a "$minutes" -lt 30 ]; then
-				echo -n ", about $red${hours}h${minutes}m$normal left"
-			elif [ "$hours" -lt 2 ]; then
-				echo -n ", about $yellow${hours}h${minutes}m$normal left"
+	if [ "${power_mW}" -gt 0 ]; then
+		if [ "${status}" = "Discharging" ]; then
+			hours=$((${energy_mWh} / ${power_mW})) || '0'
+			minutes=$(echo "(${energy_mWh} / ${power_mW} - ${hours}) * 60" | bc -l)
+			minutes=$(echo ${minutes} | cut -f 1 -d .)
+			minutes=$(printf '%.2d' ${minutes})
+			if [ "${hours}" -lt 1 -a "${minutes}" -lt 30 ]; then
+				echo -n ", about ${red}${hours}h${minutes}m${normal} left"
+			elif [ "${hours}" -lt 2 ]; then
+				echo -n ", about ${yellow}${hours}h${minutes}m${normal} left"
 			else
-				echo -n ", about $green${hours}h${minutes}m$normal left"
+				echo -n ", about ${green}${hours}h${minutes}m${normal} left"
 			fi
-		elif [ "$status" = "Charging" ]; then
+		elif [ "${status}" = "Charging" ]; then
 			energy_left_mWh=$((energy_full_mWh - energy_mWh))
-			hours=$(($energy_left_mWh / $power_mW)) || '0'
-			minutes=$(echo "($energy_left_mWh / $power_mW - $hours) * 60" | bc -l)
-			minutes=$(echo $minutes | cut -f 1 -d .)
-			minutes=$(printf '%.2d' $minutes)
+			hours=$((${energy_left_mWh} / ${power_mW})) || '0'
+			minutes=$(echo "(${energy_left_mWh} / ${power_mW} - ${hours}) * 60" | bc -l)
+			minutes=$(echo ${minutes} | cut -f 1 -d .)
+			minutes=$(printf '%.2d' ${minutes})
 			echo -n ", about ${hours}h${minutes}m left"
 		fi
-		echo -n " (at $power_W W)"
+		echo -n " (at ${power_W} W)"
 	fi
 	echo
 }
 
 for bat in /sys/class/power_supply/BAT*; do
-	output_power $bat;
+	output_power ${bat};
 done
