@@ -4,6 +4,8 @@ green="\e[32m"
 yellow="\e[33m"
 normal="\e[0m"
 
+action='output_power'
+
 demicro() {
 	echo "scale=2; $1 / 1000000" | bc
 }
@@ -64,6 +66,62 @@ output_power() {
 	echo
 }
 
+report_health() {
+	BAT="$1"
+
+	serial_number=$(cat ${BAT}/serial_number)
+	manufacturer=$(cat ${BAT}/manufacturer)
+	model_name=$(cat ${BAT}/model_name)
+	printf "%s: %s %s, S/N: %s\n" "$(basename ${BAT})" \
+		"${manufacturer}" "${model_name}" "${serial_number}"
+
+	health=$(cat ${BAT}/health 2>/dev/null)
+	case "$health" in
+		Good)
+			color="${green}";;
+
+		Warm|Cool|"Calibration required"|"Safety timer expire"| \
+		"Watchdog timer expire"|"Unspecified failure")
+			color="${yellow}" ;;
+
+		Overheat|Dead|"Over voltage"|"Over current"| \
+		Hot|Cold|"No battery")
+			color="${red}" ;;
+
+		*)
+			color="${normal}" ;;
+	esac
+	if [ -n "${health}" ]; then
+		printf "  Health: ${color}%s${normal}\n" "${health}"
+	fi
+
+	cycle_count=$(cat ${BAT}/cycle_count)
+	if [ "${cycle_count}" -gt 0 ]; then
+		printf "  Charge cycles: %d\n" "${cycle_count}"
+	fi
+
+	energy_full_uWh=$(cat ${BAT}/energy_full)
+	energy_full_Wh=$(demicro "${energy_full_uWh}")
+	energy_full_design_uWh=$(cat ${BAT}/energy_full_design)
+	energy_full_design_Wh=$(demicro "${energy_full_design_uWh}")
+	energy_full_percent=$((energy_full_uWh * 100 / energy_full_design_uWh))
+	if [ "${energy_full_percent}" -lt 33 ]; then
+		color="${red}"
+	elif [ "${energy_full_percent}" -lt 66 ]; then
+		color="${yellow}"
+	else
+		color="${green}"
+	fi
+	printf "  Full capacity: ${color}%s Wh (%d%%)${normal} of designed %s Wh\n" \
+		"${energy_full_Wh}" "${energy_full_percent}" "${energy_full_design_Wh}"
+
+	echo
+}
+
+case "$1" in
+	-h|--health)	action="report_health" ;;
+esac
+
 for bat in /sys/class/power_supply/BAT*; do
-	output_power ${bat};
+	"${action}" "${bat}";
 done
