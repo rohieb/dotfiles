@@ -3,5 +3,9 @@ if [ -z "$ptxdist" ]; then
 	ptxdist=`which ptxdist`
 fi
 
-echo + exec $ptxdist_nice $ptxdist $ptxdist_dev_params "$@" >&2
+if tty -s; then
+	tput setaf 3 >&2  # yellow
+	echo + exec $ptxdist_nice $ptxdist $ptxdist_dev_params "$@" >&2
+	tput sgr 0 >&2    # back to normal
+fi
 exec $ptxdist_nice $ptxdist $ptxdist_dev_params "$@"
