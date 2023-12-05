@@ -17,5 +17,5 @@ if [ "$(p version 2>/dev/null | tail -n 1)" '<' '2015.12.0' ]; then
 else
 	ptxdist_j_option="-j${ptxdist_jobs}"
 fi
-echo "Jobs: ${ptxdist_j_option}"
+echo "Jobs: ${ptxdist_j_option}${ptxdist_nice:+ (via ${ptxdist_nice})}"
 exec p ${ptxdist_j_option} -q -k "$@"
