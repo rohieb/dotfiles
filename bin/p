@@ -5,7 +5,7 @@ if [ -z "$ptxdist" ]; then
 	OLDIFS="$IFS"
 	IFS=":"
 	for path in $PATH; do
-		ptxdist="$(readlink -f "${path}/ptxdist")"
+		ptxdist="${path}/ptxdist"
 		if [ -x "$ptxdist" -a "$(readlink -f "$ptxdist")" != "$self" ]; then
 			break
 		fi
