@@ -16,9 +16,17 @@ if [ -z "$ptxdist" ]; then
 	echo "no ptxdist found in $PATH"
 fi
 
+if [ -n "$schroot" ] && [ -z "$debian_chroot" ] && [ ! -r /etc/debian_chroot ]; then
+	cmd="$ptxdist_nice schroot -c $schroot -r -- ptxdist"
+else
+	cmd="$ptxdist_nice $ptxdist"
+fi
+
+unset schroot ptxdist_nice
+
 if tty -s; then
 	tput setaf 3 >&2  # yellow
-	echo + exec $ptxdist_nice $ptxdist $ptxdist_dev_params "$@" >&2
+	echo + exec $cmd $ptxdist_dev_params "$@" >&2
 	tput sgr 0 >&2    # back to normal
 fi
-exec $ptxdist_nice $ptxdist $ptxdist_dev_params "$@"
+exec $cmd $ptxdist_dev_params "$@"
