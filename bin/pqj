@@ -1,3 +1,21 @@
 #!/bin/bash
 cores=$(grep '^processor' /proc/cpuinfo | wc -l)
-exec p -q -j${ptxdist_jobs:-$cores} -k "$@"
+
+ptxdist_jobs=${ptxdist_jobs:-$cores}
+ptxdist_j_option=
+
+# ptxdist -j vs ptxdist -je -ji
+if [ "$(p version 2>/dev/null | tail -n 1)" '<' '2015.12.0' ]; then
+	# err on the low side, so jobs_ji*jobs_je <= jobs
+	ptxdist_je_jobs=${ptxdist_jobs}
+	ptxdist_ji_jobs=1
+	if [ ${ptxdist_jobs} -gt 4 ]; then
+		ptxdist_je_jobs=4
+		ptxdist_ji_jobs=$((ptxdist_jobs / 4))
+	fi
+	ptxdist_j_option="-je${ptxdist_je_jobs} -ji${ptxdist_ji_jobs}"
+else
+	ptxdist_j_option="-j${ptxdist_jobs}"
+fi
+echo "Jobs: ${ptxdist_j_option}"
+exec p ${ptxdist_j_option} -q -k "$@"
