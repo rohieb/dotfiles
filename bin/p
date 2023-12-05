@@ -3,5 +3,5 @@ if [ -z "$ptxdist" ]; then
 	ptxdist=`which ptxdist`
 fi
 
-set -x
+echo + exec $ptxdist_nice $ptxdist $ptxdist_dev_params "$@" >&2
 exec $ptxdist_nice $ptxdist $ptxdist_dev_params "$@"
