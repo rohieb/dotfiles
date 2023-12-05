@@ -1,6 +1,19 @@
 #!/bin/sh
 if [ -z "$ptxdist" ]; then
-	ptxdist=`which ptxdist`
+	# when called as ptxdist, don't recurse into ~/bin/ptxdist
+	self="$(readlink -f "$0")"
+	OLDIFS="$IFS"
+	IFS=":"
+	for path in $PATH; do
+		ptxdist="$(readlink -f "${path}/ptxdist")"
+		if [ -x "$ptxdist" -a "$(readlink -f "$ptxdist")" != "$self" ]; then
+			break
+		fi
+	done
+	IFS="$OLDIFS"
+fi
+if [ -z "$ptxdist" ]; then
+	echo "no ptxdist found in $PATH"
 fi
 
 if tty -s; then
