@@ -16,6 +16,10 @@ if [ -z "$ptxdist" ]; then
 	echo "no ptxdist found in $PATH"
 fi
 
+if [ -z "$schroot" ] && [ -e "./schroot" ]; then
+	schroot=$(head -n 1 ./schroot)
+fi
+
 if [ -n "$schroot" ] && [ -z "$debian_chroot" ] && [ ! -r /etc/debian_chroot ]; then
 	cmd="$ptxdist_nice schroot -c $schroot -r -- ptxdist"
 else
