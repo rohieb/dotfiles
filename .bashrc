@@ -132,6 +132,12 @@ __ps1_screen_window_title() {
 	if [ -z "$the_title" ]; then
 		the_title=${PWD##*/}    # basename of working dir
 	fi
+
+	# post-processing
+
+	if [ -n "${debian_chroot}" ]; then
+		the_title="[${the_title}]"
+	fi
 	
 	screen_window_title "$the_title"
 }
