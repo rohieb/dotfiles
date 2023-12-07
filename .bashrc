@@ -110,11 +110,25 @@ __ps1_xterm_window_title() {
 
 __ps1_screen_window_title() {
 	local the_title="$TITLE"
+	local tmp1 tmp2
 
 	if [ -z "$the_title" ] && [ -r ".screen-window-title" ]; then
 		the_title=$(tr -d '[:cntrl:]' < .screen-window-title)
 	fi
 	
+	tmp1=$(__ps1_shortpwd)
+	if [ -z "$the_title" ]; then
+		if [ -r "$HOME/.screenpwd.sed" ]; then
+			tmp2=$(sed -f "$HOME/.screenpwd.sed" <<< "$tmp1")
+		fi
+		# prefer screenpwd over shortpwd
+		if [ "$tmp2" != "$tmp1" ]; then
+			the_title="$tmp2"
+		elif [ "$tmp1" != "$PWD" ] && [ "${tmp1: 0:1}" != "~" ]; then
+			the_title="$tmp1"
+		fi
+	fi
+
 	if [ -z "$the_title" ]; then
 		the_title=${PWD##*/}    # basename of working dir
 	fi
