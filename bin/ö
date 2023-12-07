@@ -1,7 +1,37 @@
-#!/bin/sh
-file="$(git ls-files "$(git rev-parse --show-toplevel)" | fzf -q "$*")"
-if [ -z "$file" ] ; then
-	echo; echo "no files found or selected"
+#!/bin/bash
+self="$(basename $0)"
+
+multi_fzf() {
+	fzf --multi --print0 -1 -q "$*"
+}
+
+set -x
+case "$self" in
+	gö*)
+		_fzf() { git ls-files "$(git rev-parse --show-toplevel)" | multi_fzf "$*"; }
+		;;
+	*)
+		_fzf() { multi_fzf "$*"; }
+		;;
+esac
+
+files=()
+while IFS=  read -r -d $'\0'; do
+	files+=("$REPLY")
+done < <(_fzf "$*")
+
+if [ -z "$files" ] ; then
+	(echo; echo "no files found or selected") >&2
 	exit 1
 fi
-exec vim "$file"
+
+set -x
+case "$self" in
+	*öv)
+		/usr/bin/vim -p "${files[@]}"
+		;;
+	*)
+		echo >&2
+		printf "%s\n" "${files[@]}"
+		;;
+esac
