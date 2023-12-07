@@ -144,7 +144,8 @@ __ps1_screen_window_title() {
 
 __ps1_bitbake() {
 	if [ -n "$BBPATH" ]; then
-		printf " (BB)"
+		# BBPATH is of the form …/<bsp-folder>/build, print <bsp-folder>
+		printf " (BB/$(basename "$(dirname "$BBPATH")"))"
 	fi
 }
 
