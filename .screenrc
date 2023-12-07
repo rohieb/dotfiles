@@ -1,5 +1,5 @@
 # always print list of screen windows in last line
-hardstatus alwayslastline "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
+hardstatus alwayslastline "[%H %S] %-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
 # behave like the underlying terminal emulator
 term screen-256color
 # always pass the bell onto the underlying terminal emulator
