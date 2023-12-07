@@ -107,10 +107,19 @@ __ps1_xterm_window_title() {
 		xterm_window_title "$the_title"
 	fi
 }
+
 __ps1_screen_window_title() {
-	if [ -n "$TITLE" ]; then
-		screen_window_title "$TITLE"
+	local the_title="$TITLE"
+
+	if [ -z "$the_title" ] && [ -r ".screen-window-title" ]; then
+		the_title=$(tr -d '[:cntrl:]' < .screen-window-title)
 	fi
+	
+	if [ -z "$the_title" ]; then
+		the_title=${PWD##*/}    # basename of working dir
+	fi
+	
+	screen_window_title "$the_title"
 }
 
 __ps1_bitbake() {
