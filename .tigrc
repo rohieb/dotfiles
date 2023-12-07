@@ -1,5 +1,5 @@
 set line-graphics = utf-8
-set main-view = id date:custom,format="%a %y-%m-%d %H:%M:%S" author:abbreviated,width=12 commit-title:graph=v2,refs=yes
+set main-view = id date:custom,format="%a %Y-%m-%d %H:%M:%S" author:abbreviated,width=12 commit-title:graph=v2,refs=yes
 
 set diff-highlight = true
 
