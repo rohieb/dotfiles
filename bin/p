@@ -33,4 +33,10 @@ if tty -s; then
 	echo + exec $cmd $ptxdist_dev_params "$@" >&2
 	tput sgr 0 >&2    # back to normal
 fi
-exec $cmd $ptxdist_dev_params "$@"
+$cmd $ptxdist_dev_params "$@"
+ret=$?
+
+if [ -d "`ls -1d platform-* 2>/dev/null || echo /dev/null`" ]; then
+	for p in platform-*; do touch $p/.nobackup; done
+fi
+exit $ret
