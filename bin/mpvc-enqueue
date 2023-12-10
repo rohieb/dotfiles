@@ -62,13 +62,21 @@ get_property() {
 	printf "%s" "$r" | jq -rM .data
 }
 
+printf "mpve: %s\n" "$*" >> ${logfile}
+
 # transform relative file names into absolute file names
 params=()
 for p in "$@"; do
 	realp=$(realpath -e -- "$p" 2>/dev/null)
 	if [ $? != 0 ]; then
 		# no file, probably option or URL
-		realp="$p"
+		case "$p" in
+			*youtu.be*|*youtube.com*)
+				# remove tracking parameters
+				realp=$(sed 's/[?&]\(si\|pp\)=[^&]\+//' <<< "$p");;
+			*)
+				realp="$p";;
+		esac
 	fi
 	params=("${params[@]}" "$realp")
 done
