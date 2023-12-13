@@ -176,7 +176,7 @@
 	envelopesender = auto
 	assume8bitEncoding = utf8
 	composeencoding = utf8
-	transferEncoding = 8bit
+	transferEncoding = auto
 
 [stash]
 	showPatch = true
