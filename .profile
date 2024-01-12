@@ -75,6 +75,7 @@ export SWT_GTK3=0
 
 # Tell Qt5 to use GTK+ style (needs qt5-styleplugins)
 export QT_STYLE_OVERRIDE='gtk2'
+export QT_QPA_PLATFORMTHEME=gtk2
 
 export BC_ENV_ARGS='-l'  # load math library and print decimal points
 
