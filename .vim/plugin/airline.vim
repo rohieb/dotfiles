@@ -15,5 +15,8 @@ let g:airline_symbols.whitespace = 'Ξ'
 " don't care about whitespace errors
 let g:airline#extensions#whitespace#enabled = 0
 
+" replace branch with the current working directory (limited to 20 characters)
+let g:airline_section_b = '%-0.20{getcwd()}'
+
 " add buffer number (%n) to the default filename section
 let g:airline_section_c = "%<%n: %f%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#"
