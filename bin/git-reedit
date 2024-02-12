@@ -1,0 +1,19 @@
+#!/bin/sh
+
+range=
+case "$1" in
+	"")	range="HEAD^..HEAD" ;;
+	*..*)	range="$1" ;;
+	*)	range="$1^..$1" ;;
+esac
+
+echo "range is '${range}'"
+
+# Notes:
+# * only open modified and added files, no removed files
+# * we don't specify -M or -C, so file moves and copies are represented as pairs
+#   of 'D' and 'A' status lines
+cd $(git rev-parse --show-toplevel)
+git -c core.quotepath=false diff-tree --raw -z -r --diff-filter=MA \
+	--name-only --ignore-submodules "${range}" \
+| xargs -0 -o vim -p
