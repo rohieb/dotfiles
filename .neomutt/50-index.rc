@@ -1,7 +1,6 @@
 # vim: ft=neomuttrc
 # index behaviour
-folder-hook . 'set sort = threads'
-folder-hook . 'set sort_aux = date'
+folder-hook . 'set use_threads=yes sort=date sort_aux=date'
 folder-hook . 'color status black white'
 
 set index_format = "%4C %Z %<[6m?%<[7d?%<[2d?%<[1d?%[ %H:%M]&%[Yd %H:]>&%[%a %d.]>&%[%d.%b]>&%[%b'%y]> %-15.15L (%4c) %s"
