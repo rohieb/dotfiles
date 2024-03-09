@@ -237,3 +237,11 @@ cdg() { cd "`cat ~/.cache/magic-cdg-path`"; }
 
 # fasd init
 eval "$(fasd --init bash-hook posix-alias)"
+
+# source config snippets
+if [ -r ${HOME}/.bashrc.d/ ]; then
+	for __snip in $(LC_ALL=C ls -1 ${HOME}/.bashrc.d/); do
+		source ${HOME}/.bashrc.d/${__snip}
+	done
+	unset __snip
+fi
