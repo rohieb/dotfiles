@@ -10,6 +10,7 @@ Parameters:
   name                  optional string to include in the file name
 
   -h, --help            Show this help screen
+  -m, --mute            Don't record any audio (default: all monitor sinks)
   -w, --window          Choose window to set recording area
                         (default: record whole screen)
 EOF
@@ -23,9 +24,11 @@ verbose() {
 # Parameter parsing
 # ----------------
 opt_title=
+opt_mute=
 opt_window=
 while [ -n "$1" ]; do
 	case "$1" in
+		-m|--mute)	opt_mute=1;;
 		-w|--window)	opt_window=1;;
 		-h|--help)	usage "$0"; exit;;
 		*)		opt_title="${opt_title}${1}"
@@ -87,21 +90,39 @@ sleep 1
 microphone="alsa_input.pci-0000_00_1b.0.analog-stereo"
 monitors=""
 monitor_maps=""
-i=2
+i=1
+
+if [ -n "$microphone" ]; then
+	microphone_input="-f pulse -i ${microphone}"
+	microphone_map="-map 1:a"
+	i=2
+fi
+
 for m in $(pacmd list-sources | sed -n 's;^\s\+name: <\([^>]\+\.monitor\)>;\1;p'); do
 	monitors="${monitors} -f pulse -i ${m}"
 	monitor_maps="${monitor_maps} -map ${i}:a"
 	i=$((i+1))
 done
 
+if [ -n "$microphone$monitor_maps" ]; then
+	audio_bitrate="-b:a 128k"
+fi
+
+if [ "$opt_mute" = "1" ]; then
+	microphone_input=
+	monitors=
+	audio_bitrate=
+	monitor_maps=
+	microphone_map=
+fi
+
 verbose ffmpeg -f x11grab \
 	-video_size "${winarea}" \
-        -i ${DISPLAY}${winpos} \
-	-f pulse -i ${microphone} ${monitors} \
-	-b:a 128k\
+	-i ${DISPLAY}${winpos} \
 	-framerate 30 \
+	${microphone_input} ${monitors} ${audio_bitrate} \
 	-c:v h264 -preset ultrafast -crf 2 \
-	-map 0:v -map 1:a ${monitor_maps} \
+	-map 0:v ${microphone_map} ${monitor_maps} \
 	"${outputfile}"
 
 printf "Recording written to %s\n" "$outputfile"
