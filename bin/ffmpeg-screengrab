@@ -11,6 +11,7 @@ Parameters:
 
   -h, --help            Show this help screen
   -m, --mute            Don't record any audio (default: all monitor sinks)
+  -r, --rect            Select screen area to record
   -w, --window          Choose window to set recording area
                         (default: record whole screen)
 EOF
@@ -25,11 +26,13 @@ verbose() {
 # ----------------
 opt_title=
 opt_mute=
+opt_rect=
 opt_window=
 while [ -n "$1" ]; do
 	case "$1" in
 		-m|--mute)	opt_mute=1;;
-		-w|--window)	opt_window=1;;
+		-r|--rect)	opt_rect=1; opt_window= ;;
+		-w|--window)	opt_window=1; opt_rect= ;;
 		-h|--help)	usage "$0"; exit;;
 		*)		opt_title="${opt_title}${1}"
 	esac
@@ -54,25 +57,34 @@ fi
 outputfile="screengrab${opt_title}-$(date +%Y%m%d-%H%M%S).mkv"
 
 # Recording area
-if [ -z "$opt_window" ]; then
-        opt_window="-root"
+if [ -n "$opt_rect" ]; then
+	rect=$(import -format "%w+%h%X%Y\n" info:)
+	winname="-area-${rect}"
+	winw=$(echo "$rect" | cut -d+ -f1)
+	winh=$(echo "$rect" | cut -d+ -f2)
+	winx=$(echo "$rect" | cut -d+ -f3)
+	winy=$(echo "$rect" | cut -d+ -f4)
 else
-        opt_window=""
-        echo "Please select the window you want to record by clicking the mouse in that window..."
+	if [ -z "$opt_window" ]; then
+		opt_window="-root"
+	else
+		opt_window=""
+		echo "Please select the window you want to record by clicking the mouse in that window..."
+	fi
+	xwininfo $opt_window > "$tmpfile"
+	winname=$(awk '/Window id:/ { $1=""; print }' "$tmpfile")
+	winx=$(awk '/Absolute upper-left X:/ { print $4 }' "$tmpfile")
+	winy=$(awk '/Absolute upper-left Y:/ { print $4 }' "$tmpfile")
+	winw=$(awk '/Width:/  { print $2 }' "$tmpfile")
+	winh=$(awk '/Height:/ { print $2 }' "$tmpfile")
 fi
-xwininfo $opt_window > "$tmpfile"
 
-winname=$(awk '/Window id:/ { $1=""; print }' "$tmpfile")
-winx=$(awk '/Absolute upper-left X:/ { print $4 }' "$tmpfile")
-winy=$(awk '/Absolute upper-left Y:/ { print $4 }' "$tmpfile")
-winw=$(awk '/Width:/  { print $2 }' "$tmpfile")
-winh=$(awk '/Height:/ { print $2 }' "$tmpfile")
 if 
         [ -z "$winx" ] ||
         [ -z "$winy" ] ||
         [ -z "$winh" ] ||
         [ -z "$winw" ]; then
-        echo "Error: could not detect geometry from xwininfo :("
+        echo "Error: could not detect geometry :( Please install imagemagick and xwininfo."
         exit 2
 fi
 winarea="${winw}x${winh}"
