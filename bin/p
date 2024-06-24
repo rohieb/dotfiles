@@ -20,13 +20,23 @@ if [ -z "$schroot" ] && [ -e "./schroot" ]; then
 	schroot=$(head -n 1 ./schroot)
 fi
 
-if [ -n "$schroot" ] && [ -z "$debian_chroot" ] && [ ! -r /etc/debian_chroot ]; then
-	cmd="$ptxdist_nice schroot -c $schroot -r -- ptxdist"
-else
-	cmd="$ptxdist_nice $ptxdist"
+if [ -z "$container" ] && [ -e "./.container" ]; then
+	container=$(head -n 1 ./.container)
 fi
 
-unset schroot ptxdist_nice
+cmd="$ptxdist_nice $ptxdist"
+
+# Is this the real life? Is this just fantasy?
+if [ -z "$debian_chroot" ] && [ ! -e /etc/debian_chroot ] && [ ! -e "/run/.containerenv" ]; then
+	if [ -n "$container" ]; then
+		cmd="${ptxdist_nice} podman run --rm -it -v /ptx/src:/ptx/src:z -v /ptx/work/WORK_GIEME/rhi:/ptx/work/WORK_GIEME/rhi:z -w ${PWD} ${container} ptxdist"
+
+	elif [ -n "$schroot" ]; then
+		cmd="${ptxdist_nice} schroot -c ${schroot} -r -- ptxdist"
+	fi
+fi
+
+unset container schroot ptxdist_nice
 
 if tty -s; then
 	tput setaf 3 >&2  # yellow
