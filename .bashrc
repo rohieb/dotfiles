@@ -140,6 +140,7 @@ __ps1_screen_window_title() {
 	fi
 	
 	screen_window_title "$the_title"
+	xterm_window_title "${STY#*.}: $the_title"
 }
 
 __ps1_bitbake() {
