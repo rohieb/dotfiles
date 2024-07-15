@@ -139,7 +139,7 @@ __ps1_screen_window_title() {
 		the_title="[${the_title}]"
 	fi
 	
-	screen_window_title "$the_title"
+	screen_window_title "${the_title: 0:30}"
 	xterm_window_title "${STY#*.}: $the_title"
 }
 
