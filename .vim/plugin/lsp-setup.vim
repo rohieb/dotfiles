@@ -38,6 +38,17 @@ fu s:lsp_disable()
 endf
 com LspDisable :call s:lsp_disable()
 
+" Document diagnostics window
+function s:lsp_document_diagnostics_window()
+    if getloclist(0, {'winid': 0}).winid == 0
+        cclose
+        LspDocumentDiagnostics
+    else
+        lclose
+    endif
+endfunction
+command ToggleDocumentDiagnosticsWindow call s:lsp_document_diagnostics_window()
+
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
@@ -52,6 +63,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
+    nmap <buffer> <F7> :ToggleDocumentDiagnosticsWindow<CR>
     " scrolling in the preview window
     noremap! <buffer> <expr> <C-9> lsp#scroll(1)
     noremap! <buffer> <expr> <C-0> lsp#scroll(-1)
