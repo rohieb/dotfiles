@@ -29,5 +29,5 @@ command PlaintextModeToggle call s:plaintext_mode_toggle()
 
 au BufRead,BufAdd,BufNewFile * PlaintextModeDisable
 
-nnoremap <F7> :PlaintextModeToggle<CR>
-inoremap <F7> <Esc>:PlaintextModeToggle<CR>a
+nnoremap <F6> :PlaintextModeToggle<CR>
+inoremap <F6> <Esc>:PlaintextModeToggle<CR>a
