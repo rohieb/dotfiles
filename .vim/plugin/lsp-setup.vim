@@ -5,6 +5,9 @@ let g:lsp_fold_enabled = 0
 let g:lsp_preview_max_height = 10
 let g:lsp_preview_max_width = 60
 
+" for debugging:
+"let g:lsp_log_file = expand('~/.vim/vim-lsp.log')
+
 " disable automatic popups for function signature
 let g:lsp_signature_help_enabled = 0
 
