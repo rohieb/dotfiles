@@ -1,0 +1,3 @@
+# see https://github.com/clangd/clangd/issues/1582#issuecomment-1500031372
+CompileFlags:
+  Remove: [ -march=*, -mabi=*, -fno-allow-store-data-races, -fconserve-stack, -femit-struct-debug-baseonly ]
