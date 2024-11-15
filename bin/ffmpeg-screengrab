@@ -131,10 +131,10 @@ fi
 verbose ffmpeg -f x11grab \
 	-video_size "${winarea}" \
 	-i ${DISPLAY}${winpos} \
-	-framerate 30 \
 	${microphone_input} ${monitors} ${audio_bitrate} \
 	-c:v h264 -preset ultrafast -crf 2 \
 	-map 0:v ${microphone_map} ${monitor_maps} \
+	-r 30 \
 	"${outputfile}"
 
 printf "Recording written to %s\n" "$outputfile"
