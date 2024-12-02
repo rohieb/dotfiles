@@ -1,0 +1,301 @@
+#!/bin/bash
+
+# Set defaults for config variables.
+# These can be overwritten in ~/.config/backup-borg
+
+# Source folders to backup
+BACKUP_SOURCE=""
+
+# Borg repository (usually includes SSH_HOST)
+REPOBASE=""
+
+# Host to connect to over SSH and run 'df -h' at the end (usually also the same
+# as used in REPOBASE)
+SSH_HOST=""
+
+# SSH Private Key to use for the connection
+SSH_KEY=""
+
+# Parameters passed to every 'borg' call
+BORG_COMMON_PARAMS="--debug --progress"
+
+# Additional params passed to 'borg create' (e.g. to set '--exclude-from')
+BORG_CREATE_PARAMS=""
+
+# List of process names to freeze via SIGSTOP to prevent them writing to the
+# file system during backup, which leads to borg complaining and exiting with 1.
+# The processes will be woken up with SIGCONT after the backup has completed.
+FREEZE_PROCESSES=""
+
+# Additional code that is run before and after the backup process.
+# Note: if 'suspend' is given, hook_post is run after wake-up.
+hook_pre() { true; }
+hook_post() { true; }
+# Code that is being run to lock the screen
+hook_screenlock() { announce "Screen locking is disabled; please re-define hook_screenlock() in ~/.config/backup-borg"; }
+
+# Timestamp format, log directory and log filename base
+TSFORMAT="%Y-%m-%d %H:%M:%S"
+LOGDIR="${HOME}/log/"
+LOGBASE="${LOGDIR}backup-borg"
+
+# Source personal config
+if [ -e ~/.config/backup-borg ]; then
+	. ~/.config/backup-borg
+fi
+
+check_config() {
+	if [ -z "$(echo ${!1})" ]; then
+		echo "Please set the variable $1 in ~/.config/backup-borg!"
+		exit 1
+	fi
+}
+
+check_config BACKUP_SOURCE
+check_config REPOBASE
+check_config SSH_HOST
+check_config SSH_KEY
+
+__RED='\033[31m'
+__YELLOW='\033[33m'
+__RESET='\033[0m'
+
+cleanup() {
+	ssh-add -d "$SSH_KEY"
+	shred -u ~/.cache/borg/passphrase.tmp
+}
+
+usage() {
+	cat <<-EOF
+	Usage:  backup-borg [<time>]m [[no]check|[no]compact|[no]lock|[no]suspend]…
+		backup-borg shell
+	
+	Parameters:
+	  shell         Start a new shell environment that is set up to access the borg
+	                repository, e.g. for running further borg commands
+
+	  [<time>]m     ask for passphrases, then sleep <time> minutes before starting
+	                the backup (default: start immediately)
+	  [no]check	(don't) run 'borg check' after the backup (default: nocheck)
+	  [no]compact   (don't) run 'borg compact' after the backup (default: nocompact)
+	  [no]lock	(don't) lock the screen during the backup process
+	                (default: lock)
+	  [no]suspend	(don't) suspend the system after everything is finished
+	                (default: nosuspend)
+	
+	Implied defaults, unless overwritten later on the cmdline:
+	  "<time>"   implies "lock", "check", "compact", and "suspend"
+	  "compact"  implies "check"
+	  "suspend"  implies "lock", "check", and "compact".
+	EOF
+}
+
+announce() {
+	tput setaf 3 # yellow
+	printf "%s" "${*@Q}"
+	tput sgr 0   # back to normal
+	printf "\n"
+	$@
+}
+
+store_borg_password() {
+	touch ~/.cache/borg/passphrase.tmp \
+		&& chmod 600 ~/.cache/borg/passphrase.tmp \
+		&& read -s -r -p "Borg passphrase for ${REPOBASE}: " passphrase \
+		&& echo ${passphrase} > ~/.cache/borg/passphrase.tmp \
+		|| exit 1
+}
+
+FREEZE_NOTIFY_ID=
+
+freeze_processes() {
+	FREEZE_NOTIFY_ID=$(notify-send -u critical --print-id \
+		"Warning: processes frozen during backup:<br>${FREEZE_PROCESSES}")
+	for p in ${FREEZE_PROCESSES}; do
+		echo Freezing ${p} ...
+		killall -STOP ${p} 2>/dev/null || true
+	done
+	# FIXME: disconnect hexchat via dbus
+}
+
+unfreeze_processes() {
+	for p in ${FREEZE_PROCESSES}; do
+		echo Unfreezing ${p} ...
+		killall -CONT ${p} 2>/dev/null || true
+	done
+	# FIXME: reconnect hexchat via dbus
+	notify-send -r "${FREEZE_NOTIFY_ID}" -u normal -t 10 \
+		"Processes unfrozen:<br>${FREEZE_PROCESSES}"
+	FREEZE_NOTIFY_ID=
+}
+
+do_backup() {
+	# cleanup logs
+	mkdir -p "$LOGDIR"
+	find "${LOGBASE}"* -not -newermt "180 days ago" -delete
+
+	set +x
+
+	announce borg info ${BORG_COMMON_PARAMS} \
+		"${REPOBASE}" \
+		2>&1
+
+	announce borg list ${BORG_COMMON_PARAMS} \
+		"${REPOBASE}" \
+		2>&1
+
+	# some processes keep changing files while it's running, which leads to
+	# borg exiting with 1
+	freeze_processes
+
+	announce borg create ${BORG_COMMON_PARAMS} \
+		--stats \
+		--exclude-if-present .nobackup --keep-exclude-tags \
+		${BORG_CREATE_PARAMS} \
+		"${REPOBASE}"::'{now:%Y-%m-%d_%H:%M}'\
+		${BACKUP_SOURCE} \
+		2>&1
+		borgcreatereturncode=$?
+		if [ "$borgcreatereturncode" != 0 ]; then
+			msg="ERROR: 'borg create' exited with code ${borgcreatereturncode}"
+			printf "${__RED}==\n==\n%s\n==\n==\n${__RESET}" "$msg"
+			notify-send -u critical "$msg"
+			unfreeze_processes
+			exit ${borgcreatereturncode}
+		else
+			printf "${__YELLOW}'borg create' exited with code ${borgcreatereturncode}${__RESET}\n"
+		fi
+
+	unfreeze_processes
+
+	announce borg prune ${BORG_COMMON_PARAMS} \
+		--list --stats \
+		--keep-within=7d \
+		--keep-daily=3 \
+		--keep-weekly=10 \
+		--keep-monthly=12 \
+		"${REPOBASE}" \
+		2>&1 \
+	|| (printf "${__YELLOW}==\n==\nERROR: 'borg prune' exited with code $? \n==\n==\n${__RESET}" ; exit 1 )
+
+	if [ "$opt_compact" == 1 ]; then
+		announce borg compact --cleanup-commits ${BORG_COMMON_PARAMS} \
+			"${REPOBASE}" \
+			2>&1 \
+		|| exit 1
+	else
+		echo 'Note: not running compact, call with "suspend" or "compact".'
+	fi
+
+	if [ "$opt_check" == 1 ]; then
+		announce borg check ${BORG_COMMON_PARAMS} \
+			"${REPOBASE}" \
+			2>&1 \
+		|| exit 1
+	else
+		echo 'Note: not running check, call with "suspend" or "check".'
+	fi
+
+	announce borg info ${BORG_COMMON_PARAMS} \
+		"${REPOBASE}" \
+		2>&1
+
+	announce ssh ${SSH_HOST} -p 23 df -h
+
+	set +x
+}
+
+opt_check=0
+opt_compact=0
+opt_suspend=0
+opt_lock=1
+opt_timer=""
+opt_shell=0
+
+while [ -n "$1" ]; do
+	case "$1" in
+		--help|-help|help|-h)
+			usage; exit;;
+		check)		opt_check=1;;
+		nocheck)	opt_check=0;;
+		compact)	opt_compact=1; opt_check=1;; 
+		nocompact)	opt_compact=0;;
+		lock)		opt_lock=1;;
+		nolock)		opt_lock=0;;
+		shell)		opt_shell=1; break;;
+		suspend)	opt_suspend=1; opt_lock=1; opt_check=1 opt_compact=1;;
+		nosuspend)	opt_suspend=0;;
+		*m)		opt_timer="$1"; opt_suspend=1; opt_lock=1; opt_check=1 opt_compact=1;;
+		*)
+			echo "Unknown argument: $1"
+			echo
+			usage
+			exit 5
+			;;
+	esac
+	shift
+done
+
+if [ -z "$opt_shell" ]; then
+	echo
+	echo "Called with options: "
+	echo "  check=$opt_check"
+	echo "  lock=$opt_lock"
+	echo "  suspend=$opt_suspend"
+	echo "  timer=$opt_timer"
+	echo
+fi
+
+
+mkdir -p ~/.cache/borg/
+chmod 700 ~/.cache/borg/
+sync
+
+trap cleanup EXIT
+ssh-add "${SSH_KEY}" \
+	|| exit 1
+store_borg_password
+
+export BORG_PASSCOMMAND="cat ${HOME}/.cache/borg/passphrase.tmp"
+export BORG_REPO="${REPOBASE}"
+
+echo
+
+while ! borg list ${BORG_COMMON_PARAMS} "${REPOBASE}" > /dev/null; do
+	echo "Could not 'borg info'. Wrong password?"
+	store_borg_password || exit 1
+done
+	
+if [ "$opt_shell" = "1" ]; then
+	echo
+	echo BORG_REPO="${BORG_REPO}"
+	echo
+	echo "Some example command lines:"
+	echo '  $ borg extract $BORG_REPO::2022-11-03_44:55 home/user/.mozilla'
+	echo
+	bash --init-file <(echo "source ~/.bashrc; PS1='\[\033[34m\]borg\[\033[0m\] \w > '") -i
+	exit $?
+fi
+
+if [ $opt_lock == 1 ]; then
+	hook_screenlock
+fi
+
+if [ -n "$opt_timer" ]; then
+	echo "Starting backup in $opt_timer..."
+	sleep $opt_timer
+fi
+set -x
+
+hook_pre
+
+do_backup 2>&1 | ts "$TSFORMAT" | tee "${LOGBASE}-$(date +%Y-%m-%d_%H:%M)"
+
+if [ $opt_suspend == 1 ]; then
+	ssh-add -D
+	sync
+	sleep 10
+	systemctl suspend
+fi
+
+hook_post
