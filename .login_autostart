@@ -9,27 +9,6 @@ if [ -n "`which pacmd`" ] && [ -n "`which pulseaudio`" ] && \
 	pulseaudio --start --log-target=syslog
 fi
 
-### start ssh agent
-SSH_AGENT_ENV_FILE=$HOME/.ssh/ssh-agent-info-`hostname`
-start_ssh_agent() {
-	echo Starting new SSH Agent...
-	ssh-agent -s > "$SSH_AGENT_ENV_FILE"
-	. "$SSH_AGENT_ENV_FILE"
-}
-
-if [ -r "$SSH_AGENT_ENV_FILE" ]; then
-	. "$SSH_AGENT_ENV_FILE" > /dev/null
-
-	# file may be old, try connecting
-	if [ -z "$(ps aux|grep $USER|grep $SSH_AGENT_PID|grep ssh-agent)" ] || \
-	   [ ! -S "$SSH_AUTH_SOCK" ]; then
-		# daemon does not exist with this pid, start new one
-		start_ssh_agent
-	fi
-else
-	# no agent env file yet
-	start_ssh_agent
-fi
 
 if [ -e "$HOME/.login_autostart.$HOSTNAME" ]; then
 	source "$HOME/.login_autostart.$HOSTNAME"

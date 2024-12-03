@@ -47,6 +47,9 @@ export MPD_PORT=6600
 # for sh compatibility
 export HOSTNAME=`hostname`
 
+# let ssh connect to ssh-agent.service
+export SSH_AUTH_SOCK=/run/user/$(id -u)/openssh_agent
+
 # prefer user.email in .git/config, or fall back to $EMAIL
 unset GIT_AUTHOR_NAME GIT_AUTHOR_EMAIL GIT_COMMITTER_NAME GIT_COMMITTER_EMAIL
 
