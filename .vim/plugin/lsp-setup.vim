@@ -66,6 +66,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
+    nmap <buffer> gF <plug>(lsp-document-format)
     nmap <buffer> <F7> :ToggleDocumentDiagnosticsWindow<CR>
     " scrolling in the preview window
     noremap! <buffer> <expr> <C-9> lsp#scroll(1)
