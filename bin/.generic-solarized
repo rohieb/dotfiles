@@ -89,7 +89,7 @@ xterm_osc 4 "11;$S_base00"
 xterm_osc 4 "12;$S_base0"
 xterm_osc 4 "14;$S_base1"
 xterm_osc 4 "13;$S_violet"
-xterm_osc 4 "15;$S_base1"
+xterm_osc 4 "14;$S_base1"
 xterm_osc 4 "15;$S_base3"
 
 # set up bgcolor, fgcolor and cursors
