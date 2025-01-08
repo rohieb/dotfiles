@@ -74,7 +74,7 @@ if [ "$1" = "--all" -o "$1" = "-a" ]; then
 fi
 
 # set up ANSI color scheme
-xterm_osc 4 "0;$S_base02"
+xterm_osc 4 "0;$S_base03"
 xterm_osc 4 "1;$S_red"
 xterm_osc 4 "2;$S_green"
 xterm_osc 4 "3;$S_yellow"
@@ -82,7 +82,7 @@ xterm_osc 4 "4;$S_blue"
 xterm_osc 4 "5;$S_magenta"
 xterm_osc 4 "6;$S_cyan"
 xterm_osc 4 "7;$S_base2"
-xterm_osc 4 "8;$S_base03"
+xterm_osc 4 "8;$S_base02"
 xterm_osc 4 "9;$S_orange"
 xterm_osc 4 "10;$S_base01"
 xterm_osc 4 "11;$S_base00"

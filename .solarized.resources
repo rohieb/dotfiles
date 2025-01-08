@@ -38,8 +38,8 @@
 #define S_green         #859900
 
 !! black dark/light
-*color0:                S_base02
-*color8:                S_base03
+*color0:                S_base03
+*color8:                S_base02
 
 !! red dark/light
 *color1:                S_red
