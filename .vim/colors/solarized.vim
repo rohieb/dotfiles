@@ -282,8 +282,8 @@ elseif (has("gui_running") && g:solarized_degrade == 1)
     let s:green       = "#5f8700"
 elseif g:solarized_termcolors != 256 && &t_Co >= 16
     let s:vmode       = "cterm"
-    let s:base03      = "8"
-    let s:base02      = "0"
+    let s:base03      = "0"
+    let s:base02      = "8"
     let s:base01      = "10"
     let s:base00      = "11"
     let s:base0       = "12"
@@ -319,8 +319,8 @@ elseif g:solarized_termcolors == 256
 else
     let s:vmode       = "cterm"
     let s:bright      = "* term=bold cterm=bold"
-"   let s:base03      = "0".s:bright
-"   let s:base02      = "0"
+"   let s:base03      = "0"
+"   let s:base02      = "0".s:bright
 "   let s:base01      = "2".s:bright
 "   let s:base00      = "3".s:bright
 "   let s:base0       = "4".s:bright
