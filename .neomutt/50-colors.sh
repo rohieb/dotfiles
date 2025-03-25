@@ -64,8 +64,9 @@ color quoted4		magenta		default
 color body		$S_hl		default		"^-----[^-].+[^-]-----$"
 
 # mail: gpg
-color attach_headers	$S_hl		default		"^\\\\[-- The following data is signed --\\\\].*$"
-color attach_headers	$S_hl		default		"^\\\\[-- End of signed data --\\\\].*$"
+color attach_headers	$S_hl		default		"^\\\\[-- The following data is (PGP/MIME )?signed (and encrypted )?--\\\\].*$"
+color attach_headers	$S_hl		default		"^\\\\[-- End of (PGP/MIME )?signed (and encrypted )?data --\\\\].*$"
+color attach_headers	$S_hl		default		"^\\\\[-- .*decryption failed.* --\\\\].*$"
 color body		green		default		"^(gpg: )?Good signature from.*$"
 color body		red		default		"^(gpg: )?B[Aa][Dd] signature from.*$"
 color body		red		default		"^(gpg: )?Note: This key has expired!.*$"
