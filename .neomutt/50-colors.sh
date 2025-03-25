@@ -21,7 +21,7 @@ uncolor header *
 color normal		default		default
 color indicator		$S_bg		$S_hl
 color status		$S_hl		$S_bg
-color tree		default		$S_bg
+color tree		default		default		# thread continuation arrows
 color prompt		$S_hl		default
 color message		$S_hl		default
 
