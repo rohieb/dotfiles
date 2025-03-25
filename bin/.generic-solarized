@@ -66,11 +66,12 @@ if [ "$1" = "--all" -o "$1" = "-a" ]; then
 	# set resources for future terminal instances
 	xrdb -merge ~/.solarized.resources.$COLORSCHEME
 
-	# tell vim about our decision
-	cat > ~/.vimrc.solarized <<-EOF
-		" This file will be overwritten by ~/bin/solarized-*
-		set bg=$COLORSCHEME
-	EOF
+	DROPIN_DIR=~/.config/solarized/
+	if [ -d $DROPIN_DIR -a -n "`ls -A $DROPIN_DIR`" ]; then
+		for snippet in $DROPIN_DIR/*; do
+			. $snippet
+		done
+	fi
 fi
 
 # set up ANSI color scheme
@@ -105,11 +106,4 @@ else
 	xterm_osc 12  $S_base01  # text cursor foreground
 	xterm_osc 13  $S_base01  # mouse pointer color
 	xterm_osc 708 $S_base3   # border color
-fi
-
-DROPIN_DIR=~/.config/solarized/
-if [ -d $DROPIN_DIR -a -n "`ls -A $DROPIN_DIR`" ]; then
-	for snippet in $DROPIN_DIR/*; do
-		. $snippet
-	done
 fi

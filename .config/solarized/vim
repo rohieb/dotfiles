@@ -1,3 +1,6 @@
 # vim: ft=sh
 # set background in vim
-echo "set bg=$COLORSCHEME" > ~/.vimrc.solarized
+cat > ~/.vimrc.solarized <<-EOF
+	" This file will be overwritten by ~/bin/solarized-*
+	set bg=$COLORSCHEME
+EOF
