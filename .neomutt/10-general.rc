@@ -8,7 +8,3 @@ set header_cache = "$my_cache_dir/mutt-`hostname`"
 source ~/.neomutt/11-sendmail.sh|
 set sendmail_wait = 1
 unset wait_key
-
-set mime_forward = ask-yes
-set mime_forward_rest = ask-no
-set forward_format = "Fwd: %s"

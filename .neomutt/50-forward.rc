@@ -1,4 +1,5 @@
 # vim: ft=neomuttrc
-set mime_forward = yes
+set mime_forward = ask-yes
+set mime_forward_rest = ask-no
 set forward_format = "Fwd: %s"
 set forward_references = yes
