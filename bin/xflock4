@@ -1,3 +1,10 @@
 #!/bin/sh
 # wrapper to allow xfce4-power-manager to lock the screen
+if [ -z "$(ps -Af | grep borg-backup | grep -v grep)" ]; then
+	clear_keys
+else
+	big-red-notification "Notice: borg-backup running, not clearing ssh-agent."
+	sleep 7
+fi
+
 i3lock -c 000000

@@ -1,0 +1,3 @@
+#!/bin/sh
+echo RELOADAGENT | gpg-connect-agent
+ssh-add -D
