@@ -299,3 +299,4 @@ if [ $opt_suspend == 1 ]; then
 fi
 
 hook_post
+clear_keys
