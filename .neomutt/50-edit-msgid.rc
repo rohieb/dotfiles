@@ -1,0 +1,3 @@
+# vim: ft=neomuttrc
+# see https://people.kernel.org/monsieuricon/fix-your-mutt
+my_hdr Message-ID: <`~/.neomutt/gen-msgid.sh`>
