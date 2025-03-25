@@ -2,13 +2,18 @@
 tmp=$(mktemp)
 trap "rm $tmp" EXIT
 
-# note: ] loses its special meaning as first character inside a bracket expr
-grep -oe 'https\?://[^])>" ]\+' > "$tmp"
+# input is a full mail
+cat > "$tmp"
 
-if grep -e 'dai\.ly/' < "$tmp" ; then
-	# prefer full Japanology Plus episodes
+if grep -qe '^From: .*@woodworkingmasterclasses\.com' < "$tmp"; then
+	wwmc $(grep -oe 'http.*woodworkingmasterclasses\.com/\(videos/\|gh/tracking/email/click/\|?ns_url=\).*$' < "$tmp")
 	exit
 fi
-grep -e 'youtu.be\|\(www\.\)\?youtube.com/\(watch\|playlist\)' < "$tmp"
-grep -e 'patreon.com/posts/' < "$tmp"
-grep -e 'woodworkingmasterclasses\.com/\(videos/\|gh/tracking/email/click/\)' < "$tmp" | head -n 2 | tail -n 1
+
+urls() {
+	# note: ] loses its special meaning as first character inside a bracket expr
+	grep -oe 'https\?://[^])>" ]\+' < "$tmp"
+}
+
+urls | grep -e 'youtu.be\|\(www\.\)\?youtube.com/\(watch\|playlist\)' | head -n 1
+urls | grep -e 'patreon.com/posts/' | head -n 1

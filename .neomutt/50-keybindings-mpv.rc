@@ -3,7 +3,7 @@
 
 macro index,pager y \
 "<enter-command> set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key pipe_decode nowait_key<enter>\
-<pipe-message> mpvc-enqueue $(extract-video-urls | head -n 1)<enter>\
+<pipe-message> mpvc-enqueue $(extract-video-urls)<enter>\
 <clear-flag>N\
 <enter-command> set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
 	"Add YouTube URLs to the mpv playlist"
