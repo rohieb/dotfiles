@@ -250,3 +250,6 @@ if [ -r ${HOME}/.bashrc.d/ ]; then
 	done
 	unset __snip
 fi
+
+# put first prompt at the bottom of the screen
+tput cup 9999 0
