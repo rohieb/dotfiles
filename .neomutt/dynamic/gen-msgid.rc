@@ -1,0 +1,3 @@
+# see https://people.kernel.org/monsieuricon/fix-your-mutt
+# This file needs to be sourced by a send-hook to generate a new MID every time
+my_hdr Message-ID: <`~/.neomutt/gen-msgid.sh`>

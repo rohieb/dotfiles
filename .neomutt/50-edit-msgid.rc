@@ -1,3 +1,4 @@
 # vim: ft=neomuttrc
+# Generate better Message-IDs than the neomutt standard IDs
 # see https://people.kernel.org/monsieuricon/fix-your-mutt
-my_hdr Message-ID: <`~/.neomutt/gen-msgid.sh`>
+send-hook . "source ~/.neomutt/dynamic/gen-msgid.rc"
