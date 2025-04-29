@@ -13,3 +13,6 @@ ExecStartPre=install -v -d /run/user/%U
 ExecStart=ssh-agent -a $SSH_AUTH_SOCK -d -t 1h -E sha256 
 ExecStartPost=dbus-update-activation-environment --verbose --systemd SSH_AUTH_SOCK="$SSH_AUTH_SOCK" SSH_AGENT_LAUNCHER=openssh
 ExecStopPost=dbus-update-activation-environment --verbose --systemd  SSH_AUTH_SOCK= SSH_AGENT_LAUNCHER=
+
+[Install]
+WantedBy=default.target
