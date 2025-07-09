@@ -9,8 +9,8 @@ After=dbus.socket
 
 [Service]
 Environment=SSH_AUTH_SOCK="/run/user/%U/openssh_agent"
-ExecStartPre=install -v -d /run/user/%U
-ExecStart=ssh-agent -a $SSH_AUTH_SOCK -d -t 1h -E sha256 
+ExecStartPre=/bin/sh -c 'install -v -d /run/user/%U && rm $SSH_AUTH_SOCK'
+ExecStart=ssh-agent -D -a $SSH_AUTH_SOCK -E sha256
 ExecStartPost=dbus-update-activation-environment --verbose --systemd SSH_AUTH_SOCK="$SSH_AUTH_SOCK" SSH_AGENT_LAUNCHER=openssh
 ExecStopPost=dbus-update-activation-environment --verbose --systemd  SSH_AUTH_SOCK= SSH_AGENT_LAUNCHER=
 
