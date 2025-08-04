@@ -1,3 +1,3 @@
 # vim: ft=neomuttrc
-# printing mails
-set print_command = "muttprint"
+# print mails to ~/tmp/muttprint.pdf
+set print_command = "muttprint -1 --noduplex --printer - | ps2pdf - $HOME/tmp/muttprint.pdf"
