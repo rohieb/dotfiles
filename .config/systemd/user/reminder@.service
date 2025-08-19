@@ -1,0 +1,5 @@
+[Unit]
+Description=Reminder Notification about %i
+
+[Service]
+ExecStart=/bin/sh -c "DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/1000/bus' DISPLAY=:0 $HOME/bin/big-red-notification $(systemd-escape -u '%i')"
