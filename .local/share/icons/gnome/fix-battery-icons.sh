@@ -17,28 +17,21 @@ make_icon_symlinks() {
 	done
 }
 
-make_icon_symlinks status/battery-full.png              status/battery-level-100-symbolic.png
-make_icon_symlinks status/battery-full.png              status/battery-level-90-symbolic.png
-make_icon_symlinks status/battery-good.png              status/battery-level-80-symbolic.png
-make_icon_symlinks status/battery-good.png              status/battery-level-70-symbolic.png
-make_icon_symlinks status/battery-good.png              status/battery-level-60-symbolic.png
-make_icon_symlinks status/battery-low.png               status/battery-level-50-symbolic.png
-make_icon_symlinks status/battery-low.png               status/battery-level-40-symbolic.png
-make_icon_symlinks status/battery-low.png               status/battery-level-30-symbolic.png
-make_icon_symlinks status/battery-low.png               status/battery-level-20-symbolic.png
-make_icon_symlinks status/battery-caution.png           status/battery-level-10-symbolic.png
-make_icon_symlinks status/battery-empty.png             status/battery-level-0-symbolic.png
 
+for state in "" "-charging"; do
+	make_icon_symlinks status/battery-full"${state}".png              status/battery-level-100"${state}"-symbolic.png
+	make_icon_symlinks status/battery-full"${state}".png              status/battery-level-90"${state}"-symbolic.png
+	make_icon_symlinks status/battery-good"${state}".png              status/battery-level-80"${state}"-symbolic.png
+	make_icon_symlinks status/battery-good"${state}".png              status/battery-level-70"${state}"-symbolic.png
+	make_icon_symlinks status/battery-good"${state}".png              status/battery-level-60"${state}"-symbolic.png
+	make_icon_symlinks status/battery-low"${state}".png               status/battery-level-50"${state}"-symbolic.png
+	make_icon_symlinks status/battery-low"${state}".png               status/battery-level-40"${state}"-symbolic.png
+	make_icon_symlinks status/battery-low"${state}".png               status/battery-level-30"${state}"-symbolic.png
+	make_icon_symlinks status/battery-caution"${state}".png           status/battery-level-20"${state}"-symbolic.png
+	make_icon_symlinks status/battery-caution"${state}".png           status/battery-level-10"${state}"-symbolic.png
+	make_icon_symlinks status/battery-caution"${state}".png           status/battery-level-0"${state}"-symbolic.png
+done
+
+# special values
 make_icon_symlinks status/battery-full-charged.png      status/battery-level-100-charged-symbolic.png
-make_icon_symlinks status/battery-full-charging.png     status/battery-level-90-charging-symbolic.png
-make_icon_symlinks status/battery-good-charging.png     status/battery-level-80-charging-symbolic.png
-make_icon_symlinks status/battery-good-charging.png     status/battery-level-70-charging-symbolic.png
-make_icon_symlinks status/battery-good-charging.png     status/battery-level-60-charging-symbolic.png
-make_icon_symlinks status/battery-low-charging.png      status/battery-level-50-charging-symbolic.png
-make_icon_symlinks status/battery-low-charging.png      status/battery-level-40-charging-symbolic.png
-make_icon_symlinks status/battery-low-charging.png      status/battery-level-30-charging-symbolic.png
-make_icon_symlinks status/battery-low-charging.png      status/battery-level-20-charging-symbolic.png
-make_icon_symlinks status/battery-caution-charging.png  status/battery-level-10-charging-symbolic.png
-make_icon_symlinks status/battery-caution-charging.png  status/battery-level-0-charging-symbolic.png
-
 make_icon_symlinks status/battery-missing.png           status/battery-missing-symbolic.png
