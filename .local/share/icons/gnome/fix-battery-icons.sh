@@ -9,9 +9,9 @@ make_icon_symlinks() {
 		dst="${usericonpath}/${size}/${2}"
 		if [ -e "${src}" ]; then
 			if [ -h "${dst}" ]; then
-				rm "${dst}"
+				rm -v "${dst}"
 			fi
-			mkdir -p $(dirname "${dst}")
+			mkdir -vp $(dirname "${dst}")
 			ln -sv "${src}" "${dst}"
 		fi
 	done
