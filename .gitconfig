@@ -141,6 +141,7 @@
 [merge]
 	tool = meld
 	defaultToUpstream = true
+	conflictStyle = zdiff3
 
 [pull]
 	ff = only
