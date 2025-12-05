@@ -30,5 +30,5 @@ else
     msgid="${msgid}$(openssl rand -hex 12)"
 fi
 
-msgid="${msgid}@$(hostname)"
+msgid="${msgid}@$(hostname --fqdn)"
 echo "${msgid}"
