@@ -1,8 +1,6 @@
 [Unit]
 Description=OfflineIMAP one-time full sync
 Documentation=man:offlineimap(1)
-Wants=network-online.target
-After=network-online.target
 After=feed2exec.service
 AssertPathExists=%h/.offlineimaprc
 
@@ -10,4 +8,5 @@ AssertPathExists=%h/.offlineimaprc
 Type=oneshot
 Environment="PATH=/bin:/usr/bin"
 TimeoutStartSec=10m
+ExecStartPre=/usr/bin/nm-online -qt 1
 ExecStart=/usr/bin/offlineimap -c %h/.offlineimaprc -u basic -o

@@ -10,4 +10,5 @@ AssertPathExistsGlob=%h/.task/*.pem
 [Service]
 Type=oneshot
 TimeoutStartSec=5m
+ExecStartPre=/usr/bin/nm-online -qt 1
 ExecStart=/usr/bin/task sync

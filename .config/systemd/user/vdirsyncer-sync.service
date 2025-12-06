@@ -9,5 +9,6 @@ AssertPathExists=%h/.config/vdirsyncer/config
 Type=oneshot
 TimeoutStartSec=5m
 ; 2021-02-02: --max-workers=1, see https://github.com/pimutils/vdirsyncer/issues/864
+ExecStartPre=/usr/bin/nm-online -qt 1
 ExecStart=/usr/bin/vdirsyncer sync --max-workers=1
 ExecStartPost=/bin/sh -c 'if [ -n "`which khal`" ]; then nice khal > /dev/null 2>&1; fi'
