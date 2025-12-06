@@ -7,6 +7,8 @@ AssertPathExists=%h/.offlineimaprc
 [Service]
 Type=oneshot
 Environment="PATH=/bin:/usr/bin"
+Nice=10
+IOSchedulingClass=idle
 TimeoutStartSec=10m
 ExecStartPre=/usr/bin/nm-online -qt 1
 ExecStart=/usr/bin/offlineimap -c %h/.offlineimaprc -u basic -o -q -a %I

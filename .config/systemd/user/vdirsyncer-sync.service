@@ -8,6 +8,8 @@ AssertPathExists=%h/.config/vdirsyncer/config
 [Service]
 Type=oneshot
 TimeoutStartSec=5m
+Nice=10
+IOSchedulingClass=idle
 ; 2021-02-02: --max-workers=1, see https://github.com/pimutils/vdirsyncer/issues/864
 ExecStartPre=/usr/bin/nm-online -qt 1
 ExecStart=/usr/bin/vdirsyncer sync --max-workers=1

@@ -7,4 +7,6 @@ AssertPathExists=%h/.notmuch-config
 
 [Service]
 Type=oneshot
+Nice=10
+IOSchedulingClass=idle
 ExecStart=/usr/bin/notmuch new

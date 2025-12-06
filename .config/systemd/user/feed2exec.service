@@ -7,6 +7,8 @@ AssertPathExists=%h/.config/feed2exec.ini
 [Service]
 Type=oneshot
 Environment="PATH=/bin:/usr/bin" "PYTHONPATH=.local/lib/python3"
+Nice=10
+IOSchedulingClass=idle
 TimeoutStartSec=5m
 ExecStartPre=/usr/bin/nm-online -qt 1
 ExecStart=/usr/bin/feed2exec --database ~/.local/share/feed2exec.db -v fetch
