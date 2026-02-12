@@ -29,8 +29,13 @@ report.nextpopup.labels      = ID,Deps,P,Project,Tag,Due,Description,Urg
 report.nextpopup.sort        = urgency-
 
 # contexts
-context.s0latex=proj:s0.latex or ((proj:m4rkup or proj:s0) and +latex)
-context.s0v=proj:s0.v or proj:m4rkup or +s0v
+context.s0v.read=proj:s0.v or +s0v
+context.s0v.write=proj:s0.v
+context.s0.read=proj:s0 or +stratum0 or +s0
+context.s0.write=proj:s0
 
 # bugwarrior UDAs
 include ~/.taskrc.bugwarrior
+
+# other stuff
+news.version=2.6.0
