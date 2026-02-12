@@ -16,6 +16,7 @@ urgency.blocked.coefficient                  = 0
 urgency.blocking.coefficient                 = 0
 urgency.user.project.lesefoo.coefficient     = -3
 urgency.tags.coefficient                     = 0
+urgency.annotations.coefficient              = 0
 urgency.uda.priority.L.coefficient           = -0.5
 urgency.uda.priority.M.coefficient           = 0
 urgency.uda.priority.H.coefficient           = 1
