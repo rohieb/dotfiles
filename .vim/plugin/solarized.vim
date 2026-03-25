@@ -12,3 +12,9 @@ if &term != "linux" || has('gui_running')
 	let g:solarized_termtrans=1   " avoid problems with terminal transparency
 	colorscheme solarized
 endif
+
+if $BACKGROUND == "light"
+    set background=light
+elseif $BACKGROUND == "dark"
+    set background=dark
+endif
