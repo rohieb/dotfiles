@@ -1,0 +1,1 @@
+/home/rohieb/.neomutt/gen-msgid.sh
