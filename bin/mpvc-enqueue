@@ -62,7 +62,11 @@ get_property() {
 	printf "%s" "$r" | jq -rM .data
 }
 
-printf "mpve: %s\n" "$*" >> ${logfile}
+#set -x
+
+# FIXME:
+# - do parameter massaging first before starting the mpvc instance
+# - implement -- option
 
 # transform relative file names into absolute file names
 params=()
@@ -71,13 +75,24 @@ for p in "$@"; do
 	if [ $? != 0 ]; then
 		# no file, probably option or URL
 		case "$p" in
-			*youtu.be*|*youtube.com*)
+			*youtu.be/*|*youtube.com/*)
 				# remove tracking parameters
-				realp=$(sed 's/[?&]\(si\|pp\)=[^&]\+//' <<< "$p");;
+				realp=$(sed 's/\<\(si\|is\|pp\)=[^&]\+//' <<< "$p");;
+			*patreon.com/posts*)
+				realp=$(sed 's/[?&]token=[^&]\+//' <<< "$p");;
 			*)
 				realp="$p";;
 		esac
+
+		# remove tracking parameters
+		case "$realp" in
+			http*)
+				realp=$(sed 's/[?&]\(utm_[a-z]\+\)=[^&]\+//g' <<< "$realp")
+				realp=$(sed 's/[?&]$//' <<< "$realp")
+				;;
+		esac
 	fi
+	#printf "realp after removing shady params: %s\n" "$realp"
 	params=("${params[@]}" "$realp")
 done
 set -- "${params[@]}"
