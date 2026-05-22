@@ -105,9 +105,12 @@ EOF
 then
 	echo Starting continuous mpv media player...
 	echo See output in ${logfile}
-	mpvc --force-window=yes --term-status-msg='' "$@" > ${logfile} 2>&1 &
+	: > "${logfile}"
+	mpvc --force-window=yes --term-status-msg='' "$@" 2>&1 | ts >> ${logfile} &
 	exit
 fi
+
+printf "mpve: enqueuing %s\n" "$*" | ts >> ${logfile}
 
 case "$1" in
 	--quit|-q|--kill)
