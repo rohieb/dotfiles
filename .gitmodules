@@ -91,3 +91,6 @@
 [submodule ".vim/bundle/vim-lsp-settings"]
 	path = .vim/bundle/vim-lsp-settings
 	url = https://github.com/mattn/vim-lsp-settings
+[submodule ".vim/bundle/vim-ledger"]
+	path = .vim/bundle/vim-ledger
+	url = https://github.com/ledger/vim-ledger
