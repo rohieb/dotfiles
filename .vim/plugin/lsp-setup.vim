@@ -1,6 +1,7 @@
 let g:lsp_auto_enable = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_diagnostics_highlights_enabled = 0
+let g:lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_fold_enabled = 0
 let g:lsp_preview_max_height = 10
 let g:lsp_preview_max_width = 60
@@ -79,3 +80,18 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
     autocmd User lsp_server_init exe 'redraw | echom "Language Server initialised"'
 augroup END
+
+" LSP Document Diagnostics and Location list pane
+function s:ToggleDocumentDiagnostics()
+    if getloclist(0, {'winid' : 0}).winid == 0
+        "if getloclist(0, {'nr' : 0}).nr != 0
+        LspDocumentDiagnostics
+        "else
+            "echomsg "No location list for current window."
+        "endif
+    else
+        lclose
+    endif
+endfunction
+command ToggleDocumentDiagnostics call s:ToggleDocumentDiagnostics()
+nnoremap <F9> :ToggleDocumentDiagnostics<CR>
