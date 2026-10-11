@@ -1,5 +1,5 @@
 set mouse=a
-set listchars=tab:│\ ,eol:¶,trail:·
+set listchars=tab:\\u2502\ ,eol:¶,trail:·
 set guifont=Monospace\ 8
 set textwidth=80
 set scrolloff=7
